@@ -4958,13 +4958,29 @@ async function loadSpecialSchoolsDataFromCSV() {
         const lines = csvText.split('\n').filter(line => line.trim() !== '');
         const newData = {};
 
+        // Function to parse a CSV line, handling quoted fields
+        function parseCsvLine(line) {
+            const regex = /(?:"([^"]*)"|([^,]*))(?:,|$)/g;
+            const parts = [];
+            let match;
+            // This regex exec needs to be handled carefully in a loop.
+            // Let's reset lastIndex before each line if the regex is global.
+            regex.lastIndex = 0;
+            while ((match = regex.exec(line)) && match[0] !== '') {
+                // Use the quoted group if it exists, otherwise the unquoted group
+                parts.push(match[1] !== undefined ? match[1] : match[2]);
+            }
+            return parts;
+        }
+
         // Start from row 4 (index 3) to skip BOM, empty lines and header
         for (let i = 3; i < lines.length; i++) {
-            const parts = lines[i].split(',');
+            const parts = parseCsvLine(lines[i]);
+
             if (parts.length >= 3) {
                 // Column B (index 1) is School Name, Column C (index 2) is LGA
-                const school = parts[1].trim().replace(/"/g, '');
-                const lga = parts[2].trim().replace(/"/g, '');
+                const school = parts[1].trim();
+                const lga = parts[2].trim();
 
                 if (lga && school) {
                     if (!newData[lga]) {
