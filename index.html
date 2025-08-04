@@ -694,6 +694,7 @@ select.form-control option {
         </div>
         
 		<div id="silat_1.2Section" class="section hidden">
+            <form id="silat_1.2_form" onsubmit="submitSilat1_2(event)">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.2</h2>
@@ -1143,10 +1144,12 @@ select.form-control option {
                 </div>
 
              </div>
+            <button type="submit" class="btn">Submit SILNAT 1.2 Survey</button>
             <div id="silat_1.2_feedback" style="margin-top:15px;font-size:15px;"></div>
-			
+			</form>
 			
         <div id="silat_1.3Section" class="section hidden">
+            <form id="silat_1.3_form" onsubmit="submitSilat1_3(event)">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
@@ -1602,11 +1605,12 @@ select.form-control option {
                 </table>	
 				<button type="submit" class="btn">Submit SILNAT 1.3 Survey</button>
                 <div id="silat_1.3_feedback" style="margin-top:15px;font-size:15px;"></div>
-								
+			</form>
         </div>
 		</div>
         
 		<div id="silat_1.4Section" class="section hidden">
+            <form id="silat_1.4_form" onsubmit="submitSilat1_4(event)">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.4</h2>
@@ -1965,7 +1969,7 @@ select.form-control option {
                 </table>
 				<button type="submit" class="btn">Submit SILNAT 1.4 Survey</button>
                 <div id="silat_1.4_feedback" style="margin-top:15px;font-size:15px;"></div>
-				
+				</form>
             </div>
         </div>
 
@@ -5592,6 +5596,108 @@ async function submitSilnat(event) {
             feedback.textContent = 'SILNAT survey submitted successfully!';
             form.reset();
             document.getElementById('silnat_uploadedFiles').innerHTML = '';
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- SILAT 1.2 ---
+async function submitSilat1_2(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.2_form');
+    const feedback = document.getElementById('silat_1.2_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting SILAT 1.2 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.2', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.2 survey submitted successfully!';
+            form.reset();
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- SILAT 1.3 ---
+async function submitSilat1_3(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.3_form');
+    const feedback = document.getElementById('silat_1.3_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting SILAT 1.3 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.3', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.3 survey submitted successfully!';
+            form.reset();
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- SILAT 1.4 ---
+async function submitSilat1_4(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.4_form');
+    const feedback = document.getElementById('silat_1.4_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting SILAT 1.4 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.4', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.4 survey submitted successfully!';
+            form.reset();
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
