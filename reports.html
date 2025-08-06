@@ -4,25 +4,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Reports</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        /* Basic styles from index.html */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --lagos-red: #DC2626; --lagos-blue: #1E40AF; --lagos-yellow: #FACC15;
+            --lagos-green: #16A34A; --lagos-white: #FFFFFF; --lagos-navy: #1E3A8A;
+            --lagos-dark-gray: #64748B;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--lagos-blue); min-height: 100vh; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 100vh; }
+        .header { background: var(--lagos-navy); border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: var(--lagos-white); position: relative; border-left: 8px solid var(--lagos-red); }
+        .header .logo { display: flex; align-items: center; font-size: 24px; font-weight: bold; color: var(--lagos-white); }
+        .header .logo img { height: 40px; width: 40px; margin-right: 12px; }
+        .btn, .btn-secondary { background: var(--lagos-green); border-color: var(--lagos-yellow); color: var(--lagos-white); text-decoration: none; padding: 8px 16px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
+        .content-area { background: var(--lagos-white); border-radius: 15px; padding: 30px; overflow-y: auto; }
+        .data-table { width: 100%; border-collapse: collapse; background: var(--lagos-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px; }
+        .data-table th, .data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        .data-table th { background: var(--lagos-blue); color: var(--lagos-white); font-weight: 600; }
+        .data-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .data-table tr:hover { background-color: #e9ecef; }
+        #loadingMessage { text-align: center; padding: 20px; font-size: 1.2em; color: var(--lagos-navy); }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 10px; }
+        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="logo">
                 <img src="subeb.jpg" alt="Lagos State Logo">
-                Survey Reports
+                <span>Survey Reports</span>
             </div>
-            <a href="index.html" class="btn btn-secondary" style="width:auto;padding:8px 16px;margin-left:20px;">Back to Home</a>
+            <a href="index.html" class="btn-secondary">Back to Home</a>
         </div>
-        <div class="main-content">
-            <div class="content-area">
-                <div id="reportsSection" class="section">
-                    <h2>Survey Reports</h2>
-                    <p>This page will display the survey reports.</p>
+        <div class="content-area">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>All Survey Reports</h2>
+                <div id="export-buttons">
+                    <button class="btn" onclick="exportToPDF()">Export to PDF</button>
+                    <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
                 </div>
             </div>
+            <table class="data-table" id="reportsTable">
+                <thead>
+                    <tr>
+                        <th>Survey Type</th>
+                        <th>School Name / LGEA</th>
+                        <th>Respondent Name</th>
+                        <th>Submission Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+            <div id="loadingMessage">Loading reports...</div>
         </div>
     </div>
+
+    <!-- Modal for viewing details -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3>Survey Details</h3>
+            <pre id="modal-data" style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 15px; border-radius: 5px; margin-top: 15px;"></pre>
+        </div>
+    </div>
+
+    <script>
+        let allSurveys = []; // Global variable to hold survey data for exports
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.querySelector('#reportsTable tbody');
+            const loadingMessage = document.getElementById('loadingMessage');
+
+            fetch('http://localhost:3000/api/reports')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(surveys => {
+                    allSurveys = surveys; // Store data for export functions
+                    loadingMessage.style.display = 'none';
+                    if (surveys.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No reports found.</td></tr>';
+                        return;
+                    }
+
+                    tableBody.innerHTML = ''; // Clear previous content
+
+                    surveys.forEach(survey => {
+                        const row = tableBody.insertRow();
+                        const formData = survey.formData || {};
+                        const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
+                        const respondentName = formData.silnat_a_ht_name || formData.tcmats_teacherName || formData.lori_teacher_name || formData.voices_learnerName || (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
+                        const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+
+                        row.innerHTML = `
+                            <td>${survey.surveyType || 'N/A'}</td>
+                            <td>${schoolName} (${lga})</td>
+                            <td>${respondentName}</td>
+                            <td>${new Date(survey.createdAt).toLocaleString()}</td>
+                            <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
+                        `;
+                    });
+                })
+                .catch(error => {
+                    loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
+                    console.error('Error fetching reports:', error);
+                });
+        });
+
+        const modal = document.getElementById('detailsModal');
+        const modalData = document.getElementById('modal-data');
+
+        function viewDetails(survey) {
+            modalData.textContent = JSON.stringify(survey, null, 2);
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function exportToPDF() {
+            if (allSurveys.length === 0) {
+                alert("No data to export.");
+                return;
+            }
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Survey Reports", 14, 16);
+
+            const table = document.getElementById('reportsTable');
+            const tableClone = table.cloneNode(true);
+            Array.from(tableClone.rows).forEach(row => row.deleteCell(-1)); // Remove "Actions" column
+
+            doc.autoTable({ html: tableClone });
+
+            doc.save('survey-reports.pdf');
+        }
+
+        function exportToExcel() {
+            if (allSurveys.length === 0) {
+                alert("No data to export.");
+                return;
+            }
+            const worksheetData = allSurveys.map(survey => {
+                const { surveyType, createdAt, formData } = survey;
+                let flatData = {
+                    'Survey Type': surveyType,
+                    'Submission Date': new Date(createdAt).toLocaleString(),
+                };
+
+                // Simple flattening for formData
+                for (const [key, value] of Object.entries(formData)) {
+                    if (typeof value !== 'object' || value === null) {
+                        flatData[key] = value;
+                    } else {
+                        // For nested objects, just stringify them for a simple export
+                        flatData[key] = JSON.stringify(value);
+                    }
+                }
+                return flatData;
+            });
+
+            const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Survey Reports");
+
+            XLSX.writeFile(workbook, "survey-reports.xlsx");
+        }
+    </script>
 </body>
 </html>

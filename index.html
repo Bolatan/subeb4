@@ -694,11 +694,12 @@ select.form-control option {
         </div>
         
 		<div id="silat_1.2Section" class="section hidden">
+            <form id="silat_1.2_form" onsubmit="submitSurvey(event, 'silat_1.2')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.2</h2>
             </div>
-            <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
+            <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
                 <strong>Dear Respondent,</strong><br><br>
                 This instrument is designed to elicit responses that are capable of helping the Board of LASUBEB and PIMU to identify areas of Education Managers’ needs with the intention of helping them overcome difficulties in the course of discharging their duties. The instrument is not meant for any other purpose than to enhance productivity on the part of Education managers and for improved Education service delivery State-wide. Your support therefore is solicited to ensure successful completion of this instrument. We would appreciate your sincere responses.
@@ -1146,23 +1147,22 @@ select.form-control option {
 				
 				<div class="form-group">
                 <label>Upload Photos (Max 10)</label>
-                <input type="file" id="silnat_fileInput" multiple="" accept="image/*" class="form-control">
-                <div id="silnat_uploadedFiles" class="uploaded-files"></div>
+                <input type="file" id="silat_1.2_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.2_uploadedFiles')">
+                <div id="silat_1.2_uploadedFiles" class="uploaded-files"></div>
             </div>
             <button type="submit" class="btn">Submit SILNAT Form 1.2</button>
-
-             </div>
-		 
-			 
+            </form>
+            </div>
          <div id="silat_1.2_feedback" style="margin-top:15px;font-size:15px;"></div>
 			
 			
         <div id="silat_1.3Section" class="section hidden">
+            <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
             </div>
-            <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
+            <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
                 <strong>Dear Respondent,</strong><br><br>
                 This instrument is designed to elicit responses that are capable of helping the Board of LASUBEB and PIMU to identify areas of Education Managers’ needs with the intention of helping them overcome difficulties in the course of discharging their duties. The instrument is not meant for any other purpose than to enhance productivity on the part of Education managers and for improved Education service delivery State-wide. Your support therefore is solicited to ensure successful completion of this instrument. We would appreciate your sincere responses.
@@ -1617,22 +1617,24 @@ select.form-control option {
 			
 			 <div class="form-group">
                 <label>Upload Photos (Max 10)</label>
-                <input type="file" id="silnat_fileInput" multiple="" accept="image/*" class="form-control">
-                <div id="silnat_uploadedFiles" class="uploaded-files"></div>
+                <input type="file" id="silat_1.3_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.3_uploadedFiles')">
+                <div id="silat_1.3_uploadedFiles" class="uploaded-files"></div>
             </div>
 				
 			<button type="submit" class="btn">Submit SILNAT Form 1.3</button>
+            </form>
             <div id="silat_1.3_feedback" style="margin-top:15px;font-size:15px;"></div>
 								
         </div>	
 		
         
 		<div id="silat_1.4Section" class="section hidden">
+            <form id="silat_1.4_form" onsubmit="submitSurvey(event, 'silat_1.4')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.4</h2>
             </div>
-            <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
+            <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
                 <strong>Dear Respondent,</strong><br><br>
                 This instrument is designed to elicit responses that are capable of helping the Board of LASUBEB and PIMU to identify areas of Education Managers’ needs with the intention of helping them overcome difficulties in the course of discharging their duties. The instrument is not meant for any other purpose than to enhance productivity on the part of Education managers and for improved Education service delivery State-wide. Your support therefore is solicited to ensure successful completion of this instrument. We would appreciate your sincere responses.
@@ -1993,11 +1995,12 @@ select.form-control option {
             
             <div class="form-group">
                 <label>Upload Photos (Max 10)</label>
-                <input type="file" id="silnat_fileInput" multiple="" accept="image/*" class="form-control">
-                <div id="silnat_uploadedFiles" class="uploaded-files"></div>
+                <input type="file" id="silat_1.4_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.4_uploadedFiles')">
+                <div id="silat_1.4_uploadedFiles" class="uploaded-files"></div>
             </div>
 			
 				<button type="submit" class="btn">Submit SILNAT 1.4 Survey</button>
+                </form>
                 <div id="silat_1.4_feedback" style="margin-top:15px;font-size:15px;"></div>
 				
             </div>
@@ -2013,6 +2016,7 @@ select.form-control option {
 
         <!-- Survey Sections (initially hidden) -->
         <div id="silnatSection" class="section hidden">
+            <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silnat_1.1')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
@@ -2530,12 +2534,12 @@ select.form-control option {
 		
 			<div class="form-group">
                 <label>Upload Photos (Max 10)</label>
-                <input type="file" id="silnat_fileInput" multiple="" accept="image/*" class="form-control">
-                <div id="silnat_uploadedFiles" class="uploaded-files"></div>
+                <input type="file" id="silat_1.1_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.1_uploadedFiles')">
+                <div id="silat_1.1_uploadedFiles" class="uploaded-files"></div>
             </div>
             <button type="submit" class="btn">Submit SILNAT Form 1.1</button>
+            </form>
             <div id="silnat_feedback" style="margin-top:15px;font-size:15px;"></div>
-                  
 		</div>
 	
 	
@@ -2559,7 +2563,7 @@ select.form-control option {
         
             <h3 style="cursor: pointer;" onclick="toggleSection(&#39;tcmatsSectionA&#39;, &#39;tcmatsSectionAHeader&#39;)">SECTION A: Demographic information of School and Bio Data of Teacher <span id="tcmatsSectionAHeader">▶️</span></h3>
             <div id="tcmatsSectionA" style="display: none;">
-            <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitTcmats(event)">
+            <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
     <div class="form-group">
         <label>Institution:</label>
         <div>
@@ -2824,7 +2828,7 @@ select.form-control option {
                 <strong>Thank you.</strong>
             </div>
             <!-- TODO: Add LORI form here -->
-            <div style="color:#888;margin-top:40px;"><form id="loriForm" class="audit-form" onsubmit="submitLori(event)">
+            <div style="color:#888;margin-top:40px;"><form id="loriForm" class="audit-form" onsubmit="submitSurvey(event, 'lori')">
     <h4 id="loriSectionAHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;loriSectionAContent&#39;, &#39;loriSectionAHeader&#39;)">Section A: Demographic Data ▶️</h4>
     <div id="loriSectionAContent" style="display: none;">
         <table class="data-table">
@@ -3088,7 +3092,7 @@ select.form-control option {
                 <br><br>
                 <u>Instruction:</u> The instrument has Three sections; Section A, B and C. Section A requires Demographic Information and Bio Data of Teacher; Section B requires Teachers’ Needs Assessment; while Section C requires Teachers’ Subject Area Difficulties. Kindly fill in the statements that are applicable to you.
             </div>
-            <form id="voicesForm" class="audit-form" onsubmit="submitVoices(event)">
+            <form id="voicesForm" class="audit-form" onsubmit="submitSurvey(event, 'voices')">
                 <h3 style="cursor: pointer;" onclick="toggleSection(&#39;voicesSectionA&#39;, &#39;voicesSectionAHeader&#39;)">SECTION A: Demographic information of School and Bio Data of Learners <span id="voicesSectionAHeader">▶️</span></h3>
                 <div id="voicesSectionA" style="display: none;">
                     <div class="form-group">
@@ -3894,74 +3898,58 @@ function resizeImage(file, maxSize = 400, quality = 0.4) {
 }
 
         // Handle file uploads
-     // Handle file uploads
-function handleFiles(files) {
+// Handle file uploads
+function handleFiles(files, containerId) {
     const maxPhotos = 5;
+    const container = document.getElementById(containerId);
+    const fileInput = container.previousElementSibling; // The input is before the container div
+    let currentFiles = Array.from(container.children).length;
     let filesToAdd = Array.from(files);
-    if (uploadedFiles.length + filesToAdd.length > maxPhotos) {
-        filesToAdd = filesToAdd.slice(0, maxPhotos - uploadedFiles.length);
-        document.getElementById('photoLimitMsg').style.display = 'block';
-    } else {
-        document.getElementById('photoLimitMsg').style.display = 'none';
+
+    if (currentFiles + filesToAdd.length > maxPhotos) {
+        filesToAdd = filesToAdd.slice(0, maxPhotos - currentFiles);
+        alert(`You can only upload a maximum of ${maxPhotos} photos.`);
     }
-    let resizePromises = [];
+
     for (let i = 0; i < filesToAdd.length; i++) {
         const file = filesToAdd[i];
         if (file.type.startsWith('image/')) {
-            // Resize before saving
-            const p = resizeImage(file).then(resizedDataUrl => {
-                uploadedFiles.push({
-                    name: file.name,
-                    data: resizedDataUrl,
-           
-                    type: file.type
-                });
-                displayFile(file.name, resizedDataUrl);
+            resizeImage(file).then(resizedDataUrl => {
+                displayFile(file.name, resizedDataUrl, containerId);
             });
-            resizePromises.push(p);
         }
     }
-    Promise.all(resizePromises).then(updateFileDisplay);
 }
 
-        // Add this anywhere in your <script> tag
+function displayFile(name, dataUrl, containerId) {
+    const container = document.getElementById(containerId);
+    const fileDiv = document.createElement('div');
+    fileDiv.className = 'file-preview';
+    fileDiv.dataset.filename = name; // Store filename for removal
+
+    fileDiv.innerHTML = `
+        <img src="${dataUrl}" alt="${name}">
+        <button type="button" class="file-remove" onclick="removeFile(this)">×</button>
+        <a href="${dataUrl}" download="${name}" class="file-download" title="Download"><span style="font-size:18px;position:absolute;bottom:5px;right:5px;background:rgba(30,64,175,0.8);color:#fff;padding:2px 8px;border-radius:6px;">⬇️</span></a>
+    `;
+    container.appendChild(fileDiv);
+}
+
+function removeFile(button) {
+    const fileDiv = button.parentElement;
+    fileDiv.remove();
+}
+
+// This function is no longer needed as we are not using a global uploadedFiles array
+// function updateFileDisplay() {}
+
+// Add this anywhere in your <script> tag
 function toggleMobileSidebar() {
     const sidebar = document.getElementById('mobileSidebar');
     if (sidebar) {
         sidebar.classList.toggle('hidden');
     }
 }
-        function displayFile(name, dataUrl) {
-            const container = document.getElementById('uploadedFiles');
-            const fileDiv = document.createElement('div');
-            fileDiv.className = 'file-preview';
-            // Add a download button for the image
-            fileDiv.innerHTML = `
-                <img src="${dataUrl}" alt="${name}">
-                <button class="file-remove" onclick="removeFile('${name}')">×</button>
-                <a href="${dataUrl}" download="${name}" class="file-download" title="Download"><span style="font-size:18px;position:absolute;bottom:5px;right:5px;background:rgba(30,64,175,0.8);color:#fff;padding:2px 8px;border-radius:6px;">⬇️</span></a>
-            `;
-            container.appendChild(fileDiv);
-        }
-        function removeFile(name) {
-            uploadedFiles = uploadedFiles.filter(file => file.name !== name);
-            updateFileDisplay();
-            if (uploadedFiles.length < 5) {
-                document.getElementById('photoLimitMsg').style.display = 'none';
-            }
-        }
-        function updateFileDisplay() {
-            const container = document.getElementById('uploadedFiles');
-            container.innerHTML = '';
-            uploadedFiles.forEach(file => {
-                displayFile(file.name, file.data);
-            });
-            if (uploadedFiles.length >= 5) {
-                document.getElementById('fileInput').disabled = true;
-            } else {
-                document.getElementById('fileInput').disabled = false;
-            }
-        }
 
 // --- Function to fetch and parse CSV to build lagosStateData ---
 async function loadLagosStateDataFromCSV() {
@@ -4826,7 +4814,58 @@ function loadSpecialSchools() {
 // Load the special schools data when the page loads
 window.addEventListener('load', loadSpecialSchoolsDataFromCSV);
 
-// --- Survey Form Submission Logic for SILNAT, TCMATS, LORI, VOICES ---
+// --- Generic Survey Form Submission Logic ---
+async function submitSurvey(event, surveyType) {
+    event.preventDefault();
+    const form = event.target;
+    const feedback = form.nextElementSibling; // Assumes feedback div is immediately after the form
+
+    if (feedback) {
+        feedback.textContent = 'Submitting...';
+        feedback.style.color = 'var(--lagos-blue)';
+    }
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Handle file uploads
+    const fileInput = form.querySelector('input[type="file"]');
+    if (fileInput && fileInput.files.length > 0) {
+        data.photos = await processFiles(fileInput, 5); // processFiles is defined elsewhere
+    } else {
+        data.photos = [];
+    }
+
+    try {
+        const res = await fetch(`/api/surveys/${surveyType}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (feedback) {
+            if (res.ok) {
+                feedback.style.color = 'var(--lagos-green)';
+                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                form.reset();
+                // Also clear file previews if any
+                const uploadedFilesDiv = form.querySelector('.uploaded-files');
+                if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+            } else {
+                const err = await res.json();
+                feedback.style.color = 'var(--lagos-red)';
+                feedback.textContent = err.message || 'Submission failed.';
+            }
+        }
+    } catch (e) {
+        if (feedback) {
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = 'Network error. Please try again.';
+        }
+        console.error(`Error submitting ${surveyType} survey:`, e);
+    }
+}
+
 
 function updateTotal(maleId, femaleId, totalId) {
     const maleInput = document.getElementById(maleId);
@@ -5199,340 +5238,7 @@ async function processFiles(input, maxCount) {
     return images;
 }
 
-// --- SILNAT ---
-async function submitSilnat(event) {
-    event.preventDefault();
-    const form = document.getElementById('silnatForm');
-    const feedback = document.getElementById('silnat_feedback');
-    feedback.textContent = '';
-
-    const institutionType = document.getElementById('silnat_a_institution_type').value;
-    if (!institutionType) {
-        feedback.style.color = 'var(--lagos-red)';
-        feedback.textContent = 'Please select an Institution Type.';
-        return;
-    }
-
-    // Basic validation: Check all visible required inputs in the form
-    const visibleRequiredInputs = form.querySelectorAll('input[required]:not([style*="display: none"]):not([disabled]), select[required]:not([style*="display: none"]):not([disabled]), textarea[required]:not([style*="display: none"]):not([disabled])');
-    for (const input of visibleRequiredInputs) {
-        // Check if the input itself is within a visible conditional group
-        let parent = input.closest('.conditional-group');
-        let isVisibleConditional = true; // Assume visible if not in a conditional group
-        if (parent) {
-            isVisibleConditional = (parent.style.display !== 'none');
-        }
-
-        if (isVisibleConditional && !input.value.trim()) {
-            // Try to get label text more reliably
-            let labelText = `Field with ID '${input.id}'`;
-            const labelElement = form.querySelector(`label[for="${input.id}"]`);
-            if (labelElement) {
-                labelText = labelElement.textContent.replace('*','').trim();
-            } else { // Try parent label if input is radio/checkbox
-                 const parentLabel = input.closest('label');
-                 if(parentLabel) labelText = parentLabel.textContent.replace('*','').trim();
-            }
-
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = `Please fill the required field: ${labelText}.`;
-            input.focus();
-            return;
-        }
-
-        if (input.type === 'radio' && isVisibleConditional) {
-            const radioGroupName = input.name;
-            const radioGroup = form.elements[radioGroupName];
-            let groupIsVisible = true;
-            let radioParent = input.closest('.conditional-group');
-            if(radioParent && radioParent.style.display === 'none') {
-                groupIsVisible = false;
-            }
-
-            if (groupIsVisible && radioGroup && radioGroup.value === '') {
-                 // Find a label associated with the radio group
-                const firstRadioInGroup = document.querySelector(`input[name="${radioGroupName}"]`);
-                let groupLabelText = radioGroupName;
-                if(firstRadioInGroup){
-                    const parentFormGroup = firstRadioInGroup.closest('.form-group');
-                    if(parentFormGroup){
-                        const labelElem = parentFormGroup.querySelector('label:not(.radio-inline)');
-                        if(labelElem) groupLabelText = labelElem.textContent.replace('*','').trim();
-                    }
-                }
-                 feedback.style.color = 'var(--lagos-red)';
-                 feedback.textContent = `Please make a selection for: ${groupLabelText}.`;
-                 return;
-            }
-        }
-    }
-
-
-    feedback.textContent = 'Submitting...';
-    feedback.style.color = 'var(--lagos-blue)';
-
-    const data = {
-        institution_type: institutionType,
-        section_a: {},
-        section_b: {},
-        section_c: {},
-        section_d: {},
-        respondent_details: {},
-        official_use: {}
-    };
-
-    // Collect Section A data
-    if (institutionType === 'regular_school' || institutionType === 'special_school' || institutionType === 'home_economics_centre' || institutionType === 'mini_resource_centre') {
-        const htBioWrapper = document.getElementById('silnat_a_ht_bio_data_wrapper');
-        if (htBioWrapper && htBioWrapper.style.display !== 'none') {
-            data.section_a.head_teacher_name = document.getElementById('silnat_a_ht_name')?.value.trim();
-            data.section_a.contact_number = document.getElementById('silnat_a_ht_contact')?.value.trim();
-            data.section_a.gender = form.elements['silnat_a_ht_gender']?.value;
-            data.section_a.marital_status = form.elements['silnat_a_ht_marital_status']?.value;
-            data.section_a.highest_qualification = document.getElementById('silnat_a_ht_highest_qualification')?.value;
-            if (data.section_a.highest_qualification === 'others') {
-                data.section_a.highest_qualification_other = document.getElementById('silnat_a_ht_highest_qualification_other')?.value.trim();
-            }
-            data.section_a.years_leadership_experience = document.getElementById('silnat_a_ht_years_experience')?.value;
-        }
-    } else if (institutionType === 'lgea_secretariat') {
-        const esBioWrapper = document.getElementById('silnat_a_es_bio_data_wrapper');
-        if (esBioWrapper && esBioWrapper.style.display !== 'none') {
-            data.section_a.education_secretary_name = document.getElementById('silnat_a_es_name')?.value.trim();
-            data.section_a.contact_number = document.getElementById('silnat_a_es_contact')?.value.trim();
-            data.section_a.gender = form.elements['silnat_a_es_gender']?.value;
-            data.section_a.marital_status = form.elements['silnat_a_es_marital_status']?.value;
-            data.section_a.highest_qualification = document.getElementById('silnat_a_es_highest_qualification')?.value;
-            if (data.section_a.highest_qualification === 'others') {
-                data.section_a.highest_qualification_other = document.getElementById('silnat_a_es_highest_qualification_other')?.value.trim();
-            }
-            data.section_a.years_leadership_experience = document.getElementById('silnat_a_es_years_experience')?.value;
-        }
-    }
-
-    // These are common fields currently structured as if they are section B, but will be part of the new section B logic
-    data.section_b.institution_name_common = document.getElementById('silnat_schoolName')?.value.trim();
-    data.section_b.institution_address_common = document.getElementById('silnat_schoolAddress_common')?.value.trim();
-    data.section_b.location_common = document.getElementById('silnat_location_common')?.value; // Optional field
-    data.section_b.local_gov_common = document.getElementById('silnat_localGov')?.value.trim();
-
-    // Placeholder for original simple form fields - these will be replaced by detailed conditional fields
-    data.section_d.infrastructure_condition_old = document.getElementById('silnat_infrastructure')?.value;
-    data.section_d.leadership_structure_old = document.getElementById('silnat_leadership')?.value; // This was likely a Section A or C type question
-
-    data.section_c.discipline_a = form.elements['discipline_a']?.value;
-    data.section_c.discipline_b = form.elements['discipline_b']?.value;
-    data.section_c.discipline_c = form.elements['discipline_c']?.value;
-    data.section_c.discipline_d = form.elements['discipline_d']?.value;
-    data.section_c.discipline_e = form.elements['discipline_e']?.value;
-
-    data.section_c.cooperation_a = form.elements['cooperation_a']?.value;
-    data.section_c.cooperation_b = form.elements['cooperation_b']?.value;
-    data.section_c.cooperation_c = form.elements['cooperation_c']?.value;
-    data.section_c.cooperation_d = form.elements['cooperation_d']?.value;
-
-    data.section_c.communication_a = form.elements['communication_a']?.value;
-    data.section_c.communication_b = form.elements['communication_b']?.value;
-    data.section_c.communication_c = form.elements['communication_c']?.value;
-
-    data.section_c.community_a = form.elements['community_a']?.value;
-    data.section_c.community_b = form.elements['community_b']?.value;
-    data.section_c.community_c = form.elements['community_c']?.value;
-    data.section_c.community_d = form.elements['community_d']?.value;
-    data.section_c.community_e = form.elements['community_e']?.value;
-
-    data.section_c.supervision_a = form.elements['supervision_a']?.value;
-    data.section_c.supervision_b = form.elements['supervision_b']?.value;
-    data.section_c.supervision_c = form.elements['supervision_c']?.value;
-    data.section_c.supervision_d = form.elements['supervision_d']?.value;
-    data.section_c.supervision_e = form.elements['supervision_e']?.value;
-
-    data.section_c.records_a = form.elements['records_a']?.value;
-    data.section_c.records_b = form.elements['records_b']?.value;
-    data.section_c.records_c = form.elements['records_c']?.value;
-    data.section_c.records_d = form.elements['records_d']?.value;
-    data.section_c.records_e = form.elements['records_e']?.value;
-    data.section_c.records_f = form.elements['records_f']?.value;
-    data.section_c.records_g = form.elements['records_g']?.value;
-    data.section_c.records_h = form.elements['records_h']?.value;
-    data.section_c.records_i = form.elements['records_i']?.value;
-
-    data.section_c.health_a = form.elements['health_a']?.value;
-    data.section_c.health_b = form.elements['health_b']?.value;
-    data.section_c.health_c = form.elements['health_c']?.value;
-    data.section_c.health_d = form.elements['health_d']?.value;
-    data.section_c.health_e = form.elements['health_e']?.value;
-    data.section_c.health_f = form.elements['health_f']?.value;
-
-    const fileInput = document.getElementById('silnat_fileInput');
-    if (fileInput && fileInput.files.length > 0) {
-        data.photos = await processFiles(fileInput, 5); // processFiles is defined elsewhere
-    } else {
-        data.photos = [];
-    }
-
-    console.log("Submitting SILNAT Data:", JSON.stringify(data, null, 2)); // For debugging
-
-    try {
-        const res = await fetch('/api/silnat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (res.ok) {
-            feedback.style.color = 'var(--lagos-green)';
-            feedback.textContent = 'SILNAT survey submitted successfully!';
-            form.reset();
-            document.getElementById('silnat_uploadedFiles').innerHTML = '';
-        } else {
-            const err = await res.json();
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = err.message || 'Submission failed.';
-        }
-    } catch (e) {
-        feedback.style.color = 'var(--lagos-red)';
-        feedback.textContent = 'Network error. Please try again.';
-    }
-}
-
-// --- TCMATS ---
-async function submitTcmats(event) {
-    event.preventDefault();
-    const form = document.getElementById('tcmatsForm');
-    const feedback = document.getElementById('tcmats_feedback');
-    feedback.textContent = '';
-    const required = ['tcmats_teacherName','tcmats_school','tcmats_subject','tcmats_class','tcmats_observation'];
-    for (const id of required) {
-        if (!document.getElementById(id).value.trim()) {
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = 'Please fill all required fields.';
-            return;
-        }
-    }
-    feedback.textContent = 'Submitting...';
-    feedback.style.color = 'var(--lagos-blue)';
-    const data = {
-        teacherName: document.getElementById('tcmats_teacherName').value.trim(),
-        school: document.getElementById('tcmats_school').value.trim(),
-        subject: document.getElementById('tcmats_subject').value.trim(),
-        class: document.getElementById('tcmats_class').value.trim(),
-        observation: document.getElementById('tcmats_observation').value.trim(),
-        evidence: await processFiles(document.getElementById('tcmats_fileInput'), 3)
-    };
-    try {
-        const res = await fetch('/api/tcmats', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (res.ok) {
-            feedback.style.color = 'var(--lagos-green)';
-            feedback.textContent = 'TCMATS survey submitted successfully!';
-            form.reset();
-            document.getElementById('tcmats_uploadedFiles').innerHTML = '';
-        } else {
-            const err = await res.json();
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = err.message || 'Submission failed.';
-        }
-    } catch (e) {
-        feedback.style.color = 'var(--lagos-red)';
-        feedback.textContent = 'Network error. Please try again.';
-    }
-}
-
-// --- LORI ---
-async function submitLori(event) {
-    event.preventDefault();
-    const form = document.getElementById('loriForm');
-    const feedback = document.getElementById('lori_feedback');
-    feedback.textContent = '';
-    const required = ['lori_assessorName','lori_teacherName','lori_school','lori_class','lori_rating'];
-    for (const id of required) {
-        if (!document.getElementById(id).value.trim()) {
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = 'Please fill all required fields.';
-            return;
-        }
-    }
-    feedback.textContent = 'Submitting...';
-    feedback.style.color = 'var(--lagos-blue)';
-    const data = {
-        assessorName: document.getElementById('lori_assessorName').value.trim(),
-        teacherName: document.getElementById('lori_teacherName').value.trim(),
-        school: document.getElementById('lori_school').value.trim(),
-        class: document.getElementById('lori_class').value.trim(),
-        rating: document.getElementById('lori_rating').value,
-        comments: document.getElementById('lori_comments').value.trim(),
-        evidence: await processFiles(document.getElementById('lori_fileInput'), 3)
-    };
-    try {
-        const res = await fetch('/api/lori', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (res.ok) {
-            feedback.style.color = 'var(--lagos-green)';
-            feedback.textContent = 'LORI survey submitted successfully!';
-            form.reset();
-            document.getElementById('lori_uploadedFiles').innerHTML = '';
-        } else {
-            const err = await res.json();
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = err.message || 'Submission failed.';
-        }
-    } catch (e) {
-        feedback.style.color = 'var(--lagos-red)';
-        feedback.textContent = 'Network error. Please try again.';
-    }
-}
-
-// --- VOICES ---
-async function submitVoices(event) {
-    event.preventDefault();
-    const form = document.getElementById('voicesForm');
-    const feedback = document.getElementById('voices_feedback');
-    feedback.textContent = '';
-    const required = ['voices_learnerName','voices_age','voices_school','voices_class','voices_opinion'];
-    for (const id of required) {
-        if (!document.getElementById(id).value.trim()) {
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = 'Please fill all required fields.';
-            return;
-        }
-    }
-    feedback.textContent = 'Submitting...';
-    feedback.style.color = 'var(--lagos-blue)';
-    const data = {
-        learnerName: document.getElementById('voices_learnerName').value.trim(),
-        age: document.getElementById('voices_age').value.trim(),
-        school: document.getElementById('voices_school').value.trim(),
-        class: document.getElementById('voices_class').value.trim(),
-        opinion: document.getElementById('voices_opinion').value.trim(),
-        evidence: await processFiles(document.getElementById('voices_fileInput'), 2)
-    };
-    try {
-        const res = await fetch('/api/voices', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-        if (res.ok) {
-            feedback.style.color = 'var(--lagos-green)';
-            feedback.textContent = 'VOICES survey submitted successfully!';
-            form.reset();
-            document.getElementById('voices_uploadedFiles').innerHTML = '';
-        } else {
-            const err = await res.json();
-            feedback.style.color = 'var(--lagos-red)';
-            feedback.textContent = err.message || 'Submission failed.';
-        }
-    } catch (e) {
-        feedback.style.color = 'var(--lagos-red)';
-        feedback.textContent = 'Network error. Please try again.';
-    }
-}
+/* The old specific submission functions are now replaced by the generic submitSurvey function */
 </script>
 
 
