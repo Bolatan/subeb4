@@ -717,22 +717,22 @@ select.form-control option {
 				<div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
-                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
+                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_a_ht_contact">Contact Number</label>
-                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
+                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control" required="">
                     </div>
                 </div>
 		              				
                 <div class="form-group">
                     <label>Gender:</label>
-                    <label class="radio-inline"><input type="radio" name="gender_1.2" value="male"> Male</label>
+                    <label class="radio-inline"><input type="radio" name="gender_1.2" value="male" required=""> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.2" value="female"> Female</label>
                 </div>
                 <div class="form-group">
                     <label>Marital Status:</label>
-                    <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="single"> Single</label>
+                    <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="single" required=""> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="divorced"> Divorced</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="separated"> Separated</label>
@@ -740,7 +740,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Highest Qualification:</label>
-                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="grade_ii"> Grade II</label>
+                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="grade_ii" required=""> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="b_ed"> B.Ed</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="ba_ed"> BA. Ed</label>
@@ -752,7 +752,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Years of Leadership Experience:</label>
-                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="5_below"> 5 &amp; below</label>
+                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="5_below" required=""> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="11_15"> 11-15</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="16_20"> 16-20</label>
@@ -793,19 +793,19 @@ select.form-control option {
             <div class="form-row">
                 <div class="form-group">
                     <label for="silat_1_2_address">Address:</label>
-                    <textarea id="silat_1_2_address" name="silat_1_2_address" class="form-control" rows="2"></textarea>
+                    <textarea id="silat_1_2_address" name="silat_1_2_address" class="form-control" rows="2" required=""></textarea>
                 </div>
                 <div class="form-group">
                     <label>Location:</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="urban"> Urban</label>
+                        <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="urban" required=""> Urban</label>
                         <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="rural"> Rural</label>
                         <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="riverine"> Riverine</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="silat_1_2_lgea">LGEA:</label>
-                    <input type="text" id="silat_1_2_lgea" name="silat_1_2_lgea" class="form-control">
+                    <input type="text" id="silat_1_2_lgea" name="silat_1_2_lgea" class="form-control" required="">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -821,8 +821,8 @@ select.form-control option {
                 <div class="form-group">
                     <label>Number of Teachers in the School:</label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_teachers_male">Male</label><input type="number" id="silat_1_2_teachers_male" name="silat_1_2_teachers_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_teachers_male&#39;, &#39;silat_1_2_teachers_female&#39;, &#39;silat_1_2_teachers_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_teachers_female">Female</label><input type="number" id="silat_1_2_teachers_female" name="silat_1_2_teachers_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_teachers_male&#39;, &#39;silat_1_2_teachers_female&#39;, &#39;silat_1_2_teachers_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_teachers_male">Male</label><input type="number" id="silat_1_2_teachers_male" name="silat_1_2_teachers_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_teachers_male', 'silat_1_2_teachers_female', 'silat_1_2_teachers_total')" required=""></div>
+                        <div class="form-group"><label for="silat_1_2_teachers_female">Female</label><input type="number" id="silat_1_2_teachers_female" name="silat_1_2_teachers_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_teachers_male', 'silat_1_2_teachers_female', 'silat_1_2_teachers_total')" required=""></div>
                         <div class="form-group"><label for="silat_1_2_teachers_total">Total</label><input type="number" id="silat_1_2_teachers_total" name="silat_1_2_teachers_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
@@ -830,8 +830,8 @@ select.form-control option {
                 <div class="form-group">
                     <label>Number of Teachers with Specialization in Special Education in the School:</label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_male">Male</label><input type="number" id="silat_1_2_spec_ed_teachers_male" name="silat_1_2_spec_ed_teachers_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_spec_ed_teachers_male&#39;, &#39;silat_1_2_spec_ed_teachers_female&#39;, &#39;silat_1_2_spec_ed_teachers_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_female">Female</label><input type="number" id="silat_1_2_spec_ed_teachers_female" name="silat_1_2_spec_ed_teachers_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_spec_ed_teachers_male&#39;, &#39;silat_1_2_spec_ed_teachers_female&#39;, &#39;silat_1_2_spec_ed_teachers_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_male">Male</label><input type="number" id="silat_1_2_spec_ed_teachers_male" name="silat_1_2_spec_ed_teachers_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_spec_ed_teachers_male', 'silat_1_2_spec_ed_teachers_female', 'silat_1_2_spec_ed_teachers_total')" required=""></div>
+                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_female">Female</label><input type="number" id="silat_1_2_spec_ed_teachers_female" name="silat_1_2_spec_ed_teachers_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_spec_ed_teachers_male', 'silat_1_2_spec_ed_teachers_female', 'silat_1_2_spec_ed_teachers_total')" required=""></div>
                         <div class="form-group"><label for="silat_1_2_spec_ed_teachers_total">Total</label><input type="number" id="silat_1_2_spec_ed_teachers_total" name="silat_1_2_spec_ed_teachers_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
@@ -839,8 +839,8 @@ select.form-control option {
                 <div class="form-group">
                     <label>Number of Non-Teaching Staff in the School:</label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_non_teaching_male">Male</label><input type="number" id="silat_1_2_non_teaching_male" name="silat_1_2_non_teaching_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_non_teaching_male&#39;, &#39;silat_1_2_non_teaching_female&#39;, &#39;silat_1_2_non_teaching_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_non_teaching_female">Female</label><input type="number" id="silat_1_2_non_teaching_female" name="silat_1_2_non_teaching_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_non_teaching_male&#39;, &#39;silat_1_2_non_teaching_female&#39;, &#39;silat_1_2_non_teaching_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_non_teaching_male">Male</label><input type="number" id="silat_1_2_non_teaching_male" name="silat_1_2_non_teaching_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_non_teaching_male', 'silat_1_2_non_teaching_female', 'silat_1_2_non_teaching_total')" required=""></div>
+                        <div class="form-group"><label for="silat_1_2_non_teaching_female">Female</label><input type="number" id="silat_1_2_non_teaching_female" name="silat_1_2_non_teaching_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_non_teaching_male', 'silat_1_2_non_teaching_female', 'silat_1_2_non_teaching_total')" required=""></div>
                         <div class="form-group"><label for="silat_1_2_non_teaching_total">Total</label><input type="number" id="silat_1_2_non_teaching_total" name="silat_1_2_non_teaching_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
@@ -848,8 +848,8 @@ select.form-control option {
                 <div class="form-group">
                     <label>Number of Learners in the School:</label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_learners_male">Male</label><input type="number" id="silat_1_2_learners_male" name="silat_1_2_learners_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_learners_male&#39;, &#39;silat_1_2_learners_female&#39;, &#39;silat_1_2_learners_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_learners_female">Female</label><input type="number" id="silat_1_2_learners_female" name="silat_1_2_learners_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_learners_male&#39;, &#39;silat_1_2_learners_female&#39;, &#39;silat_1_2_learners_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_learners_male">Male</label><input type="number" id="silat_1_2_learners_male" name="silat_1_2_learners_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_learners_male', 'silat_1_2_learners_female', 'silat_1_2_learners_total')" required=""></div>
+                        <div class="form-group"><label for="silat_1_2_learners_female">Female</label><input type="number" id="silat_1_2_learners_female" name="silat_1_2_learners_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_learners_male', 'silat_1_2_learners_female', 'silat_1_2_learners_total')" required=""></div>
                         <div class="form-group"><label for="silat_1_2_learners_total">Total</label><input type="number" id="silat_1_2_learners_total" name="silat_1_2_learners_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
@@ -873,17 +873,17 @@ select.form-control option {
 
                 <div class="form-group">
                     <label for="silat_1_2_teacher_pupil_ratio">Teacher/Pupils Ratio:</label>
-                    <input type="text" id="silat_1_2_teacher_pupil_ratio" name="silat_1_2_teacher_pupil_ratio" class="form-control">
+                    <input type="text" id="silat_1_2_teacher_pupil_ratio" name="silat_1_2_teacher_pupil_ratio" class="form-control" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="silat_1_2_additional_staff_required">Number of Additional Teachers/Staff Required:</label>
-                    <input type="number" id="silat_1_2_additional_staff_required" name="silat_1_2_additional_staff_required" class="form-control" min="0">
+                    <input type="number" id="silat_1_2_additional_staff_required" name="silat_1_2_additional_staff_required" class="form-control" min="0" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="silat_1_2_multigrade_classes">Number of Classes operated as Multigrade:</label>
-                    <input type="number" id="silat_1_2_multigrade_classes" name="silat_1_2_multigrade_classes" class="form-control" min="0">
+                    <input type="number" id="silat_1_2_multigrade_classes" name="silat_1_2_multigrade_classes" class="form-control" min="0" required="">
                 </div>
 
                 <div class="form-group">
@@ -987,7 +987,7 @@ select.form-control option {
                 <div class="form-group">
                     <label>Signboard</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="signboard" value="available_good"> Available and in good condition</label>
+                        <label class="radio-inline"><input type="radio" name="signboard" value="available_good" required=""> Available and in good condition</label>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good"> Available but not in good condition</label>
                         <label class="radio-inline"><input type="radio" name="signboard" value="not_available"> Not Available</label>
                     </div>
@@ -995,39 +995,39 @@ select.form-control option {
                 <div class="form-group">
                     <label class="furniture-label">Teachers’ Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control" required=""></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control" required=""></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control" required=""></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">ECCDE Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control" required=""></div>
+                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control" required=""></div>
+                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control" required=""></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">Primary Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control" required=""></div>
+                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control" required=""></div>
+                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control" required=""></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">Classroom Condition</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control" required=""></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control" required=""></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control" required=""></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control" required=""></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control" required=""></div>
                     </div>
                     <div class="form-group">
                         <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
-                        <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2"></textarea>
+                        <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2" required=""></textarea>
                     </div>
                 </div>
 
@@ -1036,7 +1036,7 @@ select.form-control option {
                     <label>a. Shared Facility</label>
                     <div>
                         <label>Is the school located within a school Complex?</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes"> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required=""> Yes</label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="no"> No</label>
                     </div>
                     <div class="form-group">
@@ -1046,7 +1046,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>b. Does the school have perimeter fence:</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required=""> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no"> No</label>
                 </div>
                 <div class="form-group">
@@ -1070,18 +1070,18 @@ select.form-control option {
                 <div class="form-group">
                     <label>Type of Toilet:</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="toilet_type" value="pit"> Pit</label>
+                        <label class="radio-inline"><input type="radio" name="toilet_type" value="pit" required=""> Pit</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="wc"> WC</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="squat_water_flush"> Squat Water flush</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="none"> None</label>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control" required=""></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control" required=""></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control" required=""></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control" required=""></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control" required=""></div>
                 </div>
                 <div class="form-group">
                     <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
@@ -1091,7 +1091,7 @@ select.form-control option {
                 <h4>4. SEPTIC TANK</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
+                        <label class="radio-inline"><input type="radio" name="septic_tank" value="available" required=""> Available</label>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="not_available"> Not Available</label>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="needs_evacuation"> Needs Evacuation</label>
                     </div>
@@ -1100,7 +1100,7 @@ select.form-control option {
                 <h4>5. SOURCE OF POTABLE WATER</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
+                        <label class="radio-inline"><input type="radio" name="water_source" value="none" required=""> None</label>
                         <label class="radio-inline"><input type="radio" name="water_source" value="well"> Well</label>
                         <label class="radio-inline"><input type="radio" name="water_source" value="tap_water"> Tap Water</label>
                         <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
@@ -1114,7 +1114,7 @@ select.form-control option {
                 <h4>6. SOURCE OF ELECTRICITY</h4>
                 <div class="form-group">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
@@ -1131,7 +1131,7 @@ select.form-control option {
                 <h4>7. Is your School regularly waterlogged when it rained?</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="waterlogged" value="yes"> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="waterlogged" value="yes" required=""> Yes</label>
                         <label class="radio-inline"><input type="radio" name="waterlogged" value="no"> No</label>
                     </div>
                 </div>
@@ -1172,23 +1172,23 @@ select.form-control option {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
-                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
+                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_a_ht_contact">Contact Number</label>
-                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
+                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control" required="">
                     </div>
                 </div>
 				</div>
                 
                               <div class="form-group">
                     <label>Gender:</label>
-                    <label class="radio-inline"><input type="radio" name="gender_1.3" value="male"> Male</label>
+                    <label class="radio-inline"><input type="radio" name="gender_1.3" value="male" required=""> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.3" value="female"> Female</label>
                 </div>
                 <div class="form-group">
                     <label>Marital Status:</label>
-                    <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="single"> Single</label>
+                    <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="single" required=""> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="divorced"> Divorced</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="separated"> Separated</label>
@@ -1196,7 +1196,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Highest Qualification:</label>
-                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="grade_ii"> Grade II</label>
+                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="grade_ii" required=""> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="b_ed"> B.Ed</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="ba_ed"> BA. Ed</label>
@@ -1208,7 +1208,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Years of Leadership Experience:</label>
-                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="5_below"> 5 &amp; below</label>
+                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="5_below" required=""> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="11_15"> 11-15</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="16_20"> 16-20</label>
@@ -1235,13 +1235,13 @@ select.form-control option {
                 <!-- 3. Address -->
                 <div class="form-group">
                     <label for="silat13_address">3. Address</label>
-                    <textarea id="silat13_address" name="silat13_address" class="form-control" rows="3"></textarea>
+                    <textarea id="silat13_address" name="silat13_address" class="form-control" rows="3" required=""></textarea>
                 </div>
                 <!-- 4. Location -->
                 <div class="form-group">
                     <label>4. Location</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silat13_location" value="urban"> Urban</label>
+                        <label class="radio-inline"><input type="radio" name="silat13_location" value="urban" required=""> Urban</label>
                         <label class="radio-inline"><input type="radio" name="silat13_location" value="rural"> Rural</label>
                         <label class="radio-inline"><input type="radio" name="silat13_location" value="riverine"> Riverine</label>
                     </div>
@@ -1250,7 +1250,7 @@ select.form-control option {
                 <!-- Types of Vocation Taught -->
                 <div class="form-group">
                     <label for="silat13_vocation_type">Types of Vocation Taught at the centre (Please specify)</label>
-                    <input type="text" id="silat13_vocation_type" name="silat13_vocation_type" class="form-control">
+                    <input type="text" id="silat13_vocation_type" name="silat13_vocation_type" class="form-control" required="">
                 </div>
 
                 <!-- Number of Instructors -->
@@ -1259,11 +1259,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_instructors_male">Male</label>
-                            <input type="number" id="silat13_instructors_male" name="silat13_instructors_male" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="silat13_instructors_male" name="silat13_instructors_male" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_instructors_female">Female</label>
-                            <input type="number" id="silat13_instructors_female" name="silat13_instructors_female" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="silat13_instructors_female" name="silat13_instructors_female" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_instructors_total">Total</label>
@@ -1278,11 +1278,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_male">Male</label>
-                            <input type="number" id="silat13_qualified_teachers_male" name="silat13_qualified_teachers_male" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="silat13_qualified_teachers_male" name="silat13_qualified_teachers_male" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_female">Female</label>
-                            <input type="number" id="silat13_qualified_teachers_female" name="silat13_qualified_teachers_female" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="silat13_qualified_teachers_female" name="silat13_qualified_teachers_female" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_total">Total</label>
@@ -1297,11 +1297,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_non_teaching_male">Male</label>
-                            <input type="number" id="silat13_non_teaching_male" name="silat13_non_teaching_male" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="silat13_non_teaching_male" name="silat13_non_teaching_male" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_non_teaching_female">Female</label>
-                            <input type="number" id="silat13_non_teaching_female" name="silat13_non_teaching_female" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="silat13_non_teaching_female" name="silat13_non_teaching_female" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_non_teaching_total">Total</label>
@@ -1313,13 +1313,13 @@ select.form-control option {
                 <!-- Number of Schools your Centre is supporting -->
                 <div class="form-group">
                     <label for="silat13_schools_supported">Number of Schools your Centre is supporting</label>
-                    <input type="number" id="silat13_schools_supported" name="silat13_schools_supported" class="form-control" min="0">
+                    <input type="number" id="silat13_schools_supported" name="silat13_schools_supported" class="form-control" min="0" required="">
                 </div>
 
                 <!-- Average Distance -->
                 <div class="form-group">
                     <label for="silat13_avg_distance">Average Distance of farthest School among the Schools under your support to the Centre in Kilometre</label>
-                    <input type="number" id="silat13_avg_distance" name="silat13_avg_distance" class="form-control" min="0">
+                    <input type="number" id="silat13_avg_distance" name="silat13_avg_distance" class="form-control" min="0" required="">
                 </div>
 
                 <!-- Average Number of Learners -->
@@ -1328,11 +1328,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_learners_male">Male</label>
-                            <input type="number" id="silat13_learners_male" name="silat13_learners_male" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="silat13_learners_male" name="silat13_learners_male" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_learners_female">Female</label>
-                            <input type="number" id="silat13_learners_female" name="silat13_learners_female" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="silat13_learners_female" name="silat13_learners_female" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="silat13_learners_total">Total</label>
@@ -1344,13 +1344,13 @@ select.form-control option {
                 <!-- Instructor/Pupils Ratio -->
                 <div class="form-group">
                     <label for="silat13_instructor_pupil_ratio">Instructor/Pupils Ratio:</label>
-                    <input type="text" id="silat13_instructor_pupil_ratio" name="silat13_instructor_pupil_ratio" class="form-control" placeholder="e.g., 1:30">
+                    <input type="text" id="silat13_instructor_pupil_ratio" name="silat13_instructor_pupil_ratio" class="form-control" placeholder="e.g., 1:30" required="">
                 </div>
 
                 <!-- Number of Additional Instructors/Staff Required -->
                 <div class="form-group">
                     <label for="silat13_additional_staff">Number of Additional Instructors/Staff Required:</label>
-                    <input type="number" id="silat13_additional_staff" name="silat13_additional_staff" class="form-control" min="0">
+                    <input type="number" id="silat13_additional_staff" name="silat13_additional_staff" class="form-control" min="0" required="">
                 </div>
              </div>
 		 
@@ -1631,12 +1631,12 @@ select.form-control option {
                 <h5>Education Secretary Bio Data</h5>
                 <div class="form-group">
                     <label>Gender:</label>
-                    <label class="radio-inline"><input type="radio" name="gender_1.4" value="male"> Male</label>
+                    <label class="radio-inline"><input type="radio" name="gender_1.4" value="male" required=""> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.4" value="female"> Female</label>
                 </div>
                 <div class="form-group">
                     <label>Marital Status:</label>
-                    <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="single"> Single</label>
+                    <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="single" required=""> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="divorced"> Divorced</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="separated"> Separated</label>
@@ -1644,7 +1644,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Highest Qualification:</label>
-                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="grade_ii"> Grade II</label>
+                    <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="grade_ii" required=""> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="b_ed"> B.Ed</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="ba_ed"> BA. Ed</label>
@@ -1656,7 +1656,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Years of Leadership Experience:</label>
-                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="5_below"> 5 &amp; below</label>
+                    <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="5_below" required=""> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="11_15"> 11-15</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="16_20"> 16-20</label>
@@ -1668,16 +1668,16 @@ select.form-control option {
             <div id="sectionBContent_1.4" style="display: none;">
                 <div class="form-group">
                     <label for="lgea_name_1.4">Local Govt Educ Auth</label>
-                    <input type="text" id="lgea_name_1.4" name="lgea_name_1.4" class="form-control">
+                    <input type="text" id="lgea_name_1.4" name="lgea_name_1.4" class="form-control" required="">
                 </div>
                 <div class="form-group">
                     <label for="lgea_address_1.4">Address</label>
-                    <textarea id="lgea_address_1.4" name="lgea_address_1.4" class="form-control" rows="3"></textarea>
+                    <textarea id="lgea_address_1.4" name="lgea_address_1.4" class="form-control" rows="3" required=""></textarea>
                 </div>
                 <div class="form-group">
                     <label>Location</label>
                     <div class="yes-no-group">
-                        <label class="radio-inline"><input type="radio" name="location_1.4" value="urban"> Urban</label>
+                        <label class="radio-inline"><input type="radio" name="location_1.4" value="urban" required=""> Urban</label>
                         <label class="radio-inline"><input type="radio" name="location_1.4" value="rural"> Rural</label>
                         <label class="radio-inline"><input type="radio" name="location_1.4" value="riverine"> Riverine</label>
                     </div>
@@ -1690,11 +1690,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="staff_male_1.4">Male</label>
-                            <input type="number" id="staff_male_1.4" name="staff_male_1.4" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="staff_male_1.4" name="staff_male_1.4" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="staff_female_1.4">Female</label>
-                            <input type="number" id="staff_female_1.4" name="staff_female_1.4" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="staff_female_1.4" name="staff_female_1.4" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="staff_total_1.4">Total</label>
@@ -1708,11 +1708,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="teachers_male_1.4">Male</label>
-                            <input type="number" id="teachers_male_1.4" name="teachers_male_1.4" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="teachers_male_1.4" name="teachers_male_1.4" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="teachers_female_1.4">Female</label>
-                            <input type="number" id="teachers_female_1.4" name="teachers_female_1.4" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="teachers_female_1.4" name="teachers_female_1.4" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="teachers_total_1.4">Total</label>
@@ -1726,11 +1726,11 @@ select.form-control option {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="non_teaching_male_1.4">Male</label>
-                            <input type="number" id="non_teaching_male_1.4" name="non_teaching_male_1.4" class="form-control" min="0" placeholder="Male">
+                            <input type="number" id="non_teaching_male_1.4" name="non_teaching_male_1.4" class="form-control" min="0" placeholder="Male" required="">
                         </div>
                         <div class="form-group">
                             <label for="non_teaching_female_1.4">Female</label>
-                            <input type="number" id="non_teaching_female_1.4" name="non_teaching_female_1.4" class="form-control" min="0" placeholder="Female">
+                            <input type="number" id="non_teaching_female_1.4" name="non_teaching_female_1.4" class="form-control" min="0" placeholder="Female" required="">
                         </div>
                         <div class="form-group">
                             <label for="non_teaching_total_1.4">Total</label>
@@ -1823,53 +1823,53 @@ select.form-control option {
                 <h5>INFRASTRUCTURE</h5>
                 <div class="form-group">
                     <label>Signboard:</label>
-                    <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_good"> Available and in good condition</label>
+                    <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_good" required=""> Available and in good condition</label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_not_good"> Available but not in good condition</label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="not_available"> Not Available</label>
                 </div>
                 <div class="form-group">
                     <label>Description of the External Features of the Local Govt Educ Auth Structure:</label>
-                    <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="good"> In Good Condition</label>
+                    <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="good" required=""> In Good Condition</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="minor_renovation"> Need Minor Renovation</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="major_renovation"> Need Major Renovation</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="complete_reconstruction"> Need Complete Reconstruction</label>
                 </div>
                 <div class="form-group">
                     <label>Available Offices:</label>
-                    <input type="number" name="offices_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="offices_minor_repairs_1.4" placeholder="Need Minor Repairs" class="form-control">
-                    <input type="number" name="offices_major_repairs_1.4" placeholder="Needs Major Repairs" class="form-control">
-                    <input type="number" name="offices_renovation_required_1.4" placeholder="Renovation Required" class="form-control">
-                    <input type="number" name="offices_additional_required_1.4" placeholder="Number of Additional offices required" class="form-control">
+                    <input type="number" name="offices_good_condition_1.4" placeholder="Number in Good Condition" class="form-control" required="">
+                    <input type="number" name="offices_minor_repairs_1.4" placeholder="Need Minor Repairs" class="form-control" required="">
+                    <input type="number" name="offices_major_repairs_1.4" placeholder="Needs Major Repairs" class="form-control" required="">
+                    <input type="number" name="offices_renovation_required_1.4" placeholder="Renovation Required" class="form-control" required="">
+                    <input type="number" name="offices_additional_required_1.4" placeholder="Number of Additional offices required" class="form-control" required="">
                 </div>
                 <div class="form-group">
                     <label for="repair_description_1.4">Briefly, describe the type of repair/construction needed:</label>
-                    <textarea id="repair_description_1.4" name="repair_description_1.4" class="form-control"></textarea>
+                    <textarea id="repair_description_1.4" name="repair_description_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>FURNITURE</h5>
                 <div class="form-group">
                     <label>Staff’ Furniture:</label>
-                    <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control">
-                    <input type="number" name="staff_furniture_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="staff_furniture_required_1.4" placeholder="Additional Number Required" class="form-control">
+                    <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control" required="">
+                    <input type="number" name="staff_furniture_good_condition_1.4" placeholder="Number in Good Condition" class="form-control" required="">
+                    <input type="number" name="staff_furniture_required_1.4" placeholder="Additional Number Required" class="form-control" required="">
                 </div>
                 <div class="form-group">
                     <label>Condition of Offices:</label>
-                    <input type="number" name="offices_available_1.4" placeholder="Number Available" class="form-control">
-                    <input type="number" name="offices_good_condition_2_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="offices_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control">
-                    <input type="number" name="offices_major_repair_1.4" placeholder="Number in need of Major Repair/Renovation" class="form-control">
-                    <input type="number" name="offices_additional_required_2_1.4" placeholder="Number of Additional Classroom Required" class="form-control">
+                    <input type="number" name="offices_available_1.4" placeholder="Number Available" class="form-control" required="">
+                    <input type="number" name="offices_good_condition_2_1.4" placeholder="Number in Good Condition" class="form-control" required="">
+                    <input type="number" name="offices_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control" required="">
+                    <input type="number" name="offices_major_repair_1.4" placeholder="Number in need of Major Repair/Renovation" class="form-control" required="">
+                    <input type="number" name="offices_additional_required_2_1.4" placeholder="Number of Additional Classroom Required" class="form-control" required="">
                 </div>
                 <div class="form-group">
                     <label for="repair_description_2_1.4">Briefly, describe the type of repair needed:</label>
-                    <textarea id="repair_description_2_1.4" name="repair_description_2_1.4" class="form-control"></textarea>
+                    <textarea id="repair_description_2_1.4" name="repair_description_2_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>FENCING</h5>
                 <div class="form-group">
                     <label>a. Shared Facility</label>
                     <p>Is the Local Govt Educ Auth located within a school Complex?</p>
-                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes" required=""> Yes</label>
                     <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no"> No</label>
                     <div class="form-group">
                         <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex</label>
@@ -1878,7 +1878,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>b. Does the Local Govt Educ Auth have perimeter fence:</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="yes"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="yes" required=""> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="no"> No</label>
                 </div>
                 <div class="form-group">
@@ -1898,42 +1898,42 @@ select.form-control option {
                 <h5>TOILET FACILITIES</h5>
                 <div class="form-group">
                     <label>Type of Toilet:</label>
-                    <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="pit"> Pit</label>
+                    <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="pit" required=""> Pit</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="wc"> WC</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="squat_water_flush"> Squat Water flush</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="none"> None</label>
                 </div>
                 <div class="form-group">
-                    <input type="number" name="toilet_cubicle_available_1.4" placeholder="Number of Cubicle Toilet Available" class="form-control">
-                    <input type="number" name="toilet_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control">
-                    <input type="number" name="toilet_major_repair_1.4" placeholder="Number in need of Major Repair" class="form-control">
-                    <input type="number" name="toilet_renovation_required_1.4" placeholder="Renovation Required" class="form-control">
-                    <input type="number" name="toilet_additional_required_1.4" placeholder="Number of Additional Cubicle Toilet Required" class="form-control">
+                    <input type="number" name="toilet_cubicle_available_1.4" placeholder="Number of Cubicle Toilet Available" class="form-control" required="">
+                    <input type="number" name="toilet_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control" required="">
+                    <input type="number" name="toilet_major_repair_1.4" placeholder="Number in need of Major Repair" class="form-control" required="">
+                    <input type="number" name="toilet_renovation_required_1.4" placeholder="Renovation Required" class="form-control" required="">
+                    <input type="number" name="toilet_additional_required_1.4" placeholder="Number of Additional Cubicle Toilet Required" class="form-control" required="">
                 </div>
                 <div class="form-group">
                     <label for="toilet_repair_description_1.4">Briefly, describe the type of repair needed</label>
-                    <textarea id="toilet_repair_description_1.4" name="toilet_repair_description_1.4" class="form-control"></textarea>
+                    <textarea id="toilet_repair_description_1.4" name="toilet_repair_description_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>SEPTIC TANK</h5>
                 <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="available"> Available</label>
+                    <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="available" required=""> Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="not_available"> Not Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="needs_evacuation"> Needs Evacuation</label>
                 </div>
                 <h5>SOURCE OF POTABLE WATER</h5>
                 <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="water_source_1.4" value="none"> None</label>
+                    <label class="radio-inline"><input type="radio" name="water_source_1.4" value="none" required=""> None</label>
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="well"> Well</label>
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="tap_water"> Tap Water</label>
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="borehole"> Borehole</label>
                 </div>
                 <div class="form-group">
                     <label for="water_recommendations_1.4">Recommendations</label>
-                    <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control"></textarea>
+                    <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>SOURCE OF ELECTRICITY</h5>
                 <div class="form-group">
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none" required=""> None</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="generator"> Generator</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="solar"> Solar</label>
@@ -1947,13 +1947,13 @@ select.form-control option {
                 </div>
                 <h5>MONITORING VEHICLES</h5>
                 <div class="form-group">
-                    <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="available"> Available</label>
+                    <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="available" required=""> Available</label>
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="not_available"> Not Available</label>
                     <input type="number" name="monitoring_vehicles_needed_1.4" placeholder="Number Needed" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Is your Local Govt Educ Auth regularly waterlogged when it rained?</label>
-                    <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="yes"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="yes" required=""> Yes</label>
                     <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="no"> No</label>
                 </div>
 				
@@ -2001,24 +2001,24 @@ select.form-control option {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
-                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
+                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_a_ht_contact">Contact Number</label>
-                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
+                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control" required="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Gender *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="male"> Male</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="male" required=""> Male</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="female"> Female</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Marital Status *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="single"> Single</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="single" required=""> Single</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="married"> Married</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="divorced"> Divorced</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="separated"> Separated</label>
@@ -2027,7 +2027,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_ht_highest_qualification">Highest Qualification *</label>
-                    <select id="silnat_a_ht_highest_qualification" name="silnat_a_ht_highest_qualification" class="form-control">
+                    <select id="silnat_a_ht_highest_qualification" name="silnat_a_ht_highest_qualification" class="form-control" required="">
                         <option value="">Select Qualification</option>
                         <option value="grade_ii">Grade II</option> <option value="nce">NCE</option> <option value="b_ed">B.Ed</option> <option value="ba_ed">BA. Ed</option> <option value="bsc_ed">B.Sc.Ed</option> <option value="hnd">HND</option> <option value="m_ed">M.Ed</option> <option value="others">Others</option>
                     </select>
@@ -2038,7 +2038,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_ht_years_experience">Years of Leadership Experience *</label>
-                    <select id="silnat_a_ht_years_experience" name="silnat_a_ht_years_experience" class="form-control">
+                    <select id="silnat_a_ht_years_experience" name="silnat_a_ht_years_experience" class="form-control" required="">
                         <option value="">Select Years</option>
                         <option value="5_below">5 &amp; below</option> <option value="6_10">6-10</option> <option value="11_15">11-15</option> <option value="16_20">16-20</option> <option value="21_above">21 &amp; above</option>
                     </select>
@@ -2050,24 +2050,24 @@ select.form-control option {
                 <div class="form-row">
                      <div class="form-group">
                         <label for="silnat_a_es_name">Education Secretary Name *</label>
-                        <input type="text" id="silnat_a_es_name" name="silnat_a_es_name" class="form-control">
+                        <input type="text" id="silnat_a_es_name" name="silnat_a_es_name" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_a_es_contact">Contact Number</label>
-                        <input type="tel" id="silnat_a_es_contact" name="silnat_a_es_contact" class="form-control">
+                        <input type="tel" id="silnat_a_es_contact" name="silnat_a_es_contact" class="form-control" required="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Gender *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_es_gender" value="male"> Male</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_es_gender" value="male" required=""> Male</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_es_gender" value="female"> Female</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Marital Status *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_es_marital_status" value="single"> Single</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_es_marital_status" value="single" required=""> Single</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_es_marital_status" value="married"> Married</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_es_marital_status" value="divorced"> Divorced</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_es_marital_status" value="separated"> Separated</label>
@@ -2076,7 +2076,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_es_highest_qualification">Highest Qualification *</label>
-                    <select id="silnat_a_es_highest_qualification" name="silnat_a_es_highest_qualification" class="form-control">
+                    <select id="silnat_a_es_highest_qualification" name="silnat_a_es_highest_qualification" class="form-control" required="">
                         <option value="">Select Qualification</option>
                         <option value="grade_ii">Grade II</option> <option value="nce">NCE</option> <option value="b_ed">B.Ed</option> <option value="ba_ed">BA. Ed</option> <option value="bsc_ed">B.Sc.Ed</option> <option value="hnd">HND</option> <option value="m_ed">M.Ed</option> <option value="others">Others</option>
                     </select>
@@ -2087,7 +2087,7 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_es_years_experience">Years of Leadership Experience *</label>
-                    <select id="silnat_a_es_years_experience" name="silnat_a_es_years_experience" class="form-control">
+                    <select id="silnat_a_es_years_experience" name="silnat_a_es_years_experience" class="form-control" required="">
                         <option value="">Select Years</option>
                         <option value="5_below">5 &amp; below</option> <option value="6_10">6-10</option> <option value="11_15">11-15</option> <option value="16_20">16-20</option> <option value="21_above">21 &amp; above</option>
                     </select>
@@ -2127,7 +2127,7 @@ select.form-control option {
                
                     <div class="form-group">
                     <label for="silnat_location_common">Location</label>
-                    <select id="silnat_location_common" name="silnat_b_location_common" class="form-control">
+                    <select id="silnat_location_common" name="silnat_b_location_common" class="form-control" required="">
                         <option value="">Select Location (Optional)</option>
                         <option value="urban">Urban</option>
                         <option value="rural">Rural</option>
@@ -2150,11 +2150,11 @@ select.form-control option {
             <div class="form-row">
                 <div class="form-group">
                     <label for="silnat_assemblyDevotion_startTime">Assembly Devotion Start Time</label>
-                    <input type="time" id="silnat_assemblyDevotion_startTime" name="silnat_assemblyDevotion_startTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
+                    <input type="time" id="silnat_assemblyDevotion_startTime" name="silnat_assemblyDevotion_startTime" class="form-control" step="900" required=""> <!-- step="900" for 15-minute intervals -->
                 </div>
                 <div class="form-group">
                     <label for="silnat_assemblyDevotion_endTime">Assembly Devotion End Time</label>
-                    <input type="time" id="silnat_assemblyDevotion_endTime" name="silnat_assemblyDevotion_endTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
+                    <input type="time" id="silnat_assemblyDevotion_endTime" name="silnat_assemblyDevotion_endTime" class="form-control" step="900" required=""> <!-- step="900" for 15-minute intervals -->
                 </div>
             </div>
 
@@ -2163,11 +2163,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_teachers_male">Male</label>
-                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_female">Female</label>
-                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_total">Total</label>
@@ -2181,11 +2181,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_non_teaching_male">Male</label>
-                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_non_teaching_female">Female</label>
-                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_non_teaching_total">Total</label>
@@ -2201,11 +2201,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_male">Male</label>
-                        <input type="number" id="silnat_pupils_eccde_male" name="silnat_pupils_eccde_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_eccde_male" name="silnat_pupils_eccde_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_female">Female</label>
-                        <input type="number" id="silnat_pupils_eccde_female" name="silnat_pupils_eccde_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_eccde_female" name="silnat_pupils_eccde_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_total">Total</label>
@@ -2219,11 +2219,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_primary_male">Male</label>
-                        <input type="number" id="silnat_pupils_primary_male" name="silnat_pupils_primary_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_primary_male" name="silnat_pupils_primary_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_primary_female">Female</label>
-                        <input type="number" id="silnat_pupils_primary_female" name="silnat_pupils_primary_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_primary_female" name="silnat_pupils_primary_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_primary_total">Total</label>
@@ -2237,11 +2237,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_special_male">Male</label>
-                        <input type="number" id="silnat_pupils_special_male" name="silnat_pupils_special_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_special_male" name="silnat_pupils_special_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_special_female">Female</label>
-                        <input type="number" id="silnat_pupils_special_female" name="silnat_pupils_special_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_special_female" name="silnat_pupils_special_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_special_total">Total</label>
@@ -2255,11 +2255,11 @@ select.form-control option {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_male">Male</label>
-                        <input type="number" id="silnat_pupils_male" name="silnat_pupils_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_male" name="silnat_pupils_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_female">Female</label>
-                        <input type="number" id="silnat_pupils_female" name="silnat_pupils_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_female" name="silnat_pupils_female" class="form-control" min="0" placeholder="Female" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_total">Total</label>
@@ -2271,25 +2271,25 @@ select.form-control option {
             <div class="form-group" style="margin-top: 20px;">
                 <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio:</label>
                 <div style="display: flex; align-items: center;">
-                    <input type="number" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" min="0" step="any" placeholder="Enter ratio value" style="flex-grow: 1;">
+                    <input type="number" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" min="0" step="any" placeholder="Enter ratio value" style="flex-grow: 1;" required="">
                     <span style="margin-left: 8px; font-size: 1em; flex-shrink: 0;">%</span>
                 </div>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
                 <label for="silnat_additional_staff_required">Number of Additional Teachers/Staff Required:</label>
-                <input type="number" id="silnat_additional_staff_required" name="silnat_additional_staff_required" class="form-control" min="0" placeholder="Enter number">
+                <input type="number" id="silnat_additional_staff_required" name="silnat_additional_staff_required" class="form-control" min="0" placeholder="Enter number" required="">
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
                 <label for="silnat_multigrade_classes">Number of Classes operated as Multigrade:</label>
-                <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number">
+                <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number" required="">
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
                 <label>Reason(s) for operating the classes as Multigrade:</label>
                 <div>
-                    <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms" required=""> Inadequate Classrooms</label>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
                 </div>
             </div>
@@ -4952,6 +4952,105 @@ function editRecord(id) {
 </footer>
 
 <script>
+function enableNextSection(currentSectionId, nextSectionId, nextSectionHeaderId) {
+    const currentSection = document.getElementById(currentSectionId);
+    const nextSection = document.getElementById(nextSectionId);
+    const nextSectionHeader = document.getElementById(nextSectionHeaderId);
+
+    if (!currentSection || !nextSection || !nextSectionHeader) {
+        return;
+    }
+
+    const requiredInputs = currentSection.querySelectorAll('[required]');
+    let allFieldsFilled = true;
+
+    for (const input of requiredInputs) {
+        if (input.type === 'radio' || input.type === 'checkbox') {
+            const groupName = input.name;
+            if (!document.querySelector(`input[name="${groupName}"]:checked`)) {
+                allFieldsFilled = false;
+                break;
+            }
+        } else if (!input.value.trim()) {
+            allFieldsFilled = false;
+            break;
+        }
+    }
+
+    if (allFieldsFilled) {
+        nextSection.style.opacity = '1';
+        nextSection.style.pointerEvents = 'auto';
+        nextSectionHeader.style.cursor = 'pointer';
+        const headerText = nextSectionHeader.innerText;
+        nextSectionHeader.onclick = () => toggleSection(nextSectionId, nextSectionHeaderId);
+        if (headerText.includes('▶️')) {
+            //
+        }
+    } else {
+        nextSection.style.opacity = '0.5';
+        nextSection.style.pointerEvents = 'none';
+        nextSectionHeader.style.cursor = 'not-allowed';
+        nextSectionHeader.onclick = null;
+    }
+}
+
+function initializeFormValidation() {
+    // SILAT 1.2
+    initializeSection('sectionAContent_1.2', 'sectionBContent_1.2', 'sectionBHeader_1.2');
+    initializeSection('sectionBContent_1.2', 'sectionCContent_1.2', 'sectionCHeader_1.2');
+    initializeSection('sectionCContent_1.2', 'sectionDContent_1.2', 'sectionDHeader_1.2');
+
+    // SILAT 1.3
+    initializeSection('sectionAContent_1.3', 'sectionBContent_1.3', 'sectionBHeader_1.3');
+    initializeSection('sectionBContent_1.3', 'sectionCContent_1.1', 'sectionCHeader_1.1');
+    initializeSection('sectionCContent_1.1', 'sectionDContent_1.3', 'sectionDHeader_1.3');
+
+    // SILAT 1.4
+    initializeSection('sectionAContent_1.4', 'sectionBContent_1.4', 'sectionBHeader_1.4');
+    initializeSection('sectionBContent_1.4', 'sectionCContent_1.4', 'sectionCHeader_1.4');
+    initializeSection('sectionCContent_1.4', 'sectionDContent_1.4', 'sectionDHeader_1.4');
+
+    // SILNAT
+    initializeSection('sectionAContent_1.1', 'sectionBContent_1.1', 'sectionBHeader_1.1');
+    initializeSection('sectionBContent_1.1', 'sectionCContent_1.3', 'sectionCHeader_1.3');
+    initializeSection('sectionCContent_1.3', 'sectionDContent_1.1', 'sectionDHeader_1.1');
+
+    // TCMATS
+    initializeSection('tcmatsSectionA', 'tcmatsSectionB', 'tcmatsSectionBHeader');
+    initializeSection('tcmatsSectionB', 'tcmatsSectionC', 'tcmatsSectionCHeader');
+
+    // LORI
+    initializeSection('loriSectionAContent', 'loriSectionBContent', 'loriSectionBHeader');
+    initializeSection('loriSectionBContent', 'loriSectionCContent', 'loriSectionCHeader');
+
+    // VOICES
+    initializeSection('voicesSectionA', 'voicesSectionB', 'voicesSectionBHeader');
+    initializeSection('voicesSectionB', 'voicesSectionC', 'voicesSectionCHeader');
+    initializeSection('voicesSectionC', 'voicesSectionD', 'voicesSectionDHeader');
+}
+
+function initializeSection(currentSectionId, nextSectionId, nextSectionHeaderId) {
+    const currentSection = document.getElementById(currentSectionId);
+    const nextSection = document.getElementById(nextSectionId);
+    const nextSectionHeader = document.getElementById(nextSectionHeaderId);
+
+    if (currentSection && nextSection && nextSectionHeader) {
+        nextSection.style.opacity = '0.5';
+        nextSection.style.pointerEvents = 'none';
+        nextSectionHeader.style.cursor = 'not-allowed';
+        nextSectionHeader.onclick = null;
+
+        const inputs = currentSection.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                enableNextSection(currentSectionId, nextSectionId, nextSectionHeaderId);
+            });
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initializeFormValidation);
+
 // --- Data for Special Schools ---
 let specialSchoolsData = {};
 
@@ -5039,7 +5138,451 @@ function loadSpecialSchools() {
 window.addEventListener('load', loadSpecialSchoolsDataFromCSV);
 
 // --- Survey Form Submission Logic for SILNAT, TCMATS, LORI, VOICES ---
+async function submitSilat1_2(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.2_form');
+    const feedback = document.getElementById('silat_1.2_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
 
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Handle checkboxes
+    const specialLearners = [];
+    document.querySelectorAll('input[name="silat_1_2_special_learners"]:checked').forEach(checkbox => {
+        specialLearners.push(checkbox.value);
+    });
+    data.silat_1_2_special_learners = specialLearners;
+
+    const multigradeReasons = [];
+    document.querySelectorAll('input[name="silat_1_2_multigrade_reasons"]:checked').forEach(checkbox => {
+        multigradeReasons.push(checkbox.value);
+    });
+    data.silat_1_2_multigrade_reasons = multigradeReasons;
+
+    console.log("Submitting SILAT 1.2 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.2', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.2 survey submitted successfully!';
+            form.reset();
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+async function submitSilat1_3(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.3_form');
+    const feedback = document.getElementById('silat_1.3_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting SILAT 1.3 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.3', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.3 survey submitted successfully!';
+            form.reset();
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+async function submitSilat1_4(event) {
+    event.preventDefault();
+    const form = document.getElementById('silat_1.4_form');
+    const feedback = document.getElementById('silat_1.4_feedback');
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    console.log("Submitting SILAT 1.4 Data:", JSON.stringify(data, null, 2));
+
+    try {
+        const res = await fetch('/api/silat_1.4', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT 1.4 survey submitted successfully!';
+            form.reset();
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+async function submitSilnat(event) {
+    event.preventDefault();
+    const form = document.getElementById('silnatForm');
+    const feedback = document.getElementById('silnat_feedback');
+    feedback.textContent = '';
+
+    const institutionType = document.getElementById('silnat_a_institution_type').value;
+    if (!institutionType) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Please select an Institution Type.';
+        return;
+    }
+
+    // Basic validation: Check all visible required inputs in the form
+    const visibleRequiredInputs = form.querySelectorAll('input[required]:not([style*="display: none"]):not([disabled]), select[required]:not([style*="display: none"]):not([disabled]), textarea[required]:not([style*="display: none"]):not([disabled])');
+    for (const input of visibleRequiredInputs) {
+        // Check if the input itself is within a visible conditional group
+        let parent = input.closest('.conditional-group');
+        let isVisibleConditional = true; // Assume visible if not in a conditional group
+        if (parent) {
+            isVisibleConditional = (parent.style.display !== 'none');
+        }
+
+        if (isVisibleConditional && !input.value.trim()) {
+            // Try to get label text more reliably
+            let labelText = `Field with ID '${input.id}'`;
+            const labelElement = form.querySelector(`label[for="${input.id}"]`);
+            if (labelElement) {
+                labelText = labelElement.textContent.replace('*','').trim();
+            } else { // Try parent label if input is radio/checkbox
+                 const parentLabel = input.closest('label');
+                 if(parentLabel) labelText = parentLabel.textContent.replace('*','').trim();
+            }
+
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = `Please fill the required field: ${labelText}.`;
+            input.focus();
+            return;
+        }
+
+        if (input.type === 'radio' && isVisibleConditional) {
+            const radioGroupName = input.name;
+            const radioGroup = form.elements[radioGroupName];
+            let groupIsVisible = true;
+            let radioParent = input.closest('.conditional-group');
+            if(radioParent && radioParent.style.display === 'none') {
+                groupIsVisible = false;
+            }
+
+            if (groupIsVisible && radioGroup && radioGroup.value === '') {
+                 // Find a label associated with the radio group
+                const firstRadioInGroup = document.querySelector(`input[name="${radioGroupName}"]`);
+                let groupLabelText = radioGroupName;
+                if(firstRadioInGroup){
+                    const parentFormGroup = firstRadioInGroup.closest('.form-group');
+                    if(parentFormGroup){
+                        const labelElem = parentFormGroup.querySelector('label:not(.radio-inline)');
+                        if(labelElem) groupLabelText = labelElem.textContent.replace('*','').trim();
+                    }
+                }
+                 feedback.style.color = 'var(--lagos-red)';
+                 feedback.textContent = `Please make a selection for: ${groupLabelText}.`;
+                 return;
+            }
+        }
+    }
+
+
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+
+    const data = {
+        institution_type: institutionType,
+        section_a: {},
+        section_b: {},
+        section_c: {},
+        section_d: {},
+        respondent_details: {},
+        official_use: {}
+    };
+
+    // Collect Section A data
+    if (institutionType === 'regular_school' || institutionType === 'special_school' || institutionType === 'home_economics_centre' || institutionType === 'mini_resource_centre') {
+        const htBioWrapper = document.getElementById('silnat_a_ht_bio_data_wrapper');
+        if (htBioWrapper && htBioWrapper.style.display !== 'none') {
+            data.section_a.head_teacher_name = document.getElementById('silnat_a_ht_name')?.value.trim();
+            data.section_a.contact_number = document.getElementById('silnat_a_ht_contact')?.value.trim();
+            data.section_a.gender = form.elements['silnat_a_ht_gender']?.value;
+            data.section_a.marital_status = form.elements['silnat_a_ht_marital_status']?.value;
+            data.section_a.highest_qualification = document.getElementById('silnat_a_ht_highest_qualification')?.value;
+            if (data.section_a.highest_qualification === 'others') {
+                data.section_a.highest_qualification_other = document.getElementById('silnat_a_ht_highest_qualification_other')?.value.trim();
+            }
+            data.section_a.years_leadership_experience = document.getElementById('silnat_a_ht_years_experience')?.value;
+        }
+    } else if (institutionType === 'lgea_secretariat') {
+        const esBioWrapper = document.getElementById('silnat_a_es_bio_data_wrapper');
+        if (esBioWrapper && esBioWrapper.style.display !== 'none') {
+            data.section_a.education_secretary_name = document.getElementById('silnat_a_es_name')?.value.trim();
+            data.section_a.contact_number = document.getElementById('silnat_a_es_contact')?.value.trim();
+            data.section_a.gender = form.elements['silnat_a_es_gender']?.value;
+            data.section_a.marital_status = form.elements['silnat_a_es_marital_status']?.value;
+            data.section_a.highest_qualification = document.getElementById('silnat_a_es_highest_qualification')?.value;
+            if (data.section_a.highest_qualification === 'others') {
+                data.section_a.highest_qualification_other = document.getElementById('silnat_a_es_highest_qualification_other')?.value.trim();
+            }
+            data.section_a.years_leadership_experience = document.getElementById('silnat_a_es_years_experience')?.value;
+        }
+    }
+
+    // These are common fields currently structured as if they are section B, but will be part of the new section B logic
+    data.section_b.institution_name_common = document.getElementById('silnat_schoolName')?.value.trim();
+    data.section_b.institution_address_common = document.getElementById('silnat_schoolAddress_common')?.value.trim();
+    data.section_b.location_common = document.getElementById('silnat_location_common')?.value; // Optional field
+    data.section_b.local_gov_common = document.getElementById('silnat_localGov')?.value.trim();
+
+    // Placeholder for original simple form fields - these will be replaced by detailed conditional fields
+    data.section_d.infrastructure_condition_old = document.getElementById('silnat_infrastructure')?.value;
+    data.section_d.leadership_structure_old = document.getElementById('silnat_leadership')?.value; // This was likely a Section A or C type question
+
+    data.section_c.discipline_a = form.elements['discipline_a']?.value;
+    data.section_c.discipline_b = form.elements['discipline_b']?.value;
+    data.section_c.discipline_c = form.elements['discipline_c']?.value;
+    data.section_c.discipline_d = form.elements['discipline_d']?.value;
+    data.section_c.discipline_e = form.elements['discipline_e']?.value;
+
+    data.section_c.cooperation_a = form.elements['cooperation_a']?.value;
+    data.section_c.cooperation_b = form.elements['cooperation_b']?.value;
+    data.section_c.cooperation_c = form.elements['cooperation_c']?.value;
+    data.section_c.cooperation_d = form.elements['cooperation_d']?.value;
+
+    data.section_c.communication_a = form.elements['communication_a']?.value;
+    data.section_c.communication_b = form.elements['communication_b']?.value;
+    data.section_c.communication_c = form.elements['communication_c']?.value;
+
+    data.section_c.community_a = form.elements['community_a']?.value;
+    data.section_c.community_b = form.elements['community_b']?.value;
+    data.section_c.community_c = form.elements['community_c']?.value;
+    data.section_c.community_d = form.elements['community_d']?.value;
+    data.section_c.community_e = form.elements['community_e']?.value;
+
+    data.section_c.supervision_a = form.elements['supervision_a']?.value;
+    data.section_c.supervision_b = form.elements['supervision_b']?.value;
+    data.section_c.supervision_c = form.elements['supervision_c']?.value;
+    data.section_c.supervision_d = form.elements['supervision_d']?.value;
+    data.section_c.supervision_e = form.elements['supervision_e']?.value;
+
+    data.section_c.records_a = form.elements['records_a']?.value;
+    data.section_c.records_b = form.elements['records_b']?.value;
+    data.section_c.records_c = form.elements['records_c']?.value;
+    data.section_c.records_d = form.elements['records_d']?.value;
+    data.section_c.records_e = form.elements['records_e']?.value;
+    data.section_c.records_f = form.elements['records_f']?.value;
+    data.section_c.records_g = form.elements['records_g']?.value;
+    data.section_c.records_h = form.elements['records_h']?.value;
+    data.section_c.records_i = form.elements['records_i']?.value;
+
+    data.section_c.health_a = form.elements['health_a']?.value;
+    data.section_c.health_b = form.elements['health_b']?.value;
+    data.section_c.health_c = form.elements['health_c']?.value;
+    data.section_c.health_d = form.elements['health_d']?.value;
+    data.section_c.health_e = form.elements['health_e']?.value;
+    data.section_c.health_f = form.elements['health_f']?.value;
+
+    const fileInput = document.getElementById('silnat_fileInput');
+    if (fileInput && fileInput.files.length > 0) {
+        data.photos = await processFiles(fileInput, 5); // processFiles is defined elsewhere
+    } else {
+        data.photos = [];
+    }
+
+    console.log("Submitting SILNAT Data:", JSON.stringify(data, null, 2)); // For debugging
+
+    try {
+        const res = await fetch('/api/silnat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'SILNAT survey submitted successfully!';
+            form.reset();
+            document.getElementById('silnat_uploadedFiles').innerHTML = '';
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- TCMATS ---
+async function submitTcmats(event) {
+    event.preventDefault();
+    const form = document.getElementById('tcmatsForm');
+    const feedback = document.getElementById('tcmats_feedback');
+    feedback.textContent = '';
+    const required = ['tcmats_teacherName','tcmats_school','tcmats_subject','tcmats_class','tcmats_observation'];
+    for (const id of required) {
+        if (!document.getElementById(id).value.trim()) {
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = 'Please fill all required fields.';
+            return;
+        }
+    }
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+    const data = {
+        teacherName: document.getElementById('tcmats_teacherName').value.trim(),
+        school: document.getElementById('tcmats_school').value.trim(),
+        subject: document.getElementById('tcmats_subject').value.trim(),
+        class: document.getElementById('tcmats_class').value.trim(),
+        observation: document.getElementById('tcmats_observation').value.trim(),
+        evidence: await processFiles(document.getElementById('tcmats_fileInput'), 3)
+    };
+    try {
+        const res = await fetch('/api/tcmats', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'TCMATS survey submitted successfully!';
+            form.reset();
+            document.getElementById('tcmats_uploadedFiles').innerHTML = '';
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- LORI ---
+async function submitLori(event) {
+    event.preventDefault();
+    const form = document.getElementById('loriForm');
+    const feedback = document.getElementById('lori_feedback');
+    feedback.textContent = '';
+    const required = ['lori_assessorName','lori_teacherName','lori_school','lori_class','lori_rating'];
+    for (const id of required) {
+        if (!document.getElementById(id).value.trim()) {
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = 'Please fill all required fields.';
+            return;
+        }
+    }
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+    const data = {
+        assessorName: document.getElementById('lori_assessorName').value.trim(),
+        teacherName: document.getElementById('lori_teacherName').value.trim(),
+        school: document.getElementById('lori_school').value.trim(),
+        class: document.getElementById('lori_class').value.trim(),
+        rating: document.getElementById('lori_rating').value,
+        comments: document.getElementById('lori_comments').value.trim(),
+        evidence: await processFiles(document.getElementById('lori_fileInput'), 3)
+    };
+    try {
+        const res = await fetch('/api/lori', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'LORI survey submitted successfully!';
+            form.reset();
+            document.getElementById('lori_uploadedFiles').innerHTML = '';
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
+
+// --- VOICES ---
+async function submitVoices(event) {
+    event.preventDefault();
+    const form = document.getElementById('voicesForm');
+    const feedback = document.getElementById('voices_feedback');
+    feedback.textContent = '';
+    const required = ['voices_learnerName','voices_age','voices_school','voices_class','voices_opinion'];
+    for (const id of required) {
+        if (!document.getElementById(id).value.trim()) {
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = 'Please fill all required fields.';
+            return;
+        }
+    }
+    feedback.textContent = 'Submitting...';
+    feedback.style.color = 'var(--lagos-blue)';
+    const data = {
+        learnerName: document.getElementById('voices_learnerName').value.trim(),
+        age: document.getElementById('voices_age').value.trim(),
+        school: document.getElementById('voices_school').value.trim(),
+        class: document.getElementById('voices_class').value.trim(),
+        opinion: document.getElementById('voices_opinion').value.trim(),
+        evidence: await processFiles(document.getElementById('voices_fileInput'), 2)
+    };
+    try {
+        const res = await fetch('/api/voices', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            feedback.style.color = 'var(--lagos-green)';
+            feedback.textContent = 'VOICES survey submitted successfully!';
+            form.reset();
+            document.getElementById('voices_uploadedFiles').innerHTML = '';
+        } else {
+            const err = await res.json();
+            feedback.style.color = 'var(--lagos-red)';
+            feedback.textContent = err.message || 'Submission failed.';
+        }
+    } catch (e) {
+        feedback.style.color = 'var(--lagos-red)';
+        feedback.textContent = 'Network error. Please try again.';
+    }
+}
 function updateTotal(maleId, femaleId, totalId) {
     const maleInput = document.getElementById(maleId);
     const femaleInput = document.getElementById(femaleId);

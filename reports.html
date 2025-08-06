@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Reports</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -18,11 +21,139 @@
         <div class="main-content">
             <div class="content-area">
                 <div id="reportsSection" class="section">
+                    <button class="btn" style="width:auto;margin-bottom:20px;" onclick="exportToPDF()">⬇️ Export to PDF</button>
+                    <button class="btn" style="width:auto;margin-bottom:20px;margin-left:10px;" onclick="exportToExcel()">⬇️ Export to Excel</button>
                     <h2>Survey Reports</h2>
                     <p>This page will display the survey reports.</p>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        async function loadReports() {
+            const reportsSection = document.getElementById('reportsSection');
+            reportsSection.innerHTML = '<h2>Loading Reports...</h2>';
+
+            try {
+                const response = await fetch('/api/reports');
+                const data = await response.json();
+
+                let html = '<h2>Survey Reports</h2>';
+
+                // SILAT 1.2 Table
+                if (data.silat12Data && data.silat12Data.length > 0) {
+                    html += '<h3>SILNAT 1.2 Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Head Teacher</th><th>Contact</th><th>Date</th></tr></thead><tbody>';
+                    data.silat12Data.forEach(report => {
+                        html += `<tr><td>${report.silat_1_2_schoolName}</td><td>${report.silat_1_2_localGov}</td><td>${report.silnat_a_ht_name}</td><td>${report.silnat_a_ht_contact}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // SILAT 1.3 Table
+                if (data.silat13Data && data.silat13Data.length > 0) {
+                    html += '<h3>SILNAT 1.3 Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Head Teacher</th><th>Contact</th><th>Date</th></tr></thead><tbody>';
+                    data.silat13Data.forEach(report => {
+                        html += `<tr><td>${report.silat13_school_name}</td><td>${report.silat13_lgea}</td><td>${report.silnat_a_ht_name}</td><td>${report.silnat_a_ht_contact}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // SILAT 1.4 Table
+                if (data.silat14Data && data.silat14Data.length > 0) {
+                    html += '<h3>SILNAT 1.4 Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>LGEA Name</th><th>Address</th><th>Date</th></tr></thead><tbody>';
+                    data.silat14Data.forEach(report => {
+                        html += `<tr><td>${report.lgea_name_1_4}</td><td>${report.lgea_address_1_4}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // SILNAT Table
+                if (data.silnatData && data.silnatData.length > 0) {
+                    html += '<h3>SILNAT Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Head Teacher/ES</th><th>Contact</th><th>Date</th></tr></thead><tbody>';
+                    data.silnatData.forEach(report => {
+                        const name = report.silnat_a_ht_name || report.silnat_a_es_name;
+                        const contact = report.silnat_a_ht_contact || report.silnat_a_es_contact;
+                        html += `<tr><td>${report.schoolName}</td><td>${report.localGov}</td><td>${name}</td><td>${contact}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // TCMATS Table
+                if (data.tcmatsData && data.tcmatsData.length > 0) {
+                    html += '<h3>TCMATS Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Teacher Name</th><th>Subject</th><th>Date</th></tr></thead><tbody>';
+                    data.tcmatsData.forEach(report => {
+                        html += `<tr><td>${report.tcmats_schoolName}</td><td>${report.tcmats_lgea}</td><td>${report.tcmats_teacherName}</td><td>${report.tcmats_subjectsTaught}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // LORI Table
+                if (data.loriData && data.loriData.length > 0) {
+                    html += '<h3>LORI Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Teacher Name</th><th>Observer</th><th>Date</th></tr></thead><tbody>';
+                    data.loriData.forEach(report => {
+                        html += `<tr><td>${report.lori_school_name}</td><td>${report.lori_lgea}</td><td>${report.lori_teacher_name}</td><td>${report.lori_c_observer_name_2}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                // VOICES Table
+                if (data.voicesData && data.voicesData.length > 0) {
+                    html += '<h3>VOICES Reports</h3>';
+                    html += '<table class="data-table"><thead><tr><th>School Name</th><th>LGA</th><th>Class</th><th>Gender</th><th>Date</th></tr></thead><tbody>';
+                    data.voicesData.forEach(report => {
+                        html += `<tr><td>${report.tcmats_schoolName}</td><td>${report.tcmats_lgea}</td><td>${report.voices_class}</td><td>${report.voices_gender}</td><td>${new Date(report.createdAt).toLocaleDateString()}</td></tr>`;
+                    });
+                    html += '</tbody></table>';
+                }
+
+                reportsSection.innerHTML = html;
+            } catch (error) {
+                reportsSection.innerHTML = '<h2>Error loading reports</h2>';
+                console.error('Error fetching reports:', error);
+            }
+        }
+
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const tables = document.querySelectorAll('.data-table');
+            let y = 15;
+
+            tables.forEach((table, index) => {
+                const title = table.previousElementSibling.innerText;
+                doc.text(title, 14, y);
+                y += 10;
+                doc.autoTable({
+                    html: table,
+                    startY: y,
+                });
+                y = doc.autoTable.previous.finalY + 10;
+            });
+
+            doc.save('survey-reports.pdf');
+        }
+
+        function exportToExcel() {
+            const wb = XLSX.utils.book_new();
+
+            const tables = document.querySelectorAll('.data-table');
+
+            tables.forEach((table, index) => {
+                const title = table.previousElementSibling.innerText;
+                const ws = XLSX.utils.table_to_sheet(table);
+                XLSX.utils.book_append_sheet(wb, ws, title.substring(0, 30));
+            });
+
+            XLSX.writeFile(wb, 'survey-reports.xlsx');
+        }
+        window.onload = loadReports;
+    </script>
 </body>
 </html>
