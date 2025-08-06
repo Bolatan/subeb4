@@ -23,6 +23,9 @@ app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
+// Serve static files from the root directory
+app.use(express.static(__dirname));
+
 const SurveyResponse = require('./models/SurveyResponse');
 
 // Specific endpoints for existing forms to match the frontend calls
