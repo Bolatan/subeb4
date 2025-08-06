@@ -2835,9 +2835,9 @@ select.form-control option {
         <table class="data-table">
             <tbody><tr>
                 <td>LGEA</td>
-                <td><input type="text" name="lori_lgea" class="form-control"></td>
+                <td><select id="lori_lgea" name="lori_lgea" class="form-control" onchange="populateLoriSchoolDropdown()"></select></td>
                 <td>School Name</td>
-                <td><input type="text" name="lori_school_name" class="form-control"></td>
+                <td><select id="lori_school_name" name="lori_school_name" class="form-control"></select></td>
             </tr>
             <tr>
                 <td>Location</td>
@@ -3641,6 +3641,7 @@ select.form-control option {
     // On load, show login page only
     window.onload = async function() {
 		    await loadLagosStateDataFromCSV();
+        await loadLoriData();
         document.getElementById('authScreen').classList.remove('hidden');
         document.getElementById('landingPage').classList.add('hidden');
         ['silnat','tcmats','lori','voices'].forEach(s => {
