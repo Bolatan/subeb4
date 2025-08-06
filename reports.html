@@ -32,6 +32,24 @@
         .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 10px; }
         .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
         .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
+        .section-header-pimu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header-pimu::after {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url('pimu.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-left: 10px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +63,7 @@
         </div>
         <div class="content-area">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2>All Survey Reports</h2>
+                <h2 class="section-header-pimu">All Survey Reports</h2>
                 <div id="export-buttons">
                     <button class="btn" onclick="exportToPDF()">Export to PDF</button>
                     <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
@@ -73,7 +91,7 @@
     <div id="detailsModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="closeModal()">&times;</span>
-            <h3>Survey Details</h3>
+            <h3 class="section-header-pimu">Survey Details</h3>
             <pre id="modal-data" style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 15px; border-radius: 5px; margin-top: 15px;"></pre>
         </div>
     </div>

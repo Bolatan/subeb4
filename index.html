@@ -446,6 +446,25 @@
             border-radius: 2px;
             transition: 0.3s;
         }
+
+        .section-header-pimu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header-pimu::after {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-image: url('pimu.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-left: 10px;
+            border-radius: 4px;
+        }
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -698,7 +717,7 @@ select.form-control option {
             <form id="silat_1.2_form" onsubmit="submitSurvey(event, 'silat_1.2')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.2</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.2</h2>
             </div>
             <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
@@ -984,7 +1003,7 @@ select.form-control option {
 
             <h4 id="sectionDHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.2&#39;, &#39;sectionDHeader_1.2&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.2" style="display: none;">
-                <h4>1. INFRASTRUCTURE</h4>
+                <h4 class="section-header-pimu">1. INFRASTRUCTURE</h4>
                 <div class="form-group">
                     <label>Signboard</label>
                     <div>
@@ -1032,7 +1051,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4 class="section-header-pimu">2. FENCING</h4>
                 <div class="form-group">
                     <label>a. Shared Facility</label>
                     <div>
@@ -1067,7 +1086,7 @@ select.form-control option {
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4 class="section-header-pimu">3. TOILET FACILITIES</h4>
                 <div class="form-group">
                     <label>Type of Toilet:</label>
                     <div>
@@ -1089,7 +1108,7 @@ select.form-control option {
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4 class="section-header-pimu">4. SEPTIC TANK</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -1098,7 +1117,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4 class="section-header-pimu">5. SOURCE OF POTABLE WATER</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -1112,7 +1131,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4 class="section-header-pimu">6. SOURCE OF ELECTRICITY</h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -1137,7 +1156,7 @@ select.form-control option {
                     </div>
                 </div>
 				
-				 <h4>8. List Important Special Schools Facilities Available (list the facilities and indicate availability)</h4>
+				 <h4 class="section-header-pimu">8. List Important Special Schools Facilities Available (list the facilities and indicate availability)</h4>
                 <div class="form-group">
                      <label for="Important_Special_School_Facilities_Info">List Important Special Schools Facilities Available e.g., No. Available, If Adequate/Inadequate, No. Needed, etc</label>
                         <textarea id="Important_Special_School_Facilities_Info" name="Important_Special_School_Facilities_Info" class="form-control" rows="5"></textarea>
@@ -1161,7 +1180,7 @@ select.form-control option {
             <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
             </div>
             <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
@@ -1177,7 +1196,7 @@ select.form-control option {
             <div id="sectionAContent_1.3" style="display: block;">
                			
 			<div id="silnat_a_ht_bio_data_wrapper" class="conditional-group for-regular_school for-special_school for-home_economics_centre for-mini_resource_centre" style="display: none;">
-                <h4>Head Teacher Bio Data</h4>
+                <h4 class="section-header-pimu">Head Teacher Bio Data</h4>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
@@ -1454,7 +1473,7 @@ select.form-control option {
             <h4 id="sectionDHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.3&#39;, &#39;sectionDHeader_1.3&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.3" style="display: none;">
 			
-			 <h4>1. INFRASTRUCTURE</h4>
+			 <h4 class="section-header-pimu">1. INFRASTRUCTURE</h4>
                 <div class="form-group">
                     <label>Signboard</label>
                     <div>
@@ -1495,7 +1514,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4 class="section-header-pimu">2. FENCING</h4>
                 <div class="form-group">
                     <label>a. Shared Facility</label>
                     <div>
@@ -1530,7 +1549,7 @@ select.form-control option {
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4 class="section-header-pimu">3. TOILET FACILITIES</h4>
                 <div class="form-group">
                     <label>Type of Toilet:</label>
                     <div>
@@ -1552,7 +1571,7 @@ select.form-control option {
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4 class="section-header-pimu">4. SEPTIC TANK</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -1561,7 +1580,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4 class="section-header-pimu">5. SOURCE OF POTABLE WATER</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -1575,7 +1594,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4 class="section-header-pimu">6. SOURCE OF ELECTRICITY</h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -1600,7 +1619,7 @@ select.form-control option {
                     </div>
                 </div>
 
-				<h4>8. Equipment/Facilities: List of Equipment/facility expected at the Centre </h4>
+				<h4 class="section-header-pimu">8. Equipment/Facilities: List of Equipment/facility expected at the Centre </h4>
                              <p>List of Equipment/facility expected at the Centre</p>
                 <table class="data-table">
                     <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
@@ -1633,7 +1652,7 @@ select.form-control option {
             <form id="silat_1.4_form" onsubmit="submitSurvey(event, 'silat_1.4')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.4</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.4</h2>
             </div>
             <button type="button" class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
@@ -1648,7 +1667,7 @@ select.form-control option {
             <h4 id="sectionAHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionAContent_1.4&#39;, &#39;sectionAHeader_1.4&#39;)">Section A: Bio Data ▶️</h4>
             <div id="sectionAContent_1.4" style="display: none;">
                 
-                <h5>Education Secretary Bio Data</h5>
+                <h5 class="section-header-pimu">Education Secretary Bio Data</h5>
                 <div class="form-group">
                     <label>Gender:</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.4" value="male"> Male</label>
@@ -1705,7 +1724,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h5 style="margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid var(--lagos-yellow); padding-bottom: 5px;">MEMBERS OF STAFF</h5>
+                <h5 class="section-header-pimu" style="margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid var(--lagos-yellow); padding-bottom: 5px;">MEMBERS OF STAFF</h5>
 
                 <div class="form-group">
                     <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Staff in the Local Govt Educ Auth:</label>
@@ -1842,7 +1861,7 @@ select.form-control option {
 
             <h4 id="sectionDHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.4&#39;, &#39;sectionDHeader_1.4&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.4" style="display: none;">
-                <h5>INFRASTRUCTURE</h5>
+                <h5 class="section-header-pimu">INFRASTRUCTURE</h5>
                 <div class="form-group">
                     <label>Signboard:</label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_good"> Available and in good condition</label>
@@ -1868,7 +1887,7 @@ select.form-control option {
                     <label for="repair_description_1.4">Briefly, describe the type of repair/construction needed:</label>
                     <textarea id="repair_description_1.4" name="repair_description_1.4" class="form-control"></textarea>
                 </div>
-                <h5>FURNITURE</h5>
+                <h5 class="section-header-pimu">FURNITURE</h5>
                 <div class="form-group">
                     <label>Staff’ Furniture:</label>
                     <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control">
@@ -1887,7 +1906,7 @@ select.form-control option {
                     <label for="repair_description_2_1.4">Briefly, describe the type of repair needed:</label>
                     <textarea id="repair_description_2_1.4" name="repair_description_2_1.4" class="form-control"></textarea>
                 </div>
-                <h5>FENCING</h5>
+                <h5 class="section-header-pimu">FENCING</h5>
                 <div class="form-group">
                     <label>a. Shared Facility</label>
                     <p>Is the Local Govt Educ Auth located within a school Complex?</p>
@@ -1917,7 +1936,7 @@ select.form-control option {
                     <label for="lgea_perimeter_1.4">If No, what is the perimeter of the Local Govt Educ Auth?</label>
                     <input type="text" id="lgea_perimeter_1.4" name="lgea_perimeter_1.4" class="form-control">
                 </div>
-                <h5>TOILET FACILITIES</h5>
+                <h5 class="section-header-pimu">TOILET FACILITIES</h5>
                 <div class="form-group">
                     <label>Type of Toilet:</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="pit"> Pit</label>
@@ -1936,13 +1955,13 @@ select.form-control option {
                     <label for="toilet_repair_description_1.4">Briefly, describe the type of repair needed</label>
                     <textarea id="toilet_repair_description_1.4" name="toilet_repair_description_1.4" class="form-control"></textarea>
                 </div>
-                <h5>SEPTIC TANK</h5>
+                <h5 class="section-header-pimu">SEPTIC TANK</h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="available"> Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="not_available"> Not Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="needs_evacuation"> Needs Evacuation</label>
                 </div>
-                <h5>SOURCE OF POTABLE WATER</h5>
+                <h5 class="section-header-pimu">SOURCE OF POTABLE WATER</h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="none"> None</label>
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="well"> Well</label>
@@ -1953,7 +1972,7 @@ select.form-control option {
                     <label for="water_recommendations_1.4">Recommendations</label>
                     <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control"></textarea>
                 </div>
-                <h5>SOURCE OF ELECTRICITY</h5>
+                <h5 class="section-header-pimu">SOURCE OF ELECTRICITY</h5>
                 <div class="form-group">
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
@@ -1967,7 +1986,7 @@ select.form-control option {
                     <label for="electricity_additional_info_1.4">Additional information e.g., amount involved, etc</label>
                     <textarea id="electricity_additional_info_1.4" name="electricity_additional_info_1.4" class="form-control"></textarea>
                 </div>
-                <h5>MONITORING VEHICLES</h5>
+                <h5 class="section-header-pimu">MONITORING VEHICLES</h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="available"> Available</label>
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="not_available"> Not Available</label>
@@ -1979,7 +1998,7 @@ select.form-control option {
                     <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="no"> No</label>
                 </div>
 				
-                <h5>EQUIPMENT/FACILITIES</h5>
+                <h5 class="section-header-pimu">EQUIPMENT/FACILITIES</h5>
                 <p>List of Equipment/facility expected at the Local Govt Educ Auth</p>
                 <table class="data-table">
                     <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
@@ -2020,7 +2039,7 @@ select.form-control option {
             <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silnat_1.1')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
             </div>
             <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <!-- Place this block right after the <h2> in #silnatSection, before the <form id="silnatForm"...> -->
@@ -2037,7 +2056,7 @@ select.form-control option {
 	    <div id="sectionAContent_1.1" style="display: block;">
        
          
-                <h4>Head Teacher Bio Data</h4>
+                <h4 class="section-header-pimu">Head Teacher Bio Data</h4>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
@@ -2377,7 +2396,7 @@ select.form-control option {
 
             <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.1&#39;, &#39;sectionDHeader_1.1&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.1" style="display: none;">
-                <h4>1. INFRASTRUCTURE</h4>
+                <h4 class="section-header-pimu">1. INFRASTRUCTURE</h4>
                 <div class="form-group">
                     <label>Signboard</label>
                     <div>
@@ -2425,7 +2444,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4 class="section-header-pimu">2. FENCING</h4>
                 <div class="form-group">
                     <label>a. Shared Facility</label>
                     <div>
@@ -2460,7 +2479,7 @@ select.form-control option {
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4 class="section-header-pimu">3. TOILET FACILITIES</h4>
                 <div class="form-group">
                     <label>Type of Toilet:</label>
                     <div>
@@ -2482,7 +2501,7 @@ select.form-control option {
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4 class="section-header-pimu">4. SEPTIC TANK</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -2491,7 +2510,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4 class="section-header-pimu">5. SOURCE OF POTABLE WATER</h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -2505,7 +2524,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4 class="section-header-pimu">6. SOURCE OF ELECTRICITY</h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -2549,7 +2568,7 @@ select.form-control option {
         <div id="tcmatsSection" class="section hidden">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Teachers Classroom Management and Teaching Survey (TCMATS)</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Teachers Classroom Management and Teaching Survey (TCMATS)</h2>
             </div>
             <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <!-- TODO: Add TCMATS form here -->
@@ -2653,7 +2672,7 @@ select.form-control option {
                 <p>Section B contains items on Teachers’ Needs Assessment. Kindly respond by ticking (√) the appropriate box</p>
                 <p>Which of the following are you having difficulty in your job?</p>
 
-                <h4 style="margin-top: 20px;">1. Lesson Preparation and delivery</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">1. Lesson Preparation and delivery</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2675,7 +2694,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">2. Mastery of Subject Matter</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">2. Mastery of Subject Matter</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2697,7 +2716,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">3. Pedagogy</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">3. Pedagogy</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2719,7 +2738,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">4. Classroom Management</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">4. Classroom Management</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2745,7 +2764,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">5. Instructional Materials</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">5. Instructional Materials</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2764,7 +2783,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">6. Evaluation of Learning Outcomes</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">6. Evaluation of Learning Outcomes</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2783,7 +2802,7 @@ select.form-control option {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">7. Information and Communication Technology</h4>
+                <h4 class="section-header-pimu" style="margin-top: 20px;">7. Information and Communication Technology</h4>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -2819,7 +2838,7 @@ select.form-control option {
         <div id="loriSection" class="section hidden">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="./Audit App1.3_files/subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Lesson Observation Rating Instrument (LORI)</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Lesson Observation Rating Instrument (LORI)</h2>
             </div>
             <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <div class="intro-card" style="background:rgb(243, 242, 240);border-left:6px solid var(--lagos-yellow);border-radius:12px;padding:22px 20px 18px 20px;margin-bottom:28px;color:var(--lagos-navy);font-size:1.08rem;line-height:1.7;">
@@ -3081,7 +3100,7 @@ select.form-control option {
         <div id="voicesSection" class="section hidden">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="./Audit App1.3_files/subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
-                <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Learner Voices/Opinions (VOICES)</h2>
+                <h2 class="section-header-pimu" style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">Learner Voices/Opinions (VOICES)</h2>
             </div>
             <button class="btn btn-secondary" style="width:auto;margin-bottom:20px;" onclick="backToLanding()">← Back to Home</button>
             <!-- Introductory Text -->
