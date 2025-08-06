@@ -2574,14 +2574,14 @@ select.form-control option {
         </div>
     </div>
                     <div class="form-group">
-                        <label for="voices_lgea">LGEA:</label>
-                        <select id="voices_lgea" name="voices_lgea" class="form-control" onchange="populateVoicesSchoolDropdown()">
+                        <label for="tcmats_lgea">LGEA:</label>
+                        <select id="tcmats_lgea" name="tcmats_lgea" class="form-control" onchange="populateTcmatsSchoolDropdown()">
                             <option value="">Select LGEA</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="voices_schoolName">Name of School</label>
-                        <select id="voices_schoolName" name="voices_schoolName" class="form-control">
+                        <label for="tcmats_schoolName">Name of School</label>
+                        <select id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
                             <option value="">Select LGEA first</option>
                         </select>
                     </div>
@@ -3104,19 +3104,23 @@ select.form-control option {
 					
 			     <label>Institution:</label>
 		<div>
-            <label class="radio-inline"><input type="radio" name="tcmats_institution" value="regular_school" required=""> Regular School</label>
-            <label class="radio-inline"><input type="radio" name="tcmats_institution" value="special_school"> Special School</label>
-            <label class="radio-inline"><input type="radio" name="tcmats_institution" value="vocational_centre"> Vocational Centre</label>
+            <label class="radio-inline"><input type="radio" name="voices_institution" value="regular_school" required=""> Regular School</label>
+            <label class="radio-inline"><input type="radio" name="voices_institution" value="special_school"> Special School</label>
+            <label class="radio-inline"><input type="radio" name="voices_institution" value="vocational_centre"> Vocational Centre</label>
         </div>
     </div>
 	<div class="form-group">
-        <label for="tcmats_lgea">LGEA:</label>
-        <input type="text" id="tcmats_lgea" name="tcmats_lgea" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="tcmats_schoolName">Name of School</label>
-        <input type="text" id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
-    </div>
+                        <label for="voices_lgea">LGEA:</label>
+                        <select id="voices_lgea" name="voices_lgea" class="form-control" onchange="populateVoicesSchoolDropdown()">
+                            <option value="">Select LGEA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="voices_schoolName">Name of School</label>
+                        <select id="voices_schoolName" name="voices_schoolName" class="form-control">
+                            <option value="">Select LGEA first</option>
+                        </select>
+                    </div>
     <div class="form-group">
         <label>Location:</label>
         <div>
@@ -3622,6 +3626,10 @@ select.form-control option {
 
         if (survey === 'voices') {
             await loadVoicesData();
+        }
+
+        if (survey === 'tcmats') {
+            await loadTcmatsData();
         }
 
 
@@ -5255,6 +5263,91 @@ async function processFiles(input, maxCount) {
 </script>
 
 <script>
+    // Data for TCMATS survey
+    let tcmatsData = {};
+
+    // Load data from combo.csv for TCMATS survey
+    async function loadTcmatsData() {
+        if (Object.keys(tcmatsData).length > 0) {
+            populateTcmatsLgeaDropdown();
+            return;
+        }
+
+        try {
+            const response = await fetch('combo.csv');
+            const csvText = await response.text();
+            const cleanedCsvText = csvText.trim().startsWith('ï»¿') ? csvText.trim().substring(3) : csvText.trim();
+            const lines = cleanedCsvText.split('\n').filter(line => line.trim() !== '');
+
+            for (let i = 1; i < lines.length; i++) {
+                const parts = lines[i].split(',');
+                if (parts.length >= 2) {
+                    const lga = parts[0].trim();
+                    const school = parts[1].trim();
+
+                    if (lga && school) {
+                        if (!tcmatsData[lga]) {
+                            tcmatsData[lga] = [];
+                        }
+                        if (!tcmatsData[lga].includes(school)) {
+                            tcmatsData[lga].push(school);
+                        }
+                    }
+                }
+            }
+            console.log('Successfully loaded and parsed data from combo.csv for TCMATS survey.');
+            populateTcmatsLgeaDropdown();
+        } catch (error) {
+            console.error('Error loading or parsing combo.csv for TCMATS:', error);
+        }
+    }
+
+    // Populate the LGEA dropdown for the TCMATS survey
+    function populateTcmatsLgeaDropdown() {
+        const lgaDropdown = document.getElementById('tcmats_lgea');
+        if (!lgaDropdown) return;
+
+        const lgas = Object.keys(tcmatsData).sort();
+        lgaDropdown.innerHTML = '<option value="">Select LGEA</option>';
+        lgas.forEach(lga => {
+            const option = document.createElement('option');
+            option.value = lga;
+            option.textContent = lga;
+            lgaDropdown.appendChild(option);
+        });
+
+        const schoolDropdown = document.getElementById('tcmats_schoolName');
+        if(schoolDropdown) {
+            schoolDropdown.innerHTML = '<option value="">Select LGEA first</option>';
+            schoolDropdown.disabled = true;
+        }
+    }
+
+    // Populate the school dropdown based on the selected LGEA for the TCMATS survey
+    function populateTcmatsSchoolDropdown() {
+        const lgaDropdown = document.getElementById('tcmats_lgea');
+        const schoolDropdown = document.getElementById('tcmats_schoolName');
+        if (!lgaDropdown || !schoolDropdown) return;
+
+        const selectedLga = lgaDropdown.value;
+        schoolDropdown.innerHTML = '<option value="">Select School</option>';
+
+        if (!selectedLga) {
+            schoolDropdown.disabled = true;
+            schoolDropdown.innerHTML = '<option value="">Select LGEA first</option>';
+            return;
+        }
+
+        schoolDropdown.disabled = false;
+        const schools = tcmatsData[selectedLga] || [];
+        schools.forEach(school => {
+            const option = document.createElement('option');
+            option.value = school;
+            option.textContent = school;
+            schoolDropdown.appendChild(option);
+        });
+    }
+
     // Data for VOICES survey
     let voicesData = {};
 
