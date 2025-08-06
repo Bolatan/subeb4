@@ -2573,13 +2573,17 @@ select.form-control option {
             <label class="radio-inline"><input type="radio" name="tcmats_institution" value="vocational_centre"> Vocational Centre</label>
         </div>
     </div>
-	<div class="form-group">
+    <div class="form-group">
         <label for="tcmats_lgea">LGEA:</label>
-        <input type="text" id="tcmats_lgea" name="tcmats_lgea" class="form-control">
+        <select id="tcmats_lgea" name="tcmats_lgea" class="form-control" onchange="loadSchoolsForTcmats()">
+            <option value="">Select LGEA</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="tcmats_schoolName">Name of School</label>
-        <input type="text" id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
+        <select id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
+            <option value="">Select LGEA first</option>
+        </select>
     </div>
     <div class="form-group">
         <label>Location:</label>
@@ -3106,12 +3110,12 @@ select.form-control option {
         </div>
     </div>
 	<div class="form-group">
-        <label for="tcmats_lgea">LGEA:</label>
-        <input type="text" id="tcmats_lgea" name="tcmats_lgea" class="form-control">
+        <label for="voices_lgea">LGEA:</label>
+        <input type="text" id="voices_lgea" name="voices_lgea" class="form-control">
     </div>
     <div class="form-group">
-        <label for="tcmats_schoolName">Name of School</label>
-        <input type="text" id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
+        <label for="voices_schoolName">Name of School</label>
+        <input type="text" id="voices_schoolName" name="voices_schoolName" class="form-control">
     </div>
     <div class="form-group">
         <label>Location:</label>
@@ -3582,7 +3586,8 @@ select.form-control option {
 }
 
     </style>
-    <script src="./Audit App1.3_files/dropdown.js.download"></script>
+    <script src="dropdown.js"></script>
+    <script src="tcmats-dropdown.js"></script>
     <script>
     // Navigation logic for landing/surveys
     async function showSurvey(survey) {
@@ -3614,6 +3619,9 @@ select.form-control option {
         if (survey === 'silnat') {
             await loadRegularSchoolsData();
             loadLocalGovernments();
+        } else if (survey === 'tcmats') {
+            await loadTcmatsDataFromCSV();
+            loadLgeasForTcmats();
         }
 
 
