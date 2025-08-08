@@ -628,7 +628,7 @@ select.form-control option {
   		
 		  <div class="container">
         <!-- Authentication Screen -->
-        <div id="authScreen" class="auth-container hidden">
+        <div id="authScreen" class="auth-container">
             <h3 class="auth-title">LSUBEB/PIMU NEEDS INSTRUMENT Login</h3>
             
             <div class="credentials-info">
@@ -649,7 +649,7 @@ select.form-control option {
         </div>
 
         <!-- Landing Page: Four Survey Cards -->
-        <div id="landingPage" class="section">
+        <div id="landingPage" class="section hidden">
             <div class="landing-header">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="landing-logo">
                 <h1 style="color:white;font-size:2.2rem; margin-left: 20px; flex-grow: 1; text-align: center;">Welcome to LASUBEB/PIMU Needs Assessment Portal</h1>
@@ -4005,17 +4005,6 @@ select.form-control option {
         showSection('records');
     }
 
-    // On load, show login page only
-    window.onload = async function() {
-		    await loadLagosStateDataFromCSV();
-        await loadLoriData();
-        document.getElementById('authScreen').classList.remove('hidden');
-        document.getElementById('landingPage').classList.add('hidden');
-        ['silnat','tcmats','lori','voices'].forEach(s => {
-            document.getElementById(s+'Section').classList.add('hidden');
-        });
-        document.getElementById('mainApp').classList.add('hidden');
-    };
     </script>
     <script>
 
@@ -4060,7 +4049,7 @@ let lagosStateData = {};
         let isOnline = navigator.onLine;
         let forceOffline = false;
         
-        // Replace the existing window.onload function
+// Combined window.onload function
 window.onload = function() {
     try {
         forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
@@ -4088,6 +4077,13 @@ window.onload = function() {
         document.getElementById('authScreen').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('landingPage').classList.add('hidden');
+        // Also hide all survey sections
+        ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+            const section = document.getElementById(s + 'Section');
+            if (section) {
+                section.classList.add('hidden');
+            }
+        });
     }
 };
 
@@ -4162,17 +4158,8 @@ function logout() {
     // Remove session from localStorage
     localStorage.removeItem('auditAppCurrentUser');
     
-    document.getElementById('authScreen').classList.remove('hidden');
-    document.getElementById('mainApp').classList.add('hidden');
-    document.getElementById('landingPage').classList.add('hidden');
-    ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
-        const section = document.getElementById(s + 'Section');
-        if (section) {
-            section.classList.add('hidden');
-        }
-    });
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
+    // Redirect to the login page to ensure a clean state
+    window.location.href = 'index.html';
 }
 
         // Navigation
