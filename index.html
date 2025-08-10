@@ -5176,6 +5176,13 @@ window.addEventListener('load', loadSpecialSchoolsDataFromCSV);
 // --- Generic Survey Form Submission Logic ---
 async function submitSurvey(event, surveyType) {
     event.preventDefault();
+
+    const allowedSurveys = ['silat_1.2', 'silat_1.4', 'lori'];
+    if (!allowedSurveys.includes(surveyType)) {
+        alert('This form is not yet open for submission.');
+        return;
+    }
+
     const form = event.target;
     const feedback = form.nextElementSibling; // Assumes feedback div is immediately after the form
 
