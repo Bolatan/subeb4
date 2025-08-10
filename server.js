@@ -88,6 +88,14 @@ app.post('/api/surveys/:type', async (req, res) => {
   }
 });
 
+// Auth routes
+app.use('/api/auth', require('./routes/auth'));
+
+// User management routes (admin only)
+const auth = require('./middleware/auth');
+app.use('/api/users', auth('admin'), require('./routes/users'));
+
+
 // GET endpoint to retrieve all survey data for reports
 app.get('/api/reports', async (req, res) => {
   try {
