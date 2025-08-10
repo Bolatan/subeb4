@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (elements.length === 0) return;
 
+        /*
+        // This feature is disabled as it causes usability issues when dropdowns are not populated.
         for (let i = 1; i < elements.length; i++) {
             elements[i].disabled = true;
         }
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        */
     };
 
     const surveyObserver = new MutationObserver((mutations) => {

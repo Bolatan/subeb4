@@ -3948,7 +3948,7 @@ select.form-control option {
 }
 
     </style>
-    <script src="./Audit App1.3_files/dropdown.js.download"></script>
+    <script src="dropdown.js"></script>
     <script>
     // Navigation logic for landing/surveys
     async function showSurvey(survey) {
@@ -3960,37 +3960,24 @@ select.form-control option {
             }
         });
 
-        // Special handling for silnat_1.3 -> silat_1.3Section
-        let sectionToShow = survey;
-        if (survey === 'silat_1.3') {
-            sectionToShow = 'silat_1.3';
-            setupVocationalCenterDropdowns();
-        } else if (survey === 'silat_1.2') {
-            sectionToShow = 'silat_1.2';
-        } else if (survey === 'silat_1.4') {
-            sectionToShow = 'silat_1.4';
+        const surveyInitializers = {
+            'silnat': initializeSilnatDropdowns,
+            'tcmats': initializeTcmatsDropdowns,
+            'lori': initializeLoriDropdowns,
+            'voices': initializeVoicesDropdowns,
+            'silat_1.2': initializeSilat12Dropdowns,
+            'silat_1.3': initializeSilat13Dropdowns,
+            'silat_1.4': initializeSilat14Dropdowns,
+        };
+
+        if (surveyInitializers[survey]) {
+            surveyInitializers[survey]();
         }
 
-
-        const targetSection = document.getElementById(sectionToShow + 'Section');
+        const targetSection = document.getElementById(survey + 'Section');
         if (targetSection) {
             targetSection.classList.remove('hidden');
         }
-
-        if (survey === 'silnat') {
-            await loadRegularSchoolsData();
-            loadLocalGovernments();
-        }
-
-        if (survey === 'voices') {
-            await loadVoicesData();
-        }
-
-        if (survey === 'tcmats') {
-            await loadTcmatsData();
-        }
-
-
 
         // Hide main app unless you want to show it for a survey
         document.getElementById('mainApp').classList.add('hidden');
@@ -4015,40 +4002,6 @@ select.form-control option {
     </script>
     <script>
 
-// Lagos State Local Government Areas and Primary Schools Data 
-let lagosStateData = {};
-
-// Load lagosStateData from localStorage if present
-(async function loadLagosStateData() {
-    await loadLagosStateDataFromCSV();
-    try {
-        const savedLagosData = localStorage.getItem('lagosStateData');
-        if (savedLagosData) {
-            lagosStateData = JSON.parse(savedLagosData);
-        }
-    } catch (e) {
-        console.error('Error loading lagosStateData from localStorage:', e);
-    }
-})();
-
-// --- Load lagosStateData from backend if available ---
-(async function fetchLagosStateDataFromBackend() {
-    try {
-        const response = await fetch('/api/lgas');
-        if (response.ok) {
-            const result = await response.json();
-            if (result.success && result.lagosStateData && Object.keys(result.lagosStateData).length > 0) {
-                lagosStateData = result.lagosStateData;
-                localStorage.setItem('lagosStateData', JSON.stringify(lagosStateData));
-                loadLocalGovernments && loadLocalGovernments();
-                console.log('Loaded lagosStateData from backend.');
-            }
-        }
-    } catch (e) {
-        console.warn('Could not fetch lagosStateData from backend:', e);
-    }
-})();
-
 // Global variables
         let currentUser = null;
         let auditData = [];
@@ -4057,7 +4010,7 @@ let lagosStateData = {};
         let forceOffline = false;
         
 // Combined window.onload function
-window.onload = function() {
+window.onload = async function() {
     try {
         forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
         const forceOfflineSwitch = document.getElementById('forceOfflineSwitch');
@@ -4070,13 +4023,14 @@ window.onload = function() {
     }
 
     console.log('App initialized');
+    await loadAllData(); // Load all CSV data from dropdown.js
     loadSession();
+
     if (currentUser) {
         document.getElementById('authScreen').classList.add('hidden');
         document.getElementById('landingPage').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
         loadData();
-        loadLocalGovernments();
         updateDashboard();
         loadRecords();
         updateConnectionStatus();
