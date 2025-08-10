@@ -1487,7 +1487,7 @@ h4[onclick] {
 		 
             <!-- End of Section B placeholder -->
 
-            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.1', 'sectionCHeader_1.1')">Section C: Needs Assessment ▶️</h4>
+            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionCContent_1.1&#39;, &#39;sectionCHeader_1.1&#39;)">Section C: Needs Assessment ▶️</h4>
             <div id="sectionCContent_1.1" style="display: none;">
                      <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
                 <h5>Control and Discipline</h5>
@@ -5218,8 +5218,22 @@ function toggleSection(sectionId, headerId) {
     }
 }
 
-
 // Function to handle SILNAT Institution Type change
+function toggleSection(sectionId, headerId) {
+    const section = document.getElementById(sectionId);
+    const header = document.getElementById(headerId);
+    if (section && header) {
+        const isHidden = section.style.display === 'none';
+        section.style.display = isHidden ? 'block' : 'none';
+        const headerText = header.innerText;
+        if (isHidden) {
+            header.innerText = headerText.replace('▶️', '🔽');
+        } else {
+            header.innerText = headerText.replace('🔽', '▶️');
+        }
+    }
+}
+
 function handleSchoolComplexChange() {
     const schoolComplexValue = document.querySelector('input[name="school_complex"]:checked').value;
     const otherSchoolsWrapper = document.getElementById('other_schools_in_complex_wrapper');
