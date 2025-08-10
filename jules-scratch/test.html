@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Collapsible Sections</title>
+</head>
+<body>
+
+    <h4 id="sectionAHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionAContent_1.2', 'sectionAHeader_1.2')">Section A: Bio Data 🔽</h4>
+    <div id="sectionAContent_1.2" style="display: block;">
+      <p>Some content here</p>
+    </div>
+
+    <h4 id="sectionBHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionBContent_1.2', 'sectionBHeader_1.2')">Section B: School/Institution Data ▶️</h4>
+    <div id="sectionBContent_1.2" style="display: none;">
+      <p>Some other content here</p>
+    </div>
+
+    <script>
+    function toggleSection(sectionId, headerId) {
+        const section = document.getElementById(sectionId);
+        const header = document.getElementById(headerId);
+        if (section && header) {
+            const isHidden = section.style.display === 'none';
+            section.style.display = isHidden ? 'block' : 'none';
+            const headerText = header.innerText;
+            if (isHidden) {
+                header.innerText = headerText.replace('▶️', '🔽');
+            } else {
+                header.innerText = headerText.replace('🔽', '▶️');
+            }
+        }
+    }
+    </script>
+
+</body>
+</html>
