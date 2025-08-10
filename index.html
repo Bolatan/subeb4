@@ -99,7 +99,7 @@
         }
         .slider {
             position: absolute;
-
+            cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
@@ -198,7 +198,7 @@
             border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
-
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         .btn:hover {
@@ -227,7 +227,7 @@
             border: 2px solid var(--lagos-yellow);
             padding: 10px 20px;
             border-radius: 8px;
-
+            cursor: pointer;
             font-size: 14px;
             margin-top: 10px;
             transition: all 0.3s ease;
@@ -267,7 +267,7 @@
             padding: 12px 16px;
             margin-bottom: 8px;
             border-radius: 10px;
-
+            cursor: pointer;
             transition: all 0.3s ease;
             border-left: 4px solid transparent;
         }
@@ -308,7 +308,7 @@
             border-radius: 10px;
             padding: 40px;
             text-align: center;
-
+            cursor: pointer;
             transition: all 0.3s ease;
         }
         .file-upload:hover {
@@ -346,7 +346,7 @@
             border-radius: 50%;
             width: 24px;
             height: 24px;
-
+            cursor: pointer;
             font-size: 12px;
         }
         .dashboard-grid {
@@ -433,7 +433,7 @@
             height: 40px;
             background: none;
             border: none;
-
+            cursor: pointer;
             margin-left: 16px;
             z-index: 1002;
         }
@@ -720,7 +720,7 @@ select.form-control option {
                 <u>Instruction:</u> The instrument has Four Sections. Section A requires Bio Data; Section B requires School/Institution Data; Section C contains items on Education Managers’ Needs Assessment while Section D is on School Infrastructure. Kindly fill in the statements that are applicable to your school.
             </div>
 	
-            <h4 id="sectionAHeader_1.2" style="margin-bottom: 20px;">Section A: Bio Data 🔽</h4>
+            <h4 id="sectionAHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionAContent_1.2&#39;, &#39;sectionAHeader_1.2&#39;)">Section A: Bio Data 🔽</h4>
             <div id="sectionAContent_1.2" style="display: block;">
               
 	                <h5>Headteacher Bio Data</h5>
@@ -771,7 +771,7 @@ select.form-control option {
                 </div>
                 </div>
 
-            <h4 id="sectionBHeader_1.2" style="margin-bottom: 20px;">Section B: School/Institution Data ▶️</h4>
+            <h4 id="sectionBHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionBContent_1.2&#39;, &#39;sectionBHeader_1.2&#39;)">Section B: School/Institution Data ▶️</h4>
             <div id="sectionBContent_1.2" style="display: none;">
                 
 			<div class="form-row full">
@@ -908,7 +908,7 @@ select.form-control option {
 		 </div>							
              
 
-            <h4 id="sectionCHeader_1.2" style="margin-bottom: 20px;">Section C: Needs Assessment ▶️</h4>
+            <h4 id="sectionCHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionCContent_1.2&#39;, &#39;sectionCHeader_1.2&#39;)">Section C: Needs Assessment ▶️</h4>
             <div id="sectionCContent_1.2" style="display: none;">
                 <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
                <h5>Control and Discipline</h5>
@@ -992,7 +992,7 @@ select.form-control option {
                 </table>
                 </div>	
 
-            <h4 id="sectionDHeader_1.2" style="margin-bottom: 20px;">Section D: School Infrastructure ▶️</h4>
+            <h4 id="sectionDHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.2&#39;, &#39;sectionDHeader_1.2&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.2" style="display: none;">
                 <h4>1. INFRASTRUCTURE</h4>
                 <div class="form-group">
@@ -1284,7 +1284,7 @@ select.form-control option {
                 <u>Instruction:</u> The instrument has Four Sections. Section A requires Bio Data; Section B requires Institution Data; Section C contains items on Education Managers’ Needs Assessment while Section D is on School Infrastructure. Kindly fill in the statements that are applicable to your school.
             </div>
 
-            <h4 id="sectionAHeader_1.3" style="margin-bottom: 20px;">Section A: Bio Data 🔽</h4>
+            <h4 id="sectionAHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionAContent_1.3&#39;, &#39;sectionAHeader_1.3&#39;)">Section A: Bio Data 🔽</h4>
             <div id="sectionAContent_1.3" style="display: block;">
                			
 			<div id="silnat_a_ht_bio_data_wrapper" class="conditional-group for-regular_school for-special_school for-home_economics_centre for-mini_resource_centre" style="display: none;">
@@ -1336,7 +1336,7 @@ select.form-control option {
                 </div>
                 </div>
 
-            <h4 id="sectionBHeader_1.3" style="margin-bottom: 20px;">Section B: School/Institution Data ▶️</h4>
+            <h4 id="sectionBHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionBContent_1.3&#39;, &#39;sectionBHeader_1.3&#39;)">Section B: School/Institution Data ▶️</h4>
             <div id="sectionBContent_1.3" style="display: none;">
                 <!-- 1. LGEA -->
                 <div class="form-group">
@@ -1477,7 +1477,7 @@ select.form-control option {
 		 
             <!-- End of Section B placeholder -->
 
-            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px;">Section C: Needs Assessment ▶️</h4>
+            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionCContent_1.1&#39;, &#39;sectionCHeader_1.1&#39;)">Section C: Needs Assessment ▶️</h4>
             <div id="sectionCContent_1.1" style="display: none;">
                      <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
                 <h5>Control and Discipline</h5>
@@ -1562,7 +1562,7 @@ select.form-control option {
                 </div>	   
 			   
 
-            <h4 id="sectionDHeader_1.3" style="margin-bottom: 20px;">Section D: School Infrastructure ▶️</h4>
+            <h4 id="sectionDHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.3&#39;, &#39;sectionDHeader_1.3&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.3" style="display: none;">
 			
 			 <h4>1. INFRASTRUCTURE</h4>
@@ -1756,7 +1756,7 @@ select.form-control option {
                 <u>Instruction:</u> The instrument has Four Sections. Section A requires Bio Data; Section B requires Institution Data; Section C contains items on Education Managers’ Needs Assessment while Section D is on School Infrastructure. Kindly fill in the statements that are applicable to your school.
             </div>
 
-            <h4 id="sectionAHeader_1.4" style="margin-bottom: 20px;">Section A: Bio Data ▶️</h4>
+            <h4 id="sectionAHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionAContent_1.4&#39;, &#39;sectionAHeader_1.4&#39;)">Section A: Bio Data ▶️</h4>
             <div id="sectionAContent_1.4" style="display: none;">
                 
                 <h5>Education Secretary Bio Data</h5>
@@ -1795,7 +1795,7 @@ select.form-control option {
                 </div>
             </div>
 
-            <h4 id="sectionBHeader_1.4" style="margin-bottom: 20px;">Section B: INSTITUTION DATA ▶️</h4>
+            <h4 id="sectionBHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionBContent_1.4&#39;, &#39;sectionBHeader_1.4&#39;)">Section B: INSTITUTION DATA ▶️</h4>
             <div id="sectionBContent_1.4" style="display: none;">
 			
 			<div class="form-group">
@@ -1873,7 +1873,7 @@ select.form-control option {
                 </div>
             </div>
 
-            <h4 id="sectionCHeader_1.4" style="margin-bottom: 20px;">Section C: Needs Assessment ▶️</h4>
+            <h4 id="sectionCHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionCContent_1.4&#39;, &#39;sectionCHeader_1.4&#39;)">Section C: Needs Assessment ▶️</h4>
             <div id="sectionCContent_1.4" style="display: none;">
                 <p>Tick the areas where you are having difficulties in your Local Govt Educ Auth and Schools.</p>
                 <h5>Control and Discipline</h5>
@@ -1951,7 +1951,7 @@ select.form-control option {
                 </table>
             </div>
 
-            <h4 id="sectionDHeader_1.4" style="margin-bottom: 20px;">Section D: School Infrastructure ▶️</h4>
+            <h4 id="sectionDHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.4&#39;, &#39;sectionDHeader_1.4&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.4" style="display: none;">
                 <h5>INFRASTRUCTURE</h5>
                 <div class="form-group">
@@ -2144,7 +2144,7 @@ select.form-control option {
     <u>Instruction:</u> The instrument has Four Sections. Section A requires Bio Data; Section B requires School/Institution Data; Section C contains items on Education Managers’ Needs Assessment while Section D is on School Infrastructure. Kindly fill in the statements that are applicable to your school.
 </div>
             
-       <h4 id="sectionAHeader_1.1" style="margin-bottom: 20px;">SECTION A: BIO DATA 🔽</h4>
+       <h4 id="sectionAHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionAContent_1.1&#39;, &#39;sectionAHeader_1.1&#39;)">SECTION A: BIO DATA 🔽</h4>
 	    <div id="sectionAContent_1.1" style="display: block;">
        
          
@@ -2201,7 +2201,7 @@ select.form-control option {
 
     
             <!-- Placeholder for existing fields that will become Section B -->
-            <h4 id="sectionBHeader_1.1" style="margin-bottom: 20px;">Section B: School/Institution Data 🔽</h4>
+            <h4 id="sectionBHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionBContent_1.1&#39;, &#39;sectionBHeader_1.1&#39;)">Section B: School/Institution Data 🔽</h4>
             <div id="sectionBContent_1.1" style="display: block;">
 			
 			 <div class="form-row full">
@@ -2401,7 +2401,7 @@ select.form-control option {
             </div>
             <!-- End of Section B placeholder -->
 
-            <h4 id="sectionCHeader_1.3" style="margin-bottom: 20px;">Section C: Needs Assessment ▶️</h4>
+            <h4 id="sectionCHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionCContent_1.3&#39;, &#39;sectionCHeader_1.3&#39;)">Section C: Needs Assessment ▶️</h4>
             <div id="sectionCContent_1.3" style="display: none;">
                      <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
                 <h5>Control and Discipline</h5>
@@ -2486,7 +2486,7 @@ select.form-control option {
                 </div>	
 						
 
-            <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px;">Section D: School Infrastructure ▶️</h4>
+            <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;sectionDContent_1.1&#39;, &#39;sectionDHeader_1.1&#39;)">Section D: School Infrastructure ▶️</h4>
             <div id="sectionDContent_1.1" style="display: none;">
                 <h4>1. INFRASTRUCTURE</h4>
                 <div class="form-group">
@@ -2673,7 +2673,7 @@ select.form-control option {
                 <u>Instruction:</u> The instrument has Three sections; Section A, B and C. Section A requires Demographic Information and Bio Data of Teacher; Section B requires Teachers’ Needs Assessment; while Section C requires Teachers’ Subject Area Difficulties. Kindly fill in the statements that are applicable to you.
             </div>
         
-            <h3 style="cursor: pointer;">SECTION A: Demographic information of School and Bio Data of Teacher <span id="tcmatsSectionAHeader">▶️</span></h3>
+            <h3 style="cursor: pointer;" onclick="toggleSection(&#39;tcmatsSectionA&#39;, &#39;tcmatsSectionAHeader&#39;)">SECTION A: Demographic information of School and Bio Data of Teacher <span id="tcmatsSectionAHeader">▶️</span></h3>
             <div id="tcmatsSectionA" style="display: none;">
             <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
     <div class="form-group">
@@ -2763,7 +2763,7 @@ select.form-control option {
     </div>
     </form></div>
 </div>
-            <h3 style="cursor: pointer;">SECTION B: <span id="tcmatsSectionBHeader">▶️</span></h3>
+            <h3 style="cursor: pointer;" onclick="toggleSection(&#39;tcmatsSectionB&#39;, &#39;tcmatsSectionBHeader&#39;)">SECTION B: <span id="tcmatsSectionBHeader">▶️</span></h3>
             <div id="tcmatsSectionB" style="display: none;">
                 <p>Section B contains items on Teachers’ Needs Assessment. Kindly respond by ticking (√) the appropriate box</p>
                 <p>Which of the following are you having difficulty in your job?</p>
@@ -2918,7 +2918,7 @@ select.form-control option {
                     </tbody>
                 </table>
             </div>
-            <h3 style="cursor: pointer;">SECTION C: Subject Area Difficulties <span id="tcmatsSectionCHeader">▶️</span></h3>
+            <h3 style="cursor: pointer;" onclick="toggleSection(&#39;tcmatsSectionC&#39;, &#39;tcmatsSectionCHeader&#39;)">SECTION C: Subject Area Difficulties <span id="tcmatsSectionCHeader">▶️</span></h3>
             <div id="tcmatsSectionC" style="display: none;">
                 <p>In your subject area(s), kindly identify some topics that are difficult to teach. Mention 2-5.</p>
                 <div class="form-group">
@@ -2942,7 +2942,7 @@ select.form-control option {
             </div>
             <!-- TODO: Add LORI form here -->
             <div style="color:#888;margin-top:40px;"><form id="loriForm" class="audit-form" onsubmit="submitSurvey(event, 'lori')">
-    <h4 id="loriSectionAHeader" style="margin-bottom: 20px;">Section A: Demographic Data ▶️</h4>
+    <h4 id="loriSectionAHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;loriSectionAContent&#39;, &#39;loriSectionAHeader&#39;)">Section A: Demographic Data ▶️</h4>
     <div id="loriSectionAContent" style="display: none;">
         <table class="data-table">
             <tbody><tr>
@@ -3028,7 +3028,7 @@ select.form-control option {
             </tr>
         </tbody></table>
     </div>
-    <h4 id="loriSectionBHeader" style="margin-bottom: 20px;">Section B ▶️</h4>
+    <h4 id="loriSectionBHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;loriSectionBContent&#39;, &#39;loriSectionBHeader&#39;)">Section B ▶️</h4>
     <div id="loriSectionBContent" style="display: none;">
         <p>Please assess the aspect of the lesson by placing a tick in the appropriate column on the rating scale</p>
         <p>Rating Scale Descriptors 1: (poor); 2 (Fair) 3(Good); 4(Very Good); 5 (Excellent)</p>
@@ -3055,24 +3055,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_1_a" value="3"></td>
                     <td><input type="radio" name="lori_b_1_a" value="4"></td>
                     <td><input type="radio" name="lori_b_1_a" value="5"></td>
-                    <td>
-                                        <select name="lori_b_1_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_1_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_1_a_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_1_a_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>b) The content is delivered logically and sequentially</td>
@@ -3090,25 +3074,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_2_a" value="3"></td>
                     <td><input type="radio" name="lori_b_2_a" value="4"></td>
                     <td><input type="radio" name="lori_b_2_a" value="5"></td>
-
-                   <td>
-                                        <select name="lori_b_2_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_2_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td>b) The introduction was stimulating and aroused the interest and curiosity of the learners</td>
@@ -3117,24 +3082,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_2_b" value="3"></td>
                     <td><input type="radio" name="lori_b_2_b" value="4"></td>
                     <td><input type="radio" name="lori_b_2_b" value="5"></td>
-                    <td>
-                                        <select name="lori_b_2_b_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_2_b_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_2_b_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_2_b_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>c) The teacher referred to previous lessons and skills</td>
@@ -3143,24 +3092,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_2_c" value="3"></td>
                     <td><input type="radio" name="lori_b_2_c" value="4"></td>
                     <td><input type="radio" name="lori_b_2_c" value="5"></td>
-                   <td>
-                                        <select name="lori_b_2_c_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_2_c_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td rowspan="10">3. Presentation and pedagogy</td>
@@ -3170,24 +3101,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_a" value="3"></td>
                     <td><input type="radio" name="lori_b_3_a" value="4"></td>
                     <td><input type="radio" name="lori_b_3_a" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td>b) The teacher uses a variety of instructional materials to explain the concept</td>
@@ -3196,24 +3109,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_b" value="3"></td>
                     <td><input type="radio" name="lori_b_3_b" value="4"></td>
                     <td><input type="radio" name="lori_b_3_b" value="5"></td>
-                   <td>
-                                        <select name="lori_b_3_b_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_b_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td>c) The learners use a variety of instructional materials to practice the concept</td>
@@ -3222,24 +3117,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_c" value="3"></td>
                     <td><input type="radio" name="lori_b_3_c" value="4"></td>
                     <td><input type="radio" name="lori_b_3_c" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_c_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_c_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td>d) The learners have relevant text/workbooks</td>
@@ -3248,24 +3125,6 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_d" value="3"></td>
                     <td><input type="radio" name="lori_b_3_d" value="4"></td>
                     <td><input type="radio" name="lori_b_3_d" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_d_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_d_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
                 </tr>
                 <tr>
                     <td>e) The learners have relevant writing materials such as pencils, biro, colouring pens, etc.</td>
@@ -3274,24 +3133,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_e" value="3"></td>
                     <td><input type="radio" name="lori_b_3_e" value="4"></td>
                     <td><input type="radio" name="lori_b_3_e" value="5"></td>
-                   <td>
-                                        <select name="lori_b_3_e_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_e_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_e_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_e_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>f) The teacher uses /displays audio-visual materials in the class</td>
@@ -3300,24 +3143,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_f" value="3"></td>
                     <td><input type="radio" name="lori_b_3_f" value="4"></td>
                     <td><input type="radio" name="lori_b_3_f" value="5"></td>
-                   <td>
-                                        <select name="lori_b_3_f_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_f_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_f_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_f_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>g) The teacher uses various ways of grouping learners</td>
@@ -3326,24 +3153,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_g" value="3"></td>
                     <td><input type="radio" name="lori_b_3_g" value="4"></td>
                     <td><input type="radio" name="lori_b_3_g" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_g_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_g_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_g_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_g_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>h) The teacher uses language that is relevant and understandable to the learners</td>
@@ -3352,24 +3163,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_h" value="3"></td>
                     <td><input type="radio" name="lori_b_3_h" value="4"></td>
                     <td><input type="radio" name="lori_b_3_h" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_h_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_h_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_h_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_h_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>i) The teacher gives clear instructions to the learners</td>
@@ -3378,24 +3173,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_i" value="3"></td>
                     <td><input type="radio" name="lori_b_3_i" value="4"></td>
                     <td><input type="radio" name="lori_b_3_i" value="5"></td>
-                   <td>
-                                        <select name="lori_b_3_i_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_i_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_i_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_i_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>j) New words and concepts are clearly explained and related to learners’ experiences</td>
@@ -3404,24 +3183,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_3_j" value="3"></td>
                     <td><input type="radio" name="lori_b_3_j" value="4"></td>
                     <td><input type="radio" name="lori_b_3_j" value="5"></td>
-                    <td>
-                                        <select name="lori_b_3_j_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_3_j_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_3_j_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_3_j_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td rowspan="5">4. Relationship with learners</td>
@@ -3431,24 +3194,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_4_a" value="3"></td>
                     <td><input type="radio" name="lori_b_4_a" value="4"></td>
                     <td><input type="radio" name="lori_b_4_a" value="5"></td>
-                   <td>
-                                        <select name="lori_b_4_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_4_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_4_a_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_4_a_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>b) The teacher is fair and inclusive in their teaching and feedback</td>
@@ -3457,24 +3204,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_4_b" value="3"></td>
                     <td><input type="radio" name="lori_b_4_b" value="4"></td>
                     <td><input type="radio" name="lori_b_4_b" value="5"></td>
-                   <td>
-                                        <select name="lori_b_4_b_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_4_b_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_4_b_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_4_b_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>c) The teacher has empathy for the learners</td>
@@ -3483,24 +3214,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_4_c" value="3"></td>
                     <td><input type="radio" name="lori_b_4_c" value="4"></td>
                     <td><input type="radio" name="lori_b_4_c" value="5"></td>
-                   <td>
-                                        <select name="lori_b_4_c_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_4_c_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_4_c_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_4_c_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>d) The teacher responds to individual learners according to their need</td>
@@ -3509,24 +3224,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_4_d" value="3"></td>
                     <td><input type="radio" name="lori_b_4_d" value="4"></td>
                     <td><input type="radio" name="lori_b_4_d" value="5"></td>
-                    <td>
-                                        <select name="lori_b_4_d_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_4_d_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_4_d_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_4_d_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>e) The teacher is a role model to the learners</td>
@@ -3535,24 +3234,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_4_e" value="3"></td>
                     <td><input type="radio" name="lori_b_4_e" value="4"></td>
                     <td><input type="radio" name="lori_b_4_e" value="5"></td>
-                    <td>
-                                        <select name="lori_b_4_e_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_4_e_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_4_e_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_4_e_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td rowspan="5">5. Class management</td>
@@ -3562,24 +3245,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_5_a" value="3"></td>
                     <td><input type="radio" name="lori_b_5_a" value="4"></td>
                     <td><input type="radio" name="lori_b_5_a" value="5"></td>
-                   <td>
-                                        <select name="lori_b_5_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_5_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_5_a_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_5_a_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>b) The teacher praises and rewards the learners</td>
@@ -3588,24 +3255,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_5_b" value="3"></td>
                     <td><input type="radio" name="lori_b_5_b" value="4"></td>
                     <td><input type="radio" name="lori_b_5_b" value="5"></td>
-                   <td>
-                                        <select name="lori_b_5_b_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_5_b_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_5_b_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_5_b_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>c) The teacher encourages good behaviour among learners</td>
@@ -3614,24 +3265,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_5_c" value="3"></td>
                     <td><input type="radio" name="lori_b_5_c" value="4"></td>
                     <td><input type="radio" name="lori_b_5_c" value="5"></td>
-                    <td>
-                                        <select name="lori_b_5_c_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_5_c_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_5_c_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_5_c_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>d) The teacher is confident in his/her presentation</td>
@@ -3640,24 +3275,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_5_d" value="3"></td>
                     <td><input type="radio" name="lori_b_5_d" value="4"></td>
                     <td><input type="radio" name="lori_b_5_d" value="5"></td>
-                   <td>
-                                        <select name="lori_b_5_d_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_5_d_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_5_d_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_5_d_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>e) The teacher does not use a cane, use physical force, or threatens learners</td>
@@ -3666,24 +3285,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_5_e" value="3"></td>
                     <td><input type="radio" name="lori_b_5_e" value="4"></td>
                     <td><input type="radio" name="lori_b_5_e" value="5"></td>
-                    <td>
-                                        <select name="lori_b_5_e_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_5_e_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_5_e_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_5_e_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td rowspan="6">6. Evaluation of learning</td>
@@ -3693,24 +3296,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_a" value="3"></td>
                     <td><input type="radio" name="lori_b_6_a" value="4"></td>
                     <td><input type="radio" name="lori_b_6_a" value="5"></td>
-                   <td>
-                                        <select name="lori_b_6_a_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_a_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_a_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_a_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>b) The teacher walks around the room for effective teaching and learning</td>
@@ -3719,24 +3306,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_b" value="3"></td>
                     <td><input type="radio" name="lori_b_6_b" value="4"></td>
                     <td><input type="radio" name="lori_b_6_b" value="5"></td>
-                   <td>
-                                        <select name="lori_b_6_b_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_b_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_b_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_b_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>c) The teacher uses a variety of assessment techniques</td>
@@ -3745,24 +3316,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_c" value="3"></td>
                     <td><input type="radio" name="lori_b_6_c" value="4"></td>
                     <td><input type="radio" name="lori_b_6_c" value="5"></td>
-                    <td>
-                                        <select name="lori_b_6_c_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_c_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_c_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_c_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>d) The teacher invites learners to ask questions and responds appropriately</td>
@@ -3771,24 +3326,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_d" value="3"></td>
                     <td><input type="radio" name="lori_b_6_d" value="4"></td>
                     <td><input type="radio" name="lori_b_6_d" value="5"></td>
-                   <td>
-                                        <select name="lori_b_6_d_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_d_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_d_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_d_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>e) The teacher checks the achievement of the lesson objectives at the end of the lesson through relevant text</td>
@@ -3797,24 +3336,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_e" value="3"></td>
                     <td><input type="radio" name="lori_b_6_e" value="4"></td>
                     <td><input type="radio" name="lori_b_6_e" value="5"></td>
-                    <td>
-                                        <select name="lori_b_6_e_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_e_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_e_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_e_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>f) The teacher gave relevant homework if need be</td>
@@ -3823,24 +3346,8 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_6_f" value="3"></td>
                     <td><input type="radio" name="lori_b_6_f" value="4"></td>
                     <td><input type="radio" name="lori_b_6_f" value="5"></td>
-                   <td>
-                                        <select name="lori_b_6_f_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_6_f_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_6_f_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_6_f_desc" class="form-control" readonly=""></td>
                 </tr>
                 <tr>
                     <td>7. Overall Assessment</td>
@@ -3850,29 +3357,13 @@ select.form-control option {
                     <td><input type="radio" name="lori_b_7" value="3"></td>
                     <td><input type="radio" name="lori_b_7" value="4"></td>
                     <td><input type="radio" name="lori_b_7" value="5"></td>
-                   <td>
-                                        <select name="lori_b_7_avg" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select name="lori_b_7_desc" class="form-control">
-                                            <option value="(Poor)">(Poor)</option>
-                                            <option value="(Fair)">(Fair)</option>
-                                            <option value="(Good)">(Good)</option>
-                                            <option value="(Very Good)">(Very Good)</option>
-                                            <option value="(Excellent)">(Excellent)</option>
-                                        </select>
-                                    </td>
+                    <td><input type="text" name="lori_b_7_avg" class="form-control" readonly=""></td>
+                    <td><input type="text" name="lori_b_7_desc" class="form-control" readonly=""></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <h4 id="loriSectionCHeader" style="margin-bottom: 20px;">Section C ▶️</h4>
+    <h4 id="loriSectionCHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection(&#39;loriSectionCContent&#39;, &#39;loriSectionCHeader&#39;)">Section C ▶️</h4>
     <div id="loriSectionCContent" style="display: none;">
      
         <div class="form-group">
@@ -3951,7 +3442,7 @@ select.form-control option {
                 <u>Instruction:</u> The instrument has Three sections; Section A, B and C. Section A requires Demographic Information and Bio Data of Teacher; Section B requires Teachers’ Needs Assessment; while Section C requires Teachers’ Subject Area Difficulties. Kindly fill in the statements that are applicable to you.
             </div>
             <form id="voicesForm" class="audit-form" onsubmit="submitSurvey(event, 'voices')">
-                <h3 style="cursor: pointer;">SECTION A: Demographic information of School and Bio Data of Learners <span id="voicesSectionAHeader">▶️</span></h3>
+                <h3 style="cursor: pointer;" onclick="toggleSection(&#39;voicesSectionA&#39;, &#39;voicesSectionAHeader&#39;)">SECTION A: Demographic information of School and Bio Data of Learners <span id="voicesSectionAHeader">▶️</span></h3>
                 <div id="voicesSectionA" style="display: none;">
                     <div class="form-group">
 					
@@ -4027,7 +3518,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h3 style="cursor: pointer;">SECTION B: Subject/Topic Difficulties <span id="voicesSectionBHeader">▶️</span></h3>
+                <h3 style="cursor: pointer;" onclick="toggleSection(&#39;voicesSectionB&#39;, &#39;voicesSectionBHeader&#39;)">SECTION B: Subject/Topic Difficulties <span id="voicesSectionBHeader">▶️</span></h3>
                 <div id="voicesSectionB" style="display: none;">
                     <div class="form-group">
                         <label>List the Subjects or Topics that you find very difficult to understand (Mention 2-5)</label>
@@ -4035,7 +3526,7 @@ select.form-control option {
                     </div>
                 </div>
 
-                <h3 style="cursor: pointer;">SECTION C: Pupil’s Participation in Class <span id="voicesSectionCHeader">▶️</span></h3>
+                <h3 style="cursor: pointer;" onclick="toggleSection(&#39;voicesSectionC&#39;, &#39;voicesSectionCHeader&#39;)">SECTION C: Pupil’s Participation in Class <span id="voicesSectionCHeader">▶️</span></h3>
                 <div id="voicesSectionC" style="display: none;">
                     <p>The following questions refer to your participation during lessons. Read each question carefully and underline your answer from options 1 to 5.</p>
                     <table class="data-table">
@@ -4174,7 +3665,7 @@ select.form-control option {
                     </table>
                 </div>
 
-                <h3 style="cursor: pointer;">SECTION D: School Infrastructure and Facilities <span id="voicesSectionDHeader">▶️</span></h3>
+                <h3 style="cursor: pointer;" onclick="toggleSection(&#39;voicesSectionD&#39;, &#39;voicesSectionDHeader&#39;)">SECTION D: School Infrastructure and Facilities <span id="voicesSectionDHeader">▶️</span></h3>
                 <div id="voicesSectionD" style="display: none;">
 				<p> What can you say about the following infrastructure/facilities in your School? </p>
                     <div class="form-group">
@@ -4340,7 +3831,7 @@ select.form-control option {
             border: 3px solid var(--lagos-blue);
             padding: 32px 20px;
             text-align: center;
-
+            cursor: pointer;
             transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
             min-height: 180px;
         }
@@ -5702,6 +5193,20 @@ function updateTotal(maleId, femaleId, totalId) {
     }
 }
 
+function toggleSection(sectionId, headerId) {
+    const section = document.getElementById(sectionId);
+    const header = document.getElementById(headerId);
+    if (section && header) {
+        const isHidden = section.style.display === 'none';
+        section.style.display = isHidden ? 'block' : 'none';
+        const headerText = header.innerText;
+        if (isHidden) {
+            header.innerText = headerText.replace('▶️', '🔽');
+        } else {
+            header.innerText = headerText.replace('🔽', '▶️');
+        }
+    }
+}
 
 // Function to handle SILNAT Institution Type change
 function handleSchoolComplexChange() {
@@ -6228,27 +5733,4 @@ async function processFiles(input, maxCount) {
     }
 </script>
 <script src="validation.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.section h3, .section h4').forEach(header => {
-        if (header.innerText.includes('▶️') || header.innerText.includes('🔽')) {
-            header.style.cursor = 'pointer';
-            header.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                if (content) {
-                    const isHidden = content.style.display === 'none';
-                    content.style.display = isHidden ? 'block' : 'none';
-
-                    const headerText = this.innerText;
-                    if (isHidden) {
-                        this.innerText = headerText.replace('▶️', '🔽');
-                    } else {
-                        this.innerText = headerText.replace('🔽', '▶️');
-                    }
-                }
-            });
-        }
-    });
-});
-</script>
 </body></html>
