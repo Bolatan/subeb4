@@ -688,6 +688,10 @@ h4[onclick] {
                         </label>
                     </div>
                 </div>
+                <div id="userInfo" style="color: white; margin-right: 15px; display: flex; align-items: center; gap: 8px; font-size: 1rem;">
+                    <span style="font-size: 24px; line-height: 1;">&#128100;</span>
+                    <span id="loggedInUsername"></span>
+                </div>
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;max-width:1000px;margin:0 auto; margin-top: 32px;">
@@ -4054,6 +4058,15 @@ function toggleForceOffline() {
     updateConnectionStatus();
 }
 
+function updateUserInfo() {
+    const usernameSpan = document.getElementById('loggedInUsername');
+    if (usernameSpan && currentUser) {
+        // Capitalize the first letter of the username
+        usernameSpan.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+    }
+}
+
+
 function loadSession() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
@@ -4073,6 +4086,7 @@ function loadSession() {
                 adminLink.className = 'survey-card disabled-card';
                 adminLink.onclick = null;
             }
+            updateUserInfo();
             console.log('Session restored for user:', currentUser);
         } else {
             // If no user is logged in, ensure the card is disabled.
@@ -4123,6 +4137,7 @@ async function login() {
             }
 
             loadData();
+            updateUserInfo();
             loadLocalGovernments();
             updateDashboard();
             loadRecords();
