@@ -4008,6 +4008,7 @@ select.form-control option {
         let forceOffline = false;
         
 // Combined window.onload function
+// Combined window.onload function
 window.onload = async function() {
     try {
         forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
@@ -4032,7 +4033,6 @@ window.onload = async function() {
         updateDashboard();
         loadRecords();
         updateConnectionStatus();
-        updateAdminLinkVisibility(); // Check role on session load
     } else {
         document.getElementById('authScreen').classList.remove('hidden');
         document.getElementById('mainApp').classList.add('hidden');
@@ -4068,67 +4068,48 @@ function updateUserInfo() {
     }
 }
 
+function updateAdminLinkState() {
+    const adminLink = document.getElementById('admin-link');
+    if (!adminLink) return;
+
+    let user = null;
+    try {
+        const savedUser = localStorage.getItem('auditAppCurrentUser');
+        if (savedUser) {
+            user = JSON.parse(savedUser);
+        }
+    } catch (e) {
+        console.error('Error parsing user from localStorage', e);
+    }
+
+    if (user && user.role && user.role.trim().toLowerCase() === 'admin') {
+        // Is admin: show and enable
+        adminLink.classList.remove('hidden');
+        adminLink.classList.remove('disabled-card');
+        adminLink.onclick = () => { window.location.href = 'admin.html'; };
+    } else {
+        // Is not admin, or not logged in: hide and disable
+        adminLink.classList.add('hidden');
+        adminLink.classList.add('disabled-card');
+        adminLink.onclick = null;
+    }
+}
 
 function loadSession() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
-        const adminLink = document.getElementById('admin-link');
-
         if (savedUser) {
             const user = JSON.parse(savedUser);
             currentUser = user.username;
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('landingPage').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
-
-            if (user.role && user.role.trim().toLowerCase() === 'admin') {
-                adminLink.classList.remove('disabled-card');
-                adminLink.onclick = () => { window.location.href = 'admin.html'; };
-            } else {
-                adminLink.classList.add('disabled-card');
-                adminLink.onclick = null;
-            }
             updateUserInfo();
             console.log('Session restored for user:', currentUser);
-        } else {
-            // If no user is logged in, ensure the card is disabled.
-            adminLink.classList.add('disabled-card');
-            adminLink.onclick = null;
         }
     } catch (e) {
         console.error('Error loading session:', e);
-        // In case of error, also ensure it's disabled
-        const adminLink = document.getElementById('admin-link');
-        if(adminLink) {
-            adminLink.classList.add('disabled-card');
-            adminLink.onclick = null;
-        }
+        currentUser = null;
     }
-}
-
-
-function updateAdminLinkVisibility() {
-    const adminLink = document.getElementById('admin-link');
-    if (!adminLink) {
-        return;
-    }
-
-    try {
-        const savedUser = localStorage.getItem('auditAppCurrentUser');
-        if (savedUser) {
-            const user = JSON.parse(savedUser);
-            if (user && user.role === 'admin') {
-                adminLink.classList.remove('hidden');
-            } else {
-                adminLink.classList.add('hidden');
-            }
-        } else {
-            adminLink.classList.add('hidden');
-        }
-    } catch (e) {
-        console.error('Error updating admin link visibility:', e);
-        adminLink.classList.add('hidden');
-    }
+    // Always update the admin link state after trying to load a session.
+    updateAdminLinkState();
 }
 
 
@@ -4154,22 +4135,13 @@ async function login() {
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
 
-            const adminLink = document.getElementById('admin-link');
-            if (data.role && data.role.trim().toLowerCase() === 'admin') {
-                adminLink.classList.remove('disabled-card');
-                adminLink.onclick = () => { window.location.href = 'admin.html'; };
-            } else {
-                adminLink.classList.add('disabled-card');
-                adminLink.onclick = null;
-            }
-
             loadData();
             updateUserInfo();
             loadLocalGovernments();
             updateDashboard();
             loadRecords();
             updateConnectionStatus();
-            updateAdminLinkVisibility(); // Check role on login
+            updateAdminLinkState(); // Update link state after login
         } else {
             let msg = document.getElementById('loginErrorMsg');
             if (!msg) {
