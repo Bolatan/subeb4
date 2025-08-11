@@ -1,19 +1,26 @@
 const mongoose = require('mongoose');
 const User = require('./models/User');
+const { validatePassword } = require('./utils/validation');
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 const createAdminUser = async (username, password) => {
   try {
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      console.error('Error creating admin user:', passwordError);
+      return;
+    }
+
     let user = await User.findOne({ username });
 
     if (user) {
-        console.log(`User '${username}' already exists.`);
-        if (user.role !== 'admin') {
-            user.role = 'admin';
-            await user.save();
-            console.log(`User '${username}' role updated to "admin".`);
-        }
+      console.log(`User '${username}' already exists.`);
+      if (user.role !== 'admin') {
+        user.role = 'admin';
+        await user.save();
+        console.log(`User '${username}' role updated to "admin".`);
+      }
     } else {
       await User.create({
         username,
