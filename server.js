@@ -310,7 +310,7 @@ app.put('/api/users/:id/image', protect, admin, async (req, res) => {
 app.get('/api/users/export', protect, admin, async (req, res) => {
   try {
     const users = await User.find({}).select('-password').lean();
-    const fields = ['_id', 'username', 'role', 'createdAt', 'imageUrl'];
+    const fields = ['_id', 'username', 'role', 'createdAt'];
     const opts = { fields };
     const parser = new Parser(opts);
     const csv = parser.parse(users);
