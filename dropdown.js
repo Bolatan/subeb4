@@ -168,5 +168,5 @@ function initializeSilat13Dropdowns() {
 }
 
 function initializeSilat14Dropdowns() {
-    setupLinkedDropdowns('silat_1_4_localGov', 'silat_1_4_schoolName', lgeaData);
+    setupLinkedDropdowns('silat_1_4_localGov', 'silat_1_4_schoolName', lagosStateData);
 }
