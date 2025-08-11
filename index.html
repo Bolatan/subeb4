@@ -688,9 +688,9 @@ h4[onclick] {
                         </label>
                     </div>
                 </div>
-                <div id="userInfo" style="color: white; margin-right: 15px; display: flex; align-items: center; gap: 8px; font-size: 1rem;">
+                <div id="userInfo" style="color: white; margin-right: 15px; display: flex; flex-direction: column; align-items: center; gap: 4px;">
                     <span style="font-size: 24px; line-height: 1;">&#128100;</span>
-                    <span id="loggedInUsername"></span>
+                    <span id="loggedInUsername" style="font-size: 0.8rem;"></span>
                 </div>
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
             </div>
@@ -729,7 +729,7 @@ h4[onclick] {
                     <h2>View Survey Reports</h2>
                     <p>Dashboard for all submitted data</p>
                 </div>
-                <div class="survey-card" id="admin-link" onclick="window.location.href='admin.html'">
+                <div class="survey-card disabled-card" id="admin-link">
                     <h2>User Administration</h2>
                     <p>Manage user accounts</p>
                 </div>
@@ -4070,6 +4070,7 @@ function updateUserInfo() {
 function loadSession() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
+        const adminLink = document.getElementById('admin-link');
 
         if (savedUser) {
             const user = JSON.parse(savedUser);
@@ -4086,11 +4087,20 @@ function loadSession() {
                 adminLink.onclick = null;
             }
             updateUserInfo();
-
             console.log('Session restored for user:', currentUser);
+        } else {
+            // If no user is logged in, ensure the card is disabled.
+            adminLink.classList.add('disabled-card');
+            adminLink.onclick = null;
         }
     } catch (e) {
         console.error('Error loading session:', e);
+        // In case of error, also ensure it's disabled
+        const adminLink = document.getElementById('admin-link');
+        if(adminLink) {
+            adminLink.classList.add('disabled-card');
+            adminLink.onclick = null;
+        }
     }
 }
 
@@ -4116,6 +4126,15 @@ async function login() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
+
+            const adminLink = document.getElementById('admin-link');
+            if (data.role && data.role.trim().toLowerCase() === 'admin') {
+                adminLink.className = 'survey-card';
+                adminLink.onclick = () => { window.location.href = 'admin.html'; };
+            } else {
+                adminLink.className = 'survey-card disabled-card';
+                adminLink.onclick = null;
+            }
 
             loadData();
             updateUserInfo();
