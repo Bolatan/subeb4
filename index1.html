@@ -5700,6 +5700,9 @@ async function submitSilnat(event) {
             feedback.textContent = 'SILNAT survey submitted successfully!';
             form.reset();
             document.getElementById('silnat_uploadedFiles').innerHTML = '';
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5734,6 +5737,9 @@ async function submitSilat1_2(event) {
             feedback.style.color = 'var(--lagos-green)';
             feedback.textContent = 'SILNAT 1.2 survey submitted successfully!';
             form.reset();
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5768,6 +5774,9 @@ async function submitSilat1_3(event) {
             feedback.style.color = 'var(--lagos-green)';
             feedback.textContent = 'SILNAT 1.3 survey submitted successfully!';
             form.reset();
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5802,6 +5811,9 @@ async function submitSilat1_4(event) {
             feedback.style.color = 'var(--lagos-green)';
             feedback.textContent = 'SILNAT 1.4 survey submitted successfully!';
             form.reset();
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5848,6 +5860,9 @@ async function submitTcmats(event) {
             feedback.textContent = 'TCMATS survey submitted successfully!';
             form.reset();
             document.getElementById('tcmats_uploadedFiles').innerHTML = '';
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5895,6 +5910,9 @@ async function submitLori(event) {
             feedback.textContent = 'LORI survey submitted successfully!';
             form.reset();
             document.getElementById('lori_uploadedFiles').innerHTML = '';
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
@@ -5941,6 +5959,9 @@ async function submitVoices(event) {
             feedback.textContent = 'VOICES survey submitted successfully!';
             form.reset();
             document.getElementById('voices_uploadedFiles').innerHTML = '';
+            setTimeout(() => {
+                backToLanding();
+            }, 2000);
         } else {
             const err = await res.json();
             feedback.style.color = 'var(--lagos-red)';
