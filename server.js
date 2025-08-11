@@ -291,6 +291,22 @@ app.put('/api/users/:id/password', protect, admin, async (req, res) => {
   }
 });
 
+app.put('/api/users/:id/image', protect, admin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+      user.imageUrl = req.body.imageUrl;
+      await user.save();
+      res.json({ message: 'Image updated successfully' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.get('/api/users/export', protect, admin, async (req, res) => {
   try {
     const users = await User.find({}).select('-password').lean();
