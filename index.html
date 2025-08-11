@@ -4082,10 +4082,10 @@ function loadSession() {
             document.getElementById('mainApp').classList.add('hidden');
 
             if (user.role && user.role.trim().toLowerCase() === 'admin') {
-                adminLink.className = 'survey-card';
+                adminLink.classList.remove('disabled-card');
                 adminLink.onclick = () => { window.location.href = 'admin.html'; };
             } else {
-                adminLink.className = 'survey-card disabled-card';
+                adminLink.classList.add('disabled-card');
                 adminLink.onclick = null;
             }
             updateUserInfo();
@@ -4113,20 +4113,21 @@ function updateAdminLinkVisibility() {
         return;
     }
 
-    // Always default to hidden, and only show if conditions are met.
-    adminLink.classList.add('hidden');
-
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
         if (savedUser) {
             const user = JSON.parse(savedUser);
             if (user && user.role === 'admin') {
                 adminLink.classList.remove('hidden');
+            } else {
+                adminLink.classList.add('hidden');
             }
+        } else {
+            adminLink.classList.add('hidden');
         }
     } catch (e) {
         console.error('Error updating admin link visibility:', e);
-        // The link is already hidden by default, so no need to hide it again in catch.
+        adminLink.classList.add('hidden');
     }
 }
 
@@ -4155,10 +4156,10 @@ async function login() {
 
             const adminLink = document.getElementById('admin-link');
             if (data.role && data.role.trim().toLowerCase() === 'admin') {
-                adminLink.className = 'survey-card';
+                adminLink.classList.remove('disabled-card');
                 adminLink.onclick = () => { window.location.href = 'admin.html'; };
             } else {
-                adminLink.className = 'survey-card disabled-card';
+                adminLink.classList.add('disabled-card');
                 adminLink.onclick = null;
             }
 
