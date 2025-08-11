@@ -4105,6 +4105,31 @@ function loadSession() {
 }
 
 
+
+function updateAdminLinkVisibility() {
+    const adminLink = document.getElementById('admin-link');
+    if (!adminLink) {
+        return;
+    }
+
+    // Always default to hidden, and only show if conditions are met.
+    adminLink.classList.add('hidden');
+
+    try {
+        const savedUser = localStorage.getItem('auditAppCurrentUser');
+        if (savedUser) {
+            const user = JSON.parse(savedUser);
+            if (user && user.role === 'admin') {
+                adminLink.classList.remove('hidden');
+            }
+        }
+    } catch (e) {
+        console.error('Error updating admin link visibility:', e);
+        // The link is already hidden by default, so no need to hide it again in catch.
+    }
+}
+
+
 async function login() {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
