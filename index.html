@@ -652,9 +652,6 @@ h4[onclick] {
                 <input type="password" id="password" class="form-control" required="">
             </div>
             <button type="button" class="btn" onclick="login()">Login</button>
-            <p style="text-align: center; margin-top: 15px;">
-                Don't have an account? <a href="/register.html" style="color: var(--lagos-red);">Register here</a>
-            </p>
         </div>
 
         <!-- Landing Page: Four Survey Cards -->
@@ -673,7 +670,6 @@ h4[onclick] {
                         </label>
                     </div>
                 </div>
-                <a href="/register.html" class="btn btn-secondary" style="width:auto;padding:8px 16px; margin-right: 10px; text-decoration: none;">Register</a>
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;max-width:1000px;margin:0 auto; margin-top: 32px;">
@@ -710,6 +706,10 @@ h4[onclick] {
                 <div class="survey-card" onclick="window.location.href=&#39;reports.html&#39;">
                     <h2>View Survey Reports</h2>
                     <p>Dashboard for all submitted data</p>
+                </div>
+                <div class="survey-card" id="admin-link" style="display: none;" onclick="window.location.href=&#39;admin.html&#39;">
+                    <h2>User Administration</h2>
+                    <p>Manage user accounts</p>
                 </div>
             </div>
         </div>
@@ -4061,9 +4061,14 @@ function loadSession() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
         if (savedUser) {
-            currentUser = savedUser;
+            const user = JSON.parse(savedUser);
+            currentUser = user.username;
             document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
+            document.getElementById('landingPage').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            if (user.role === 'admin') {
+                document.getElementById('admin-link').style.display = 'block';
+            }
             console.log('Session restored for user:', currentUser);
         }
     } catch (e) {
@@ -4072,28 +4077,49 @@ function loadSession() {
 }
 
 
-       // --- PATCH: Fix frontend login bug (robust trim, lowercase, and error display) ---
-function login() {
-    const username = document.getElementById('username').value.trim().toLowerCase();
+async function login() {
+    const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
-    console.log('Login attempt:', username, password);
-    // Accept only exact credentials (case-insensitive username)
-    if ((username === 'admin' && password === 'password123') || 
-        (username === 'assessor' && password === 'password2025')) {
-        currentUser = username;
-        // Save session to localStorage
-        localStorage.setItem('auditAppCurrentUser', username);
-        document.getElementById('authScreen').classList.add('hidden');
-        document.getElementById('landingPage').classList.remove('hidden');
-        document.getElementById('mainApp').classList.add('hidden');
-        console.log('Login successful');
-        loadData();
-        loadLocalGovernments();
-        updateDashboard();
-        loadRecords();
-        updateConnectionStatus();
-    } else {
-        // Show error message in UI
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            currentUser = data.username;
+            localStorage.setItem('auditAppCurrentUser', JSON.stringify(data));
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('landingPage').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            if (data.role === 'admin') {
+                document.getElementById('admin-link').style.display = 'block';
+            }
+            loadData();
+            loadLocalGovernments();
+            updateDashboard();
+            loadRecords();
+            updateConnectionStatus();
+        } else {
+            let msg = document.getElementById('loginErrorMsg');
+            if (!msg) {
+                msg = document.createElement('div');
+                msg.id = 'loginErrorMsg';
+                msg.style.color = 'var(--lagos-red)';
+                msg.style.marginTop = '10px';
+                msg.style.textAlign = 'center';
+                document.getElementById('authScreen').appendChild(msg);
+            }
+            msg.textContent = data.message;
+            setTimeout(() => { msg.textContent = ''; }, 5000);
+        }
+    } catch (error) {
         let msg = document.getElementById('loginErrorMsg');
         if (!msg) {
             msg = document.createElement('div');
@@ -4103,9 +4129,8 @@ function login() {
             msg.style.textAlign = 'center';
             document.getElementById('authScreen').appendChild(msg);
         }
-        msg.textContent = 'Invalid credentials!\n\nValid login credentials:\n• admin / password123\n• assessor / password2025';
-        setTimeout(()=>{msg.textContent='';}, 5000);
-        console.log('Login failed');
+        msg.textContent = 'An error occurred. Please try again.';
+        setTimeout(() => { msg.textContent = ''; }, 5000);
     }
 }
         

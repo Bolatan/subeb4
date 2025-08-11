@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - User Management</title>
+    <style>
+        :root {
+            --lagos-red: #DC2626;
+            --lagos-blue: #1E40AF;
+            --lagos-yellow: #FACC15;
+            --lagos-green: #16A34A;
+            --lagos-white: #FFFFFF;
+            --lagos-navy: #1E3A8A;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--lagos-blue);
+            color: var(--lagos-white);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--lagos-navy);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--lagos-yellow);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--lagos-blue);
+        }
+        th {
+            background-color: var(--lagos-blue);
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-delete {
+            background-color: var(--lagos-red);
+            color: var(--lagos-white);
+        }
+        .btn-logout {
+            background-color: var(--lagos-yellow);
+            color: var(--lagos-navy);
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="btn btn-logout" onclick="logout()">Logout</button>
+        <h1>User Management</h1>
+
+        <div id="createUserForm">
+            <h2>Create User</h2>
+            <form onsubmit="createUser(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="create-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="create-password" required>
+                </div>
+                 <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="create-role">
+                        <option value="assessor">Assessor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Create User</button>
+            </form>
+        </div>
+
+        <h2>Existing Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="user-list">
+                <!-- User list will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchUsers() {
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            if (!user || user.role !== 'admin') {
+                window.location.href = '/index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/users', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                });
+                const users = await response.json();
+                const userList = document.getElementById('user-list');
+                userList.innerHTML = '';
+                users.forEach(user => {
+                    const row = `
+                        <tr>
+                            <td>${user.username}</td>
+                            <td>${user.role}</td>
+                            <td>
+                                <button class="btn btn-delete" onclick="deleteUser('${user._id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    userList.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        async function deleteUser(id) {
+            if (!confirm('Are you sure you want to delete this user?')) {
+                return;
+            }
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            try {
+                await fetch(`/api/users/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                });
+                fetchUsers();
+            } catch (error) {
+                console.error('Error deleting user:', error);
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('auditAppCurrentUser');
+            window.location.href = '/index.html';
+        }
+
+        async function createUser(event) {
+            event.preventDefault();
+            const username = document.getElementById('create-username').value;
+            const password = document.getElementById('create-password').value;
+            const role = document.getElementById('create-role').value;
+
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+
+            try {
+                const response = await fetch('/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`
+                    },
+                    body: JSON.stringify({ username, password, role }),
+                });
+
+                if (response.ok) {
+                    document.getElementById('create-username').value = '';
+                    document.getElementById('create-password').value = '';
+                    fetchUsers();
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        window.onload = fetchUsers;
+    </script>
+</body>
+</html>
