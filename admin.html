@@ -122,6 +122,9 @@
     </div>
 
     <script>
+        function triggerImageUpload(userId) {
+            document.getElementById(`image-upload-${userId}`).click();
+        }
         async function fetchUsers() {
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
             if (!user || user.role !== 'admin') {
@@ -145,6 +148,8 @@
                             <td>${user.username}</td>
                             <td>${user.role}</td>
                             <td>
+                                <button class="btn" onclick="triggerImageUpload('${user._id}')">Edit Image</button>
+                                <input type="file" id="image-upload-${user._id}" style="display: none;" onchange="updateImage('${user._id}', this.files[0])" accept="image/*">
                                 <button class="btn" onclick="changePassword('${user._id}')">Change Password</button>
                                 <button class="btn btn-delete" onclick="deleteUser('${user._id}')">Delete</button>
                             </td>
@@ -222,6 +227,42 @@
             } catch (error) {
                 alert('An error occurred. Please try again.');
             }
+        }
+
+        async function updateImage(id, file) {
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+                const imageUrl = reader.result;
+                const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+
+                try {
+                    const response = await fetch(`/api/users/${id}/image`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${user.token}`
+                        },
+                        body: JSON.stringify({ imageUrl }),
+                    });
+
+                    if (response.ok) {
+                        fetchUsers();
+                    } else {
+                        const data = await response.json();
+                        alert(data.message);
+                    }
+                } catch (error) {
+                    alert('An error occurred while updating the image. Please try again.');
+                }
+            };
+            reader.onerror = () => {
+                alert('Failed to read file.');
+            };
         }
 
         async function changePassword(id) {
