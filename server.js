@@ -32,6 +32,8 @@ const User = require('./models/User');
 
 const jwt = require('jsonwebtoken');
 
+const { validatePassword } = require('./utils/validation');
+
 // --- Demo User Seeding ---
 // Deletes and recreates the demo users on every server start to ensure a clean state.
 const ensureAdminUser = async () => {
@@ -41,17 +43,29 @@ const ensureAdminUser = async () => {
     console.log('Removed existing demo users.');
 
     // Create admin user
+    const adminPassword = 'AdminPassword1!';
+    const adminPasswordError = validatePassword(adminPassword);
+    if (adminPasswordError) {
+      console.error('Error seeding admin user:', adminPasswordError);
+      return;
+    }
     await User.create({
       username: 'admin',
-      password: 'password123',
+      password: adminPassword,
       role: 'admin',
     });
     console.log('Admin user seeded.');
 
     // Create assessor user
+    const assessorPassword = 'AssessorPassword1!';
+    const assessorPasswordError = validatePassword(assessorPassword);
+    if (assessorPasswordError) {
+        console.error('Error seeding assessor user:', assessorPasswordError);
+        return;
+    }
     await User.create({
       username: 'assessor',
-      password: 'password2025',
+      password: assessorPassword,
       role: 'assessor',
     });
     console.log('Assessor user seeded.');
@@ -207,6 +221,11 @@ app.post('/api/users', protect, admin, async (req, res) => {
   const { username, password, role, imageUrl } = req.body;
 
   try {
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      return res.status(400).json({ message: passwordError });
+    }
+
     const userExists = await User.findOne({ username });
 
     if (userExists) {
