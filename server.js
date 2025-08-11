@@ -29,6 +29,7 @@ app.use(express.static(__dirname));
 
 const SurveyResponse = require('./models/SurveyResponse');
 const User = require('./models/User');
+const LoginLog = require('./models/LoginLog');
 
 const jwt = require('jsonwebtoken');
 
@@ -101,6 +102,7 @@ app.post('/api/login', async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && (await user.comparePassword(password))) {
+      await LoginLog.create({ username, status: 'success' });
       console.log('User found:', user); // DEBUG
 
       res.json({
@@ -111,6 +113,7 @@ app.post('/api/login', async (req, res) => {
         token: generateToken(user._id, user.role),
       });
     } else {
+      await LoginLog.create({ username, status: 'failure' });
       res.status(401).json({ message: 'Invalid username or password' });
     }
   } catch (error) {
@@ -317,6 +320,15 @@ app.get('/api/users/export', protect, admin, async (req, res) => {
     res.header('Content-Type', 'text/csv');
     res.attachment('users.csv');
     res.send(csv);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/api/logs', protect, admin, async (req, res) => {
+  try {
+    const logs = await LoginLog.find({}).sort({ timestamp: -1 });
+    res.json(logs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
