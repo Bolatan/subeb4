@@ -100,6 +100,7 @@ app.post('/api/login', async (req, res) => {
     const user = await User.findOne({ username });
 
     if (user && (await user.comparePassword(password))) {
+      console.log('User found:', user); // DEBUG
       res.json({
         _id: user._id,
         username: user.username,
