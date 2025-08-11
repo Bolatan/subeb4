@@ -33,12 +33,6 @@
         .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
         .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
 
-        /* Tab styles */
-        .tab { overflow: hidden; border-bottom: 1px solid #ccc; background-color: #f1f1f1; border-radius: 10px 10px 0 0; }
-        .tab button { background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; font-size: 17px; }
-        .tab button:hover { background-color: #ddd; }
-        .tab button.active { background-color: var(--lagos-blue); color: var(--lagos-white); }
-        .tabcontent { display: none; padding: 20px 12px; border-top: none; }
     </style>
 </head>
 <body>
@@ -46,57 +40,33 @@
         <div class="header">
             <div class="logo">
                 <img src="subeb.jpg" alt="Lagos State Logo">
-                <span>Reports</span>
+                <span>Survey Reports</span>
             </div>
             <a href="index.html" class="btn-secondary">Back to Home</a>
         </div>
         <div class="content-area">
-            <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'surveyReports')" id="defaultOpen">Survey Reports</button>
-                <button class="tablinks" onclick="openTab(event, 'loginLogs')">User Login Logs</button>
-            </div>
-
-            <div id="surveyReports" class="tabcontent">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2>All Survey Reports</h2>
-                    <div id="export-buttons">
-                        <button class="btn" onclick="exportToPDF()">Export to PDF</button>
-                        <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
-                    </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>All Survey Reports</h2>
+                <div id="export-buttons">
+                    <button class="btn" onclick="exportToPDF()">Export to PDF</button>
+                    <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
                 </div>
-                <table class="data-table" id="reportsTable">
-                    <thead>
-                        <tr>
-                            <th>Survey Type</th>
-                            <th>School Name / LGEA</th>
-                            <th>Respondent Name</th>
-                            <th>Submission Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be inserted here by JavaScript -->
-                    </tbody>
-                </table>
-                <div id="loadingMessage">Loading reports...</div>
             </div>
-
-            <div id="loginLogs" class="tabcontent">
-                <h2>User Login Logs</h2>
-                <table class="data-table" id="loginLogsTable">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Timestamp</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Login log data will be inserted here -->
-                    </tbody>
-                </table>
-                <div id="loadingLogsMessage" style="text-align: center; padding: 20px; display: none;">Loading logs...</div>
-            </div>
+            <table class="data-table" id="reportsTable">
+                <thead>
+                    <tr>
+                        <th>Survey Type</th>
+                        <th>School Name / LGEA</th>
+                        <th>Respondent Name</th>
+                        <th>Submission Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+            <div id="loadingMessage">Loading reports...</div>
         </div>
     </div>
 
@@ -113,21 +83,6 @@
         let allSurveys = []; // Global variable to hold survey data for exports
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Default open tab
-            document.getElementById("defaultOpen").click();
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const view = urlParams.get('view');
-
-            if (view === 'logs') {
-                openTab(new Event('click'), 'loginLogs');
-                fetchLoginLogs();
-            }
-
-            fetchSurveyReports();
-        });
-
-        function fetchSurveyReports() {
             const tableBody = document.querySelector('#reportsTable tbody');
             const loadingMessage = document.getElementById('loadingMessage');
 
@@ -168,52 +123,7 @@
                     loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
                     console.error('Error fetching reports:', error);
                 });
-        }
-
-        async function fetchLoginLogs() {
-            const tableBody = document.querySelector('#loginLogsTable tbody');
-            const loadingMessage = document.getElementById('loadingLogsMessage');
-            loadingMessage.style.display = 'block';
-
-            try {
-                const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
-                if (!user || !user.token) {
-                    loadingMessage.innerHTML = '<strong>Authentication required.</strong><br>Please log in to view this content.';
-                    return;
-                }
-
-                const response = await fetch('/api/logs', {
-                    headers: {
-                        'Authorization': `Bearer ${user.token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const logs = await response.json();
-                loadingMessage.style.display = 'none';
-                tableBody.innerHTML = '';
-
-                if (logs.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding: 20px;">No login logs found.</td></tr>';
-                    return;
-                }
-
-                logs.forEach(log => {
-                    const row = tableBody.insertRow();
-                    row.innerHTML = `
-                        <td>${log.username}</td>
-                        <td>${new Date(log.timestamp).toLocaleString()}</td>
-                        <td>${log.status}</td>
-                    `;
-                });
-            } catch (error) {
-                loadingMessage.innerHTML = '<strong>Failed to load login logs.</strong>';
-                console.error('Error fetching login logs:', error);
-            }
-        }
+        });
 
         const modal = document.getElementById('detailsModal');
         const modalData = document.getElementById('modal-data');
@@ -231,20 +141,6 @@
             if (event.target == modal) {
                 closeModal();
             }
-        }
-
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
         }
 
         function exportToPDF() {

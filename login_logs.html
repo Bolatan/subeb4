@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login Logs</title>
+    <style>
+        /* Basic styles from index.html */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --lagos-red: #DC2626; --lagos-blue: #1E40AF; --lagos-yellow: #FACC15;
+            --lagos-green: #16A34A; --lagos-white: #FFFFFF; --lagos-navy: #1E3A8A;
+            --lagos-dark-gray: #64748B;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--lagos-blue); min-height: 100vh; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 100vh; }
+        .header { background: var(--lagos-navy); border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: var(--lagos-white); position: relative; border-left: 8px solid var(--lagos-red); }
+        .header .logo { display: flex; align-items: center; font-size: 24px; font-weight: bold; color: var(--lagos-white); }
+        .header .logo img { height: 40px; width: 40px; margin-right: 12px; }
+        .btn, .btn-secondary { background: var(--lagos-green); border-color: var(--lagos-yellow); color: var(--lagos-white); text-decoration: none; padding: 8px 16px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
+        .content-area { background: var(--lagos-white); border-radius: 15px; padding: 30px; overflow-y: auto; }
+        .data-table { width: 100%; border-collapse: collapse; background: var(--lagos-white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px; }
+        .data-table th, .data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        .data-table th { background: var(--lagos-blue); color: var(--lagos-white); font-weight: 600; }
+        .data-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .data-table tr:hover { background-color: #e9ecef; }
+        #loadingLogsMessage { text-align: center; padding: 20px; font-size: 1.2em; color: var(--lagos-navy); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="subeb.jpg" alt="Lagos State Logo">
+                <span>User Login Logs</span>
+            </div>
+            <a href="index.html" class="btn-secondary">Back to Home</a>
+        </div>
+        <div class="content-area">
+            <h2>User Login Logs</h2>
+            <table class="data-table" id="loginLogsTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Timestamp</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Login log data will be inserted here -->
+                </tbody>
+            </table>
+            <div id="loadingLogsMessage">Loading logs...</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchLoginLogs();
+        });
+
+        async function fetchLoginLogs() {
+            const tableBody = document.querySelector('#loginLogsTable tbody');
+            const loadingMessage = document.getElementById('loadingLogsMessage');
+            loadingMessage.style.display = 'block';
+
+            try {
+                const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+                if (!user || !user.token) {
+                    loadingMessage.innerHTML = '<strong>Authentication required.</strong><br>Please log in to view this content.';
+                    return;
+                }
+
+                const response = await fetch('/api/logs', {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const logs = await response.json();
+                loadingMessage.style.display = 'none';
+                tableBody.innerHTML = '';
+
+                if (logs.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding: 20px;">No login logs found.</td></tr>';
+                    return;
+                }
+
+                logs.forEach(log => {
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td>${log.username}</td>
+                        <td>${new Date(log.timestamp).toLocaleString()}</td>
+                        <td>${log.status}</td>
+                    `;
+                });
+            } catch (error) {
+                loadingMessage.innerHTML = '<strong>Failed to load login logs.</strong>';
+                console.error('Error fetching login logs:', error);
+            }
+        }
+    </script>
+</body>
+</html>
