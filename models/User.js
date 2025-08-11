@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'assessor'],
     default: 'assessor',
   },
+  imageUrl: {
+    type: String,
+    default: '',
+  },
   createdAt: {
     type: Date,
     default: Date.now,
