@@ -13,60 +13,40 @@ let lgeaData = {};
  * @returns {Promise<Object>} A promise that resolves to the parsed data object.
  */
 async function loadCsvData(url) {
-    const cacheKey = `csv_cache_${url}`;
     try {
-        // First, try to load from localStorage
-        const cachedCsvText = localStorage.getItem(cacheKey);
-        if (cachedCsvText) {
-            console.log(`Loading data from cache for ${url}.`);
-            // If we have cached data, parse and return it.
-            return parseCsvText(cachedCsvText);
-        }
-
-        // If not in cache, fetch from network
-        console.log(`Fetching data from network for ${url}.`);
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
         }
         const csvText = await response.text();
+        const data = {};
+        // Handle potential BOM character at the start of the file
+        const cleanedCsvText = csvText.trim().startsWith('ï»¿') ? csvText.trim().substring(3) : csvText.trim();
+        const lines = cleanedCsvText.split('\n').filter(line => line.trim() !== '');
 
-        // Store in cache for future use
-        localStorage.setItem(cacheKey, csvText);
-        console.log(`Data from ${url} cached.`);
+        // Start from 1 to skip header row
+        for (let i = 1; i < lines.length; i++) {
+            const parts = lines[i].split(',');
+            if (parts.length >= 2) {
+                const key = parts[0].trim(); // e.g., LGA
+                const value = parts[1].trim(); // e.g., School Name
 
-        // Parse and return the data
-        return parseCsvText(csvText);
-
-    } catch (error) {
-        console.error(`Error loading or parsing data from ${url}:`, error);
-        // If there's an error (e.g., offline and not in cache), return empty object
-        return {};
-    }
-}
-
-function parseCsvText(csvText) {
-    const data = {};
-    const cleanedCsvText = csvText.trim().startsWith('ï»¿') ? csvText.trim().substring(3) : csvText.trim();
-    const lines = cleanedCsvText.split('\n').filter(line => line.trim() !== '');
-
-    for (let i = 1; i < lines.length; i++) {
-        const parts = lines[i].split(',');
-        if (parts.length >= 2) {
-            const key = parts[0].trim();
-            const value = parts[1].trim();
-
-            if (key && value) {
-                if (!data[key]) {
-                    data[key] = [];
-                }
-                if (!data[key].includes(value)) {
-                    data[key].push(value);
+                if (key && value) {
+                    if (!data[key]) {
+                        data[key] = [];
+                    }
+                    if (!data[key].includes(value)) {
+                        data[key].push(value);
+                    }
                 }
             }
         }
+        console.log(`Successfully loaded and parsed data from ${url}.`);
+        return data;
+    } catch (error) {
+        console.error(`Error loading or parsing data from ${url}:`, error);
+        return {}; // Return empty object on failure
     }
-    return data;
 }
 
 // --- Specific Data Loaders ---
@@ -188,5 +168,5 @@ function initializeSilat13Dropdowns() {
 }
 
 function initializeSilat14Dropdowns() {
-    setupLinkedDropdowns('silat_1_4_localGov', 'silat_1_4_schoolName', lagosStateData);
+    setupLinkedDropdowns('silat_1_4_localGov', 'silat_1_4_schoolName', lgeaData);
 }
