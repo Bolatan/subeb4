@@ -4075,30 +4075,25 @@ function loadSession() {
 
 
 function updateAdminLinkVisibility() {
+    const adminLink = document.getElementById('admin-link');
+    if (!adminLink) {
+        return;
+    }
+
+    // Always default to hidden, and only show if conditions are met.
+    adminLink.classList.add('hidden');
+
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
-        const adminLink = document.getElementById('admin-link');
-
-        if (!adminLink) return; // Exit if the link isn't on the page
-
         if (savedUser) {
             const user = JSON.parse(savedUser);
-            // Show admin link only if user role is 'admin'
-            if (user.role === 'admin') {
+            if (user && user.role === 'admin') {
                 adminLink.classList.remove('hidden');
-            } else {
-                adminLink.classList.add('hidden');
             }
-        } else {
-            // If no user is logged in, always hide the admin link
-            adminLink.classList.add('hidden');
         }
     } catch (e) {
         console.error('Error updating admin link visibility:', e);
-        const adminLink = document.getElementById('admin-link');
-        if (adminLink) {
-            adminLink.classList.add('hidden');
-        }
+        // The link is already hidden by default, so no need to hide it again in catch.
     }
 }
 
