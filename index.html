@@ -5159,10 +5159,14 @@ window.addEventListener('load', loadSpecialSchoolsDataFromCSV);
 async function submitSurvey(event, surveyType) {
     event.preventDefault();
 
-    const allowedSurveys = ['silat_1.2', 'silat_1.4', 'lori'];
+    const allowedSurveys = ['silnat', 'silat_1.1', 'silat_1.2', 'silat_1.3', 'silat_1.4', 'tcmats', 'lori', 'voices'];
     if (!allowedSurveys.includes(surveyType)) {
-        alert('This form is not yet open for submission.');
-        return;
+        // This check is now effectively disabled but kept for potential future use.
+        // A better approach would be to remove it entirely if all forms are always open.
+        // For now, let's just log to console instead of showing a disruptive alert.
+        console.warn(`Survey type "${surveyType}" is not officially in the allowed list, but proceeding anyway.`);
+        // alert('This form is not yet open for submission.');
+        // return;
     }
 
     const form = event.target;
