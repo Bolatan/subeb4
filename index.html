@@ -4087,11 +4087,11 @@ function loadSession() {
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
 
-            if (user.role === 'admin') {
-                adminLink.classList.remove('disabled-card');
+            if (user.role && user.role.trim().toLowerCase() === 'admin') {
+                adminLink.className = 'survey-card';
                 adminLink.onclick = () => { window.location.href = 'admin.html'; };
             } else {
-                adminLink.classList.add('disabled-card');
+                adminLink.className = 'survey-card disabled-card';
                 adminLink.onclick = null;
             }
             console.log('Session restored for user:', currentUser);
@@ -4135,11 +4135,11 @@ async function login() {
             document.getElementById('mainApp').classList.add('hidden');
 
             const adminLink = document.getElementById('admin-link');
-            if (data.role === 'admin') {
-                adminLink.classList.remove('disabled-card');
+            if (data.role && data.role.trim().toLowerCase() === 'admin') {
+                adminLink.className = 'survey-card';
                 adminLink.onclick = () => { window.location.href = 'admin.html'; };
             } else {
-                adminLink.classList.add('disabled-card');
+                adminLink.className = 'survey-card disabled-card';
                 adminLink.onclick = null;
             }
 
