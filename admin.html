@@ -59,6 +59,12 @@
             color: var(--lagos-navy);
             float: right;
         }
+        .user-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -77,21 +83,27 @@
                     <label for="password">Password</label>
                     <input type="password" id="create-password" required>
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="role">Role</label>
                     <select id="create-role">
                         <option value="assessor">Assessor</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="image">User Image</label>
+                    <input type="file" id="create-image" accept="image/*">
+                </div>
                 <button type="submit" class="btn">Create User</button>
             </form>
         </div>
 
         <h2>Existing Users</h2>
+        <button class="btn" onclick="exportUsers()">Export to CSV</button>
         <table>
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Username</th>
                     <th>Role</th>
                     <th>Action</th>
@@ -123,9 +135,11 @@
                 users.forEach(user => {
                     const row = `
                         <tr>
+                            <td><img src="${user.imageUrl || 'https://via.placeholder.com/40'}" alt="${user.username}" class="user-image"></td>
                             <td>${user.username}</td>
                             <td>${user.role}</td>
                             <td>
+                                <button class="btn" onclick="changePassword('${user._id}')">Change Password</button>
                                 <button class="btn btn-delete" onclick="deleteUser('${user._id}')">Delete</button>
                             </td>
                         </tr>
@@ -165,6 +179,18 @@
             const username = document.getElementById('create-username').value;
             const password = document.getElementById('create-password').value;
             const role = document.getElementById('create-role').value;
+            const imageFile = document.getElementById('create-image').files[0];
+
+            let imageUrl = '';
+            if (imageFile) {
+                const reader = new FileReader();
+                await new Promise((resolve, reject) => {
+                    reader.onload = () => resolve();
+                    reader.onerror = reject;
+                    reader.readAsDataURL(imageFile);
+                });
+                imageUrl = reader.result;
+            }
 
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
@@ -175,12 +201,13 @@
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${user.token}`
                     },
-                    body: JSON.stringify({ username, password, role }),
+                    body: JSON.stringify({ username, password, role, imageUrl }),
                 });
 
                 if (response.ok) {
                     document.getElementById('create-username').value = '';
                     document.getElementById('create-password').value = '';
+                    document.getElementById('create-image').value = '';
                     fetchUsers();
                 } else {
                     const data = await response.json();
@@ -189,6 +216,41 @@
             } catch (error) {
                 alert('An error occurred. Please try again.');
             }
+        }
+
+        async function changePassword(id) {
+            const newPassword = prompt('Enter the new password:');
+            if (!newPassword) {
+                return;
+            }
+
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+
+            try {
+                const response = await fetch(`/api/users/${id}/password`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`
+                    },
+                    body: JSON.stringify({ password: newPassword }),
+                });
+
+                if (response.ok) {
+                    alert('Password updated successfully.');
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        function exportUsers() {
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            const token = user ? user.token : '';
+            window.location.href = `/api/users/export?token=${token}`;
         }
 
         window.onload = fetchUsers;

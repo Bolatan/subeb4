@@ -689,7 +689,7 @@ h4[onclick] {
                     </div>
                 </div>
                 <div id="userInfo" style="color: white; margin-right: 15px; display: flex; align-items: center; gap: 8px; font-size: 1rem;">
-                    <span style="font-size: 24px; line-height: 1;">&#128100;</span>
+                    <img id="user-icon" src="" alt="User Icon" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                     <span id="loggedInUsername"></span>
                 </div>
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
@@ -4060,10 +4060,13 @@ function toggleForceOffline() {
 }
 
 function updateUserInfo() {
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
     const usernameSpan = document.getElementById('loggedInUsername');
-    if (usernameSpan && currentUser) {
-        // Capitalize the first letter of the username
-        usernameSpan.textContent = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+    const userIcon = document.getElementById('user-icon');
+
+    if (user && usernameSpan && userIcon) {
+        usernameSpan.textContent = user.username.charAt(0).toUpperCase() + user.username.slice(1);
+        userIcon.src = user.imageUrl || '';
     }
 }
 
@@ -4079,12 +4082,11 @@ function loadSession() {
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
 
+            const adminLink = document.getElementById('admin-link');
             if (user.role && user.role.trim().toLowerCase() === 'admin') {
-                adminLink.className = 'survey-card';
-                adminLink.onclick = () => { window.location.href = 'admin.html'; };
+                adminLink.classList.remove('hidden');
             } else {
-                adminLink.className = 'survey-card disabled-card';
-                adminLink.onclick = null;
+                adminLink.classList.add('hidden');
             }
             updateUserInfo();
 
@@ -4124,6 +4126,9 @@ function updateAdminLinkVisibility() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    updateAdminLinkVisibility();
+});
 
 async function login() {
     const username = document.getElementById('username').value.trim();
@@ -4145,15 +4150,10 @@ async function login() {
             localStorage.setItem('auditAppCurrentUser', JSON.stringify(data));
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
 
-            loadData();
+            // Update user-specific UI elements on the landing page
             updateUserInfo();
-            loadLocalGovernments();
-            updateDashboard();
-            loadRecords();
-            updateConnectionStatus();
-            updateAdminLinkVisibility(); // Check role on login
+            updateAdminLinkVisibility();
         } else {
             let msg = document.getElementById('loginErrorMsg');
             if (!msg) {
@@ -4168,6 +4168,7 @@ async function login() {
             setTimeout(() => { msg.textContent = ''; }, 5000);
         }
     } catch (error) {
+        console.error("An error occurred in the login function:", error);
         let msg = document.getElementById('loginErrorMsg');
         if (!msg) {
             msg = document.createElement('div');
@@ -4177,7 +4178,7 @@ async function login() {
             msg.style.textAlign = 'center';
             document.getElementById('authScreen').appendChild(msg);
         }
-        msg.textContent = 'An error occurred. Please try again.';
+        msg.textContent = 'A critical error occurred. Please try again.';
         setTimeout(() => { msg.textContent = ''; }, 5000);
     }
 }

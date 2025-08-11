@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { Parser } = require('json2csv');
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -91,6 +92,7 @@ app.post('/api/login', async (req, res) => {
         _id: user._id,
         username: user.username,
         role: user.role,
+        imageUrl: user.imageUrl,
         token: generateToken(user._id, user.role),
       });
     } else {
@@ -172,8 +174,13 @@ const protect = async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.query.token) {
+    token = req.query.token;
+  }
+
+  if (token) {
     try {
-      token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'a-very-secret-key');
       req.user = await User.findById(decoded.id).select('-password');
       next();
@@ -181,9 +188,7 @@ const protect = async (req, res, next) => {
       console.error(error);
       res.status(401).json({ message: 'Not authorized, token failed' });
     }
-  }
-
-  if (!token) {
+  } else {
     res.status(401).json({ message: 'Not authorized, no token' });
   }
 };
@@ -199,7 +204,7 @@ const admin = (req, res, next) => {
 
 // User Management routes
 app.post('/api/users', protect, admin, async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password, role, imageUrl } = req.body;
 
   try {
     const userExists = await User.findOne({ username });
@@ -212,6 +217,7 @@ app.post('/api/users', protect, admin, async (req, res) => {
       username,
       password,
       role,
+      imageUrl,
     });
 
     if (user) {
@@ -219,6 +225,7 @@ app.post('/api/users', protect, admin, async (req, res) => {
         _id: user._id,
         username: user.username,
         role: user.role,
+        imageUrl: user.imageUrl,
       });
     } else {
       res.status(400).json({ message: 'Invalid user data' });
@@ -243,6 +250,37 @@ app.delete('/api/users/:id', protect, admin, async (req, res) => {
     } else {
       res.status(404).json({ message: 'User not found' });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.put('/api/users/:id/password', protect, admin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+      user.password = req.body.password;
+      await user.save();
+      res.json({ message: 'Password updated successfully' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/api/users/export', protect, admin, async (req, res) => {
+  try {
+    const users = await User.find({}).select('-password').lean();
+    const fields = ['_id', 'username', 'role', 'createdAt', 'imageUrl'];
+    const opts = { fields };
+    const parser = new Parser(opts);
+    const csv = parser.parse(users);
+    res.header('Content-Type', 'text/csv');
+    res.attachment('users.csv');
+    res.send(csv);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
