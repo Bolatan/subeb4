@@ -161,6 +161,18 @@
             doc.save('survey-reports.pdf');
         }
 
+        function flattenObject(obj, prefix = '') {
+            return Object.keys(obj).reduce((acc, k) => {
+                const pre = prefix.length ? prefix + '_' : '';
+                if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+                    Object.assign(acc, flattenObject(obj[k], pre + k));
+                } else {
+                    acc[pre + k] = obj[k];
+                }
+                return acc;
+            }, {});
+        }
+
         function exportToExcel() {
             if (allSurveys.length === 0) {
                 alert("No data to export.");
@@ -241,20 +253,14 @@
                     return loriRows;
 
                 } else {
-                    // Handle other survey types as before
-                    let flatData = {
+                    // Handle other survey types with the new flattenObject function
+                    const flattenedFormData = flattenObject(formData);
+                    const rowData = {
                         'Survey Type': surveyType,
                         'Submission Date': new Date(createdAt).toLocaleString(),
+                        ...flattenedFormData
                     };
-
-                    for (const [key, value] of Object.entries(formData)) {
-                        if (typeof value !== 'object' || value === null) {
-                            flatData[key] = value;
-                        } else {
-                            flatData[key] = JSON.stringify(value);
-                        }
-                    }
-                    return [flatData];
+                    return [rowData];
                 }
             });
 
