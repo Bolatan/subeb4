@@ -80,6 +80,13 @@ app.post('/api/login', async (req, res) => {
 
     if (user && (await user.comparePassword(password))) {
       console.log('User found:', user); // DEBUG
+
+      if (user.username === 'admin' && user.role !== 'admin') {
+        user.role = 'admin';
+        await user.save();
+        console.log('Admin user role forcefully corrected during login.');
+      }
+
       res.json({
         _id: user._id,
         username: user.username,
