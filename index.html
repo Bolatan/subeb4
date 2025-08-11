@@ -652,7 +652,7 @@ h4[onclick] {
   		
 		  <div class="container">
         <!-- Authentication Screen -->
-        <div id="authScreen" class="auth-container">
+        <div id="authScreen" class="auth-container hidden">
             <h3 class="auth-title">LSUBEB/PIMU NEEDS INSTRUMENT Login</h3>
             
             
@@ -4186,7 +4186,6 @@ async function login() {
             }, 0);
 
             loadLocalGovernments();
-            updateDashboard();
             loadRecords();
             updateConnectionStatus();
 
