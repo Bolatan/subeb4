@@ -109,8 +109,9 @@
         </form>
     </div>
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function(event) {
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
             event.preventDefault();
+            const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
 
@@ -119,10 +120,26 @@
                 return;
             }
 
-            // In a real application, you would send the registration data to the server.
-            // For this fix, we'll just show a success message and redirect to login.
-            alert("Registration successful! You can now log in.");
-            window.location.href = '/index.html';
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Registration successful! You can now log in.");
+                    window.location.href = '/index.html';
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
         });
     </script>
 </body>

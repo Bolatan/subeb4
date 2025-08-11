@@ -27,6 +27,67 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.static(__dirname));
 
 const SurveyResponse = require('./models/SurveyResponse');
+const User = require('./models/User');
+
+const jwt = require('jsonwebtoken');
+
+const generateToken = (id, role) => {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET || 'a-very-secret-key', {
+    expiresIn: '30d',
+  });
+};
+
+// User Login
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (user && (await user.comparePassword(password))) {
+      res.json({
+        _id: user._id,
+        username: user.username,
+        role: user.role,
+        token: generateToken(user._id, user.role),
+      });
+    } else {
+      res.status(401).json({ message: 'Invalid username or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// User Registration
+app.post('/api/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const userExists = await User.findOne({ username });
+
+    if (userExists) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    const user = await User.create({
+      username,
+      password,
+    });
+
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        role: user.role,
+      });
+    } else {
+      res.status(400).json({ message: 'Invalid user data' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Specific endpoints for existing forms to match the frontend calls
 app.post('/api/silnat', async (req, res) => {
@@ -85,6 +146,90 @@ app.post('/api/surveys/:type', async (req, res) => {
   } catch (error) {
     console.error(`Error saving ${req.params.type} survey:`, error);
     res.status(500).json({ message: 'Submission failed.', error: error.message });
+  }
+});
+
+// Middleware for authentication
+const protect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'a-very-secret-key');
+      req.user = await User.findById(decoded.id).select('-password');
+      next();
+    } catch (error) {
+      console.error(error);
+      res.status(401).json({ message: 'Not authorized, token failed' });
+    }
+  }
+
+  if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
+  }
+};
+
+// Middleware for admin authorization
+const admin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(401).json({ message: 'Not authorized as an admin' });
+  }
+};
+
+// User Management routes
+app.post('/api/users', protect, admin, async (req, res) => {
+  const { username, password, role } = req.body;
+
+  try {
+    const userExists = await User.findOne({ username });
+
+    if (userExists) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    const user = await User.create({
+      username,
+      password,
+      role,
+    });
+
+    if (user) {
+      res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        role: user.role,
+      });
+    } else {
+      res.status(400).json({ message: 'Invalid user data' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/api/users', protect, admin, async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
+app.delete('/api/users/:id', protect, admin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+      await user.deleteOne();
+      res.json({ message: 'User removed' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
