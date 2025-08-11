@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { Parser } = require('json2csv');
+const ExcelJS = require('exceljs');
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -317,6 +318,41 @@ app.get('/api/users/export', protect, admin, async (req, res) => {
     res.header('Content-Type', 'text/csv');
     res.attachment('users.csv');
     res.send(csv);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/api/users/export-excel', protect, admin, async (req, res) => {
+  try {
+    const users = await User.find({}).select('-password').lean();
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Users');
+
+    worksheet.columns = [
+      { header: 'ID', key: '_id', width: 30 },
+      { header: 'Username', key: 'username', width: 30 },
+      { header: 'Role', key: 'role', width: 15 },
+      { header: 'Image URL', key: 'imageUrl', width: 50 },
+      { header: 'Created At', key: 'createdAt', width: 20 }
+    ];
+
+    users.forEach(user => {
+      worksheet.addRow(user);
+    });
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=' + 'users.xlsx'
+    );
+
+    await workbook.xlsx.write(res);
+    res.end();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

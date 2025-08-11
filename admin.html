@@ -100,6 +100,7 @@
 
         <h2>Existing Users</h2>
         <button class="btn" onclick="exportUsers()">Export to CSV</button>
+        <button class="btn" onclick="exportUsersExcel()">Export to Excel</button>
         <table>
             <thead>
                 <tr>
@@ -292,6 +293,12 @@
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
             const token = user ? user.token : '';
             window.location.href = `/api/users/export?token=${token}`;
+        }
+
+        function exportUsersExcel() {
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            const token = user ? user.token : '';
+            window.location.href = `/api/users/export-excel?token=${token}`;
         }
 
         window.onload = fetchUsers;
