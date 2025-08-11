@@ -4083,25 +4083,10 @@ function updateAdminLinkState() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
         if (savedUser) {
-            const user = JSON.parse(savedUser);
-            currentUser = user.username;
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('landingPage').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
-
-            const adminLink = document.getElementById('admin-link');
-            if (user.role && user.role.trim().toLowerCase() === 'admin') {
-                adminLink.classList.remove('hidden');
-            } else {
-                adminLink.classList.add('hidden');
-            }
-            updateUserInfo();
-
-            console.log('Session restored for user:', currentUser);
-
+            user = JSON.parse(savedUser);
         }
     } catch (e) {
-        console.error('Error parsing user from localStorage', e);
+        console.error('Error parsing user from localStorage for admin link state:', e);
     }
 
     if (user && user.role && user.role.trim().toLowerCase() === 'admin') {
@@ -4114,7 +4099,6 @@ function updateAdminLinkState() {
         adminLink.classList.add('hidden');
         adminLink.classList.add('disabled-card');
         adminLink.onclick = null;
-
     }
 }
 
@@ -4135,9 +4119,6 @@ function loadSession() {
     updateAdminLinkState();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    updateAdminLinkVisibility();
-});
 
 async function login() {
     const username = document.getElementById('username').value.trim();
@@ -4160,14 +4141,16 @@ async function login() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
 
-            // Update user-specific UI elements on the landing page
-            updateUserInfo();
+            // Defer UI updates to ensure the DOM is ready
+            setTimeout(() => {
+                updateUserInfo();
+                updateAdminLinkState(); // Update link state after login
+            }, 0);
 
             loadLocalGovernments();
             updateDashboard();
             loadRecords();
             updateConnectionStatus();
-            updateAdminLinkState(); // Update link state after login
 
         } else {
             let msg = document.getElementById('loginErrorMsg');
