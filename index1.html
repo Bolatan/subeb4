@@ -623,6 +623,7 @@ select.form-control option {
 }
         }
     </style>
+    <script src="script.js"></script>
 </head>
 <body>
   		
@@ -5157,20 +5158,6 @@ function updateTotal(maleId, femaleId, totalId) {
     }
 }
 
-function toggleSection(sectionId, headerId) {
-    const section = document.getElementById(sectionId);
-    const header = document.getElementById(headerId);
-    if (section && header) {
-        const isHidden = section.style.display === 'none';
-        section.style.display = isHidden ? 'block' : 'none';
-        const headerText = header.innerText;
-        if (isHidden) {
-            header.innerText = headerText.replace('▶️', '🔽');
-        } else {
-            header.innerText = headerText.replace('🔽', '▶️');
-        }
-    }
-}
 
 // Function to handle SILNAT Institution Type change
 function handleSchoolComplexChange() {
