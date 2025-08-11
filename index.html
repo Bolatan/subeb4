@@ -4066,13 +4066,8 @@ function loadSession() {
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
 
-            if (user.role && user.role.trim().toLowerCase() === 'admin') {
-                adminLink.className = 'survey-card';
-                adminLink.onclick = () => { window.location.href = 'admin.html'; };
-            } else {
-                adminLink.className = 'survey-card disabled-card';
-                adminLink.onclick = null;
-            }
+            adminLink.className = 'survey-card';
+            adminLink.onclick = () => { window.location.href = 'admin.html'; };
             console.log('Session restored for user:', currentUser);
         } else {
             // If no user is logged in, ensure the card is disabled.
@@ -4114,13 +4109,8 @@ async function login() {
             document.getElementById('mainApp').classList.add('hidden');
 
             const adminLink = document.getElementById('admin-link');
-            if (data.role && data.role.trim().toLowerCase() === 'admin') {
-                adminLink.className = 'survey-card';
-                adminLink.onclick = () => { window.location.href = 'admin.html'; };
-            } else {
-                adminLink.className = 'survey-card disabled-card';
-                adminLink.onclick = null;
-            }
+            adminLink.className = 'survey-card';
+            adminLink.onclick = () => { window.location.href = 'admin.html'; };
 
             loadData();
             loadLocalGovernments();
