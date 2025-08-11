@@ -3,6 +3,7 @@ let lagosStateData = {};
 let specialSchoolsData = {};
 let vocationalCentersData = {};
 let comboData = {}; // For TCMATS, LORI, VOICES which share combo.csv
+let lgeaData = {};
 
 // --- Generic CSV Data Loader ---
 /**
@@ -62,6 +63,12 @@ async function loadAllData() {
         loadCsvData('LIST OF VOCATIONAL CENTRES.csv'),
         loadCsvData('combo.csv')
     ]);
+
+    // Create lgeaData from lagosStateData
+    const lgas = Object.keys(lagosStateData);
+    lgas.forEach(lga => {
+        lgeaData[lga] = [lga];
+    });
 }
 
 
@@ -161,12 +168,5 @@ function initializeSilat13Dropdowns() {
 }
 
 function initializeSilat14Dropdowns() {
-    // This form only has one dropdown, for LGEA.
-    const lgaDropdown = document.getElementById('silat_1_4_localGov');
-    if (lgaDropdown) {
-        // The data for this dropdown is not clearly defined in the old code.
-        // It seems to be all LGAs. `lagosStateData` seems like a reasonable source.
-        const lgas = Object.keys(lagosStateData);
-        populateDropdown(lgaDropdown, lgas, 'Select Local Government');
-    }
+    setupLinkedDropdowns('silat_1_4_localGov', 'silat_1_4_schoolName', lgeaData);
 }
