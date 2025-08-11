@@ -674,6 +674,9 @@ h4[onclick] {
 
         <!-- Landing Page: Four Survey Cards -->
         <div id="landingPage" class="section hidden">
+            <div id="offline-data-warning" class="hidden" style="background-color: var(--lagos-yellow); color: var(--lagos-navy); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 2px solid var(--lagos-red);">
+                <strong>Data not available offline.</strong> Please connect to the internet to download the required school and LGEA data.
+            </div>
             <div class="landing-header">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="landing-logo">
                 <h1 style="color:white;font-size:2.2rem; margin-left: 20px; flex-grow: 1; text-align: center;">Welcome to LASUBEB/PIMU Needs Assessment Portal</h1>
@@ -4022,6 +4025,7 @@ window.onload = async function() {
 
     console.log('App initialized');
     await loadAllData(); // Load all CSV data from dropdown.js
+    checkOfflineDataStatus();
     loadSession();
 
     if (currentUser) {
@@ -4317,6 +4321,21 @@ function removeFile(button) {
 
 // This function is no longer needed as we are not using a global uploadedFiles array
 // function updateFileDisplay() {}
+
+function checkOfflineDataStatus() {
+    const warningDiv = document.getElementById('offline-data-warning');
+    if (!warningDiv) return;
+
+    // Check if the main data source is empty and if the app is offline.
+    const isDataMissing = Object.keys(lagosStateData).length === 0;
+    const offline = !isEffectivelyOnline();
+
+    if (isDataMissing && offline) {
+        warningDiv.classList.remove('hidden');
+    } else {
+        warningDiv.classList.add('hidden');
+    }
+}
 
 // Add this anywhere in your <script> tag
 function toggleMobileSidebar() {
