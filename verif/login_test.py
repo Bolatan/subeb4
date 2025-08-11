@@ -14,7 +14,7 @@ def run_test():
 
             print("Filling in credentials...")
             page.fill("#username", "admin")
-            page.fill("#password", "password123")
+            page.fill("#password", "AdminPassword1!")
             print("Credentials filled.")
 
             print("Clicking login button with specific selector...")

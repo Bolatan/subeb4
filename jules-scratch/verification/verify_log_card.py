@@ -23,8 +23,11 @@ async def main():
         # Click the log card
         await log_card.click()
 
-        # Wait for the log display area to be visible
-        await expect(page.locator("#log-display-area")).to_be_visible()
+        # Wait for navigation to the reports page
+        await page.wait_for_url("**/reports.html?view=logs")
+
+        # Check that the login logs tab is visible
+        await expect(page.locator("#loginLogs.tabcontent")).to_be_visible()
 
         # Take a screenshot
         await page.screenshot(path="jules-scratch/verification/verification.png")
