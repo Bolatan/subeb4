@@ -448,6 +448,24 @@
             border-radius: 2px;
             transition: 0.3s;
         }
+
+        .survey-card.disabled-card {
+            background: #f0f0f0;
+            cursor: not-allowed;
+            border-color: #dcdcdc;
+        }
+
+        .survey-card.disabled-card h2,
+        .survey-card.disabled-card p {
+            color: #b0b0b0;
+        }
+
+        .survey-card.disabled-card:hover {
+            transform: none;
+            box-shadow: 0 4px 16px rgba(30,64,175,0.08);
+            border-color: #dcdcdc;
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -707,7 +725,7 @@ h4[onclick] {
                     <h2>View Survey Reports</h2>
                     <p>Dashboard for all submitted data</p>
                 </div>
-                <div class="survey-card" id="admin-link" style="display: none;" onclick="window.location.href=&#39;admin.html&#39;">
+                <div class="survey-card disabled-card" id="admin-link">
                     <h2>User Administration</h2>
                     <p>Manage user accounts</p>
                 </div>
@@ -3177,6 +3195,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_3_h" value="5"></td>
                     <td><select name="lori_b_3_h_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_3_h_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>i) The teacher gives clear instructions to the learners</td>
@@ -3197,6 +3216,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_3_j" value="5"></td>
                     <td><select name="lori_b_3_j_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_3_j_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td rowspan="5">4. Relationship with learners</td>
@@ -3208,6 +3228,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_4_a" value="5"></td>
                     <td><select name="lori_b_4_a_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_4_a_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>b) The teacher is fair and inclusive in their teaching and feedback</td>
@@ -3218,6 +3239,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_4_b" value="5"></td>
                     <td><select name="lori_b_4_b_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_4_b_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>c) The teacher has empathy for the learners</td>
@@ -3238,6 +3260,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_4_d" value="5"></td>
                     <td><select name="lori_b_4_d_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_4_d_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>e) The teacher is a role model to the learners</td>
@@ -3248,6 +3271,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_4_e" value="5"></td>
                     <td><select name="lori_b_4_e_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_4_e_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td rowspan="5">5. Class management</td>
@@ -3259,6 +3283,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_5_a" value="5"></td>
                     <td><select name="lori_b_5_a_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_5_a_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>b) The teacher praises and rewards the learners</td>
@@ -3269,6 +3294,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_5_b" value="5"></td>
                     <td><select name="lori_b_5_b_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_5_b_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>c) The teacher encourages good behaviour among learners</td>
@@ -3289,6 +3315,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_5_d" value="5"></td>
                     <td><select name="lori_b_5_d_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_5_d_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>e) The teacher does not use a cane, use physical force, or threatens learners</td>
@@ -3299,6 +3326,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_5_e" value="5"></td>
                     <td><select name="lori_b_5_e_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_5_e_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td rowspan="6">6. Evaluation of learning</td>
@@ -3310,6 +3338,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_6_a" value="5"></td>
                     <td><select name="lori_b_6_a_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_6_a_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>b) The teacher walks around the room for effective teaching and learning</td>
@@ -3320,6 +3349,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_6_b" value="5"></td>
                     <td><select name="lori_b_6_b_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_6_b_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>c) The teacher uses a variety of assessment techniques</td>
@@ -3340,6 +3370,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_6_d" value="5"></td>
                     <td><select name="lori_b_6_d_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_6_d_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>e) The teacher checks the achievement of the lesson objectives at the end of the lesson through relevant text</td>
@@ -3350,6 +3381,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_6_e" value="5"></td>
                     <td><select name="lori_b_6_e_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_6_e_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>f) The teacher gave relevant homework if need be</td>
@@ -3360,6 +3392,7 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_6_f" value="5"></td>
                     <td><select name="lori_b_6_f_avg" class="form-control"><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
                     <td><select name="lori_b_6_f_desc" class="form-control"><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
+
                 </tr>
                 <tr>
                     <td>7. Overall Assessment</td>
@@ -4062,19 +4095,36 @@ function toggleForceOffline() {
 function loadSession() {
     try {
         const savedUser = localStorage.getItem('auditAppCurrentUser');
+        const adminLink = document.getElementById('admin-link');
+
         if (savedUser) {
             const user = JSON.parse(savedUser);
             currentUser = user.username;
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
+
             if (user.role === 'admin') {
-                document.getElementById('admin-link').style.display = 'block';
+                adminLink.classList.remove('disabled-card');
+                adminLink.onclick = () => { window.location.href = 'admin.html'; };
+            } else {
+                adminLink.classList.add('disabled-card');
+                adminLink.onclick = null;
             }
             console.log('Session restored for user:', currentUser);
+        } else {
+            // If no user is logged in, ensure the card is disabled.
+            adminLink.classList.add('disabled-card');
+            adminLink.onclick = null;
         }
     } catch (e) {
         console.error('Error loading session:', e);
+        // In case of error, also ensure it's disabled
+        const adminLink = document.getElementById('admin-link');
+        if(adminLink) {
+            adminLink.classList.add('disabled-card');
+            adminLink.onclick = null;
+        }
     }
 }
 
@@ -4100,9 +4150,16 @@ async function login() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('mainApp').classList.add('hidden');
+
+            const adminLink = document.getElementById('admin-link');
             if (data.role === 'admin') {
-                document.getElementById('admin-link').style.display = 'block';
+                adminLink.classList.remove('disabled-card');
+                adminLink.onclick = () => { window.location.href = 'admin.html'; };
+            } else {
+                adminLink.classList.add('disabled-card');
+                adminLink.onclick = null;
             }
+
             loadData();
             loadLocalGovernments();
             updateDashboard();
