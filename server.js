@@ -31,50 +31,29 @@ const User = require('./models/User');
 
 const jwt = require('jsonwebtoken');
 
-// --- Admin User Seeding ---
-// Ensure admin user exists with the correct role and password for demo purposes.
+// --- Demo User Seeding ---
+// Deletes and recreates the demo users on every server start to ensure a clean state.
 const ensureAdminUser = async () => {
   try {
-    let adminUser = await User.findOne({ username: 'admin' });
+    // Remove existing demo users
+    await User.deleteMany({ username: { $in: ['admin', 'assessor'] } });
+    console.log('Removed existing demo users.');
 
-    if (adminUser) {
-      let needsUpdate = false;
-      // Check if role is not 'admin'
-      if (adminUser.role !== 'admin') {
-        adminUser.role = 'admin';
-        needsUpdate = true;
-        console.log('Admin user role corrected to "admin".');
-      }
-      // Check if password is correct
-      const passwordIsCorrect = await adminUser.comparePassword('password123');
-      if (!passwordIsCorrect) {
-        adminUser.password = 'password123';
-        needsUpdate = true;
-        console.log('Admin user password reset for demo.');
-      }
-      if (needsUpdate) {
-        await adminUser.save();
-      }
-    } else {
-      // Create admin user if it doesn't exist
-      await User.create({
-        username: 'admin',
-        password: 'password123',
-        role: 'admin',
-      });
-      console.log('Admin user created for demo.');
-    }
+    // Create admin user
+    await User.create({
+      username: 'admin',
+      password: 'password123',
+      role: 'admin',
+    });
+    console.log('Admin user seeded.');
 
-    // Also ensure assessor user for demo
-    let assessorUser = await User.findOne({ username: 'assessor' });
-    if (!assessorUser) {
-        await User.create({
-            username: 'assessor',
-            password: 'password2025',
-            role: 'assessor'
-        });
-        console.log('Assessor user created for demo.');
-    }
+    // Create assessor user
+    await User.create({
+      username: 'assessor',
+      password: 'password2025',
+      role: 'assessor',
+    });
+    console.log('Assessor user seeded.');
 
   } catch (error) {
     console.error('Error in user seeding script:', error);
@@ -115,35 +94,8 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// User Registration
-app.post('/api/register', async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const userExists = await User.findOne({ username });
-
-    if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
-    const user = await User.create({
-      username,
-      password,
-    });
-
-    if (user) {
-      res.status(201).json({
-        _id: user._id,
-        username: user.username,
-        role: user.role,
-      });
-    } else {
-      res.status(400).json({ message: 'Invalid user data' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// User Registration endpoint removed as per new requirements.
+// User creation is now handled by admins only via /api/users.
 
 // Specific endpoints for existing forms to match the frontend calls
 app.post('/api/silnat', async (req, res) => {
