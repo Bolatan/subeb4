@@ -655,11 +655,6 @@ h4[onclick] {
         <div id="authScreen" class="auth-container">
             <h3 class="auth-title">LSUBEB/PIMU NEEDS INSTRUMENT Login</h3>
             
-            <div class="credentials-info">
-                <strong>Demo Credentials:</strong><br>
-                Username: <code>admin</code> | Password: <code>password123</code><br>
-                Username: <code>assessor</code> | Password: <code>password2025</code>
-            </div>
             
             <div class="form-group">
                 <label for="username">Username</label>
@@ -737,6 +732,14 @@ h4[onclick] {
                     <h2>User Administration</h2>
                     <p>Manage user accounts</p>
                 </div>
+                <div class="survey-card hidden" id="log-card" onclick="showLogs()">
+                    <h2>User Login Logs</h2>
+                    <p>View user login history</p>
+                </div>
+            </div>
+            <div id="log-display-area" class="section hidden" style="margin-top: 20px;">
+                <h3 style="color:white; margin-bottom: 20px;">Login Logs</h3>
+                <div id="log-table-container"></div>
             </div>
         </div>
         
@@ -4077,7 +4080,8 @@ function updateUserInfo() {
 
 function updateAdminLinkState() {
     const adminLink = document.getElementById('admin-link');
-    if (!adminLink) return;
+    const logCard = document.getElementById('log-card');
+    if (!adminLink || !logCard) return;
 
     let user = null;
     try {
@@ -4090,15 +4094,53 @@ function updateAdminLinkState() {
     }
 
     if (user && user.role && user.role.trim().toLowerCase() === 'admin') {
-        // Is admin: show and enable
+        // Is admin: show and enable admin links
         adminLink.classList.remove('hidden');
         adminLink.classList.remove('disabled-card');
         adminLink.onclick = () => { window.location.href = 'admin.html'; };
+
+        logCard.classList.remove('hidden');
     } else {
-        // Is not admin, or not logged in: hide and disable
+        // Is not admin, or not logged in: hide and disable admin links
         adminLink.classList.add('hidden');
         adminLink.classList.add('disabled-card');
         adminLink.onclick = null;
+
+        logCard.classList.add('hidden');
+    }
+}
+
+async function showLogs() {
+    const logDisplayArea = document.getElementById('log-display-area');
+    const logTableContainer = document.getElementById('log-table-container');
+
+    if (logDisplayArea.classList.contains('hidden')) {
+        try {
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            const response = await fetch('/api/logs', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
+
+            if (response.ok) {
+                const logs = await response.json();
+                let tableHTML = '<table class="data-table"><thead><tr><th>Username</th><th>Timestamp</th><th>Status</th></tr></thead><tbody>';
+                logs.forEach(log => {
+                    tableHTML += `<tr><td>${log.username}</td><td>${new Date(log.timestamp).toLocaleString()}</td><td>${log.status}</td></tr>`;
+                });
+                tableHTML += '</tbody></table>';
+                logTableContainer.innerHTML = tableHTML;
+            } else {
+                logTableContainer.innerHTML = '<p style="color:var(--lagos-red);">Failed to load logs.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching logs:', error);
+            logTableContainer.innerHTML = '<p style="color:var(--lagos-red);">An error occurred while fetching logs.</p>';
+        }
+        logDisplayArea.classList.remove('hidden');
+    } else {
+        logDisplayArea.classList.add('hidden');
     }
 }
 
