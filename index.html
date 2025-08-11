@@ -5209,11 +5209,14 @@ async function submitSurvey(event, surveyType) {
         if (feedback) {
             if (res.ok) {
                 feedback.style.color = 'var(--lagos-green)';
-                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully! Redirecting back to home...`;
                 form.reset();
                 // Also clear file previews if any
                 const uploadedFilesDiv = form.querySelector('.uploaded-files');
                 if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+
+                // Redirect back to landing page after a delay
+                setTimeout(backToLanding, 2000);
             } else {
                 const err = await res.json();
                 feedback.style.color = 'var(--lagos-red)';
