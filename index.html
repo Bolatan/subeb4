@@ -5269,6 +5269,10 @@ async function submitSurvey(event, surveyType) {
                 // Also clear file previews if any
                 const uploadedFilesDiv = form.querySelector('.uploaded-files');
                 if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+
+                setTimeout(() => {
+                    backToLanding();
+                }, 2000);
             } else {
                 const err = await res.json();
                 feedback.style.color = 'var(--lagos-red)';
