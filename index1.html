@@ -4828,21 +4828,29 @@ function bulkEditRecords() {
 function updateDashboard() {
     // Defensive: ensure auditData is loaded
     if (!Array.isArray(auditData)) auditData = [];
-    // Stat cards
-    const totalAudits = auditData.length;
-    const pendingSync = auditData.filter(a => !a.synced).length;
-    // Completed today: audits with timestamp from today
-    const today = new Date();
-    const completedToday = auditData.filter(audit => {
-        if (!audit.timestamp) return false;
-        const d = new Date(audit.timestamp);
-        return d.getFullYear() === today.getFullYear() &&
-               d.getMonth() === today.getMonth() &&
-               d.getDate() === today.getDate();
-    }).length;
-    document.getElementById('totalAudits').textContent = totalAudits;
-    document.getElementById('pendingSync').textContent = pendingSync;
-    document.getElementById('completedToday').textContent = completedToday;
+
+    const totalAuditsEl = document.getElementById('totalAudits');
+    const pendingSyncEl = document.getElementById('pendingSync');
+    const completedTodayEl = document.getElementById('completedToday');
+
+    // Only update stat cards if they exist on the page
+    if (totalAuditsEl && pendingSyncEl && completedTodayEl) {
+        const totalAudits = auditData.length;
+        const pendingSync = auditData.filter(a => !a.synced).length;
+        // Completed today: audits with timestamp from today
+        const today = new Date();
+        const completedToday = auditData.filter(audit => {
+            if (!audit.timestamp) return false;
+            const d = new Date(audit.timestamp);
+            return d.getFullYear() === today.getFullYear() &&
+                   d.getMonth() === today.getMonth() &&
+                   d.getDate() === today.getDate();
+        }).length;
+        totalAuditsEl.textContent = totalAudits;
+        pendingSyncEl.textContent = pendingSync;
+        completedTodayEl.textContent = completedToday;
+    }
+
     // Recent audits table (latest 5, most recent first)
     const recent = [...auditData].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5);
     const table = document.getElementById('recentAuditsTable');
