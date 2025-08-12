@@ -770,18 +770,18 @@ h4[onclick] {
                         <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_a_ht_contact">Contact Number</label>
+                        <label for="silnat_a_ht_contact">Contact Number <span style="color:red;">*</span></label>
                         <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
                     </div>
                 </div>
 		              				
                 <div class="form-group">
-                    <label>Gender:</label>
+                    <label>Gender: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="gender_1.2" value="male"> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.2" value="female"> Female</label>
                 </div>
                 <div class="form-group">
-                    <label>Marital Status:</label>
+                    <label>Marital Status: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="single"> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="divorced"> Divorced</label>
@@ -789,7 +789,7 @@ h4[onclick] {
                     <label class="radio-inline"><input type="radio" name="marital_status_1.2" value="widow_widower"> Widow/Widower</label>
                 </div>
                 <div class="form-group">
-                    <label>Highest Qualification:</label>
+                    <label>Highest Qualification: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="grade_ii"> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="b_ed"> B.Ed</label>
@@ -801,7 +801,7 @@ h4[onclick] {
                     <input type="text" name="highest_qualification_other_1.2" placeholder="Specify other">
                 </div>
                 <div class="form-group">
-                    <label>Years of Leadership Experience:</label>
+                    <label>Years of Leadership Experience: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="5_below"> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.2" value="11_15"> 11-15</label>
@@ -842,11 +842,11 @@ h4[onclick] {
 			
             <div class="form-row">
                 <div class="form-group">
-                    <label for="silat_1_2_address">Address:</label>
+                    <label for="silat_1_2_address">Address: <span style="color:red;">*</span></label>
                     <textarea id="silat_1_2_address" name="silat_1_2_address" class="form-control" rows="2"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Location:</label>
+                    <label>Location: <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="urban"> Urban</label>
                         <label class="radio-inline"><input type="radio" name="silat_1_2_location" value="rural"> Rural</label>
@@ -854,58 +854,58 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="silat_1_2_lgea">LGEA:</label>
+                    <label for="silat_1_2_lgea">LGEA: <span style="color:red;">*</span></label>
                     <input type="text" id="silat_1_2_lgea" name="silat_1_2_lgea" class="form-control">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="silat_1_2_assembly_start">Assembly Devotion: Time Start</label>
+                        <label for="silat_1_2_assembly_start">Assembly Devotion: Time Start <span style="color:red;">*</span></label>
                         <input type="time" id="silat_1_2_assembly_start" name="silat_1_2_assembly_start" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="silat_1_2_assembly_end">Assembly Devotion: Time End</label>
+                        <label for="silat_1_2_assembly_end">Assembly Devotion: Time End <span style="color:red;">*</span></label>
                         <input type="time" id="silat_1_2_assembly_end" name="silat_1_2_assembly_end" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Number of Teachers in the School:</label>
+                    <label>Number of Teachers in the School: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_teachers_male">Male</label><input type="number" id="silat_1_2_teachers_male" name="silat_1_2_teachers_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_teachers_male&#39;, &#39;silat_1_2_teachers_female&#39;, &#39;silat_1_2_teachers_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_teachers_female">Female</label><input type="number" id="silat_1_2_teachers_female" name="silat_1_2_teachers_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_teachers_male&#39;, &#39;silat_1_2_teachers_female&#39;, &#39;silat_1_2_teachers_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_teachers_male">Male <span style="color:red;">*</span></label><input type="number" id="silat_1_2_teachers_male" name="silat_1_2_teachers_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_teachers_male', 'silat_1_2_teachers_female', 'silat_1_2_teachers_total')"></div>
+                        <div class="form-group"><label for="silat_1_2_teachers_female">Female <span style="color:red;">*</span></label><input type="number" id="silat_1_2_teachers_female" name="silat_1_2_teachers_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_teachers_male', 'silat_1_2_teachers_female', 'silat_1_2_teachers_total')"></div>
                         <div class="form-group"><label for="silat_1_2_teachers_total">Total</label><input type="number" id="silat_1_2_teachers_total" name="silat_1_2_teachers_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Number of Teachers with Specialization in Special Education in the School:</label>
+                    <label>Number of Teachers with Specialization in Special Education in the School: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_male">Male</label><input type="number" id="silat_1_2_spec_ed_teachers_male" name="silat_1_2_spec_ed_teachers_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_spec_ed_teachers_male&#39;, &#39;silat_1_2_spec_ed_teachers_female&#39;, &#39;silat_1_2_spec_ed_teachers_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_female">Female</label><input type="number" id="silat_1_2_spec_ed_teachers_female" name="silat_1_2_spec_ed_teachers_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_spec_ed_teachers_male&#39;, &#39;silat_1_2_spec_ed_teachers_female&#39;, &#39;silat_1_2_spec_ed_teachers_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_male">Male <span style="color:red;">*</span></label><input type="number" id="silat_1_2_spec_ed_teachers_male" name="silat_1_2_spec_ed_teachers_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_spec_ed_teachers_male', 'silat_1_2_spec_ed_teachers_female', 'silat_1_2_spec_ed_teachers_total')"></div>
+                        <div class="form-group"><label for="silat_1_2_spec_ed_teachers_female">Female <span style="color:red;">*</span></label><input type="number" id="silat_1_2_spec_ed_teachers_female" name="silat_1_2_spec_ed_teachers_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_spec_ed_teachers_male', 'silat_1_2_spec_ed_teachers_female', 'silat_1_2_spec_ed_teachers_total')"></div>
                         <div class="form-group"><label for="silat_1_2_spec_ed_teachers_total">Total</label><input type="number" id="silat_1_2_spec_ed_teachers_total" name="silat_1_2_spec_ed_teachers_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Number of Non-Teaching Staff in the School:</label>
+                    <label>Number of Non-Teaching Staff in the School: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_non_teaching_male">Male</label><input type="number" id="silat_1_2_non_teaching_male" name="silat_1_2_non_teaching_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_non_teaching_male&#39;, &#39;silat_1_2_non_teaching_female&#39;, &#39;silat_1_2_non_teaching_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_non_teaching_female">Female</label><input type="number" id="silat_1_2_non_teaching_female" name="silat_1_2_non_teaching_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_non_teaching_male&#39;, &#39;silat_1_2_non_teaching_female&#39;, &#39;silat_1_2_non_teaching_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_non_teaching_male">Male <span style="color:red;">*</span></label><input type="number" id="silat_1_2_non_teaching_male" name="silat_1_2_non_teaching_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_non_teaching_male', 'silat_1_2_non_teaching_female', 'silat_1_2_non_teaching_total')"></div>
+                        <div class="form-group"><label for="silat_1_2_non_teaching_female">Female <span style="color:red;">*</span></label><input type="number" id="silat_1_2_non_teaching_female" name="silat_1_2_non_teaching_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_non_teaching_male', 'silat_1_2_non_teaching_female', 'silat_1_2_non_teaching_total')"></div>
                         <div class="form-group"><label for="silat_1_2_non_teaching_total">Total</label><input type="number" id="silat_1_2_non_teaching_total" name="silat_1_2_non_teaching_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Number of Learners in the School:</label>
+                    <label>Number of Learners in the School: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
-                        <div class="form-group"><label for="silat_1_2_learners_male">Male</label><input type="number" id="silat_1_2_learners_male" name="silat_1_2_learners_male" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_learners_male&#39;, &#39;silat_1_2_learners_female&#39;, &#39;silat_1_2_learners_total&#39;)"></div>
-                        <div class="form-group"><label for="silat_1_2_learners_female">Female</label><input type="number" id="silat_1_2_learners_female" name="silat_1_2_learners_female" class="form-control" min="0" oninput="updateTotal(&#39;silat_1_2_learners_male&#39;, &#39;silat_1_2_learners_female&#39;, &#39;silat_1_2_learners_total&#39;)"></div>
+                        <div class="form-group"><label for="silat_1_2_learners_male">Male <span style="color:red;">*</span></label><input type="number" id="silat_1_2_learners_male" name="silat_1_2_learners_male" class="form-control" min="0" oninput="updateTotal('silat_1_2_learners_male', 'silat_1_2_learners_female', 'silat_1_2_learners_total')"></div>
+                        <div class="form-group"><label for="silat_1_2_learners_female">Female <span style="color:red;">*</span></label><input type="number" id="silat_1_2_learners_female" name="silat_1_2_learners_female" class="form-control" min="0" oninput="updateTotal('silat_1_2_learners_male', 'silat_1_2_learners_female', 'silat_1_2_learners_total')"></div>
                         <div class="form-group"><label for="silat_1_2_learners_total">Total</label><input type="number" id="silat_1_2_learners_total" name="silat_1_2_learners_total" class="form-control" readonly=""></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Category of Special Learners catered for in the School (list and indicate availability)</label>
+                    <label>Category of Special Learners catered for in the School (list and indicate availability) <span style="color:red;">*</span></label>
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_special_learners" value="visual_impairment"> Visual Impairment</label>
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_special_learners" value="hearing_impairment"> Hearing Impairment</label>
@@ -922,22 +922,22 @@ h4[onclick] {
                 </div>
 
                 <div class="form-group">
-                    <label for="silat_1_2_teacher_pupil_ratio">Teacher/Pupils Ratio:</label>
+                    <label for="silat_1_2_teacher_pupil_ratio">Teacher/Pupils Ratio: <span style="color:red;">*</span></label>
                     <input type="text" id="silat_1_2_teacher_pupil_ratio" name="silat_1_2_teacher_pupil_ratio" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="silat_1_2_additional_staff_required">Number of Additional Teachers/Staff Required:</label>
+                    <label for="silat_1_2_additional_staff_required">Number of Additional Teachers/Staff Required: <span style="color:red;">*</span></label>
                     <input type="number" id="silat_1_2_additional_staff_required" name="silat_1_2_additional_staff_required" class="form-control" min="0">
                 </div>
 
                 <div class="form-group">
-                    <label for="silat_1_2_multigrade_classes">Number of Classes operated as Multigrade:</label>
+                    <label for="silat_1_2_multigrade_classes">Number of Classes operated as Multigrade: <span style="color:red;">*</span></label>
                     <input type="number" id="silat_1_2_multigrade_classes" name="silat_1_2_multigrade_classes" class="form-control" min="0">
                 </div>
 
                 <div class="form-group">
-                    <label>Reason(s) for operating the classes as Multigrade:</label>
+                    <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
@@ -950,7 +950,7 @@ h4[onclick] {
             <h4 id="sectionCHeader_1.2" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.2', 'sectionCHeader_1.2')">Section C: Needs Assessment 🔽</h4>
             <div id="sectionCContent_1.2" style="display: block;">
                 <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
-               <h5>Control and Discipline</h5>
+               <h5>Control and Discipline <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -961,7 +961,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Handling cases of professional misconduct by teachers School</td><td><input type="radio" name="discipline_e_1.2"></td><td><input type="radio" name="discipline_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Cooperation and Team Work</h5>
+                <h5>Cooperation and Team Work <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -971,7 +971,7 @@ h4[onclick] {
                         <tr><td>d.</td><td>Encouraging team work in the School</td><td><input type="radio" name="cooperation_d_1.2"></td><td><input type="radio" name="cooperation_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Communication in the School</h5>
+                <h5>Communication in the School <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -980,7 +980,7 @@ h4[onclick] {
                         <tr><td>c.</td><td>Encouraging good communication skills among staff and learners</td><td><input type="radio" name="communication_c_1.2"></td><td><input type="radio" name="communication_c_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School and Community Relations</h5>
+                <h5>School and Community Relations <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -991,7 +991,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.2"></td><td><input type="radio" name="community_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Supervision and Monitoring</h5>
+                <h5>Supervision and Monitoring <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1002,7 +1002,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2"></td><td><input type="radio" name="supervision_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School Records</h5>
+                <h5>School Records <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1017,7 +1017,7 @@ h4[onclick] {
                         <tr><td>i.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.2"></td><td><input type="radio" name="records_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Health and Hygiene</h5>
+                <h5>Health and Hygiene <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1035,7 +1035,7 @@ h4[onclick] {
             <div id="sectionDContent_1.2" style="display: block;">
                 <h4>1. INFRASTRUCTURE</h4>
                 <div class="form-group">
-                    <label>Signboard</label>
+                    <label>Signboard <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_good"> Available and in good condition</label>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good"> Available but not in good condition</label>
@@ -1043,64 +1043,64 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Teachers’ Furniture</label>
+                    <label class="furniture-label">Teachers’ Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">ECCDE Furniture</label>
+                    <label class="furniture-label">ECCDE Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Primary Furniture</label>
+                    <label class="furniture-label">Primary Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Classroom Condition</label>
+                    <label class="furniture-label">Classroom Condition <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available <span style="color:red;">*</span></label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation <span style="color:red;">*</span></label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required <span style="color:red;">*</span></label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
                     </div>
                     <div class="form-group">
-                        <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
+                        <label for="classroom_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                         <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4>2. FENCING <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>a. Shared Facility</label>
+                    <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
-                        <label>Is the school located within a school Complex?</label>
+                        <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="yes"> Yes</label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="no"> No</label>
                     </div>
                     <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex</label>
+                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
                         <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>b. Does the school have perimeter fence:</label>
+                    <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no"> No</label>
                 </div>
                 <div class="form-group">
-                    <label>If Yes, in what State?</label>
+                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
@@ -1108,17 +1108,17 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fence_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="fence_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School?</label>
+                    <label for="school_perimeter">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>Type of Toilet:</label>
+                    <label>Type of Toilet: <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="pit"> Pit</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="wc"> WC</label>
@@ -1127,18 +1127,18 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available <span style="color:red;">*</span></label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair <span style="color:red;">*</span></label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required <span style="color:red;">*</span></label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required <span style="color:red;">*</span></label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
                 </div>
                 <div class="form-group">
-                    <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="toilet_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4>4. SEPTIC TANK <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -1147,7 +1147,7 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4>5. SOURCE OF POTABLE WATER <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -1156,12 +1156,12 @@ h4[onclick] {
                         <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
                     </div>
                     <div class="form-group">
-                        <label for="water_recommendations">Recommendations</label>
+                        <label for="water_recommendations">Recommendations <span style="color:red;">*</span></label>
                         <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -1173,12 +1173,12 @@ h4[onclick] {
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
-                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc</label>
+                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
                         <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>7. Is your School regularly waterlogged when it rained?</h4>
+                <h4>7. Is your School regularly waterlogged when it rained? <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="waterlogged" value="yes"> Yes</label>
@@ -1186,16 +1186,16 @@ h4[onclick] {
                     </div>
                 </div>
 				
-				 <h4>8. Important Special Schools Facilities Available (list the facilities and indicate availability)</h4>
+				 <h4>8. Important Special Schools Facilities Available (list the facilities and indicate availability) <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <table class="data-table" width="100%">
                         <thead>
                             <tr>
                                 <th>S/N</th>
-                                <th>Facility Name</th>
-                                <th>Status</th>
-                                <th>Number Available</th>
-                                <th>Number Needed More</th>
+                                <th>Facility Name <span style="color:red;">*</span></th>
+                                <th>Status <span style="color:red;">*</span></th>
+                                <th>Number Available <span style="color:red;">*</span></th>
+                                <th>Number Needed More <span style="color:red;">*</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1297,7 +1297,7 @@ h4[onclick] {
                 </div>
 				
 				<div class="form-group">
-                <label>Upload Photos (Max 10)</label>
+                <label>Upload Photos (Max 10) <span style="color:red;">*</span></label>
                 <input type="file" id="silat_1.2_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.2_uploadedFiles')">
                 <div id="silat_1.2_uploadedFiles" class="uploaded-files"></div>
             </div>
@@ -1334,19 +1334,19 @@ h4[onclick] {
                         <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_a_ht_contact">Contact Number</label>
+                        <label for="silnat_a_ht_contact">Contact Number <span style="color:red;">*</span></label>
                         <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
                     </div>
                 </div>
 				</div>
                 
                               <div class="form-group">
-                    <label>Gender:</label>
+                    <label>Gender: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="gender_1.3" value="male"> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.3" value="female"> Female</label>
                 </div>
                 <div class="form-group">
-                    <label>Marital Status:</label>
+                    <label>Marital Status: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="single"> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="divorced"> Divorced</label>
@@ -1354,7 +1354,7 @@ h4[onclick] {
                     <label class="radio-inline"><input type="radio" name="marital_status_1.3" value="widow_widower"> Widow/Widower</label>
                 </div>
                 <div class="form-group">
-                    <label>Highest Qualification:</label>
+                    <label>Highest Qualification: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="grade_ii"> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.3" value="b_ed"> B.Ed</label>
@@ -1366,7 +1366,7 @@ h4[onclick] {
                     <input type="text" name="highest_qualification_other_1.3" placeholder="Specify other">
                 </div>
                 <div class="form-group">
-                    <label>Years of Leadership Experience:</label>
+                    <label>Years of Leadership Experience: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="5_below"> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.3" value="11_15"> 11-15</label>
@@ -1386,19 +1386,19 @@ h4[onclick] {
                 </div>
                 <!-- 2. Name of School/Institution -->
                 <div class="form-group">
-                    <label for="silat13_school_name">2. Name of School/Institution</label>
+                    <label for="silat13_school_name">2. Name of School/Institution <span style="color:red;">*</span></label>
                     <select id="silat13_school_name" name="silat13_school_name" class="form-control">
                         <option value="">Select School/Institution</option>
                     </select>
                 </div>
                 <!-- 3. Address -->
                 <div class="form-group">
-                    <label for="silat13_address">3. Address</label>
+                    <label for="silat13_address">3. Address <span style="color:red;">*</span></label>
                     <textarea id="silat13_address" name="silat13_address" class="form-control" rows="3"></textarea>
                 </div>
                 <!-- 4. Location -->
                 <div class="form-group">
-                    <label>4. Location</label>
+                    <label>4. Location <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="silat13_location" value="urban"> Urban</label>
                         <label class="radio-inline"><input type="radio" name="silat13_location" value="rural"> Rural</label>
@@ -1408,20 +1408,20 @@ h4[onclick] {
 
                 <!-- Types of Vocation Taught -->
                 <div class="form-group">
-                    <label for="silat13_vocation_type">Types of Vocation Taught at the centre (Please specify)</label>
+                    <label for="silat13_vocation_type">Types of Vocation Taught at the centre (Please specify) <span style="color:red;">*</span></label>
                     <input type="text" id="silat13_vocation_type" name="silat13_vocation_type" class="form-control">
                 </div>
 
                 <!-- Number of Instructors -->
                 <div class="form-group" style="margin-top: 20px;">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Instructors:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Instructors: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="silat13_instructors_male">Male</label>
+                            <label for="silat13_instructors_male">Male <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_instructors_male" name="silat13_instructors_male" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="silat13_instructors_female">Female</label>
+                            <label for="silat13_instructors_female">Female <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_instructors_female" name="silat13_instructors_female" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1433,14 +1433,14 @@ h4[onclick] {
 
                 <!-- Number of Professionally Qualified Vocational Teachers -->
                 <div class="form-group" style="margin-top: 20px;">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Professionally Qualified Vocational Teachers:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Professionally Qualified Vocational Teachers: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="silat13_qualified_teachers_male">Male</label>
+                            <label for="silat13_qualified_teachers_male">Male <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_qualified_teachers_male" name="silat13_qualified_teachers_male" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="silat13_qualified_teachers_female">Female</label>
+                            <label for="silat13_qualified_teachers_female">Female <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_qualified_teachers_female" name="silat13_qualified_teachers_female" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1452,14 +1452,14 @@ h4[onclick] {
 
                 <!-- Number of Non-Teaching Staff -->
                 <div class="form-group" style="margin-top: 20px;">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="silat13_non_teaching_male">Male</label>
+                            <label for="silat13_non_teaching_male">Male <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_non_teaching_male" name="silat13_non_teaching_male" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="silat13_non_teaching_female">Female</label>
+                            <label for="silat13_non_teaching_female">Female <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_non_teaching_female" name="silat13_non_teaching_female" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1471,26 +1471,26 @@ h4[onclick] {
 
                 <!-- Number of Schools your Centre is supporting -->
                 <div class="form-group">
-                    <label for="silat13_schools_supported">Number of Schools your Centre is supporting</label>
+                    <label for="silat13_schools_supported">Number of Schools your Centre is supporting <span style="color:red;">*</span></label>
                     <input type="number" id="silat13_schools_supported" name="silat13_schools_supported" class="form-control" min="0">
                 </div>
 
                 <!-- Average Distance -->
                 <div class="form-group">
-                    <label for="silat13_avg_distance">Average Distance of farthest School among the Schools under your support to the Centre in Kilometre</label>
+                    <label for="silat13_avg_distance">Average Distance of farthest School among the Schools under your support to the Centre in Kilometre <span style="color:red;">*</span></label>
                     <input type="number" id="silat13_avg_distance" name="silat13_avg_distance" class="form-control" min="0">
                 </div>
 
                 <!-- Average Number of Learners -->
                 <div class="form-group" style="margin-top: 20px;">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Average Number of Learners Attending training at the Centre:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Average Number of Learners Attending training at the Centre: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="silat13_learners_male">Male</label>
+                            <label for="silat13_learners_male">Male <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_learners_male" name="silat13_learners_male" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="silat13_learners_female">Female</label>
+                            <label for="silat13_learners_female">Female <span style="color:red;">*</span></label>
                             <input type="number" id="silat13_learners_female" name="silat13_learners_female" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1502,13 +1502,13 @@ h4[onclick] {
 
                 <!-- Instructor/Pupils Ratio -->
                 <div class="form-group">
-                    <label for="silat13_instructor_pupil_ratio">Instructor/Pupils Ratio:</label>
+                    <label for="silat13_instructor_pupil_ratio">Instructor/Pupils Ratio: <span style="color:red;">*</span></label>
                     <input type="text" id="silat13_instructor_pupil_ratio" name="silat13_instructor_pupil_ratio" class="form-control" placeholder="e.g., 1:30">
                 </div>
 
                 <!-- Number of Additional Instructors/Staff Required -->
                 <div class="form-group">
-                    <label for="silat13_additional_staff">Number of Additional Instructors/Staff Required:</label>
+                    <label for="silat13_additional_staff">Number of Additional Instructors/Staff Required: <span style="color:red;">*</span></label>
                     <input type="number" id="silat13_additional_staff" name="silat13_additional_staff" class="form-control" min="0">
                 </div>
              </div>
@@ -1518,8 +1518,8 @@ h4[onclick] {
 
             <h4 id="sectionCHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.3', 'sectionCHeader_1.3')">Section C: Needs Assessment 🔽</h4>
             <div id="sectionCContent_1.3" style="display: block;">
-                     <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
-                <h5>Control and Discipline</h5>
+                     <p>Tick the areas where you are having difficulties in your LGEA and Schools. <span style="color:red;">*</span></p>
+                <h5>Control and Discipline <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1530,7 +1530,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Handling cases of professional misconduct by teachers School</td><td><input type="radio" name="discipline_e_1.2"></td><td><input type="radio" name="discipline_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Cooperation and Team Work</h5>
+                <h5>Cooperation and Team Work <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1540,7 +1540,7 @@ h4[onclick] {
                         <tr><td>d.</td><td>Encouraging team work in the School</td><td><input type="radio" name="cooperation_d_1.2"></td><td><input type="radio" name="cooperation_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Communication in the School</h5>
+                <h5>Communication in the School <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1549,7 +1549,7 @@ h4[onclick] {
                         <tr><td>c.</td><td>Encouraging good communication skills among staff and learners</td><td><input type="radio" name="communication_c_1.2"></td><td><input type="radio" name="communication_c_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School and Community Relations</h5>
+                <h5>School and Community Relations <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1560,7 +1560,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.2"></td><td><input type="radio" name="community_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Supervision and Monitoring</h5>
+                <h5>Supervision and Monitoring <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1571,7 +1571,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2"></td><td><input type="radio" name="supervision_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School Records</h5>
+                <h5>School Records <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1586,7 +1586,7 @@ h4[onclick] {
                         <tr><td>i.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.2"></td><td><input type="radio" name="records_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Health and Hygiene</h5>
+                <h5>Health and Hygiene <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1604,9 +1604,9 @@ h4[onclick] {
             <h4 id="sectionDHeader_1.3" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionDContent_1.3', 'sectionDHeader_1.3')">Section D: School Infrastructure 🔽</h4>
             <div id="sectionDContent_1.3" style="display: block;">
 			
-			 <h4>1. INFRASTRUCTURE</h4>
+			 <h4>1. INFRASTRUCTURE <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>Signboard</label>
+                    <label>Signboard <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_good"> Available and in good condition</label>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good"> Available but not in good condition</label>
@@ -1614,57 +1614,57 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Teachers’ Furniture</label>
+                    <label class="furniture-label">Teachers’ Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Learners Furniture</label>
+                    <label class="furniture-label">Learners Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="learners_furniture_available">Number Available</label><input type="number" id="learners_available" name="learners_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="learners_furniture_good">Number in Good Condition</label><input type="number" id="learners_furniture_good" name="learners_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="learners_furniture_required">Additional Number Required</label><input type="number" id="learners_furniture_required" name="learners_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="learners_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="learners_available" name="learners_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="learners_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="learners_furniture_good" name="learners_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="learners_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="learners_furniture_required" name="learners_furniture_required" class="form-control"></div>
                     </div>
                 </div>
               
                 <div class="form-group">
-                    <label class="furniture-label">Classroom Condition</label>
+                    <label class="furniture-label">Classroom Condition <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available <span style="color:red;">*</span></label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation <span style="color:red;">*</span></label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required <span style="color:red;">*</span></label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
                     </div>
                     <div class="form-group">
-                        <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
+                        <label for="classroom_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                         <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4>2. FENCING <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>a. Shared Facility</label>
+                    <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
-                        <label>Is the school located within a school Complex?</label>
+                        <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="yes"> Yes</label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="no"> No</label>
                     </div>
                     <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex</label>
+                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
                         <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>b. Does the school have perimeter fence:</label>
+                    <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no"> No</label>
                 </div>
                 <div class="form-group">
-                    <label>If Yes, in what State?</label>
+                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
@@ -1672,17 +1672,17 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fence_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="fence_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School?</label>
+                    <label for="school_perimeter">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>Type of Toilet:</label>
+                    <label>Type of Toilet: <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="pit"> Pit</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="wc"> WC</label>
@@ -1691,18 +1691,18 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available <span style="color:red;">*</span></label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair <span style="color:red;">*</span></label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required <span style="color:red;">*</span></label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required <span style="color:red;">*</span></label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
                 </div>
                 <div class="form-group">
-                    <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="toilet_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4>4. SEPTIC TANK <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -1711,7 +1711,7 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4>5. SOURCE OF POTABLE WATER <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -1720,12 +1720,12 @@ h4[onclick] {
                         <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
                     </div>
                     <div class="form-group">
-                        <label for="water_recommendations">Recommendations</label>
+                        <label for="water_recommendations">Recommendations <span style="color:red;">*</span></label>
                         <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -1737,12 +1737,12 @@ h4[onclick] {
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
-                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc</label>
+                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
                         <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>7. Is your School regularly waterlogged when it rained?</h4>
+                <h4>7. Is your School regularly waterlogged when it rained? <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="waterlogged" value="yes"> Yes</label>
@@ -1750,10 +1750,10 @@ h4[onclick] {
                     </div>
                 </div>
 
-				<h4>8. Equipment/Facilities: List of Equipment/facility expected at the Centre </h4>
-                             <p>List of Equipment/facility expected at the Centre</p>
+				<h4>8. Equipment/Facilities: List of Equipment/facility expected at the Centre <span style="color:red;">*</span></h4>
+                             <p>List of Equipment/facility expected at the Centre <span style="color:red;">*</span></p>
                 <table class="data-table" width="100%">
-                    <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
+                    <thead><tr><th>s/n</th><th>Equipment/facility expected <span style="color:red;">*</span></th><th>Number Available in good condition <span style="color:red;">*</span></th><th>Number required <span style="color:red;">*</span></th></tr></thead>
                     <tbody>
                         <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
                         <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
@@ -1767,7 +1767,7 @@ h4[onclick] {
 			</div>	
 			
 			 <div class="form-group">
-                <label>Upload Photos (Max 10)</label>
+                <label>Upload Photos (Max 10) <span style="color:red;">*</span></label>
                 <input type="file" id="silat_1.3_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.3_uploadedFiles')">
                 <div id="silat_1.3_uploadedFiles" class="uploaded-files"></div>
             </div>
@@ -1798,14 +1798,14 @@ h4[onclick] {
             <h4 id="sectionAHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionAContent_1.4', 'sectionAHeader_1.4')">Section A: Bio Data 🔽</h4>
             <div id="sectionAContent_1.4" style="display: block;">
                 
-                <h5>Education Secretary Bio Data</h5>
+                <h5>Education Secretary Bio Data <span style="color:red;">*</span></h5>
                 <div class="form-group">
-                    <label>Gender:</label>
+                    <label>Gender: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="gender_1.4" value="male"> Male</label>
                     <label class="radio-inline"><input type="radio" name="gender_1.4" value="female"> Female</label>
                 </div>
                 <div class="form-group">
-                    <label>Marital Status:</label>
+                    <label>Marital Status: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="single"> Single</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="married"> Married</label>
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="divorced"> Divorced</label>
@@ -1813,7 +1813,7 @@ h4[onclick] {
                     <label class="radio-inline"><input type="radio" name="marital_status_1.4" value="widow_widower"> Widow/Widower</label>
                 </div>
                 <div class="form-group">
-                    <label>Highest Qualification:</label>
+                    <label>Highest Qualification: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="grade_ii"> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.4" value="b_ed"> B.Ed</label>
@@ -1825,7 +1825,7 @@ h4[onclick] {
                     <input type="text" name="highest_qualification_other_1.4" placeholder="Specify other">
                 </div>
                 <div class="form-group">
-                    <label>Years of Leadership Experience:</label>
+                    <label>Years of Leadership Experience: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="5_below"> 5 &amp; below</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="6_10"> 6-10</label>
                     <label class="radio-inline"><input type="radio" name="leadership_experience_1.4" value="11_15"> 11-15</label>
@@ -1850,11 +1850,11 @@ h4[onclick] {
                 </div>
 		
                 <div class="form-group">
-                    <label for="lgea_address_1.4">Address</label>
+                    <label for="lgea_address_1.4">Address <span style="color:red;">*</span></label>
                     <textarea id="lgea_address_1.4" name="lgea_address_1.4" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Location</label>
+                    <label>Location <span style="color:red;">*</span></label>
                     <div class="yes-no-group">
                         <label class="radio-inline"><input type="radio" name="location_1.4" value="urban"> Urban</label>
                         <label class="radio-inline"><input type="radio" name="location_1.4" value="rural"> Rural</label>
@@ -1862,17 +1862,17 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h5 style="margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid var(--lagos-yellow); padding-bottom: 5px;">MEMBERS OF STAFF</h5>
+                <h5 style="margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid var(--lagos-yellow); padding-bottom: 5px;">MEMBERS OF STAFF <span style="color:red;">*</span></h5>
 
                 <div class="form-group">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Staff in the Local Govt Educ Auth:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Staff in the Local Govt Educ Auth: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="staff_male_1.4">Male</label>
+                            <label for="staff_male_1.4">Male <span style="color:red;">*</span></label>
                             <input type="number" id="staff_male_1.4" name="staff_male_1.4" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="staff_female_1.4">Female</label>
+                            <label for="staff_female_1.4">Female <span style="color:red;">*</span></label>
                             <input type="number" id="staff_female_1.4" name="staff_female_1.4" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1883,14 +1883,14 @@ h4[onclick] {
                 </div>
 
                 <div class="form-group">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Staff that are Professional Teachers:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Staff that are Professional Teachers: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="teachers_male_1.4">Male</label>
+                            <label for="teachers_male_1.4">Male <span style="color:red;">*</span></label>
                             <input type="number" id="teachers_male_1.4" name="teachers_male_1.4" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="teachers_female_1.4">Female</label>
+                            <label for="teachers_female_1.4">Female <span style="color:red;">*</span></label>
                             <input type="number" id="teachers_female_1.4" name="teachers_female_1.4" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1901,14 +1901,14 @@ h4[onclick] {
                 </div>
 
                 <div class="form-group">
-                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-teaching Staff at the Local Govt Educ Auth:</label>
+                    <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-teaching Staff at the Local Govt Educ Auth: <span style="color:red;">*</span></label>
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
-                            <label for="non_teaching_male_1.4">Male</label>
+                            <label for="non_teaching_male_1.4">Male <span style="color:red;">*</span></label>
                             <input type="number" id="non_teaching_male_1.4" name="non_teaching_male_1.4" class="form-control" min="0" placeholder="Male">
                         </div>
                         <div class="form-group">
-                            <label for="non_teaching_female_1.4">Female</label>
+                            <label for="non_teaching_female_1.4">Female <span style="color:red;">*</span></label>
                             <input type="number" id="non_teaching_female_1.4" name="non_teaching_female_1.4" class="form-control" min="0" placeholder="Female">
                         </div>
                         <div class="form-group">
@@ -1921,8 +1921,8 @@ h4[onclick] {
 
             <h4 id="sectionCHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.4', 'sectionCHeader_1.4')">Section C: Needs Assessment 🔽</h4>
             <div id="sectionCContent_1.4" style="display: block;">
-                <p>Tick the areas where you are having difficulties in your Local Govt Educ Auth and Schools.</p>
-                <h5>Control and Discipline</h5>
+                <p>Tick the areas where you are having difficulties in your Local Govt Educ Auth and Schools. <span style="color:red;">*</span></p>
+                <h5>Control and Discipline <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1933,7 +1933,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Handling cases of professional misconduct by Staff in the Local Govt Educ Auth and Schools</td><td><input type="radio" name="discipline_e_1.4"></td><td><input type="radio" name="discipline_e_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Cooperation and Team Work</h5>
+                <h5>Cooperation and Team Work <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1943,7 +1943,7 @@ h4[onclick] {
                         <tr><td>d.</td><td>Encouraging team work in the Local Govt Educ Auth and Schools</td><td><input type="radio" name="cooperation_d_1.4"></td><td><input type="radio" name="cooperation_d_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Communication in the Local Govt Educ Auth and Schools</h5>
+                <h5>Communication in the Local Govt Educ Auth and Schools <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1952,7 +1952,7 @@ h4[onclick] {
                         <tr><td>c.</td><td>Encouraging good communication skills among staff and Schools</td><td><input type="radio" name="communication_c_1.4"></td><td><input type="radio" name="communication_c_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Local Govt Educ Auth, Schools and Community Relations</h5>
+                <h5>Local Govt Educ Auth, Schools and Community Relations <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1963,7 +1963,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.4"></td><td><input type="radio" name="community_e_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Supervision and Monitoring</h5>
+                <h5>Supervision and Monitoring <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1973,7 +1973,7 @@ h4[onclick] {
                         <tr><td>d.</td><td>Supervision of activities at the Local Govt Educ Auth and Schools</td><td><input type="radio" name="supervision_d_1.4"></td><td><input type="radio" name="supervision_d_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Local Govt Educ Auth Records</h5>
+                <h5>Local Govt Educ Auth Records <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1984,7 +1984,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.4"></td><td><input type="radio" name="records_e_1.4"></td></tr>
                     </tbody>
                 </table>
-                <h5>Health and Hygiene</h5>
+                <h5>Health and Hygiene <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -1999,22 +1999,22 @@ h4[onclick] {
 
             <h4 id="sectionDHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionDContent_1.4', 'sectionDHeader_1.4')">Section D: School Infrastructure 🔽</h4>
             <div id="sectionDContent_1.4" style="display: block;">
-                <h5>INFRASTRUCTURE</h5>
+                <h5>INFRASTRUCTURE <span style="color:red;">*</span></h5>
                 <div class="form-group">
-                    <label>Signboard:</label>
+                    <label>Signboard: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_good"> Available and in good condition</label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="available_not_good"> Available but not in good condition</label>
                     <label class="radio-inline"><input type="radio" name="signboard_1.4" value="not_available"> Not Available</label>
                 </div>
                 <div class="form-group">
-                    <label>Description of the External Features of the Local Govt Educ Auth Structure:</label>
+                    <label>Description of the External Features of the Local Govt Educ Auth Structure: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="good"> In Good Condition</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="minor_renovation"> Need Minor Renovation</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="major_renovation"> Need Major Renovation</label>
                     <label class="radio-inline"><input type="radio" name="structure_condition_1.4" value="complete_reconstruction"> Need Complete Reconstruction</label>
                 </div>
                 <div class="form-group">
-                    <label>Available Offices:</label>
+                    <label>Available Offices: <span style="color:red;">*</span></label>
                     <input type="number" name="offices_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
                     <input type="number" name="offices_minor_repairs_1.4" placeholder="Need Minor Repairs" class="form-control">
                     <input type="number" name="offices_major_repairs_1.4" placeholder="Needs Major Repairs" class="form-control">
@@ -2022,18 +2022,18 @@ h4[onclick] {
                     <input type="number" name="offices_additional_required_1.4" placeholder="Number of Additional offices required" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="repair_description_1.4">Briefly, describe the type of repair/construction needed:</label>
+                    <label for="repair_description_1.4">Briefly, describe the type of repair/construction needed: <span style="color:red;">*</span></label>
                     <textarea id="repair_description_1.4" name="repair_description_1.4" class="form-control"></textarea>
                 </div>
-                <h5>FURNITURE</h5>
+                <h5>FURNITURE <span style="color:red;">*</span></h5>
                 <div class="form-group">
-                    <label>Staff’ Furniture:</label>
+                    <label>Staff’ Furniture: <span style="color:red;">*</span></label>
                     <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control">
                     <input type="number" name="staff_furniture_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
                     <input type="number" name="staff_furniture_required_1.4" placeholder="Additional Number Required" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Condition of Offices:</label>
+                    <label>Condition of Offices: <span style="color:red;">*</span></label>
                     <input type="number" name="offices_available_1.4" placeholder="Number Available" class="form-control">
                     <input type="number" name="offices_good_condition_2_1.4" placeholder="Number in Good Condition" class="form-control">
                     <input type="number" name="offices_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control">
@@ -2041,42 +2041,42 @@ h4[onclick] {
                     <input type="number" name="offices_additional_required_2_1.4" placeholder="Number of Additional Classroom Required" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="repair_description_2_1.4">Briefly, describe the type of repair needed:</label>
+                    <label for="repair_description_2_1.4">Briefly, describe the type of repair needed: <span style="color:red;">*</span></label>
                     <textarea id="repair_description_2_1.4" name="repair_description_2_1.4" class="form-control"></textarea>
                 </div>
-                <h5>FENCING</h5>
+                <h5>FENCING <span style="color:red;">*</span></h5>
                 <div class="form-group">
-                    <label>a. Shared Facility</label>
-                    <p>Is the Local Govt Educ Auth located within a school Complex?</p>
+                    <label>a. Shared Facility <span style="color:red;">*</span></label>
+                    <p>Is the Local Govt Educ Auth located within a school Complex? <span style="color:red;">*</span></p>
                     <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no"> No</label>
                     <div class="form-group">
-                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex</label>
+                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex <span style="color:red;">*</span></label>
                         <textarea id="shared_facility_schools_1.4" name="shared_facility_schools_1.4" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>b. Does the Local Govt Educ Auth have perimeter fence:</label>
+                    <label>b. Does the Local Govt Educ Auth have perimeter fence: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="no"> No</label>
                 </div>
                 <div class="form-group">
-                    <label>If Yes, in what State?</label>
+                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="good"> In Good Condition</label>
                     <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="minor_repair"> Need Minor Repair</label>
                     <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="major_repair"> Need Major Repair</label>
                 </div>
                 <div class="form-group">
-                    <label for="fence_repair_description_1.4">Briefly, describe the type of repair needed</label>
+                    <label for="fence_repair_description_1.4">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="fence_repair_description_1.4" name="fence_repair_description_1.4" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="lgea_perimeter_1.4">If No, what is the perimeter of the Local Govt Educ Auth?</label>
+                    <label for="lgea_perimeter_1.4">If No, what is the perimeter of the Local Govt Educ Auth? <span style="color:red;">*</span></label>
                     <input type="text" id="lgea_perimeter_1.4" name="lgea_perimeter_1.4" class="form-control">
                 </div>
-                <h5>TOILET FACILITIES</h5>
+                <h5>TOILET FACILITIES <span style="color:red;">*</span></h5>
                 <div class="form-group">
-                    <label>Type of Toilet:</label>
+                    <label>Type of Toilet: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="pit"> Pit</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="wc"> WC</label>
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="squat_water_flush"> Squat Water flush</label>
@@ -2090,16 +2090,16 @@ h4[onclick] {
                     <input type="number" name="toilet_additional_required_1.4" placeholder="Number of Additional Cubicle Toilet Required" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="toilet_repair_description_1.4">Briefly, describe the type of repair needed</label>
+                    <label for="toilet_repair_description_1.4">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="toilet_repair_description_1.4" name="toilet_repair_description_1.4" class="form-control"></textarea>
                 </div>
-                <h5>SEPTIC TANK</h5>
+                <h5>SEPTIC TANK <span style="color:red;">*</span></h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="available"> Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="not_available"> Not Available</label>
                     <label class="radio-inline"><input type="radio" name="septic_tank_1.4" value="needs_evacuation"> Needs Evacuation</label>
                 </div>
-                <h5>SOURCE OF POTABLE WATER</h5>
+                <h5>SOURCE OF POTABLE WATER <span style="color:red;">*</span></h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="none"> None</label>
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="well"> Well</label>
@@ -2107,10 +2107,10 @@ h4[onclick] {
                     <label class="radio-inline"><input type="radio" name="water_source_1.4" value="borehole"> Borehole</label>
                 </div>
                 <div class="form-group">
-                    <label for="water_recommendations_1.4">Recommendations</label>
+                    <label for="water_recommendations_1.4">Recommendations <span style="color:red;">*</span></label>
                     <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control"></textarea>
                 </div>
-                <h5>SOURCE OF ELECTRICITY</h5>
+                <h5>SOURCE OF ELECTRICITY <span style="color:red;">*</span></h5>
                 <div class="form-group">
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
@@ -2121,25 +2121,25 @@ h4[onclick] {
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                 </div>
                 <div class="form-group">
-                    <label for="electricity_additional_info_1.4">Additional information e.g., amount involved, etc</label>
+                    <label for="electricity_additional_info_1.4">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
                     <textarea id="electricity_additional_info_1.4" name="electricity_additional_info_1.4" class="form-control"></textarea>
                 </div>
-                <h5>MONITORING VEHICLES</h5>
+                <h5>MONITORING VEHICLES <span style="color:red;">*</span></h5>
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="available"> Available</label>
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="not_available"> Not Available</label>
                     <input type="number" name="monitoring_vehicles_needed_1.4" placeholder="Number Needed" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Is your Local Govt Educ Auth regularly waterlogged when it rained?</label>
+                    <label>Is your Local Govt Educ Auth regularly waterlogged when it rained? <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="waterlogged_1.4" value="no"> No</label>
                 </div>
 				
-                <h5>EQUIPMENT/FACILITIES</h5>
-                <p>List of Equipment/facility expected at the Local Govt Educ Auth</p>
+                <h5>EQUIPMENT/FACILITIES <span style="color:red;">*</span></h5>
+                <p>List of Equipment/facility expected at the Local Govt Educ Auth <span style="color:red;">*</span></p>
                 <table class="data-table" width="100%">
-                    <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
+                    <thead><tr><th>s/n</th><th>Equipment/facility expected <span style="color:red;">*</span></th><th>Number Available in good condition <span style="color:red;">*</span></th><th>Number required <span style="color:red;">*</span></th></tr></thead>
                     <tbody>
                         <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
                         <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
@@ -2194,7 +2194,7 @@ h4[onclick] {
 	    <div id="sectionAContent_1.1" style="display: block;">
        
          
-                <h4>Head Teacher Bio Data</h4>
+                <h4>Head Teacher Bio Data <span style="color:red;">*</span></h4>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
@@ -2202,7 +2202,7 @@ h4[onclick] {
                     </div>
 				</div>
                     <div class="form-group">
-                        <label for="silnat_a_ht_contact">Contact Number</label>
+                        <label for="silnat_a_ht_contact">Contact Number <span style="color:red;">*</span></label>
                         <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
                     </div>
                 
@@ -2231,7 +2231,7 @@ h4[onclick] {
                     </select>
                 </div>
                 <div class="form-group conditional-sub-group for-silnat_a_ht_highest_qualification_others" style="display:none;">
-                    <label for="silnat_a_ht_highest_qualification_other">Specify Other Qualification</label>
+                    <label for="silnat_a_ht_highest_qualification_other">Specify Other Qualification <span style="color:red;">*</span></label>
                     <input type="text" id="silnat_a_ht_highest_qualification_other" name="silnat_a_ht_highest_qualification_other" class="form-control">
                 </div>
                 <div class="form-group">
@@ -2277,7 +2277,7 @@ h4[onclick] {
             <div class="form-row">
                
                     <div class="form-group">
-                    <label for="silnat_location_common">Location</label>
+                    <label for="silnat_location_common">Location <span style="color:red;">*</span></label>
                     <select id="silnat_location_common" name="silnat_b_location_common" class="form-control">
                         <option value="">Select Location (Optional)</option>
                         <option value="urban">Urban</option>
@@ -2289,35 +2289,35 @@ h4[onclick] {
            
 			  <div class="form-row">
                                 <div class="form-group">
-                                    <label for="latitude">Latitude</label>
+                                    <label for="latitude">Latitude <span style="color:red;">*</span></label>
                                     <input type="number" id="latitude" class="form-control" step="any" readonly="">
                                     <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
                                 </div>
                                 <div class="form-group">
-                                    <label for="longitude">Longitude</label>
+                                    <label for="longitude">Longitude <span style="color:red;">*</span></label>
                                     <input type="number" id="longitude" class="form-control" step="any" readonly="">
                                 </div>
                             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="silnat_assemblyDevotion_startTime">Assembly Devotion Start Time</label>
+                    <label for="silnat_assemblyDevotion_startTime">Assembly Devotion Start Time <span style="color:red;">*</span></label>
                     <input type="time" id="silnat_assemblyDevotion_startTime" name="silnat_assemblyDevotion_startTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
                 </div>
                 <div class="form-group">
-                    <label for="silnat_assemblyDevotion_endTime">Assembly Devotion End Time</label>
+                    <label for="silnat_assemblyDevotion_endTime">Assembly Devotion End Time <span style="color:red;">*</span></label>
                     <input type="time" id="silnat_assemblyDevotion_endTime" name="silnat_assemblyDevotion_endTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
                 </div>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Teachers in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Teachers in the School: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_teachers_male">Male</label>
+                        <label for="silnat_teachers_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_teachers_female">Female</label>
+                        <label for="silnat_teachers_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2328,14 +2328,14 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_non_teaching_male">Male</label>
+                        <label for="silnat_non_teaching_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_non_teaching_female">Female</label>
+                        <label for="silnat_non_teaching_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2348,14 +2348,14 @@ h4[onclick] {
            
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">ECCDE:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">ECCDE: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_pupils_eccde_male">Male</label>
+                        <label for="silnat_pupils_eccde_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_eccde_male" name="silnat_pupils_eccde_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_pupils_eccde_female">Female</label>
+                        <label for="silnat_pupils_eccde_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_eccde_female" name="silnat_pupils_eccde_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2366,14 +2366,14 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Primary:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Primary: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_pupils_primary_male">Male</label>
+                        <label for="silnat_pupils_primary_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_primary_male" name="silnat_pupils_primary_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_pupils_primary_female">Female</label>
+                        <label for="silnat_pupils_primary_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_primary_female" name="silnat_pupils_primary_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2384,14 +2384,14 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Special Learners:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Special Learners: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_pupils_special_male">Male</label>
+                        <label for="silnat_pupils_special_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_special_male" name="silnat_pupils_special_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_pupils_special_female">Female</label>
+                        <label for="silnat_pupils_special_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_special_female" name="silnat_pupils_special_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2402,14 +2402,14 @@ h4[onclick] {
             </div>
 			
 			 <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Pupils in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Pupils in the School: <span style="color:red;">*</span></label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
-                        <label for="silnat_pupils_male">Male</label>
+                        <label for="silnat_pupils_male">Male <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_male" name="silnat_pupils_male" class="form-control" min="0" placeholder="Male">
                     </div>
                     <div class="form-group">
-                        <label for="silnat_pupils_female">Female</label>
+                        <label for="silnat_pupils_female">Female <span style="color:red;">*</span></label>
                         <input type="number" id="silnat_pupils_female" name="silnat_pupils_female" class="form-control" min="0" placeholder="Female">
                     </div>
                     <div class="form-group">
@@ -2420,7 +2420,7 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio:</label>
+                <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio: <span style="color:red;">*</span></label>
                 <div style="display: flex; align-items: center;">
                     <input type="number" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" min="0" step="any" placeholder="Enter ratio value" style="flex-grow: 1;">
                     <span style="margin-left: 8px; font-size: 1em; flex-shrink: 0;">%</span>
@@ -2428,17 +2428,17 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_additional_staff_required">Number of Additional Teachers/Staff Required:</label>
+                <label for="silnat_additional_staff_required">Number of Additional Teachers/Staff Required: <span style="color:red;">*</span></label>
                 <input type="number" id="silnat_additional_staff_required" name="silnat_additional_staff_required" class="form-control" min="0" placeholder="Enter number">
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_multigrade_classes">Number of Classes operated as Multigrade:</label>
+                <label for="silnat_multigrade_classes">Number of Classes operated as Multigrade: <span style="color:red;">*</span></label>
                 <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number">
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label>Reason(s) for operating the classes as Multigrade:</label>
+                <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                 <div>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
@@ -2449,8 +2449,8 @@ h4[onclick] {
 
             <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.1', 'sectionCHeader_1.1')">Section C: Needs Assessment 🔽</h4>
             <div id="sectionCContent_1.1" style="display: block;">
-                     <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
-                <h5>Control and Discipline</h5>
+                     <p>Tick the areas where you are having difficulties in your LGEA and Schools. <span style="color:red;">*</span></p>
+                <h5>Control and Discipline <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2461,7 +2461,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Handling cases of professional misconduct by teachers School</td><td><input type="radio" name="discipline_e_1.2"></td><td><input type="radio" name="discipline_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Cooperation and Team Work</h5>
+                <h5>Cooperation and Team Work <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2471,7 +2471,7 @@ h4[onclick] {
                         <tr><td>d.</td><td>Encouraging team work in the School</td><td><input type="radio" name="cooperation_d_1.2"></td><td><input type="radio" name="cooperation_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Communication in the School</h5>
+                <h5>Communication in the School <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2480,7 +2480,7 @@ h4[onclick] {
                         <tr><td>c.</td><td>Encouraging good communication skills among staff and learners</td><td><input type="radio" name="communication_c_1.2"></td><td><input type="radio" name="communication_c_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School and Community Relations</h5>
+                <h5>School and Community Relations <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2491,7 +2491,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.2"></td><td><input type="radio" name="community_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Supervision and Monitoring</h5>
+                <h5>Supervision and Monitoring <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2502,7 +2502,7 @@ h4[onclick] {
                         <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2"></td><td><input type="radio" name="supervision_d_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>School Records</h5>
+                <h5>School Records <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2517,7 +2517,7 @@ h4[onclick] {
                         <tr><td>i.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.2"></td><td><input type="radio" name="records_e_1.2"></td></tr>
                     </tbody>
                 </table>
-                <h5>Health and Hygiene</h5>
+                <h5>Health and Hygiene <span style="color:red;">*</span></h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
@@ -2534,9 +2534,9 @@ h4[onclick] {
 
             <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionDContent_1.1', 'sectionDHeader_1.1')">Section D: School Infrastructure 🔽</h4>
             <div id="sectionDContent_1.1" style="display: block;">
-                <h4>1. INFRASTRUCTURE</h4>
+                <h4>1. INFRASTRUCTURE <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>Signboard</label>
+                    <label>Signboard <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_good"> Available and in good condition</label>
                         <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good"> Available but not in good condition</label>
@@ -2544,64 +2544,64 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Teachers’ Furniture</label>
+                    <label class="furniture-label">Teachers’ Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">ECCDE Furniture</label>
+                    <label class="furniture-label">ECCDE Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Primary Furniture</label>
+                    <label class="furniture-label">Primary Furniture <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_available">Number Available <span style="color:red;">*</span></label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required <span style="color:red;">*</span></label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Classroom Condition</label>
+                    <label class="furniture-label">Classroom Condition <span style="color:red;">*</span></label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available <span style="color:red;">*</span></label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition <span style="color:red;">*</span></label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation <span style="color:red;">*</span></label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required <span style="color:red;">*</span></label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
                     </div>
                     <div class="form-group">
-                        <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
+                        <label for="classroom_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                         <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4>2. FENCING <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>a. Shared Facility</label>
+                    <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
-                        <label>Is the school located within a school Complex?</label>
+                        <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="yes"> Yes</label>
                         <label class="radio-inline"><input type="radio" name="shared_facility" value="no"> No</label>
                     </div>
                     <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex</label>
+                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
                         <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>b. Does the school have perimeter fence:</label>
+                    <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes"> Yes</label>
                     <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no"> No</label>
                 </div>
                 <div class="form-group">
-                    <label>If Yes, in what State?</label>
+                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
@@ -2609,17 +2609,17 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fence_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="fence_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School?</label>
+                    <label for="school_perimeter">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
                     <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
                 <div class="form-group">
-                    <label>Type of Toilet:</label>
+                    <label>Type of Toilet: <span style="color:red;">*</span></label>
                     <div>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="pit"> Pit</label>
                         <label class="radio-inline"><input type="radio" name="toilet_type" value="wc"> WC</label>
@@ -2628,18 +2628,18 @@ h4[onclick] {
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available <span style="color:red;">*</span></label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair <span style="color:red;">*</span></label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair <span style="color:red;">*</span></label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required <span style="color:red;">*</span></label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required <span style="color:red;">*</span></label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
                 </div>
                 <div class="form-group">
-                    <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
+                    <label for="toilet_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
                     <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4>4. SEPTIC TANK <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
@@ -2648,7 +2648,7 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4>5. SOURCE OF POTABLE WATER <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
@@ -2657,12 +2657,12 @@ h4[onclick] {
                         <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
                     </div>
                     <div class="form-group">
-                        <label for="water_recommendations">Recommendations</label>
+                        <label for="water_recommendations">Recommendations <span style="color:red;">*</span></label>
                         <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
@@ -2674,12 +2674,12 @@ h4[onclick] {
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
-                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc</label>
+                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
                         <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>7. Is your School regularly waterlogged when it rained?</h4>
+                <h4>7. Is your School regularly waterlogged when it rained? <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
                         <label class="radio-inline"><input type="radio" name="waterlogged" value="yes"> Yes</label>
@@ -2691,7 +2691,7 @@ h4[onclick] {
             </div>
 		
 			<div class="form-group">
-                <label>Upload Photos (Max 10)</label>
+                <label>Upload Photos (Max 10) <span style="color:red;">*</span></label>
                 <input type="file" id="silat_1.1_fileInput" multiple="" accept="image/*" class="form-control" onchange="handleFiles(this.files, 'silat_1.1_uploadedFiles')">
                 <div id="silat_1.1_uploadedFiles" class="uploaded-files"></div>
             </div>
@@ -2723,7 +2723,7 @@ h4[onclick] {
             <div id="tcmatsSectionA" style="display: block;">
             <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
     <div class="form-group">
-        <label>Institution:</label>
+        <label>Institution: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_institution" value="regular_school"> Regular School</label>
             <label class="radio-inline"><input type="radio" name="tcmats_institution" value="special_school"> Special School</label>
@@ -2731,19 +2731,19 @@ h4[onclick] {
         </div>
     </div>
                     <div class="form-group">
-                        <label for="tcmats_lgea">LGEA:</label>
+                        <label for="tcmats_lgea">LGEA: <span style="color:red;">*</span></label>
                         <select id="tcmats_lgea" name="tcmats_lgea" class="form-control" onchange="populateTcmatsSchoolDropdown()">
                             <option value="">Select LGEA</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tcmats_schoolName">Name of School</label>
+                        <label for="tcmats_schoolName">Name of School <span style="color:red;">*</span></label>
                         <select id="tcmats_schoolName" name="tcmats_schoolName" class="form-control">
                             <option value="">Select LGEA first</option>
                         </select>
                     </div>
     <div class="form-group">
-        <label>Location:</label>
+        <label>Location: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_location" value="urban"> Urban</label>
             <label class="radio-inline"><input type="radio" name="tcmats_location" value="rural"> Rural</label>
@@ -2751,7 +2751,7 @@ h4[onclick] {
     </div>
     	
 	 <div class="form-group">
-                    <label for="tcmats_highestQualificaton">Highest Qualification:</label>
+                    <label for="tcmats_highestQualificaton">Highest Qualification: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="grade_ii"> Grade II</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="highest_qualification_1.2" value="b_ed"> B.Ed</label>
@@ -2764,41 +2764,41 @@ h4[onclick] {
                 </div>
 	
     <div class="form-group">
-        <label for="tcmats_areaOfSpecialization">Area of Specialization:</label>
+        <label for="tcmats_areaOfSpecialization">Area of Specialization: <span style="color:red;">*</span></label>
         <input type="text" id="tcmats_areaOfSpecialization" name="tcmats_areaOfSpecialization" class="form-control">
     </div>
     <div class="form-group">
-        <label for="tcmats_subjectsTaught">Subject(s) Taught:</label>
+        <label for="tcmats_subjectsTaught">Subject(s) Taught: <span style="color:red;">*</span></label>
         <input type="text" id="tcmats_subjectsTaught" name="tcmats_subjectsTaught" class="form-control">
     </div>
     <div class="form-group">
-        <label for="tcmats_periodsPerWeek">No of periods per week:</label>
+        <label for="tcmats_periodsPerWeek">No of periods per week: <span style="color:red;">*</span></label>
         <input type="number" id="tcmats_periodsPerWeek" name="tcmats_periodsPerWeek" class="form-control">
     </div>
     <div class="form-group">
-        <label for="tcmats_class">Class:</label>
+        <label for="tcmats_class">Class: <span style="color:red;">*</span></label>
         <input type="text" id="tcmats_class" name="tcmats_class" class="form-control">
     </div>
     <div class="form-group">
-        <label>Class Description:</label>
+        <label>Class Description: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_class_description" value="single_grade"> Single Grade</label>
             <label class="radio-inline"><input type="radio" name="tcmats_class_description" value="multi_grade"> Multi-grade</label>
         </div>
     </div>
     <div class="form-group">
-        <label for="tcmats_pupilsInClass">No. of Pupils in Class</label>
+        <label for="tcmats_pupilsInClass">No. of Pupils in Class <span style="color:red;">*</span></label>
         <input type="number" id="tcmats_pupilsInClass" name="tcmats_pupilsInClass" class="form-control">
     </div>
     <div class="form-group">
-        <label>Gender:</label>
+        <label>Gender: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_gender" value="male"> Male</label>
             <label class="radio-inline"><input type="radio" name="tcmats_gender" value="female"> Female</label>
         </div>
     </div>
     <div class="form-group">
-        <label>Years of Teaching Experience:</label>
+        <label>Years of Teaching Experience: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_teaching_experience" value="0-5"> 0-5</label>
             <label class="radio-inline"><input type="radio" name="tcmats_teaching_experience" value="6-10"> 6-10</label>
@@ -2811,10 +2811,10 @@ h4[onclick] {
 </div>
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionB', 'tcmatsSectionBHeader')">SECTION B: <span id="tcmatsSectionBHeader">🔽</span></h3>
             <div id="tcmatsSectionB" style="display: block;">
-                <p>Section B contains items on Teachers’ Needs Assessment. Kindly respond by ticking (√) the appropriate box</p>
-                <p>Which of the following are you having difficulty in your job?</p>
+                <p>Section B contains items on Teachers’ Needs Assessment. Kindly respond by ticking (√) the appropriate box <span style="color:red;">*</span></p>
+                <p>Which of the following are you having difficulty in your job? <span style="color:red;">*</span></p>
 
-                <h4 style="margin-top: 20px;">1. Lesson Preparation and delivery</h4>
+                <h4 style="margin-top: 20px;">1. Lesson Preparation and delivery <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2836,7 +2836,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">2. Mastery of Subject Matter</h4>
+                <h4 style="margin-top: 20px;">2. Mastery of Subject Matter <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2858,7 +2858,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">3. Pedagogy</h4>
+                <h4 style="margin-top: 20px;">3. Pedagogy <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2880,7 +2880,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">4. Classroom Management</h4>
+                <h4 style="margin-top: 20px;">4. Classroom Management <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2906,7 +2906,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">5. Instructional Materials</h4>
+                <h4 style="margin-top: 20px;">5. Instructional Materials <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2925,7 +2925,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">6. Evaluation of Learning Outcomes</h4>
+                <h4 style="margin-top: 20px;">6. Evaluation of Learning Outcomes <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2944,7 +2944,7 @@ h4[onclick] {
                     </tbody>
                 </table>
 
-                <h4 style="margin-top: 20px;">7. Information and Communication Technology</h4>
+                <h4 style="margin-top: 20px;">7. Information and Communication Technology <span style="color:red;">*</span></h4>
                 <table class="data-table" width="100%">
                     <thead>
                         <tr>
@@ -2966,9 +2966,9 @@ h4[onclick] {
             </div>
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionC', 'tcmatsSectionCHeader')">SECTION C: Subject Area Difficulties <span id="tcmatsSectionCHeader">🔽</span></h3>
             <div id="tcmatsSectionC" style="display: block;">
-                <p>In your subject area(s), kindly identify some topics that are difficult to teach. Mention 2-5.</p>
+                <p>In your subject area(s), kindly identify some topics that are difficult to teach. Mention 2-5. <span style="color:red;">*</span></p>
                 <div class="form-group">
-                    <label for="tcmats_difficult_topics">Difficult Topics</label>
+                    <label for="tcmats_difficult_topics">Difficult Topics <span style="color:red;">*</span></label>
                     <textarea id="tcmats_difficult_topics" name="tcmats_difficult_topics" class="form-control" rows="5"></textarea>
                 </div>
             </div>
@@ -2992,69 +2992,69 @@ h4[onclick] {
     <div id="loriSectionAContent" style="display: block;">
         <table class="data-table" width="100%">
             <tbody><tr>
-                <td>LGEA</td>
+                <td>LGEA <span style="color:red;">*</span></td>
                 <td><select id="lori_lgea" name="lori_lgea" class="form-control" onchange="populateLoriSchoolDropdown()"></select></td>
-                <td>School Name</td>
+                <td>School Name <span style="color:red;">*</span></td>
                 <td><select id="lori_school_name" name="lori_school_name" class="form-control"></select></td>
             </tr>
             <tr>
-                <td>Location</td>
+                <td>Location <span style="color:red;">*</span></td>
                 <td>
                     <label class="radio-inline"><input type="radio" name="lori_location" value="urban"> Urban</label>
                     <label class="radio-inline"><input type="radio" name="lori_location" value="rural"> Rural</label>
                 </td>
-                <td>School Code from Annual School Census</td>
+                <td>School Code from Annual School Census <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_school_code" class="form-control"></td>
             </tr>
             <tr>
-                <td>Name of teacher observed</td>
+                <td>Name of teacher observed <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_teacher_name" class="form-control"></td>
-                <td>Teacher’s TRCN No.</td>
+                <td>Teacher’s TRCN No. <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_trcn_no" class="form-control"></td>
             </tr>
             <tr>
-                <td>Teacher’s gender</td>
+                <td>Teacher’s gender <span style="color:red;">*</span></td>
                 <td>
                     <label class="radio-inline"><input type="radio" name="lori_teacher_gender" value="male"> Male</label>
                     <label class="radio-inline"><input type="radio" name="lori_teacher_gender" value="female"> Female</label>
                 </td>
-                <td>Teacher’s phone number</td>
+                <td>Teacher’s phone number <span style="color:red;">*</span></td>
                 <td><input type="tel" name="lori_teacher_phone" class="form-control"></td>
             </tr>
             <tr>
-                <td>Number of pupils</td>
+                <td>Number of pupils <span style="color:red;">*</span></td>
                 <td colspan="3">
-                    <label for="lori_pupils_female" class="radio-inline">Female</label>
+                    <label for="lori_pupils_female" class="radio-inline">Female <span style="color:red;">*</span></label>
                     <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" style="width: 80px; display: inline-block;">
-                    <label for="lori_pupils_male" class="radio-inline">Male</label>
+                    <label for="lori_pupils_male" class="radio-inline">Male <span style="color:red;">*</span></label>
                     <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" style="width: 80px; display: inline-block;">
                     <label for="lori_pupils_total" class="radio-inline">Total</label>
                     <input type="number" id="lori_pupils_total" name="lori_pupils_total" class="form-control" style="width: 80px; display: inline-block;" readonly="">
                 </td>
             </tr>
             <tr>
-                <td>Teacher/Class observed</td>
+                <td>Teacher/Class observed <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_teacher_class_observed" class="form-control"></td>
-                <td>Duration of Lesson</td>
+                <td>Duration of Lesson <span style="color:red;">*</span></td>
                 <td>
                     Start Time: <input type="time" name="lori_lesson_start_time" class="form-control" style="width: 150px; display: inline-block;">
                     End Time: <input type="time" name="lori_lesson_end_time" class="form-control" style="width: 150px; display: inline-block;">
                 </td>
             </tr>
             <tr>
-                <td>Subject observed</td>
+                <td>Subject observed <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_subject_observed" class="form-control"></td>
-                <td>Years of Teaching Experience</td>
+                <td>Years of Teaching Experience <span style="color:red;">*</span></td>
                 <td><input type="number" name="lori_years_experience" class="form-control"></td>
             </tr>
             <tr>
-                <td>Date Lesson is Observed</td>
+                <td>Date Lesson is Observed <span style="color:red;">*</span></td>
                 <td><input type="date" name="lori_observation_date" class="form-control"></td>
-                <td>Term</td>
+                <td>Term <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_term" class="form-control"></td>
             </tr>
             <tr>
-                <td>Age</td>
+                <td>Age <span style="color:red;">*</span></td>
                 <td colspan="3">
                     <label class="radio-inline"><input type="radio" name="lori_age" value="20-34"> 20-34</label>
                     <label class="radio-inline"><input type="radio" name="lori_age" value="35-44"> 35-44</label>
@@ -3063,7 +3063,7 @@ h4[onclick] {
                 </td>
             </tr>
             <tr>
-                <td>Highest Teaching Qualification</td>
+                <td>Highest Teaching Qualification <span style="color:red;">*</span></td>
                 <td colspan="3">
                     <label class="radio-inline"><input type="radio" name="lori_qualification" value="nce"> NCE</label>
                     <label class="radio-inline"><input type="radio" name="lori_qualification" value="b.ed"> B.Ed Equivalent</label>
@@ -3076,8 +3076,8 @@ h4[onclick] {
     </div>
     <h4 id="loriSectionBHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('loriSectionBContent', 'loriSectionBHeader')">Section B 🔽</h4>
     <div id="loriSectionBContent" style="display: block;">
-        <p>Please assess the aspect of the lesson by placing a tick in the appropriate column on the rating scale</p>
-        <p>Rating Scale Descriptors 1: (poor); 2 (Fair) 3(Good); 4(Very Good); 5 (Excellent)</p>
+        <p>Please assess the aspect of the lesson by placing a tick in the appropriate column on the rating scale <span style="color:red;">*</span></p>
+        <p>Rating Scale Descriptors 1: (poor); 2 (Fair) 3(Good); 4(Very Good); 5 (Excellent) <span style="color:red;">*</span></p>
         <table class="data-table" width="100%">
             <thead>
                 <tr>
@@ -3460,7 +3460,7 @@ h4[onclick] {
                 <div id="voicesSectionA" style="display: block;">
                     <div class="form-group">
 					
-			     <label>Institution:</label>
+			     <label>Institution: <span style="color:red;">*</span></label>
 		<div>
             <label class="radio-inline"><input type="radio" name="voices_institution" value="regular_school"> Regular School</label>
             <label class="radio-inline"><input type="radio" name="voices_institution" value="special_school"> Special School</label>
@@ -3468,19 +3468,19 @@ h4[onclick] {
         </div>
     </div>
 	<div class="form-group">
-                        <label for="voices_lgea">LGEA:</label>
+                        <label for="voices_lgea">LGEA: <span style="color:red;">*</span></label>
                         <select id="voices_lgea" name="voices_lgea" class="form-control" onchange="populateVoicesSchoolDropdown()">
                             <option value="">Select LGEA</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="voices_schoolName">Name of School</label>
+                        <label for="voices_schoolName">Name of School <span style="color:red;">*</span></label>
                         <select id="voices_schoolName" name="voices_schoolName" class="form-control">
                             <option value="">Select LGEA first</option>
                         </select>
                     </div>
     <div class="form-group">
-        <label>Location:</label>
+        <label>Location: <span style="color:red;">*</span></label>
         <div>
             <label class="radio-inline"><input type="radio" name="tcmats_location" value="urban"> Urban</label>
             <label class="radio-inline"><input type="radio" name="tcmats_location" value="rural"> Rural</label>
@@ -3509,21 +3509,21 @@ h4[onclick] {
 					
 					
                     <div class="form-group">
-                        <label>Class Description:</label>
+                        <label>Class Description: <span style="color:red;">*</span></label>
                         <div>
                             <label class="radio-inline"><input type="radio" name="voices_class_description" value="single_grade"> Single Grade</label>
                             <label class="radio-inline"><input type="radio" name="voices_class_description" value="multi_grade"> Multi-grade</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Gender:</label>
+                        <label>Gender: <span style="color:red;">*</span></label>
                         <div>
                             <label class="radio-inline"><input type="radio" name="voices_gender" value="male"> Male</label>
                             <label class="radio-inline"><input type="radio" name="voices_gender" value="female"> Female</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Average distance of School from your home:</label>
+                        <label>Average distance of School from your home: <span style="color:red;">*</span></label>
                         <div>
                             <label class="radio-inline"><input type="radio" name="voices_distance" value="less_than_1km"> Less than 1 km.</label>
                             <label class="radio-inline"><input type="radio" name="voices_distance" value="1km_3km"> 1 km – 3 km</label>
@@ -3535,7 +3535,7 @@ h4[onclick] {
                 <h3 style="cursor: pointer;" onclick="toggleSection('voicesSectionB', 'voicesSectionBHeader')">SECTION B: Subject/Topic Difficulties <span id="voicesSectionBHeader">🔽</span></h3>
                 <div id="voicesSectionB" style="display: block;">
                     <div class="form-group">
-                        <label>List the Subjects or Topics that you find very difficult to understand (Mention 2-5)</label>
+                        <label>List the Subjects or Topics that you find very difficult to understand (Mention 2-5) <span style="color:red;">*</span></label>
                         <textarea name="voices_difficult_topics" class="form-control" rows="5"></textarea>
                     </div>
                 </div>
@@ -5256,21 +5256,87 @@ function loadSpecialSchools() {
 window.addEventListener('load', loadSpecialSchoolsDataFromCSV);
 
 // --- Generic Survey Form Submission Logic ---
+function validateForm(form) {
+    // Get all form elements that can be validated
+    const elements = form.querySelectorAll('input, select, textarea');
+
+    // Store names of radio/checkbox groups to validate them only once
+    const radioGroups = new Set();
+    const checkboxGroups = new Set();
+
+    for (const el of elements) {
+        // Skip hidden, buttons, and readonly elements
+        if (el.type === 'hidden' || el.type === 'button' || el.type === 'submit' || el.readOnly) {
+            continue;
+        }
+
+        // Skip elements that are not visible
+        if (el.offsetParent === null) {
+            continue;
+        }
+
+        let isInvalid = false;
+        let message = '';
+
+        // Handle radio buttons
+        if (el.type === 'radio') {
+            const groupName = el.name;
+            if (groupName && !radioGroups.has(groupName)) {
+                radioGroups.add(groupName);
+                const checked = form.querySelector(`input[name="${groupName}"]:checked`);
+                if (!checked) {
+                    isInvalid = true;
+                    const label = el.closest('.form-group')?.querySelector('label, h5, h4');
+                    message = `Please make a selection for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                }
+            }
+        }
+        // Handle checkboxes
+        else if (el.type === 'checkbox') {
+             const groupName = el.name;
+             if (groupName && !checkboxGroups.has(groupName)) {
+                checkboxGroups.add(groupName);
+                const checked = form.querySelector(`input[name="${groupName}"]:checked`);
+                const label = el.closest('.form-group')?.querySelector('label, h5, h4');
+                if (label && label.innerHTML.includes('*') && !checked) {
+                    isInvalid = true;
+                    message = `Please select at least one option for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                }
+             }
+        }
+        // Handle other input types
+        else if (el.value.trim() === '') {
+            isInvalid = true;
+            const label = form.querySelector(`label[for="${el.id}"]`) || el.closest('.form-group')?.querySelector('label');
+            message = `Please fill out the "${label ? label.textContent.replace(/\*/g, '').trim() : (el.placeholder || el.name)}".`;
+        }
+
+        if (isInvalid) {
+            alert(message);
+            el.focus();
+            el.style.outline = '2px solid red';
+            setTimeout(() => { el.style.outline = ''; }, 3000);
+            return false;
+        }
+    }
+
+    return true;
+}
+
 async function submitSurvey(event, surveyType) {
     event.preventDefault();
 
-    const allowedSurveys = ['silnat', 'silat_1.1', 'silat_1.2', 'silat_1.3', 'silat_1.4', 'tcmats', 'lori', 'voices'];
-    if (!allowedSurveys.includes(surveyType)) {
-        // This check is now effectively disabled but kept for potential future use.
-        // A better approach would be to remove it entirely if all forms are always open.
-        // For now, let's just log to console instead of showing a disruptive alert.
-        console.warn(`Survey type "${surveyType}" is not officially in the allowed list, but proceeding anyway.`);
-        // alert('This form is not yet open for submission.');
-        // return;
+    const form = event.target;
+    if (!validateForm(form)) {
+        return;
     }
 
-    const form = event.target;
-    const feedback = form.nextElementSibling; // Assumes feedback div is immediately after the form
+    const allowedSurveys = ['silnat', 'silat_1.1', 'silat_1.2', 'silat_1.3', 'silat_1.4', 'tcmats', 'lori', 'voices'];
+    if (!allowedSurveys.includes(surveyType)) {
+        console.warn(`Survey type "${surveyType}" is not officially in the allowed list, but proceeding anyway.`);
+    }
+
+    const feedback = form.nextElementSibling;
 
     if (feedback) {
         feedback.textContent = 'Submitting...';
@@ -5280,10 +5346,9 @@ async function submitSurvey(event, surveyType) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Handle file uploads
     const fileInput = form.querySelector('input[type="file"]');
     if (fileInput && fileInput.files.length > 0) {
-        data.photos = await processFiles(fileInput, 5); // processFiles is defined elsewhere
+        data.photos = await processFiles(fileInput, 5);
     } else {
         data.photos = [];
     }
@@ -5300,7 +5365,6 @@ async function submitSurvey(event, surveyType) {
                 feedback.style.color = 'var(--lagos-green)';
                 feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
                 form.reset();
-                // Also clear file previews if any
                 const uploadedFilesDiv = form.querySelector('.uploaded-files');
                 if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
             } else {
