@@ -2314,11 +2314,11 @@ h4[onclick] {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_teachers_male">Male <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" oninput="updateSilnatTotalTeachers()" required="">
+                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" required="">
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_female">Female <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" oninput="updateSilnatTotalTeachers()" required="">
+                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" required="">
 
                     </div>
                     <div class="form-group">
@@ -5595,6 +5595,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTotalCalculation('silat13_qualified_teachers_male', 'silat13_qualified_teachers_female', 'silat13_qualified_teachers_total');
     setupTotalCalculation('silat13_non_teaching_male', 'silat13_non_teaching_female', 'silat13_non_teaching_total');
     setupTotalCalculation('silat13_learners_male', 'silat13_learners_female', 'silat13_learners_total');
+
+    // SILNAT 1.1 totals
+    setupTotalCalculation('silnat_teachers_male', 'silnat_teachers_female', 'silnat_teachers_total');
 });
 
 // Function to update total teachers for SILNAT form
