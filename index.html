@@ -2426,9 +2426,12 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio (Auto-Calculated):</label>
-                <input type="text" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" placeholder="1 : X" readonly="" style="background-color: var(--lagos-blue) !important; opacity: 0.8 !important; color: var(--lagos-white) !important;">
-
+                <label for="silnat_teacher_pupil_ratio_x">Teacher/Pupils Ratio (Auto-Calculated):</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.2rem; font-weight: bold;">1 :</span>
+                    <input type="number" id="silnat_teacher_pupil_ratio_x" class="form-control" oninput="updateHiddenRatioField()">
+                </div>
+                <input type="hidden" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio">
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
@@ -4348,6 +4351,14 @@ function handleFiles(files, containerId) {
     }
 }
 
+function updateHiddenRatioField() {
+    const ratioXInput = document.getElementById('silnat_teacher_pupil_ratio_x');
+    const ratioHiddenInput = document.getElementById('silnat_teacher_pupil_ratio');
+    if (ratioXInput && ratioHiddenInput) {
+        ratioHiddenInput.value = `1 : ${ratioXInput.value}`;
+    }
+}
+
 function displayFile(name, dataUrl, containerId) {
     const container = document.getElementById(containerId);
     const fileDiv = document.createElement('div');
@@ -5645,14 +5656,17 @@ function updateGrandTotalPupils() {
 function calculateTeacherPupilRatio() {
     const totalTeachers = parseInt(document.getElementById('silnat_teachers_total').value, 10) || 0;
     const totalPupils = parseInt(document.getElementById('silnat_pupils_total').value, 10) || 0;
-    const ratioInput = document.getElementById('silnat_teacher_pupil_ratio');
+    const ratioXInput = document.getElementById('silnat_teacher_pupil_ratio_x');
+    const ratioHiddenInput = document.getElementById('silnat_teacher_pupil_ratio');
 
-    if (ratioInput) {
+    if (ratioXInput && ratioHiddenInput) {
         if (totalTeachers > 0 && totalPupils > 0) {
             const ratio = (totalPupils / totalTeachers).toFixed(1);
-            ratioInput.value = `1 : ${ratio}`;
+            ratioXInput.value = ratio;
+            ratioHiddenInput.value = `1 : ${ratio}`;
         } else {
-            ratioInput.value = 'N/A';
+            ratioXInput.value = '';
+            ratioHiddenInput.value = 'N/A';
         }
     }
 }
