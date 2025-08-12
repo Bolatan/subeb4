@@ -2198,25 +2198,25 @@ h4[onclick] {
                 <div class="form-row">
                     <div class="form-group">
                         <label for="silnat_a_ht_name">Head Teacher/Manager Name *</label>
-                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control">
+                        <input type="text" id="silnat_a_ht_name" name="silnat_a_ht_name" class="form-control" required>
                     </div>
 				</div>
                     <div class="form-group">
-                        <label for="silnat_a_ht_contact">Contact Number</label>
-                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control">
+                        <label for="silnat_a_ht_contact">Contact Number *</label>
+                        <input type="tel" id="silnat_a_ht_contact" name="silnat_a_ht_contact" class="form-control" required>
                     </div>
                 
                 <div class="form-group">
                     <label>Gender *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="male"> Male</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="male" required> Male</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_gender" value="female"> Female</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Marital Status *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="single"> Single</label>
+                        <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="single" required> Single</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="married"> Married</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="divorced"> Divorced</label>
                         <label class="radio-inline"><input type="radio" name="silnat_a_ht_marital_status" value="separated"> Separated</label>
@@ -2225,7 +2225,7 @@ h4[onclick] {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_ht_highest_qualification">Highest Qualification *</label>
-                    <select id="silnat_a_ht_highest_qualification" name="silnat_a_ht_highest_qualification" class="form-control">
+                    <select id="silnat_a_ht_highest_qualification" name="silnat_a_ht_highest_qualification" class="form-control" required>
                         <option value="">Select Qualification</option>
                         <option value="grade_ii">Grade II</option> <option value="nce">NCE</option> <option value="b_ed">B.Ed</option> <option value="ba_ed">BA. Ed</option> <option value="bsc_ed">B.Sc.Ed</option> <option value="hnd">HND</option> <option value="m_ed">M.Ed</option> <option value="others">Others</option>
                     </select>
@@ -2236,7 +2236,7 @@ h4[onclick] {
                 </div>
                 <div class="form-group">
                     <label for="silnat_a_ht_years_experience">Years of Leadership Experience *</label>
-                    <select id="silnat_a_ht_years_experience" name="silnat_a_ht_years_experience" class="form-control">
+                    <select id="silnat_a_ht_years_experience" name="silnat_a_ht_years_experience" class="form-control" required>
                         <option value="">Select Years</option>
                         <option value="5_below">5 &amp; below</option> <option value="6_10">6-10</option> <option value="11_15">11-15</option> <option value="16_20">16-20</option> <option value="21_above">21 &amp; above</option>
                     </select>
@@ -2253,7 +2253,7 @@ h4[onclick] {
 			 <div class="form-row full">
             <div class="form-group">
                 <label for="silnat_a_institution_type">Institution Type *</label>
-                <select id="silnat_a_institution_type" name="silnat_a_institution_type" class="form-control" onchange="handleSilnatInstitutionTypeChange()">
+                <select id="silnat_a_institution_type" name="silnat_a_institution_type" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required>
                     <option value="">Select Institution Type</option>
                     <option value="regular_school">Regular School</option>
                     <option value="special_school">Special School</option>
@@ -2263,12 +2263,12 @@ h4[onclick] {
                 </select>
             </div>
         </div>
-		<div class="form-row"> <div class="form-group"> <label for="localGov">Local Govt Educ Auth *</label> <select id="localGov" class="form-control" onchange="loadSchools()"><option value="">Select Local Government</option><option value="AGEGE">AGEGE</option><option value="AJEROMI IFELODUN">AJEROMI IFELODUN</option><option value="ALIMOSHO">ALIMOSHO</option><option value="AMUWO ODOFIN">AMUWO ODOFIN</option><option value="APAPA">APAPA</option><option value="BADAGARY">BADAGARY</option><option value="EPE">EPE</option><option value="ETI-OSA">ETI-OSA</option><option value="IBEJU-LEKKI">IBEJU-LEKKI</option><option value="IFAKO IJAIYE">IFAKO IJAIYE</option><option value="IKEJA">IKEJA</option><option value="IKORODU">IKORODU</option><option value="KOSOFE">KOSOFE</option><option value="LAGOS ISLAND">LAGOS ISLAND</option><option value="LAGOS MAINLAND">LAGOS MAINLAND</option><option value="Local Govt Educ Auth *">Local Govt Educ Auth *</option><option value="MUSHIN">MUSHIN</option><option value="OJO">OJO</option><option value="OSHODI ISOLO">OSHODI ISOLO</option><option value="SOMOLU">SOMOLU</option><option value="SURULERE">SURULERE</option></select> </div> <div class="form-group"> <label for="schoolName">Name of School/Institution *</label> <select id="schoolName" class="form-control"></select> </div> </div>
+		<div class="form-row"> <div class="form-group"> <label for="localGov">Local Govt Educ Auth *</label> <select id="localGov" class="form-control" onchange="loadSchools()" required><option value="">Select Local Government</option><option value="AGEGE">AGEGE</option><option value="AJEROMI IFELODUN">AJEROMI IFELODUN</option><option value="ALIMOSHO">ALIMOSHO</option><option value="AMUWO ODOFIN">AMUWO ODOFIN</option><option value="APAPA">APAPA</option><option value="BADAGARY">BADAGARY</option><option value="EPE">EPE</option><option value="ETI-OSA">ETI-OSA</option><option value="IBEJU-LEKKI">IBEJU-LEKKI</option><option value="IFAKO IJAIYE">IFAKO IJAIYE</option><option value="IKEJA">IKEJA</option><option value="IKORODU">IKORODU</option><option value="KOSOFE">KOSOFE</option><option value="LAGOS ISLAND">LAGOS ISLAND</option><option value="LAGOS MAINLAND">LAGOS MAINLAND</option><option value="Local Govt Educ Auth *">Local Govt Educ Auth *</option><option value="MUSHIN">MUSHIN</option><option value="OJO">OJO</option><option value="OSHODI ISOLO">OSHODI ISOLO</option><option value="SOMOLU">SOMOLU</option><option value="SURULERE">SURULERE</option></select> </div> <div class="form-group"> <label for="schoolName">Name of School/Institution *</label> <select id="schoolName" class="form-control" required></select> </div> </div>
 
                             <div class="form-row full">
                                 <div class="form-group">
                                     <label for="schoolAddress">Address of School/Institution *</label>
-                                    <textarea id="schoolAddress" class="form-control" rows="3"></textarea>
+                                    <textarea id="schoolAddress" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
 							
@@ -2277,9 +2277,9 @@ h4[onclick] {
             <div class="form-row">
                
                     <div class="form-group">
-                    <label for="silnat_location_common">Location</label>
-                    <select id="silnat_location_common" name="silnat_b_location_common" class="form-control">
-                        <option value="">Select Location (Optional)</option>
+                    <label for="silnat_location_common">Location *</label>
+                    <select id="silnat_location_common" name="silnat_b_location_common" class="form-control" required>
+                        <option value="">Select Location</option>
                         <option value="urban">Urban</option>
                         <option value="rural">Rural</option>
                         <option value="riverine">Riverine</option>
@@ -2300,25 +2300,25 @@ h4[onclick] {
                             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="silnat_assemblyDevotion_startTime">Assembly Devotion Start Time</label>
-                    <input type="time" id="silnat_assemblyDevotion_startTime" name="silnat_assemblyDevotion_startTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
+                    <label for="silnat_assemblyDevotion_startTime">Assembly Devotion Start Time *</label>
+                    <input type="time" id="silnat_assemblyDevotion_startTime" name="silnat_assemblyDevotion_startTime" class="form-control" step="900" required> <!-- step="900" for 15-minute intervals -->
                 </div>
                 <div class="form-group">
-                    <label for="silnat_assemblyDevotion_endTime">Assembly Devotion End Time</label>
-                    <input type="time" id="silnat_assemblyDevotion_endTime" name="silnat_assemblyDevotion_endTime" class="form-control" step="900"> <!-- step="900" for 15-minute intervals -->
+                    <label for="silnat_assemblyDevotion_endTime">Assembly Devotion End Time *</label>
+                    <input type="time" id="silnat_assemblyDevotion_endTime" name="silnat_assemblyDevotion_endTime" class="form-control" step="900" required> <!-- step="900" for 15-minute intervals -->
                 </div>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Teachers in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Teachers in the School: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_teachers_male">Male</label>
-                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_female">Female</label>
-                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_total">Total</label>
@@ -2328,15 +2328,15 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Non-Teaching Staff in the School: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_non_teaching_male">Male</label>
-                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_non_teaching_female">Female</label>
-                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_non_teaching_total">Total</label>
@@ -2348,15 +2348,15 @@ h4[onclick] {
            
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">ECCDE:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">ECCDE: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_male">Male</label>
-                        <input type="number" id="silnat_pupils_eccde_male" name="silnat_pupils_eccde_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_eccde_male" name="silnat_pupils_eccde_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_female">Female</label>
-                        <input type="number" id="silnat_pupils_eccde_female" name="silnat_pupils_eccde_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_eccde_female" name="silnat_pupils_eccde_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_eccde_total">Total</label>
@@ -2366,15 +2366,15 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Primary:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Primary: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_primary_male">Male</label>
-                        <input type="number" id="silnat_pupils_primary_male" name="silnat_pupils_primary_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_primary_male" name="silnat_pupils_primary_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_primary_female">Female</label>
-                        <input type="number" id="silnat_pupils_primary_female" name="silnat_pupils_primary_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_primary_female" name="silnat_pupils_primary_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_primary_total">Total</label>
@@ -2384,15 +2384,15 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Special Learners:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Special Learners: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_special_male">Male</label>
-                        <input type="number" id="silnat_pupils_special_male" name="silnat_pupils_special_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_special_male" name="silnat_pupils_special_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_special_female">Female</label>
-                        <input type="number" id="silnat_pupils_special_female" name="silnat_pupils_special_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_special_female" name="silnat_pupils_special_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_special_total">Total</label>
@@ -2402,15 +2402,15 @@ h4[onclick] {
             </div>
 			
 			 <div class="form-group" style="margin-top: 20px;">
-                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Pupils in the School:</label>
+                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Number of Pupils in the School: *</label>
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_pupils_male">Male</label>
-                        <input type="number" id="silnat_pupils_male" name="silnat_pupils_male" class="form-control" min="0" placeholder="Male">
+                        <input type="number" id="silnat_pupils_male" name="silnat_pupils_male" class="form-control" min="0" placeholder="Male" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_female">Female</label>
-                        <input type="number" id="silnat_pupils_female" name="silnat_pupils_female" class="form-control" min="0" placeholder="Female">
+                        <input type="number" id="silnat_pupils_female" name="silnat_pupils_female" class="form-control" min="0" placeholder="Female" required>
                     </div>
                     <div class="form-group">
                         <label for="silnat_pupils_total">Total</label>
@@ -2420,25 +2420,25 @@ h4[onclick] {
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio:</label>
+                <label for="silnat_teacher_pupil_ratio">Teacher/Pupils Ratio: *</label>
                 <div style="display: flex; align-items: center;">
-                    <input type="number" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" min="0" step="any" placeholder="Enter ratio value" style="flex-grow: 1;">
+                    <input type="number" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio" class="form-control" min="0" step="any" placeholder="Enter ratio value" style="flex-grow: 1;" required>
                     <span style="margin-left: 8px; font-size: 1em; flex-shrink: 0;">%</span>
                 </div>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_additional_staff_required">Number of Additional Teachers/Staff Required:</label>
-                <input type="number" id="silnat_additional_staff_required" name="silnat_additional_staff_required" class="form-control" min="0" placeholder="Enter number">
+                <label for="silnat_additional_staff_required">Number of Additional Teachers/Staff Required: *</label>
+                <input type="number" id="silnat_additional_staff_required" name="silnat_additional_staff_required" class="form-control" min="0" placeholder="Enter number" required>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label for="silnat_multigrade_classes">Number of Classes operated as Multigrade:</label>
-                <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number">
+                <label for="silnat_multigrade_classes">Number of Classes operated as Multigrade: *</label>
+                <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number" required>
             </div>
 
             <div class="form-group" style="margin-top: 20px;">
-                <label>Reason(s) for operating the classes as Multigrade:</label>
+                <label>Reason(s) for operating the classes as Multigrade: *</label>
                 <div>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
@@ -2447,247 +2447,247 @@ h4[onclick] {
             </div>
             <!-- End of Section B placeholder -->
 
-            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.1', 'sectionCHeader_1.1')">Section C: Needs Assessment 🔽</h4>
+            <h4 id="sectionCHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionCContent_1.1', 'sectionCHeader_1.1')">Section C: Needs Assessment *</h4>
             <div id="sectionCContent_1.1" style="display: block;">
-                     <p>Tick the areas where you are having difficulties in your LGEA and Schools.</p>
-                <h5>Control and Discipline</h5>
+                     <p>Tick the areas where you are having difficulties in your LGEA and Schools. *</p>
+                <h5>Control and Discipline *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Getting Teachers and Learners to obey rules and regulations</td><td><input type="radio" name="discipline_a_1.2"></td><td><input type="radio" name="discipline_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Handling of disciplinary cases on time and appropriately</td><td><input type="radio" name="discipline_b_1.2"></td><td><input type="radio" name="discipline_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Effecting discipline of misconduct in the School</td><td><input type="radio" name="discipline_c_1.2"></td><td><input type="radio" name="discipline_c_1.2"></td></tr>
-                        <tr><td>d.</td><td>Handling cases of lateness, truancy, etc. in the School</td><td><input type="radio" name="discipline_d_1.2"></td><td><input type="radio" name="discipline_d_1.2"></td></tr>
-                        <tr><td>e.</td><td>Handling cases of professional misconduct by teachers School</td><td><input type="radio" name="discipline_e_1.2"></td><td><input type="radio" name="discipline_e_1.2"></td></tr>
+                        <tr><td>a.</td><td>Getting Teachers and Learners to obey rules and regulations</td><td><input type="radio" name="discipline_a_1.2" required></td><td><input type="radio" name="discipline_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Handling of disciplinary cases on time and appropriately</td><td><input type="radio" name="discipline_b_1.2" required></td><td><input type="radio" name="discipline_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Effecting discipline of misconduct in the School</td><td><input type="radio" name="discipline_c_1.2" required></td><td><input type="radio" name="discipline_c_1.2" required></td></tr>
+                        <tr><td>d.</td><td>Handling cases of lateness, truancy, etc. in the School</td><td><input type="radio" name="discipline_d_1.2" required></td><td><input type="radio" name="discipline_d_1.2" required></td></tr>
+                        <tr><td>e.</td><td>Handling cases of professional misconduct by teachers School</td><td><input type="radio" name="discipline_e_1.2" required></td><td><input type="radio" name="discipline_e_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>Cooperation and Team Work</h5>
+                <h5>Cooperation and Team Work *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Assigning administrative responsibilities in the school to teachers</td><td><input type="radio" name="cooperation_a_1.2"></td><td><input type="radio" name="cooperation_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Delegating of duties to subordinates</td><td><input type="radio" name="cooperation_b_1.2"></td><td><input type="radio" name="cooperation_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Getting Teachers to work cooperatively to carry out assigned duties</td><td><input type="radio" name="cooperation_c_1.2"></td><td><input type="radio" name="cooperation_c_1.2"></td></tr>
-                        <tr><td>d.</td><td>Encouraging team work in the School</td><td><input type="radio" name="cooperation_d_1.2"></td><td><input type="radio" name="cooperation_d_1.2"></td></tr>
+                        <tr><td>a.</td><td>Assigning administrative responsibilities in the school to teachers</td><td><input type="radio" name="cooperation_a_1.2" required></td><td><input type="radio" name="cooperation_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Delegating of duties to subordinates</td><td><input type="radio" name="cooperation_b_1.2" required></td><td><input type="radio" name="cooperation_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Getting Teachers to work cooperatively to carry out assigned duties</td><td><input type="radio" name="cooperation_c_1.2" required></td><td><input type="radio" name="cooperation_c_1.2" required></td></tr>
+                        <tr><td>d.</td><td>Encouraging team work in the School</td><td><input type="radio" name="cooperation_d_1.2" required></td><td><input type="radio" name="cooperation_d_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>Communication in the School</h5>
+                <h5>Communication in the School *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Establishing effective channel of communication in the School</td><td><input type="radio" name="communication_a_1.2"></td><td><input type="radio" name="communication_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Guaranteeing freedom of expression in the School</td><td><input type="radio" name="communication_b_1.2"></td><td><input type="radio" name="communication_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Encouraging good communication skills among staff and learners</td><td><input type="radio" name="communication_c_1.2"></td><td><input type="radio" name="communication_c_1.2"></td></tr>
+                        <tr><td>a.</td><td>Establishing effective channel of communication in the School</td><td><input type="radio" name="communication_a_1.2" required></td><td><input type="radio" name="communication_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Guaranteeing freedom of expression in the School</td><td><input type="radio" name="communication_b_1.2" required></td><td><input type="radio" name="communication_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Encouraging good communication skills among staff and learners</td><td><input type="radio" name="communication_c_1.2" required></td><td><input type="radio" name="communication_c_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>School and Community Relations</h5>
+                <h5>School and Community Relations *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Getting the communities to be committed to the school activities</td><td><input type="radio" name="community_a_1.2"></td><td><input type="radio" name="community_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Getting Teachers to relate well with the School community</td><td><input type="radio" name="community_b_1.2"></td><td><input type="radio" name="community_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Institutionalizing SBMC in the School</td><td><input type="radio" name="community_c_1.2"></td><td><input type="radio" name="community_c_1.2"></td></tr>
-                        <tr><td>d.</td><td>Getting SBMC actively involved in the management and provision of facilities in the school</td><td><input type="radio" name="community_d_1.2"></td><td><input type="radio" name="community_d_1.2"></td></tr>
-                        <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.2"></td><td><input type="radio" name="community_e_1.2"></td></tr>
+                        <tr><td>a.</td><td>Getting the communities to be committed to the school activities</td><td><input type="radio" name="community_a_1.2" required></td><td><input type="radio" name="community_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Getting Teachers to relate well with the School community</td><td><input type="radio" name="community_b_1.2" required></td><td><input type="radio" name="community_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Institutionalizing SBMC in the School</td><td><input type="radio" name="community_c_1.2" required></td><td><input type="radio" name="community_c_1.2" required></td></tr>
+                        <tr><td>d.</td><td>Getting SBMC actively involved in the management and provision of facilities in the school</td><td><input type="radio" name="community_d_1.2" required></td><td><input type="radio" name="community_d_1.2" required></td></tr>
+                        <tr><td>e.</td><td>Involving former pupils in the School activities</td><td><input type="radio" name="community_e_1.2" required></td><td><input type="radio" name="community_e_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>Supervision and Monitoring</h5>
+                <h5>Supervision and Monitoring *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Assessing Teachers’ lesson plan before delivery</td><td><input type="radio" name="supervision_a_1.2"></td><td><input type="radio" name="supervision_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Getting Teachers supevised during lesson presentations</td><td><input type="radio" name="supervision_b_1.2"></td><td><input type="radio" name="supervision_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.2"></td><td><input type="radio" name="supervision_c_1.2"></td></tr>
-						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_c_1.2"></td><td><input type="radio" name="supervision_c_1.2"></td></tr>
-                        <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2"></td><td><input type="radio" name="supervision_d_1.2"></td></tr>
+                        <tr><td>a.</td><td>Assessing Teachers’ lesson plan before delivery</td><td><input type="radio" name="supervision_a_1.2" required></td><td><input type="radio" name="supervision_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Getting Teachers supevised during lesson presentations</td><td><input type="radio" name="supervision_b_1.2" required></td><td><input type="radio" name="supervision_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.2" required></td><td><input type="radio" name="supervision_c_1.2" required></td></tr>
+						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_c_1.2" required></td><td><input type="radio" name="supervision_c_1.2" required></td></tr>
+                        <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2" required></td><td><input type="radio" name="supervision_d_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>School Records</h5>
+                <h5>School Records *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2"></td><td><input type="radio" name="records_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2"></td><td><input type="radio" name="records_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2"></td><td><input type="radio" name="records_c_1.2"></td></tr>
-						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2"></td><td><input type="radio" name="records_c_1.2"></td></tr>
-                        <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2"></td><td><input type="radio" name="records_d_1.2"></td></tr>
-						<tr><td>f.</td><td>Keeping of Admission Register</td><td><input type="radio" name="records_d_1.2"></td><td><input type="radio" name="records_d_1.2"></td></tr>
-						<tr><td>g.</td><td>Keeping of Minutes of Staff meetings</td><td><input type="radio" name="records_d_1.2"></td><td><input type="radio" name="records_d_1.2"></td></tr>
-						<tr><td>h.</td><td>Keeping of Examination Records</td><td><input type="radio" name="records_d_1.2"></td><td><input type="radio" name="records_d_1.2"></td></tr>
-                        <tr><td>i.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.2"></td><td><input type="radio" name="records_e_1.2"></td></tr>
+                        <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2" required></td><td><input type="radio" name="records_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2" required></td><td><input type="radio" name="records_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2" required></td><td><input type="radio" name="records_c_1.2" required></td></tr>
+						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2" required></td><td><input type="radio" name="records_c_1.2" required></td></tr>
+                        <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2" required></td><td><input type="radio" name="records_d_1.2" required></td></tr>
+						<tr><td>f.</td><td>Keeping of Admission Register</td><td><input type="radio" name="records_d_1.2" required></td><td><input type="radio" name="records_d_1.2" required></td></tr>
+						<tr><td>g.</td><td>Keeping of Minutes of Staff meetings</td><td><input type="radio" name="records_d_1.2" required></td><td><input type="radio" name="records_d_1.2" required></td></tr>
+						<tr><td>h.</td><td>Keeping of Examination Records</td><td><input type="radio" name="records_d_1.2" required></td><td><input type="radio" name="records_d_1.2" required></td></tr>
+                        <tr><td>i.</td><td>Keeping of Visitors Book</td><td><input type="radio" name="records_e_1.2" required></td><td><input type="radio" name="records_e_1.2" required></td></tr>
                     </tbody>
                 </table>
-                <h5>Health and Hygiene</h5>
+                <h5>Health and Hygiene *</h5>
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Keeping the school compound clean</td><td><input type="radio" name="health_a_1.2"></td><td><input type="radio" name="health_a_1.2"></td></tr>
-                        <tr><td>b.</td><td>Keeping and stocking of First Aid box</td><td><input type="radio" name="health_b_1.2"></td><td><input type="radio" name="health_b_1.2"></td></tr>
-                        <tr><td>c.</td><td>Getting the pupils obey hygienic rules</td><td><input type="radio" name="health_c_1.2"></td><td><input type="radio" name="health_c_1.2"></td></tr>
-                        <tr><td>d.</td><td>Getting medical services for the pupils</td><td><input type="radio" name="health_d_1.2"></td><td><input type="radio" name="health_d_1.2"></td></tr>
-                        <tr><td>e.</td><td>Hand Washing Station</td><td><input type="radio" name="health_e_1.2"></td><td><input type="radio" name="health_e_1.2"></td></tr>
-						<tr><td>f.</td><td>Waste Disposal Bin</td><td><input type="radio" name="health_e_1.2"></td><td><input type="radio" name="health_e_1.2"></td></tr>
+                        <tr><td>a.</td><td>Keeping the school compound clean</td><td><input type="radio" name="health_a_1.2" required></td><td><input type="radio" name="health_a_1.2" required></td></tr>
+                        <tr><td>b.</td><td>Keeping and stocking of First Aid box</td><td><input type="radio" name="health_b_1.2" required></td><td><input type="radio" name="health_b_1.2" required></td></tr>
+                        <tr><td>c.</td><td>Getting the pupils obey hygienic rules</td><td><input type="radio" name="health_c_1.2" required></td><td><input type="radio" name="health_c_1.2" required></td></tr>
+                        <tr><td>d.</td><td>Getting medical services for the pupils</td><td><input type="radio" name="health_d_1.2" required></td><td><input type="radio" name="health_d_1.2" required></td></tr>
+                        <tr><td>e.</td><td>Hand Washing Station</td><td><input type="radio" name="health_e_1.2" required></td><td><input type="radio" name="health_e_1.2" required></td></tr>
+						<tr><td>f.</td><td>Waste Disposal Bin</td><td><input type="radio" name="health_e_1.2" required></td><td><input type="radio" name="health_e_1.2" required></td></tr>
                     </tbody>
                 </table>
                 </div>	
 						
 
-            <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionDContent_1.1', 'sectionDHeader_1.1')">Section D: School Infrastructure 🔽</h4>
+            <h4 id="sectionDHeader_1.1" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionDContent_1.1', 'sectionDHeader_1.1')">Section D: School Infrastructure *</h4>
             <div id="sectionDContent_1.1" style="display: block;">
-                <h4>1. INFRASTRUCTURE</h4>
+                <h4>1. INFRASTRUCTURE *</h4>
                 <div class="form-group">
-                    <label>Signboard</label>
+                    <label>Signboard *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="signboard" value="available_good"> Available and in good condition</label>
-                        <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good"> Available but not in good condition</label>
-                        <label class="radio-inline"><input type="radio" name="signboard" value="not_available"> Not Available</label>
+                        <label class="radio-inline"><input type="radio" name="signboard" value="available_good" required> Available and in good condition</label>
+                        <label class="radio-inline"><input type="radio" name="signboard" value="available_not_good" required> Available but not in good condition</label>
+                        <label class="radio-inline"><input type="radio" name="signboard" value="not_available" required> Not Available</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Teachers’ Furniture</label>
+                    <label class="furniture-label">Teachers’ Furniture *</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control" required></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control" required></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control" required></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">ECCDE Furniture</label>
+                    <label class="furniture-label">ECCDE Furniture *</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control" required></div>
+                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control" required></div>
+                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control" required></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Primary Furniture</label>
+                    <label class="furniture-label">Primary Furniture *</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control" required></div>
+                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control" required></div>
+                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control" required></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="furniture-label">Classroom Condition</label>
+                    <label class="furniture-label">Classroom Condition *</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control" required></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control" required></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control" required></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control" required></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control" required></div>
                     </div>
                     <div class="form-group">
-                        <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
-                        <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2"></textarea>
+                        <label for="classroom_repair_description">Briefly, describe the type of repair needed *</label>
+                        <textarea id="classroom_repair_description" name="classroom_repair_description" class="form-control" rows="2" required></textarea>
                     </div>
                 </div>
 
-                <h4>2. FENCING</h4>
+                <h4>2. FENCING *</h4>
                 <div class="form-group">
-                    <label>a. Shared Facility</label>
+                    <label>a. Shared Facility *</label>
                     <div>
-                        <label>Is the school located within a school Complex?</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes"> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no"> No</label>
+                        <label>Is the school located within a school Complex? *</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no" required> No</label>
                     </div>
                     <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex</label>
-                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
+                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex *</label>
+                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4" required></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>b. Does the school have perimeter fence:</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes"> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no"> No</label>
+                    <label>b. Does the school have perimeter fence: *</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required> No</label>
                 </div>
                 <div class="form-group">
-                    <label>If Yes, in what State?</label>
+                    <label>If Yes, in what State? *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair"> Need Major Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good" required> In Good Condition</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair" required> Need Minor Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair" required> Need Major Repair</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fence_repair_description">Briefly, describe the type of repair needed</label>
-                    <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2"></textarea>
+                    <label for="fence_repair_description">Briefly, describe the type of repair needed *</label>
+                    <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2" required></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School?</label>
-                    <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
+                    <label for="school_perimeter">If No, what is the perimeter of the School? *</label>
+                    <input type="text" id="school_perimeter" name="school_perimeter" class="form-control" required>
                 </div>
 
-                <h4>3. TOILET FACILITIES</h4>
+                <h4>3. TOILET FACILITIES *</h4>
                 <div class="form-group">
-                    <label>Type of Toilet:</label>
+                    <label>Type of Toilet: *</label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="toilet_type" value="pit"> Pit</label>
-                        <label class="radio-inline"><input type="radio" name="toilet_type" value="wc"> WC</label>
-                        <label class="radio-inline"><input type="radio" name="toilet_type" value="squat_water_flush"> Squat Water flush</label>
-                        <label class="radio-inline"><input type="radio" name="toilet_type" value="none"> None</label>
+                        <label class="radio-inline"><input type="radio" name="toilet_type" value="pit" required> Pit</label>
+                        <label class="radio-inline"><input type="radio" name="toilet_type" value="wc" required> WC</label>
+                        <label class="radio-inline"><input type="radio" name="toilet_type" value="squat_water_flush" required> Squat Water flush</label>
+                        <label class="radio-inline"><input type="radio" name="toilet_type" value="none" required> None</label>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control" required></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control" required></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control" required></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control" required></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control" required></div>
                 </div>
                 <div class="form-group">
-                    <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
-                    <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2"></textarea>
+                    <label for="toilet_repair_description">Briefly, describe the type of repair needed *</label>
+                    <textarea id="toilet_repair_description" name="toilet_repair_description" class="form-control" rows="2" required></textarea>
                 </div>
 
-                <h4>4. SEPTIC TANK</h4>
+                <h4>4. SEPTIC TANK *</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="septic_tank" value="available"> Available</label>
-                        <label class="radio-inline"><input type="radio" name="septic_tank" value="not_available"> Not Available</label>
-                        <label class="radio-inline"><input type="radio" name="septic_tank" value="needs_evacuation"> Needs Evacuation</label>
+                        <label class="radio-inline"><input type="radio" name="septic_tank" value="available" required> Available</label>
+                        <label class="radio-inline"><input type="radio" name="septic_tank" value="not_available" required> Not Available</label>
+                        <label class="radio-inline"><input type="radio" name="septic_tank" value="needs_evacuation" required> Needs Evacuation</label>
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER</h4>
+                <h4>5. SOURCE OF POTABLE WATER *</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="water_source" value="none"> None</label>
-                        <label class="radio-inline"><input type="radio" name="water_source" value="well"> Well</label>
-                        <label class="radio-inline"><input type="radio" name="water_source" value="tap_water"> Tap Water</label>
-                        <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
+                        <label class="radio-inline"><input type="radio" name="water_source" value="none" required> None</label>
+                        <label class="radio-inline"><input type="radio" name="water_source" value="well" required> Well</label>
+                        <label class="radio-inline"><input type="radio" name="water_source" value="tap_water" required> Tap Water</label>
+                        <label class="radio-inline"><input type="radio" name="water_source" value="borehole" required> Borehole</label>
                     </div>
                     <div class="form-group">
-                        <label for="water_recommendations">Recommendations</label>
-                        <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2"></textarea>
+                        <label for="water_recommendations">Recommendations *</label>
+                        <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2" required></textarea>
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY</h4>
+                <h4>6. SOURCE OF ELECTRICITY *</h4>
                 <div class="form-group">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others"> Others</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn" required> PHCN</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator" required> Generator</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar" required> Solar</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others" required> Others</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills" required> PHCN but Disconnected because of accumulated bills</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter" required> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
-                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc</label>
-                        <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2"></textarea>
+                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc *</label>
+                        <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2" required></textarea>
                     </div>
                 </div>
 
-                <h4>7. Is your School regularly waterlogged when it rained?</h4>
+                <h4>7. Is your School regularly waterlogged when it rained? *</h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="waterlogged" value="yes"> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="waterlogged" value="no"> No</label>
+                        <label class="radio-inline"><input type="radio" name="waterlogged" value="yes" required> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="waterlogged" value="no" required> No</label>
                     </div>
                 </div>
 
-                <p>Thank you so much for your time and patience, please proceed to upload photos</p>
+                <p>Thank you so much for your time and patience, please proceed to upload photos *</p>
             </div>
 		
 			<div class="form-group">
@@ -4186,8 +4186,6 @@ async function login() {
             }, 0);
 
             loadLocalGovernments();
-            updateDashboard();
-            loadRecords();
             updateConnectionStatus();
 
         } else {
@@ -5295,16 +5293,19 @@ async function submitSurvey(event, surveyType) {
             body: JSON.stringify(data)
         });
 
-        if (feedback) {
-            if (res.ok) {
-                feedback.style.color = 'var(--lagos-green)';
-                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
-                form.reset();
-                // Also clear file previews if any
-                const uploadedFilesDiv = form.querySelector('.uploaded-files');
-                if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
-            } else {
-                const err = await res.json();
+        if (res.ok) {
+            alert(`${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`);
+            form.reset();
+            // Also clear file previews if any
+            const uploadedFilesDiv = form.querySelector('.uploaded-files');
+            if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+            if (feedback) {
+                feedback.textContent = '';
+            }
+        } else {
+            const err = await res.json();
+            alert(err.message || 'Submission failed.');
+            if (feedback) {
                 feedback.style.color = 'var(--lagos-red)';
                 feedback.textContent = err.message || 'Submission failed.';
             }

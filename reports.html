@@ -86,7 +86,7 @@
             const tableBody = document.querySelector('#reportsTable tbody');
             const loadingMessage = document.getElementById('loadingMessage');
 
-            fetch('https://subeb.onrender.com/api/reports')
+            fetch('/api/reports')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
