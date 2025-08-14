@@ -1082,39 +1082,39 @@ h4[onclick] {
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
                         <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required=""> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no" required=""> No</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no" required> No</label>
                     </div>
-                    <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4" required=""></textarea>
+                    <div class="form-group" id="shared_facility_schools_wrapper" style="display: none;">
+                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk" style="color:red; display:none;">*</span></label>
+                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required=""> No</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required> No</label>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="fence_condition_wrapper" style="display: none;">
                     <label>If Yes, in what State? <span style="color:red;">*</span></label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good" required=""> In Good Condition</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair" required=""> Need Minor Repair</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair" required=""> Need Major Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair"> Need Major Repair</label>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="fence_repair_wrapper" style="display: none;">
                     <label for="fence_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
-                    <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2" required=""></textarea>
+                    <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
-                    <input type="text" id="school_perimeter" name="school_perimeter" class="form-control" required="">
+                <div class="form-group" id="school_perimeter_wrapper" style="display: none;">
+                    <label for="school_perimeter">If No, what is the perimeter of the School? <span id="school_perimeter_asterisk" style="color:red; display:none;">*</span></label>
+                    <input type="text" id="school_perimeter" name="school_perimeter" class="form-control">
                 </div>
 
-                <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
+                <h4>3. TOILET FACILITIES</h4>
                 <div class="form-group">
-                    <label>Type of Toilet: <span style="color:red;">*</span></label>
+                    <label>Type of Toilet:</label>
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="toilet_type" value="pit"> Pit</label>
                         <label class="checkbox-inline"><input type="checkbox" name="toilet_type" value="wc"> WC</label>
@@ -1143,7 +1143,7 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h4>5. SOURCE OF POTABLE WATER <span style="color:red;">*</span></h4>
+                <h4>5. SOURCE OF POTABLE WATER</h4>
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="water_source" value="none"> None</label>
@@ -1152,25 +1152,25 @@ h4[onclick] {
                         <label class="checkbox-inline"><input type="checkbox" name="water_source" value="borehole"> Borehole</label>
                     </div>
                     <div class="form-group">
-                        <label for="water_recommendations">Recommendations <span style="color:red;">*</span></label>
-                        <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2" required=""></textarea>
+                        <label for="water_recommendations">Recommendations</label>
+                        <textarea id="water_recommendations" name="water_recommendations" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
-                <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
+                <h4>6. SOURCE OF ELECTRICITY</h4>
                 <div class="form-group">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn" required=""> PHCN</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator" required=""> Generator</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar" required=""> Solar</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others" required=""> Others</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills" required=""> PHCN but Disconnected because of accumulated bills</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter" required=""> PHCN but Disconnected because of lack of meter</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others"> Others</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
-                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
-                        <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2" required=""></textarea>
+                        <label for="electricity_additional_info">Additional information e.g., amount involved, etc</label>
+                        <textarea id="electricity_additional_info" name="electricity_additional_info" class="form-control" rows="2"></textarea>
                     </div>
                 </div>
 
@@ -4176,6 +4176,9 @@ async function login() {
 
         const data = await response.json();
 
+        console.log('Login response status:', response.status);
+        console.log('Login response data:', JSON.stringify(data));
+
         if (response.ok) {
             currentUser = data.username;
             localStorage.setItem('auditAppCurrentUser', JSON.stringify(data));
@@ -4189,11 +4192,16 @@ async function login() {
             }, 0);
 
             loadLocalGovernments();
-            updateDashboard();
+            try {
+                updateDashboard();
+            } catch (e) {
+                console.error('Error in updateDashboard:', e);
+            }
             loadRecords();
             updateConnectionStatus();
 
         } else {
+            console.error('Login failed with status:', response.status);
             let msg = document.getElementById('loginErrorMsg');
             if (!msg) {
                 msg = document.createElement('div');
@@ -4964,9 +4972,14 @@ function updateDashboard() {
                d.getMonth() === today.getMonth() &&
                d.getDate() === today.getDate();
     }).length;
-    document.getElementById('totalAudits').textContent = totalAudits;
-    document.getElementById('pendingSync').textContent = pendingSync;
-    document.getElementById('completedToday').textContent = completedToday;
+    const totalAuditsEl = document.getElementById('totalAudits');
+    if (totalAuditsEl) totalAuditsEl.textContent = totalAudits;
+
+    const pendingSyncEl = document.getElementById('pendingSync');
+    if (pendingSyncEl) pendingSyncEl.textContent = pendingSync;
+
+    const completedTodayEl = document.getElementById('completedToday');
+    if (completedTodayEl) completedTodayEl.textContent = completedToday;
     // Recent audits table (latest 5, most recent first)
     const recent = [...auditData].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5);
     const table = document.getElementById('recentAuditsTable');
@@ -5294,11 +5307,16 @@ function validateForm(form) {
             const groupName = el.name;
             if (groupName && !radioGroups.has(groupName)) {
                 radioGroups.add(groupName);
-                const checked = form.querySelector(`input[name="${groupName}"]:checked`);
-                if (!checked) {
-                    isInvalid = true;
-                    const label = el.closest('.form-group')?.querySelector('label, h5, h4');
-                    message = `Please make a selection for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                const groupRadios = form.querySelectorAll(`input[name="${groupName}"]`);
+                const isRequired = Array.from(groupRadios).some(r => r.required);
+
+                if (isRequired) {
+                    const checked = form.querySelector(`input[name="${groupName}"]:checked`);
+                    if (!checked) {
+                        isInvalid = true;
+                        const label = el.closest('.form-group')?.querySelector('label, h5, h4');
+                        message = `Please make a selection for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                    }
                 }
             }
         }
@@ -5307,16 +5325,21 @@ function validateForm(form) {
              const groupName = el.name;
              if (groupName && !checkboxGroups.has(groupName)) {
                 checkboxGroups.add(groupName);
-                const checked = form.querySelector(`input[name="${groupName}"]:checked`);
-                const label = el.closest('.form-group')?.querySelector('label, h5, h4');
-                if (label && label.innerHTML.includes('*') && !checked) {
-                    isInvalid = true;
-                    message = `Please select at least one option for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                const groupCheckboxes = form.querySelectorAll(`input[name="${groupName}"]`);
+                const isRequired = Array.from(groupCheckboxes).some(c => c.required);
+
+                if (isRequired) {
+                    const checked = form.querySelector(`input[name="${groupName}"]:checked`);
+                    if (!checked) {
+                        isInvalid = true;
+                        const label = el.closest('.form-group')?.querySelector('label, h5, h4');
+                        message = `Please select at least one option for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
+                    }
                 }
              }
         }
         // Handle other input types
-        else if (el.value.trim() === '') {
+        else if (el.required && el.value.trim() === '') {
             isInvalid = true;
             const label = form.querySelector(`label[for="${el.id}"]`) || el.closest('.form-group')?.querySelector('label');
             message = `Please fill out the "${label ? label.textContent.replace(/\*/g, '').trim() : (el.placeholder || el.name)}".`;
