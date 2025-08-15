@@ -1,68 +1,55 @@
-from playwright.sync_api import sync_playwright, Page, expect
+from playwright.sync_api import sync_playwright, expect
 
-def run(page: Page):
-    page.on("console", lambda msg: print(f"PAGE LOG: {msg.text}"))
-    # Navigate to the application
-    page.goto("http://localhost:3000")
+def run(playwright):
+    browser = playwright.chromium.launch(headless=True)
+    context = browser.new_context()
+    page = context.new_page()
 
-    # Wait for the server to be ready
-    page.wait_for_timeout(5000)
+    try:
+        # 1. Login
+        page.goto("http://localhost:3000/index.html")
+        page.wait_for_timeout(2000) # Wait for server to be ready
+        page.fill("#username", "admin")
+        page.fill("#password", "AdminPassword1!")
+        page.click("button:has-text('Login')")
 
-    # Login
-    page.fill("#username", "admin")
-    page.fill("#password", "AdminPassword1!")
-    page.click("button:text('Login')")
+        # Wait for navigation to complete and landing page to be visible
+        expect(page.locator("#landingPage")).to_be_visible(timeout=10000)
+        print("Login successful")
 
-    # Wait for the landing page to be ready
-    page.wait_for_selector("#landingPage", state="visible")
+        # 2. Navigate to the survey
+        page.click("div.survey-card:has-text('Infrastructure & Leadership Tools 1.4')")
+        expect(page.locator('[id="silat_1.4Section"]')).to_be_visible(timeout=5000)
+        print("Navigated to SILNAT 1.4 survey")
 
-    # Go to the SILNAT 1.2 form
-    page.click("div.survey-card:has-text('Infrastructure & Leadership Tools 1.2: SPECIAL SCHOOLS')")
+        # 3. Scroll to the fencing section and check initial state
+        fencing_header = page.locator("h5:has-text('FENCING')")
+        fencing_header.scroll_into_view_if_needed()
 
-    # --- Verify Fencing Conditional Logic ---
+        shared_facility_wrapper = page.locator('[id="shared_facility_schools_wrapper_1.4"]')
+        expect(shared_facility_wrapper).not_to_be_visible()
+        print("Textarea is initially hidden as expected.")
 
-    # Shared Facility - Yes
-    page.click('input[name="shared_facility"][value="yes"]')
-    expect(page.locator("#shared_facility_schools_wrapper")).to_be_visible()
-    expect(page.locator("#shared_facility_schools")).to_be_editable()
+        # 4. Click 'Yes' and verify textarea becomes visible
+        page.click('input[name="shared_facility_1.4"][value="yes"]')
+        page.wait_for_timeout(500) # Add a small delay
+        expect(shared_facility_wrapper).to_be_visible()
+        page.screenshot(path="jules-scratch/verification/verification_yes.png")
+        print("Clicked 'Yes', textarea is visible. Screenshot taken.")
 
-    # Shared Facility - No
-    page.click('input[name="shared_facility"][value="no"]')
-    expect(page.locator("#shared_facility_schools_wrapper")).to_be_hidden()
+        # 5. Click 'No' and verify textarea becomes hidden again
+        page.click('input[name="shared_facility_1.4"][value="no"]')
+        page.wait_for_timeout(500) # Add a small delay
+        expect(shared_facility_wrapper).not_to_be_visible()
+        page.screenshot(path="jules-scratch/verification/verification_no.png")
+        print("Clicked 'No', textarea is hidden. Screenshot taken.")
 
-    # Perimeter Fence - Yes
-    page.click('input[name="perimeter_fence"][value="yes"]')
-    expect(page.locator("#fence_condition_wrapper")).to_be_visible()
-    expect(page.locator("#fence_repair_wrapper")).to_be_visible()
-    expect(page.locator("#school_perimeter_wrapper")).to_be_hidden()
-
-    # Perimeter Fence - No
-    page.click('input[name="perimeter_fence"][value="no"]')
-    expect(page.locator("#fence_condition_wrapper")).to_be_hidden()
-    expect(page.locator("#fence_repair_wrapper")).to_be_hidden()
-    expect(page.locator("#school_perimeter_wrapper")).to_be_visible()
-    expect(page.locator("#school_perimeter")).to_be_editable()
-
-    # --- Verify Checkbox Sections ---
-
-    # Check that TOILET FACILITIES has checkboxes
-    expect(page.locator('input[name="toilet_type"][type="checkbox"]')).to_have_count(4)
-
-    # Check that SOURCE OF POTABLE WATER has checkboxes
-    expect(page.locator('input[name="water_source"][type="checkbox"]')).to_have_count(4)
-
-    # Check that SOURCE OF ELECTRICITY has checkboxes
-    expect(page.locator('input[name="electricity_source"][type="checkbox"]')).to_have_count(7)
-
-    # Take a screenshot
-    page.screenshot(path="jules-scratch/verification/verification.png", full_page=True)
-
-def main():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        run(page)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        # Take a final screenshot for debugging
+        page.screenshot(path="jules-scratch/verification/error_screenshot.png")
+    finally:
         browser.close()
 
-if __name__ == "__main__":
-    main()
+with sync_playwright() as playwright:
+    run(playwright)
