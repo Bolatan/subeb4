@@ -22,26 +22,30 @@ def run(page: Page):
     # --- Verify Fencing Conditional Logic ---
 
     # Shared Facility - Yes
-    page.click('input[name="shared_facility"][value="yes"]')
-    expect(page.locator("#shared_facility_schools_wrapper")).to_be_visible()
-    expect(page.locator("#shared_facility_schools")).to_be_editable()
+    page.check('#silat_1\\.2Section input[name="shared_facility"][value="yes"]')
+    page.wait_for_timeout(1000)
+    expect(page.locator("#silat_1\\.2Section #shared_facility_schools_wrapper")).to_be_visible()
+    expect(page.locator("#silat_1\\.2Section #shared_facility_schools")).to_be_editable()
 
     # Shared Facility - No
-    page.click('input[name="shared_facility"][value="no"]')
-    expect(page.locator("#shared_facility_schools_wrapper")).to_be_hidden()
+    page.check('#silat_1\\.2Section input[name="shared_facility"][value="no"]')
+    page.wait_for_timeout(1000)
+    expect(page.locator("#silat_1\\.2Section #shared_facility_schools_wrapper")).to_be_hidden()
 
     # Perimeter Fence - Yes
-    page.click('input[name="perimeter_fence"][value="yes"]')
-    expect(page.locator("#fence_condition_wrapper")).to_be_visible()
-    expect(page.locator("#fence_repair_wrapper")).to_be_visible()
-    expect(page.locator("#school_perimeter_wrapper")).to_be_hidden()
+    page.check('#silat_1\\.2Section input[name="perimeter_fence"][value="yes"]')
+    page.wait_for_timeout(1000)
+    expect(page.locator("#silat_1\\.2Section #fence_condition_wrapper")).to_be_visible()
+    expect(page.locator("#silat_1\\.2Section #fence_repair_wrapper")).to_be_visible()
+    expect(page.locator("#silat_1\\.2Section #school_perimeter_wrapper")).to_be_hidden()
 
     # Perimeter Fence - No
-    page.click('input[name="perimeter_fence"][value="no"]')
-    expect(page.locator("#fence_condition_wrapper")).to_be_hidden()
-    expect(page.locator("#fence_repair_wrapper")).to_be_hidden()
-    expect(page.locator("#school_perimeter_wrapper")).to_be_visible()
-    expect(page.locator("#school_perimeter")).to_be_editable()
+    page.check('#silat_1\\.2Section input[name="perimeter_fence"][value="no"]')
+    page.wait_for_timeout(1000)
+    expect(page.locator("#silat_1\\.2Section #fence_condition_wrapper")).to_be_hidden()
+    expect(page.locator("#silat_1\\.2Section #fence_repair_wrapper")).to_be_hidden()
+    expect(page.locator("#silat_1\\.2Section #school_perimeter_wrapper")).to_be_visible()
+    expect(page.locator("#silat_1\\.2Section #school_perimeter")).to_be_editable()
 
     # --- Verify Checkbox Sections ---
 

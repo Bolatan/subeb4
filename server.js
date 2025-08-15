@@ -147,7 +147,7 @@ app.post('/api/tcmats', async (req, res) => {
   }
 });
 
-app.post('/api/lori', async (req, res) => {
+app.post('/api/surveys/lori', async (req, res) => {
   try {
     const survey = new SurveyResponse({ surveyType: 'LORI', formData: req.body });
     await survey.save();
