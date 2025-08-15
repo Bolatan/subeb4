@@ -106,9 +106,9 @@
                     surveys.forEach(survey => {
                         const row = tableBody.insertRow();
                         const formData = survey.formData || {};
-                        const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || formData.silat_1_2_schoolName || formData.silat13_school_name || formData.silat_1_4_schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
+                        const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || formData.voices_schoolName || formData.silat_1_2_schoolName || formData.silat13_school_name || formData.silat_1_4_schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
                         const respondentName = formData.silnat_a_ht_name || formData.tcmats_teacherName || formData.lori_teacher_name || formData.voices_learnerName || (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
-                        const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || formData.silat_1_2_localGov || formData.silat13_lgea || formData.silat_1_4_localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+                        const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || formData.voices_lgea || formData.silat_1_2_localGov || formData.silat13_lgea || formData.silat_1_4_localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
 
                         row.innerHTML = `
                             <td>${survey.surveyType || 'N/A'}</td>
