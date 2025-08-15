@@ -2053,14 +2053,14 @@ h4[onclick] {
                 </div>
                 <div class="form-group">
                     <label>b. Does the Local Govt Educ Auth have perimeter fence: <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="no" required=""> No</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="yes" required="" onchange="handlePerimeterFenceChange1_4(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.4" value="no" required="" onchange="handlePerimeterFenceChange1_4(this)"> No</label>
                 </div>
-                <div class="form-group">
-                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="good" required=""> In Good Condition</label>
-                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="minor_repair" required=""> Need Minor Repair</label>
-                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="major_repair" required=""> Need Major Repair</label>
+                <div class="form-group conditional-group" id="fence_condition_1.4_wrapper" style="display: none;">
+                    <label>If Yes, in what State? <span id="fence_condition_1.4_asterisk" style="color:red; display:none;">*</span></label>
+                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="good"> In Good Condition</label>
+                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="minor_repair"> Need Minor Repair</label>
+                    <label class="radio-inline"><input type="radio" name="fence_condition_1.4" value="major_repair"> Need Major Repair</label>
                 </div>
                 <div class="form-group">
                     <label for="fence_repair_description_1.4">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
@@ -5820,6 +5820,28 @@ async function processFiles(input, maxCount) {
 }
 
 /* The old specific submission functions are now replaced by the generic submitSurvey function */
+
+function handlePerimeterFenceChange1_4(radioElement) {
+    const fenceStateWrapper = document.getElementById('fence_condition_1.4_wrapper');
+    if (!fenceStateWrapper) return;
+    const fenceStateRadios = fenceStateWrapper.querySelectorAll('input[name="fence_condition_1.4"]');
+    const asterisk = document.getElementById('fence_condition_1.4_asterisk');
+
+    if (radioElement.value === 'yes' && radioElement.checked) {
+        fenceStateWrapper.style.display = 'block';
+        fenceStateWrapper.classList.add('visible');
+        if (asterisk) asterisk.style.display = 'inline';
+        fenceStateRadios.forEach(radio => radio.required = true);
+    } else {
+        fenceStateWrapper.style.display = 'none';
+        fenceStateWrapper.classList.remove('visible');
+        if (asterisk) asterisk.style.display = 'none';
+        fenceStateRadios.forEach(radio => {
+            radio.checked = false;
+            radio.required = false;
+        });
+    }
+}
 </script>
 
 <script>
