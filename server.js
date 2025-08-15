@@ -169,6 +169,39 @@ app.post('/api/voices', async (req, res) => {
   }
 });
 
+app.post('/api/surveys/silat_1.2', async (req, res) => {
+  try {
+    const survey = new SurveyResponse({ surveyType: 'SILAT 1.2', formData: req.body });
+    await survey.save();
+    res.status(201).json({ message: 'SILAT 1.2 survey submitted successfully!' });
+  } catch (error) {
+    console.error('Error saving SILAT 1.2 survey:', error);
+    res.status(500).json({ message: 'Submission failed.', error: error.message });
+  }
+});
+
+app.post('/api/surveys/silat_1.3', async (req, res) => {
+  try {
+    const survey = new SurveyResponse({ surveyType: 'SILAT 1.3', formData: req.body });
+    await survey.save();
+    res.status(201).json({ message: 'SILAT 1.3 survey submitted successfully!' });
+  } catch (error) {
+    console.error('Error saving SILAT 1.3 survey:', error);
+    res.status(500).json({ message: 'Submission failed.', error: error.message });
+  }
+});
+
+app.post('/api/surveys/silat_1.4', async (req, res) => {
+  try {
+    const survey = new SurveyResponse({ surveyType: 'SILAT 1.4', formData: req.body });
+    await survey.save();
+    res.status(201).json({ message: 'SILAT 1.4 survey submitted successfully!' });
+  } catch (error) {
+    console.error('Error saving SILAT 1.4 survey:', error);
+    res.status(500).json({ message: 'Submission failed.', error: error.message });
+  }
+});
+
 // Generic endpoint for other/new surveys
 app.post('/api/surveys/:type', async (req, res) => {
   try {
