@@ -2044,11 +2044,11 @@ h4[onclick] {
                 <div class="form-group">
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <p>Is the Local Govt Educ Auth located within a school Complex? <span style="color:red;">*</span></p>
-                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no" required=""> No</label>
-                    <div class="form-group">
-                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools_1.4" name="shared_facility_schools_1.4" class="form-control" required=""></textarea>
+                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes" required="" onchange="handleSharedFacilityChange(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no" required="" onchange="handleSharedFacilityChange(this)"> No</label>
+                    <div id="shared_facility_schools_wrapper_1.4" style="display: none;">
+                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex</label>
+                        <textarea id="shared_facility_schools_1.4" name="shared_facility_schools_1.4" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -5820,6 +5820,14 @@ async function processFiles(input, maxCount) {
 }
 
 /* The old specific submission functions are now replaced by the generic submitSurvey function */
+function handleSharedFacilityChange(radioElement) {
+    const wrapper = document.getElementById('shared_facility_schools_wrapper_1.4');
+    if (radioElement.value === 'yes') {
+        wrapper.style.display = 'block';
+    } else {
+        wrapper.style.display = 'none';
+    }
+}
 </script>
 
 <script>
