@@ -1865,11 +1865,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="staff_male_1.4">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="staff_male_1.4" name="staff_male_1.4" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="staff_male_1.4" name="staff_male_1.4" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('staff_male_1.4', 'staff_female_1.4', 'staff_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="staff_female_1.4">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="staff_female_1.4" name="staff_female_1.4" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="staff_female_1.4" name="staff_female_1.4" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('staff_male_1.4', 'staff_female_1.4', 'staff_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="staff_total_1.4">Total</label>
@@ -1883,11 +1883,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="teachers_male_1.4">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="teachers_male_1.4" name="teachers_male_1.4" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="teachers_male_1.4" name="teachers_male_1.4" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('teachers_male_1.4', 'teachers_female_1.4', 'teachers_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="teachers_female_1.4">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="teachers_female_1.4" name="teachers_female_1.4" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="teachers_female_1.4" name="teachers_female_1.4" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('teachers_male_1.4', 'teachers_female_1.4', 'teachers_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="teachers_total_1.4">Total</label>
@@ -1901,11 +1901,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="non_teaching_male_1.4">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="non_teaching_male_1.4" name="non_teaching_male_1.4" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="non_teaching_male_1.4" name="non_teaching_male_1.4" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('non_teaching_male_1.4', 'non_teaching_female_1.4', 'non_teaching_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="non_teaching_female_1.4">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="non_teaching_female_1.4" name="non_teaching_female_1.4" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="non_teaching_female_1.4" name="non_teaching_female_1.4" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('non_teaching_male_1.4', 'non_teaching_female_1.4', 'non_teaching_total_1.4')">
                         </div>
                         <div class="form-group">
                             <label for="non_teaching_total_1.4">Total</label>
@@ -2044,11 +2044,11 @@ h4[onclick] {
                 <div class="form-group">
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <p>Is the Local Govt Educ Auth located within a school Complex? <span style="color:red;">*</span></p>
-                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no" required=""> No</label>
-                    <div class="form-group">
-                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools_1.4" name="shared_facility_schools_1.4" class="form-control" required=""></textarea>
+                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="yes" required="" onchange="handleSharedFacilityChange(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="shared_facility_1.4" value="no" required="" onchange="handleSharedFacilityChange(this)"> No</label>
+                    <div id="shared_facility_schools_wrapper_1.4" style="display: none;">
+                        <label for="shared_facility_schools_1.4">If Yes, Kindly list Schools within the Complex</label>
+                        <textarea id="shared_facility_schools_1.4" name="shared_facility_schools_1.4" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -5840,6 +5840,7 @@ function handlePerimeterFenceChange1_4(radioElement) {
             radio.checked = false;
             radio.required = false;
         });
+
     }
 }
 </script>
