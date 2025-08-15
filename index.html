@@ -3028,9 +3028,9 @@ h4[onclick] {
                 <td>Number of pupils <span style="color:red;">*</span></td>
                 <td colspan="3">
                     <label for="lori_pupils_female" class="radio-inline">Female <span style="color:red;">*</span></label>
-                    <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" style="width: 80px; display: inline-block;" required="">
+                    <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" style="width: 80px; display: inline-block;" required="" oninput="updateTotal(&#39;lori_pupils_male&#39;, &#39;lori_pupils_female&#39;, &#39;lori_pupils_total&#39;)">
                     <label for="lori_pupils_male" class="radio-inline">Male <span style="color:red;">*</span></label>
-                    <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" style="width: 80px; display: inline-block;" required="">
+                    <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" style="width: 80px; display: inline-block;" required="" oninput="updateTotal(&#39;lori_pupils_male&#39;, &#39;lori_pupils_female&#39;, &#39;lori_pupils_total&#39;)">
                     <label for="lori_pupils_total" class="radio-inline">Total</label>
                     <input type="number" id="lori_pupils_total" name="lori_pupils_total" class="form-control" style="width: 80px; display: inline-block;" readonly="">
                 </td>
