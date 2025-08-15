@@ -3715,14 +3715,14 @@ h4[onclick] {
                         <label>d. School Fence <span style="color:red;">*</span></label>
                         <div>
                             <label>Does the School have perimeter fence: <span style="color:red;">*</span></label>
-                            <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required=""> Yes</label>
-                            <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required=""> No</label>
+                            <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required="" onchange="handleVoicesPerimeterFenceChange(this)"> Yes</label>
+                            <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required="" onchange="handleVoicesPerimeterFenceChange(this)"> No</label>
                         </div>
-                        <div>
+                        <div id="voices_fence_state_wrapper" class="conditional-group" style="display: none;">
                             <label>If Yes, in what State? <span style="color:red;">*</span></label>
-                            <label class="radio-inline"><input type="radio" name="fence_state" value="good_with_gate" required=""> In Good Condition with Gate</label>
-                            <label class="radio-inline"><input type="radio" name="fence_state" value="minor_repair" required=""> Need Minor Repair</label>
-                            <label class="radio-inline"><input type="radio" name="fence_state" value="major_repair" required=""> Need Major Repair</label>
+                            <label class="radio-inline"><input type="radio" name="fence_state" value="good_with_gate"> In Good Condition with Gate</label>
+                            <label class="radio-inline"><input type="radio" name="fence_state" value="minor_repair"> Need Minor Repair</label>
+                            <label class="radio-inline"><input type="radio" name="fence_state" value="major_repair"> Need Major Repair</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -5466,6 +5466,25 @@ function handlePerimeterFenceChange() {
     } else {
         perimeterFenceStateWrapper.style.display = 'none';
         schoolPerimeterWrapper.style.display = 'block';
+    }
+}
+
+function handleVoicesPerimeterFenceChange(radioElement) {
+    const fenceStateWrapper = document.getElementById('voices_fence_state_wrapper');
+    if (!fenceStateWrapper) return;
+    const fenceStateRadios = fenceStateWrapper.querySelectorAll('input[name="fence_state"]');
+
+    if (radioElement.value === 'yes' && radioElement.checked) {
+        fenceStateWrapper.style.display = 'block';
+        fenceStateWrapper.classList.add('visible');
+        fenceStateRadios.forEach(radio => radio.required = true);
+    } else {
+        fenceStateWrapper.style.display = 'none';
+        fenceStateWrapper.classList.remove('visible');
+        fenceStateRadios.forEach(radio => {
+            radio.checked = false;
+            radio.required = false;
+        });
     }
 }
 
