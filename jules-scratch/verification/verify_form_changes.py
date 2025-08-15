@@ -66,7 +66,8 @@ def main():
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         run(page)
+
         browser.close()
 
-if __name__ == "__main__":
-    main()
+with sync_playwright() as playwright:
+    run(playwright)
