@@ -5198,7 +5198,7 @@ let specialSchoolsData = {};
 
 async function loadSpecialSchoolsDataFromCSV() {
     try {
-        const response = await fetch('SPECIAL SCHOOLS AND INCLUSIVE UNITS1.csv');
+        const response = await fetch('SPECIAL SCHOOLS AND INCLUSIVE UNITS.csv');
         const csvText = await response.text();
         const lines = csvText.split('\n').filter(line => line.trim() !== '');
         const newData = {};
@@ -5218,8 +5218,8 @@ async function loadSpecialSchoolsDataFromCSV() {
             return parts;
         }
 
-        // Start from row 4 (index 3) to skip BOM, empty lines and header
-        for (let i = 3; i < lines.length; i++) {
+        // Start from row 2 (index 1) to skip header
+        for (let i = 1; i < lines.length; i++) {
             const parts = parseCsvLine(lines[i]);
 
             if (parts.length >= 3) {
