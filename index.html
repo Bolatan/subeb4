@@ -1646,25 +1646,25 @@ h4[onclick] {
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
                         <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required=""> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no" required=""> No</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1_3" value="yes" required onchange="handleSharedFacilityChange_1_3(this)"> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1_3" value="no" required onchange="handleSharedFacilityChange_1_3(this)"> No</label>
                     </div>
-                    <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4" required=""></textarea>
+                    <div class="form-group" id="shared_facility_schools_wrapper_1_3" style="display: none;">
+                        <label for="shared_facility_schools_1_3">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk_1_3" style="color:red; display:none;">*</span></label>
+                        <textarea id="shared_facility_schools_1_3" name="shared_facility_schools_1_3" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required=""> No</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_3" value="yes" required onchange="handlePerimeterFenceChange_1_3(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_3" value="no" required onchange="handlePerimeterFenceChange_1_3(this)"> No</label>
                 </div>
-                <div class="form-group">
-                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
+                <div class="form-group" id="fence_condition_wrapper_1_3" style="display: none;">
+                    <label>If Yes, in what State? <span id="fence_condition_asterisk_1_3" style="color:red; display:none;">*</span></label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good" required=""> In Good Condition</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair" required=""> Need Minor Repair</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair" required=""> Need Major Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_3" value="good"> In Good Condition</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_3" value="minor_repair"> Need Minor Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_3" value="major_repair"> Need Major Repair</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -5871,6 +5871,42 @@ function handlePerimeterFenceChange1_4(radioElement) {
             radio.required = false;
         });
 
+    }
+}
+
+function handleSharedFacilityChange_1_3(radio) {
+    const wrapper = document.getElementById('shared_facility_schools_wrapper_1_3');
+    const input = document.getElementById('shared_facility_schools_1_3');
+    const asterisk = document.getElementById('shared_facility_schools_asterisk_1_3');
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        input.required = true;
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        input.required = false;
+        input.value = '';
+        asterisk.style.display = 'none';
+    }
+}
+
+function handlePerimeterFenceChange_1_3(radio) {
+    const wrapper = document.getElementById('fence_condition_wrapper_1_3');
+    const inputs = document.querySelectorAll('input[name="fence_condition_1_3"]');
+    const asterisk = document.getElementById('fence_condition_asterisk_1_3');
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        inputs.forEach(input => input.required = true);
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        inputs.forEach(input => {
+            input.required = false;
+            input.checked = false;
+        });
+        asterisk.style.display = 'none';
     }
 }
 </script>
