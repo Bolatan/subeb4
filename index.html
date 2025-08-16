@@ -1652,6 +1652,7 @@ h4[onclick] {
                     <div class="form-group" id="shared_facility_schools_wrapper" style="display: none;">
                         <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk" style="color:red; display:none;">*</span></label>
                         <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4"></textarea>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -1665,6 +1666,7 @@ h4[onclick] {
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="good"> In Good Condition</label>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair"> Need Minor Repair</label>
                         <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair"> Need Major Repair</label>
+
                     </div>
                 </div>
                 <div class="form-group" id="fence_repair_wrapper" style="display: none;">
@@ -5869,6 +5871,42 @@ function handlePerimeterFenceChange1_4(radioElement) {
             radio.required = false;
         });
 
+    }
+}
+
+function handleSharedFacilityChange_1_3(radio) {
+    const wrapper = document.getElementById('shared_facility_schools_wrapper_1_3');
+    const input = document.getElementById('shared_facility_schools_1_3');
+    const asterisk = document.getElementById('shared_facility_schools_asterisk_1_3');
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        input.required = true;
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        input.required = false;
+        input.value = '';
+        asterisk.style.display = 'none';
+    }
+}
+
+function handlePerimeterFenceChange_1_3(radio) {
+    const wrapper = document.getElementById('fence_condition_wrapper_1_3');
+    const inputs = document.querySelectorAll('input[name="fence_condition_1_3"]');
+    const asterisk = document.getElementById('fence_condition_asterisk_1_3');
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        inputs.forEach(input => input.required = true);
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        inputs.forEach(input => {
+            input.required = false;
+            input.checked = false;
+        });
+        asterisk.style.display = 'none';
     }
 }
 </script>
