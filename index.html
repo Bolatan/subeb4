@@ -1304,7 +1304,7 @@ h4[onclick] {
 			
 			
         <div id="silat_1.3Section" class="section hidden">
-            <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')">
+            <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')" novalidate="">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
@@ -1725,12 +1725,12 @@ h4[onclick] {
                 <div class="form-group">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn" required=""> PHCN</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator" required=""> Generator</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar" required=""> Solar</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others" required=""> Others</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills" required=""> PHCN but Disconnected because of accumulated bills</label>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter" required=""> PHCN but Disconnected because of lack of meter</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others"> Others</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                     </div>
                     <div class="form-group">
                         <label for="electricity_additional_info">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
