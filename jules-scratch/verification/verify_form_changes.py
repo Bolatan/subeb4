@@ -1,3 +1,4 @@
+import re
 from playwright.sync_api import sync_playwright, Page, expect
 
 def run(page: Page):
@@ -6,7 +7,7 @@ def run(page: Page):
     page.goto("http://localhost:3000")
 
     # Wait for the server to be ready
-    page.wait_for_timeout(5000)
+    page.wait_for_timeout(10000)
 
     # Login
     page.fill("#username", "admin")
@@ -16,47 +17,94 @@ def run(page: Page):
     # Wait for the landing page to be ready
     page.wait_for_selector("#landingPage", state="visible")
 
-    # Go to the SILNAT 1.2 form
-    page.click("div.survey-card:has-text('Infrastructure & Leadership Tools 1.2: SPECIAL SCHOOLS')")
+    # Go to the SILNAT 1.1 form
+    page.click("div.survey-card:has-text('Infrastructure & Leadership Tools 1.1: REGULAR SCHOOLS')")
+    page.wait_for_selector("#silnatSection", state="visible")
+    page.wait_for_timeout(2000) # Wait for 2 seconds for any animations
+    page.screenshot(path="jules-scratch/verification/debug_screenshot.png", full_page=True)
 
     # --- Verify Fencing Conditional Logic ---
+    silnat_form = page.locator("#silnat_1_1_form")
 
-    # Shared Facility - Yes
-    page.check('#silat_1\\.2Section input[name="shared_facility"][value="yes"]')
-    page.wait_for_timeout(1000)
-    expect(page.locator("#silat_1\\.2Section #shared_facility_schools_wrapper")).to_be_visible()
-    expect(page.locator("#silat_1\\.2Section #shared_facility_schools")).to_be_editable()
+    # Scroll to the fencing section
+    fencing_header = silnat_form.locator("#fencing_header_1_1")
 
-    # Shared Facility - No
-    page.check('#silat_1\\.2Section input[name="shared_facility"][value="no"]')
-    page.wait_for_timeout(1000)
-    expect(page.locator("#silat_1\\.2Section #shared_facility_schools_wrapper")).to_be_hidden()
+    # Print the page content for debugging
+    content = page.content()
+    print(content)
 
-    # Perimeter Fence - Yes
-    page.check('#silat_1\\.2Section input[name="perimeter_fence"][value="yes"]')
-    page.wait_for_timeout(1000)
-    expect(page.locator("#silat_1\\.2Section #fence_condition_wrapper")).to_be_visible()
-    expect(page.locator("#silat_1\\.2Section #fence_repair_wrapper")).to_be_visible()
-    expect(page.locator("#silat_1\\.2Section #school_perimeter_wrapper")).to_be_hidden()
+    fencing_header.scroll_into_view_if_needed()
 
-    # Perimeter Fence - No
-    page.check('#silat_1\\.2Section input[name="perimeter_fence"][value="no"]')
-    page.wait_for_timeout(1000)
-    expect(page.locator("#silat_1\\.2Section #fence_condition_wrapper")).to_be_hidden()
-    expect(page.locator("#silat_1\\.2Section #fence_repair_wrapper")).to_be_hidden()
-    expect(page.locator("#silat_1\\.2Section #school_perimeter_wrapper")).to_be_visible()
-    expect(page.locator("#silat_1\\.2Section #school_perimeter")).to_be_editable()
+    # Shared Facility Logic
+    shared_facility_yes = silnat_form.locator('input[name="shared_facility_1.1"][value="yes"]')
+    shared_facility_no = silnat_form.locator('input[name="shared_facility_1.1"][value="no"]')
+    other_schools_wrapper = silnat_form.locator('#shared_facility_schools_wrapper_1_1')
+    other_schools_input = silnat_form.locator('#shared_facility_schools_1_1')
 
-    # --- Verify Checkbox Sections ---
+    expect(other_schools_wrapper).to_be_hidden()
 
-    # Check that TOILET FACILITIES has checkboxes
-    expect(page.locator('input[name="toilet_type"][type="checkbox"]')).to_have_count(4)
+    shared_facility_yes.click()
+    expect(other_schools_wrapper).to_be_visible()
+    expect(other_schools_input).to_have_attribute("required", "")
 
-    # Check that SOURCE OF POTABLE WATER has checkboxes
-    expect(page.locator('input[name="water_source"][type="checkbox"]')).to_have_count(4)
+    shared_facility_no.click()
+    expect(other_schools_wrapper).to_be_hidden()
+    expect(other_schools_input).not_to_have_attribute("required", "")
 
-    # Check that SOURCE OF ELECTRICITY has checkboxes
-    expect(page.locator('input[name="electricity_source"][type="checkbox"]')).to_have_count(7)
+    # Perimeter Fence Logic
+    perimeter_fence_yes = silnat_form.locator('input[name="perimeter_fence_1.1"][value="yes"]')
+    perimeter_fence_no = silnat_form.locator('input[name="perimeter_fence_1.1"][value="no"]')
+    fence_condition_wrapper = silnat_form.locator('#fence_condition_wrapper_1_1')
+    fence_repair_wrapper = silnat_form.locator('#fence_repair_wrapper_1_1')
+    school_perimeter_wrapper = silnat_form.locator('#school_perimeter_wrapper_1_1')
+
+    fence_condition_radios = silnat_form.locator('input[name="fence_condition_1.1"]')
+    school_perimeter_input = silnat_form.locator('#school_perimeter_1_1')
+
+
+    expect(fence_condition_wrapper).to_be_hidden()
+    expect(fence_repair_wrapper).to_be_hidden()
+    expect(school_perimeter_wrapper).to_be_hidden()
+
+    perimeter_fence_yes.click()
+    expect(fence_condition_wrapper).to_be_visible()
+    expect(school_perimeter_wrapper).to_be_hidden()
+    expect(school_perimeter_input).not_to_have_attribute("required", "")
+    for i in range(fence_condition_radios.count()):
+            expect(fence_condition_radios.nth(i)).to_have_attribute("required", "")
+
+    perimeter_fence_no.click()
+    expect(fence_condition_wrapper).to_be_hidden()
+    expect(fence_repair_wrapper).to_be_hidden()
+    expect(school_perimeter_wrapper).to_be_visible()
+    expect(school_perimeter_input).to_have_attribute("required", "")
+    for i in range(fence_condition_radios.count()):
+            expect(fence_condition_radios.nth(i)).not_to_have_attribute("required", "")
+
+    # Fence Condition Logic
+    perimeter_fence_yes.click()
+
+    fence_condition_good = silnat_form.locator('input[name="fence_condition_1.1"][value="good"]')
+    fence_condition_minor = silnat_form.locator('input[name="fence_condition_1.1"][value="minor_repair"]')
+    fence_condition_major = silnat_form.locator('input[name="fence_condition_1.1"][value="major_repair"]')
+    fence_repair_input = silnat_form.locator('#fence_repair_description_1_1')
+
+    expect(fence_repair_wrapper).to_be_hidden()
+
+    fence_condition_good.click()
+    expect(fence_repair_wrapper).to_be_hidden()
+    expect(fence_repair_input).not_to_have_attribute("required", "")
+
+    fence_condition_minor.click()
+    expect(fence_repair_wrapper).to_be_visible()
+    expect(fence_repair_input).to_have_attribute("required", "")
+
+    fence_condition_major.click()
+    expect(fence_repair_wrapper).to_be_visible()
+    expect(fence_repair_input).to_have_attribute("required", "")
+
+    fence_condition_good.click()
+    expect(fence_repair_wrapper).to_be_hidden()
 
     # Take a screenshot
     page.screenshot(path="jules-scratch/verification/verification.png", full_page=True)
@@ -69,5 +117,5 @@ def main():
 
         browser.close()
 
-with sync_playwright() as playwright:
-    run(playwright)
+if __name__ == "__main__":
+    main()
