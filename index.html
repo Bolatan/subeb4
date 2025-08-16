@@ -936,6 +936,7 @@ h4[onclick] {
                     <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
                     </div>
                 </div>
@@ -1003,7 +1004,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.1" value="yes" required=""></td><td><input type="radio" name="records_a_1.1" value="no" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.1" value="yes" required=""></td><td><input type="radio" name="records_b_1.1" value="no" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.1" value="yes" required=""></td><td><input type="radio" name="records_b_1.1" value="no" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.1" value="yes" required=""></td><td><input type="radio" name="records_c_1.1" value="no" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_d_1.1" value="yes" required=""></td><td><input type="radio" name="records_d_1.1" value="no" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_e_1.1" value="yes" required=""></td><td><input type="radio" name="records_e_1.1" value="no" required=""></td></tr>
@@ -1077,7 +1078,7 @@ h4[onclick] {
                     </div>
                 </div>
 
-                <h4>2. FENCING <span style="color:red;">*</span></h4>
+                <h4 id="fencing_header_1_1">2. FENCING <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
@@ -1572,7 +1573,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2" required=""></td><td><input type="radio" name="records_a_1.2" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2" required=""></td><td><input type="radio" name="records_d_1.2" required=""></td></tr>
@@ -1646,34 +1647,36 @@ h4[onclick] {
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
                         <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="yes" required=""> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility" value="no" required=""> No</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1.1" value="yes" required onchange="handleSharedFacilityChange_1_1(this)"> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1.1" value="no" required onchange="handleSharedFacilityChange_1_1(this)"> No</label>
                     </div>
-                    <div class="form-group">
-                        <label for="shared_facility_schools">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools" name="shared_facility_schools" class="form-control" rows="4" required=""></textarea>
+                    <div class="form-group" id="shared_facility_schools_wrapper_1_1" style="display: none;">
+                        <label for="shared_facility_schools_1_1">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                        <textarea id="shared_facility_schools_1_1" name="shared_facility_schools_1.1" class="form-control" rows="4"></textarea>
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence" value="no" required=""> No</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.1" value="yes" required onchange="handlePerimeterFenceChange_1_1(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1.1" value="no" required onchange="handlePerimeterFenceChange_1_1(this)"> No</label>
                 </div>
-                <div class="form-group">
-                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
+                <div class="form-group" id="fence_condition_wrapper_1_1" style="display: none;">
+                    <label>If Yes, in what State? <span id="fence_condition_asterisk_1_1" style="color:red; display:none;">*</span></label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="good" required=""> In Good Condition</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="minor_repair" required=""> Need Minor Repair</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition" value="major_repair" required=""> Need Major Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1.1" value="good" onchange="handleFenceConditionChange_1_1(this)"> In Good Condition</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1.1" value="minor_repair" onchange="handleFenceConditionChange_1_1(this)"> Need Minor Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1.1" value="major_repair" onchange="handleFenceConditionChange_1_1(this)"> Need Major Repair</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="fence_repair_description">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
-                    <textarea id="fence_repair_description" name="fence_repair_description" class="form-control" rows="2" required=""></textarea>
+                <div class="form-group" id="fence_repair_wrapper_1_1" style="display: none;">
+                    <label for="fence_repair_description_1_1">Briefly, describe the type of repair needed <span id="fence_repair_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                    <textarea id="fence_repair_description_1_1" name="fence_repair_description_1.1" class="form-control" rows="2"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="school_perimeter">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
-                    <input type="text" id="school_perimeter" name="school_perimeter" class="form-control" required="">
+                <div class="form-group" id="school_perimeter_wrapper_1_1" style="display: none;">
+                    <label for="school_perimeter_1_1">If No, what is the perimeter of the School? <span id="school_perimeter_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                    <input type="text" id="school_perimeter_1_1" name="school_perimeter_1.1" class="form-control">
+
                 </div>
 
                 <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
@@ -1725,6 +1728,7 @@ h4[onclick] {
                 <div class="form-group" data-is-required="true">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
@@ -2109,6 +2113,7 @@ h4[onclick] {
                 <h5>SOURCE OF ELECTRICITY <span style="color:red;">*</span></h5>
                 <div class="form-group" data-is-required="true">
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
+
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="generator"> Generator</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="solar"> Solar</label>
@@ -2444,6 +2449,7 @@ h4[onclick] {
                 <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                 <div>
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
+
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
                 </div>
             </div>
@@ -2510,7 +2516,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2" required=""></td><td><input type="radio" name="records_a_1.2" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2" required=""></td><td><input type="radio" name="records_d_1.2" required=""></td></tr>
@@ -2669,6 +2675,7 @@ h4[onclick] {
                 <div class="form-group" data-is-required="true">
                     <div>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
@@ -2744,6 +2751,14 @@ h4[onclick] {
                         <select id="tcmats_schoolName" name="tcmats_schoolName" class="form-control" required="">
                             <option value="">Select LGEA first</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="voices_learnerName">Learner's Name <span style="color:red;">*</span></label>
+                        <input type="text" id="voices_learnerName" name="voices_learnerName" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tcmats_teacherName">Teacher's Name <span style="color:red;">*</span></label>
+                        <input type="text" id="tcmats_teacherName" name="tcmats_teacherName" class="form-control" required="">
                     </div>
     <div class="form-group">
         <label>Location: <span style="color:red;">*</span></label>
@@ -5868,6 +5883,83 @@ function handlePerimeterFenceChange1_4(radioElement) {
             radio.checked = false;
             radio.required = false;
         });
+
+    }
+}
+
+function handleSharedFacilityChange_1_1(radio) {
+    const wrapper = document.getElementById('shared_facility_schools_wrapper_1_1');
+    const input = document.getElementById('shared_facility_schools_1_1');
+    const asterisk = document.getElementById('shared_facility_schools_asterisk_1_1');
+
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        input.required = true;
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        input.required = false;
+        input.value = '';
+        asterisk.style.display = 'none';
+    }
+}
+
+function handlePerimeterFenceChange_1_1(radio) {
+    const conditionWrapper = document.getElementById('fence_condition_wrapper_1_1');
+    const conditionRadios = document.querySelectorAll('input[name="fence_condition_1.1"]');
+    const conditionAsterisk = document.getElementById('fence_condition_asterisk_1_1');
+
+    const repairWrapper = document.getElementById('fence_repair_wrapper_1_1');
+    const repairInput = document.getElementById('fence_repair_description_1_1');
+    const repairAsterisk = document.getElementById('fence_repair_asterisk_1_1');
+
+    const perimeterWrapper = document.getElementById('school_perimeter_wrapper_1_1');
+    const perimeterInput = document.getElementById('school_perimeter_1_1');
+    const perimeterAsterisk = document.getElementById('school_perimeter_asterisk_1_1');
+
+    if (radio.value === 'yes' && radio.checked) {
+        conditionWrapper.style.display = 'block';
+        conditionRadios.forEach(r => r.required = true);
+        conditionAsterisk.style.display = 'inline';
+
+        perimeterWrapper.style.display = 'none';
+        perimeterInput.required = false;
+        perimeterInput.value = '';
+        perimeterAsterisk.style.display = 'none';
+    } else {
+        conditionWrapper.style.display = 'none';
+        conditionRadios.forEach(r => {
+            r.required = false;
+            r.checked = false;
+        });
+        conditionAsterisk.style.display = 'none';
+
+        repairWrapper.style.display = 'none';
+        repairInput.required = false;
+        repairInput.value = '';
+        repairAsterisk.style.display = 'none';
+
+        perimeterWrapper.style.display = 'block';
+        perimeterInput.required = true;
+        perimeterAsterisk.style.display = 'inline';
+    }
+}
+
+function handleFenceConditionChange_1_1(radio) {
+    const repairWrapper = document.getElementById('fence_repair_wrapper_1_1');
+    const repairInput = document.getElementById('fence_repair_description_1_1');
+    const repairAsterisk = document.getElementById('fence_repair_asterisk_1_1');
+
+    if ((radio.value === 'minor_repair' || radio.value === 'major_repair') && radio.checked) {
+        repairWrapper.style.display = 'block';
+        repairInput.required = true;
+        repairAsterisk.style.display = 'inline';
+    } else {
+        repairWrapper.style.display = 'none';
+        repairInput.required = false;
+        repairInput.value = '';
+        repairAsterisk.style.display = 'none';
 
     }
 }
