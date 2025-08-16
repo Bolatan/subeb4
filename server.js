@@ -124,95 +124,23 @@ app.post('/api/login', async (req, res) => {
 // User Registration endpoint removed as per new requirements.
 // User creation is now handled by admins only via /api/users.
 
-// Specific endpoints for existing forms to match the frontend calls
-app.post('/api/silnat', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'SILNAT', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'SILNAT survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving SILNAT survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/tcmats', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'TCMATS', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'TCMATS survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving TCMATS survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/surveys/lori', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'LORI', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'LORI survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving LORI survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/voices', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'VOICES', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'VOICES survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving VOICES survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/surveys/silat_1.2', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'SILAT 1.2', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'SILAT 1.2 survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving SILAT 1.2 survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/surveys/silat_1.3', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'SILAT 1.3', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'SILAT 1.3 survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving SILAT 1.3 survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-app.post('/api/surveys/silat_1.4', async (req, res) => {
-  try {
-    const survey = new SurveyResponse({ surveyType: 'SILAT 1.4', formData: req.body });
-    await survey.save();
-    res.status(201).json({ message: 'SILAT 1.4 survey submitted successfully!' });
-  } catch (error) {
-    console.error('Error saving SILAT 1.4 survey:', error);
-    res.status(500).json({ message: 'Submission failed.', error: error.message });
-  }
-});
-
-// Generic endpoint for other/new surveys
+// Generic endpoint for all surveys
 app.post('/api/surveys/:type', async (req, res) => {
   try {
+    // Sanitize and format the survey type from the URL parameter
+    const surveyType = req.params.type.replace(/_/g, ' ').toUpperCase();
+
     const survey = new SurveyResponse({
-      surveyType: req.params.type,
+      surveyType: surveyType,
       formData: req.body,
     });
+
     await survey.save();
-    res.status(201).json({ message: `${req.params.type} survey submitted successfully!` });
+    console.log(`Successfully saved survey of type: ${surveyType}`);
+    res.status(201).json({ message: `${surveyType} survey submitted successfully!` });
   } catch (error) {
-    console.error(`Error saving ${req.params.type} survey:`, error);
+    const surveyType = req.params.type.replace(/_/g, ' ').toUpperCase();
+    console.error(`Error saving ${surveyType} survey:`, error);
     res.status(500).json({ message: 'Submission failed.', error: error.message });
   }
 });
