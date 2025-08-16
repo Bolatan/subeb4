@@ -1003,7 +1003,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.1" value="yes" required=""></td><td><input type="radio" name="records_a_1.1" value="no" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.1" value="yes" required=""></td><td><input type="radio" name="records_b_1.1" value="no" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.1" value="yes" required=""></td><td><input type="radio" name="records_b_1.1" value="no" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.1" value="yes" required=""></td><td><input type="radio" name="records_c_1.1" value="no" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_d_1.1" value="yes" required=""></td><td><input type="radio" name="records_d_1.1" value="no" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_e_1.1" value="yes" required=""></td><td><input type="radio" name="records_e_1.1" value="no" required=""></td></tr>
@@ -1572,7 +1572,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2" required=""></td><td><input type="radio" name="records_a_1.2" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2" required=""></td><td><input type="radio" name="records_d_1.2" required=""></td></tr>
@@ -1652,6 +1652,7 @@ h4[onclick] {
                     <div class="form-group" id="shared_facility_schools_wrapper_1_1" style="display: none;">
                         <label for="shared_facility_schools_1_1">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk_1_1" style="color:red; display:none;">*</span></label>
                         <textarea id="shared_facility_schools_1_1" name="shared_facility_schools_1.1" class="form-control" rows="4"></textarea>
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -1674,6 +1675,7 @@ h4[onclick] {
                 <div class="form-group" id="school_perimeter_wrapper_1_1" style="display: none;">
                     <label for="school_perimeter_1_1">If No, what is the perimeter of the School? <span id="school_perimeter_asterisk_1_1" style="color:red; display:none;">*</span></label>
                     <input type="text" id="school_perimeter_1_1" name="school_perimeter_1.1" class="form-control">
+
                 </div>
 
                 <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
@@ -2510,7 +2512,7 @@ h4[onclick] {
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
                         <tr><td>a.</td><td>Maintaining the School Log Book</td><td><input type="radio" name="records_a_1.2" required=""></td><td><input type="radio" name="records_a_1.2" required=""></td></tr>
-                        <tr><td>b.</td><td>Maintenance of daily classrom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
+                        <tr><td>b.</td><td>Maintenance of daily classroom register by teachers</td><td><input type="radio" name="records_b_1.2" required=""></td><td><input type="radio" name="records_b_1.2" required=""></td></tr>
                         <tr><td>c.</td><td>Maintaining Weekly Diaries</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
 						<tr><td>d.</td><td>Maintenance of Teachers' Movement Book</td><td><input type="radio" name="records_c_1.2" required=""></td><td><input type="radio" name="records_c_1.2" required=""></td></tr>
                         <tr><td>e.</td><td>Keeping of Teachers' Time-book</td><td><input type="radio" name="records_d_1.2" required=""></td><td><input type="radio" name="records_d_1.2" required=""></td></tr>
@@ -2744,6 +2746,14 @@ h4[onclick] {
                         <select id="tcmats_schoolName" name="tcmats_schoolName" class="form-control" required="">
                             <option value="">Select LGEA first</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="voices_learnerName">Learner's Name <span style="color:red;">*</span></label>
+                        <input type="text" id="voices_learnerName" name="voices_learnerName" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="tcmats_teacherName">Teacher's Name <span style="color:red;">*</span></label>
+                        <input type="text" id="tcmats_teacherName" name="tcmats_teacherName" class="form-control" required="">
                     </div>
     <div class="form-group">
         <label>Location: <span style="color:red;">*</span></label>
@@ -5877,6 +5887,7 @@ function handleSharedFacilityChange_1_1(radio) {
     const input = document.getElementById('shared_facility_schools_1_1');
     const asterisk = document.getElementById('shared_facility_schools_asterisk_1_1');
 
+
     if (radio.value === 'yes' && radio.checked) {
         wrapper.style.display = 'block';
         input.required = true;
@@ -5944,6 +5955,7 @@ function handleFenceConditionChange_1_1(radio) {
         repairInput.required = false;
         repairInput.value = '';
         repairAsterisk.style.display = 'none';
+
     }
 }
 </script>
