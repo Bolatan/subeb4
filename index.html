@@ -2310,11 +2310,11 @@ h4[onclick] {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_teachers_male">Male <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" required="">
+                        <input type="number" id="silnat_teachers_male" name="silnat_teachers_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateSilnatTotalTeachers()">
                     </div>
                     <div class="form-group">
                         <label for="silnat_teachers_female">Female <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" required="">
+                        <input type="number" id="silnat_teachers_female" name="silnat_teachers_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateSilnatTotalTeachers()">
 
                     </div>
                     <div class="form-group">
@@ -2329,11 +2329,11 @@ h4[onclick] {
                 <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                     <div class="form-group">
                         <label for="silnat_non_teaching_male">Male <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male" required="">
+                        <input type="number" id="silnat_non_teaching_male" name="silnat_non_teaching_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateSilnatTotalNonTeachingStaff()">
                     </div>
                     <div class="form-group">
                         <label for="silnat_non_teaching_female">Female <span style="color:red;">*</span></label>
-                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female" required="">
+                        <input type="number" id="silnat_non_teaching_female" name="silnat_non_teaching_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateSilnatTotalNonTeachingStaff()">
 
                     </div>
                     <div class="form-group">
@@ -5676,8 +5676,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTotalCalculation('silat13_learners_male', 'silat13_learners_female', 'silat13_learners_total');
 
     // SILNAT 1.1 totals
-    setupTotalCalculation('silnat_teachers_male', 'silnat_teachers_female', 'silnat_teachers_total');
-    setupTotalCalculation('silnat_non_teaching_male', 'silnat_non_teaching_female', 'silnat_non_teaching_total');
     setupTotalCalculation('silnat_pupils_eccde_male', 'silnat_pupils_eccde_female', 'silnat_pupils_eccde_total');
     setupTotalCalculation('silnat_pupils_primary_male', 'silnat_pupils_primary_female', 'silnat_pupils_primary_total');
     setupTotalCalculation('silnat_pupils_special_male', 'silnat_pupils_special_female', 'silnat_pupils_special_total');
