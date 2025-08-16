@@ -2724,7 +2724,7 @@ h4[onclick] {
         
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionA', 'tcmatsSectionAHeader')">SECTION A: Demographic information of School and Bio Data of Teacher <span id="tcmatsSectionAHeader">🔽</span></h3>
             <div id="tcmatsSectionA" style="display: block;">
-            <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
+            <form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')"><div style="color:#888;margin-top:40px;">
     <div class="form-group">
         <label>Institution: <span style="color:red;">*</span></label>
         <div>
@@ -2810,7 +2810,7 @@ h4[onclick] {
             <label class="radio-inline"><input type="radio" name="tcmats_teaching_experience" value="21_and_above" required=""> 21 &amp; Above</label>
         </div>
     </div>
-    </form></div>
+    </div>
 </div>
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionB', 'tcmatsSectionBHeader')">SECTION B: <span id="tcmatsSectionBHeader">🔽</span></h3>
             <div id="tcmatsSectionB" style="display: block;">
@@ -2975,7 +2975,7 @@ h4[onclick] {
                     <textarea id="tcmats_difficult_topics" name="tcmats_difficult_topics" class="form-control" rows="5" required=""></textarea>
                 </div>
             </div>
-            <button type="submit" class="btn">Submit TCMATS Form</button>
+            <button type="submit" class="btn">Submit TCMATS Form</button></form>
             <div id="tcmats_feedback" style="margin-top:15px;font-size:15px;"></div>
         </div>
 	
@@ -3438,8 +3438,8 @@ h4[onclick] {
         </div>
     </div>
     <button type="submit" class="btn">Submit LORI Survey</button>
-    <div id="lori_feedback" style="margin-top: 15px; font-size: 16px; font-weight: bold; padding: 10px; border-radius: 5px; text-align: center;"></div>
 </form></div>
+<div id="lori_feedback" style="margin-top: 15px; font-size: 16px; font-weight: bold; padding: 10px; border-radius: 5px; text-align: center;"></div>
         </div>
 		
 		
@@ -5370,7 +5370,7 @@ async function submitSurvey(event, surveyType) {
         console.warn(`Survey type "${surveyType}" is not officially in the allowed list, but proceeding anyway.`);
     }
 
-    const feedback = form.nextElementSibling;
+    const feedback = document.getElementById(`${surveyType}_feedback`);
 
     if (feedback) {
         feedback.textContent = 'Submitting...';

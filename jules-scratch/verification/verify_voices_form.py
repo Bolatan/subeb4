@@ -1,58 +1,91 @@
+import json
 from playwright.sync_api import sync_playwright, Page, expect
-import time
 
-def run(page: Page):
-    page.on("console", lambda msg: print(f"PAGE LOG: {msg.text}"))
-    # Navigate to the application
+def verify_voices_form_submission(page: Page):
+    # Go to the page first
     page.goto("http://localhost:3000")
 
-    # Wait for the server to be ready
-    time.sleep(5)
+    # Set local storage to simulate a logged-in user
+    user_data = {
+        "username": "testuser",
+        "role": "admin",
+        "token": "fake-token"
+    }
+    page.evaluate(f"localStorage.setItem('auditAppCurrentUser', '{json.dumps(user_data)}')")
 
-    # Login
-    page.fill("#username", "admin")
-    page.fill("#password", "AdminPassword1!")
-    page.click("button:text('Login')")
+    # Reload the page to apply the logged-in state
+    page.reload()
 
-    # Wait for the landing page to be ready
-    page.wait_for_selector("#landingPage", state="visible")
+    # Click on the "Learner Voices/Opinions (VOICES)" survey card
+    page.get_by_text("Learner Voices/Opinions (VOICES)").click()
 
-    # Go to the VOICES form
-    page.click("div.survey-card:has-text('Learner Voices/Opinions')")
+    # Wait for the voices section to be visible
+    expect(page.locator("#voicesSection")).to_be_visible()
 
-    # Wait for the VOICES section to be visible
-    page.wait_for_selector("#voicesSection", state="visible")
+    # Fill out the form
+    # Section A
+    page.locator('input[name="voices_institution"][value="regular_school"]').check()
+    page.locator('#voices_lgea').select_option(label='AGEGE')
 
-    # --- Verify Fencing Conditional Logic in VOICES survey ---
-    wrapper = page.locator("#voices_fence_state_wrapper")
+    # Wait for schools to load, which depends on an async data load.
+    # A short timeout is a pragmatic way to handle this in a verification script.
+    page.wait_for_timeout(1000)
 
-    # Check initial state
-    expect(wrapper).to_be_hidden()
+    # Check if there are options in the school dropdown before selecting one
+    school_options_count = page.locator('#voices_schoolName option').count()
+    if school_options_count <= 1:
+        print(f"Error: School dropdown not populated. Found only {school_options_count} option(s).")
+        page.screenshot(path="jules-scratch/verification/voices_survey_error.png")
+        return
 
-    # Click the LABEL for the "Yes" radio button, scoped to the correct section
-    yes_label_locator = page.locator('#voicesSection label.radio-inline:has(input[name="perimeter_fence"][value="yes"])')
-    yes_label_locator.click()
+    page.locator('#voices_schoolName').select_option(index=1)
 
-    expect(wrapper).to_be_visible()
+    page.locator('#voices_class').select_option(label='Pry One')
+    page.locator('input[name="voices_class_description"][value="single_grade"]').check()
+    page.locator('input[name="voices_gender"][value="male"]').check()
+    page.locator('input[name="voices_distance"][value="1km_3km"]').check()
 
-    # Click the LABEL for the "No" radio button, scoped to the correct section
-    no_label_locator = page.locator('#voicesSection label.radio-inline:has(input[name="perimeter_fence"][value="no"])')
-    no_label_locator.click()
+    # Section B
+    page.locator('textarea[name="voices_difficult_topics"]').fill("Mathematics")
 
-    expect(wrapper).to_be_hidden()
+    # Section C
+    for i in range(1, 16):
+        page.locator(f'input[name="participation_{i}"][value="3"]').check()
+
+    # Section D
+    page.locator('input[name="school_building"][value="good_condition"]').check()
+    page.locator('input[name="furniture"][value="adequate"]').check()
+    page.locator('input[name="classroom_condition"][value="beautiful"]').check()
+    page.locator('input[name="perimeter_fence"][value="yes"]').check()
+    page.locator('input[name="toilet_type"][value="wc"]').check()
+    page.locator('input[name="toilet_cubicles_available"]').fill("4")
+    page.locator('input[name="toilet_cubicles_minor_repair"]').fill("0")
+    page.locator('input[name="toilet_cubicles_major_repair"]').fill("0")
+    page.locator('input[name="toilet_cubicles_additional"]').fill("0")
+    page.locator('input[name="septic_tank"][value="available"]').check()
+    page.locator('input[name="water_source"][value="tap_water"]').check()
+    page.locator('input[name="electricity_source"][value="phcn"]').check()
+    page.locator('input[name="clubs"][value="boys_scout"]').check()
+    page.locator('input[name="clubs_frequency"][value="weekly"]').check()
+    page.locator('input[name="sports_equipment"][value="football"]').check()
+    page.locator('input[name="waterlogged"][value="no"]').check()
+    page.locator('textarea[name="major_requests"]').fill("More books")
+
+    # Submit the form
+    page.locator('#voicesForm button[type="submit"]').click()
+
+    # Check for the success message
+    feedback_div = page.locator("#voices_feedback")
+    expect(feedback_div).to_have_text("VOICES survey submitted successfully!")
+    expect(feedback_div).to_have_css("color", "rgb(22, 163, 74)") # var(--lagos-green)
 
     # Take a screenshot
-    page.screenshot(path="jules-scratch/verification/voices_verification.png", full_page=True)
-    print("Verification successful, screenshot taken.")
+    page.screenshot(path="jules-scratch/verification/voices_survey_success.png")
 
-def main():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        try:
-            run(page)
-        finally:
-            browser.close()
-
-if __name__ == "__main__":
-    main()
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+    try:
+        verify_voices_form_submission(page)
+    finally:
+        browser.close()

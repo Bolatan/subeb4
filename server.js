@@ -125,7 +125,7 @@ app.post('/api/login', async (req, res) => {
 // User creation is now handled by admins only via /api/users.
 
 // Specific endpoints for existing forms to match the frontend calls
-app.post('/api/silnat', async (req, res) => {
+app.post('/api/surveys/silnat', async (req, res) => {
   try {
     const survey = new SurveyResponse({ surveyType: 'SILNAT', formData: req.body });
     await survey.save();
@@ -136,7 +136,7 @@ app.post('/api/silnat', async (req, res) => {
   }
 });
 
-app.post('/api/tcmats', async (req, res) => {
+app.post('/api/surveys/tcmats', async (req, res) => {
   try {
     const survey = new SurveyResponse({ surveyType: 'TCMATS', formData: req.body });
     await survey.save();
@@ -158,7 +158,7 @@ app.post('/api/surveys/lori', async (req, res) => {
   }
 });
 
-app.post('/api/voices', async (req, res) => {
+app.post('/api/surveys/voices', async (req, res) => {
   try {
     const survey = new SurveyResponse({ surveyType: 'VOICES', formData: req.body });
     await survey.save();
