@@ -932,10 +932,11 @@ h4[onclick] {
                     <input type="number" id="silat_1_2_multigrade_classes" name="silat_1_2_multigrade_classes" class="form-control" min="0" required="">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" data-is-required="true">
                     <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_classrooms" required=""> Inadequate Classrooms</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="silat_1_2_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
                     </div>
                 </div>
@@ -1724,9 +1725,10 @@ h4[onclick] {
                 </div>
 
                 <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
-                <div class="form-group">
+                <div class="form-group" data-is-required="true">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
@@ -2109,8 +2111,9 @@ h4[onclick] {
                     <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>SOURCE OF ELECTRICITY <span style="color:red;">*</span></h5>
-                <div class="form-group">
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none" required=""> None</label>
+                <div class="form-group" data-is-required="true">
+                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
+
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="generator"> Generator</label>
                     <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="solar"> Solar</label>
@@ -2442,10 +2445,11 @@ h4[onclick] {
                 <input type="number" id="silnat_multigrade_classes" name="silnat_multigrade_classes" class="form-control" min="0" placeholder="Enter number" required="">
             </div>
 
-            <div class="form-group" style="margin-top: 20px;">
+            <div class="form-group" style="margin-top: 20px;" data-is-required="true">
                 <label>Reason(s) for operating the classes as Multigrade: <span style="color:red;">*</span></label>
                 <div>
-                    <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms" required=""> Inadequate Classrooms</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_classrooms"> Inadequate Classrooms</label>
+
                     <label class="checkbox-inline"><input type="checkbox" name="silnat_multigrade_reasons" value="inadequate_teaching_staff"> Inadequate Teaching Staff</label>
                 </div>
             </div>
@@ -2668,9 +2672,10 @@ h4[onclick] {
                 </div>
 
                 <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
-                <div class="form-group">
+                <div class="form-group" data-is-required="true">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
@@ -5335,14 +5340,14 @@ function validateForm(form) {
              const groupName = el.name;
              if (groupName && !checkboxGroups.has(groupName)) {
                 checkboxGroups.add(groupName);
-                const groupCheckboxes = form.querySelectorAll(`input[name="${groupName}"]`);
-                const isRequired = Array.from(groupCheckboxes).some(c => c.required);
+                const groupDiv = el.closest('.form-group');
+                const isRequired = groupDiv && groupDiv.dataset.isRequired === 'true';
 
                 if (isRequired) {
                     const checked = form.querySelector(`input[name="${groupName}"]:checked`);
                     if (!checked) {
                         isInvalid = true;
-                        const label = el.closest('.form-group')?.querySelector('label, h5, h4');
+                        const label = groupDiv.querySelector('label, h5, h4');
                         message = `Please select at least one option for "${label ? label.textContent.replace(/\*/g, '').trim() : groupName}".`;
                     }
                 }
