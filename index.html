@@ -2115,14 +2115,15 @@ h4[onclick] {
                 </div>
                 <h5>SOURCE OF ELECTRICITY <span style="color:red;">*</span></h5>
                 <div class="form-group" data-is-required="true">
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
-
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="generator"> Generator</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="solar"> Solar</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="others"> Others</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
+                    <select id="electricity_source_1.4" name="electricity_source_1.4" class="form-control" multiple>
+                        <option value="none">None</option>
+                        <option value="phcn">PHCN</option>
+                        <option value="generator">Generator</option>
+                        <option value="solar">Solar</option>
+                        <option value="others">Others</option>
+                        <option value="phcn_disconnected_bills">PHCN but Disconnected because of accumulated bills</option>
+                        <option value="phcn_disconnected_meter">PHCN but Disconnected because of lack of meter</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="electricity_additional_info_1.4">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
@@ -5359,6 +5360,23 @@ function validateForm(form) {
                     }
                 }
              }
+        }
+        // Special validation for multi-select electricity source
+        else if (el.type === 'select-multiple' && el.id === 'electricity_source_1.4') {
+            const selectedOptions = el.selectedOptions;
+            const totalOptions = el.options.length;
+            const groupDiv = el.closest('.form-group');
+            const isRequired = groupDiv && groupDiv.dataset.isRequired === 'true';
+
+            if (isRequired) {
+                if (selectedOptions.length === 0) {
+                    isInvalid = true;
+                    message = 'Please select at least one source of electricity.';
+                } else if (selectedOptions.length === totalOptions) {
+                    isInvalid = true;
+                    message = 'You cannot select all options for Source of Electricity. Please unselect at least one.';
+                }
+            }
         }
         // Handle other input types
         else if (el.required && el.value.trim() === '') {

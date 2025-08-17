@@ -127,8 +127,7 @@ app.post('/api/login', async (req, res) => {
 // Generic endpoint for all surveys
 app.post('/api/surveys/:type', async (req, res) => {
   try {
-    // Sanitize and format the survey type from the URL parameter
-    const surveyType = req.params.type.replace(/_/g, ' ').toUpperCase();
+    const surveyType = req.params.type;
 
     const survey = new SurveyResponse({
       surveyType: surveyType,
@@ -139,7 +138,7 @@ app.post('/api/surveys/:type', async (req, res) => {
     console.log(`Successfully saved survey of type: ${surveyType}`);
     res.status(201).json({ message: `${surveyType} survey submitted successfully!` });
   } catch (error) {
-    const surveyType = req.params.type.replace(/_/g, ' ').toUpperCase();
+    const surveyType = req.params.type;
     console.error(`Error saving ${surveyType} survey:`, error);
     res.status(500).json({ message: 'Submission failed.', error: error.message });
   }
