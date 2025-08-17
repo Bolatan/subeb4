@@ -466,6 +466,16 @@
             border-color: #dcdcdc;
         }
 
+        .feedback-success {
+            color: var(--lagos-green);
+            background-color: #eafaf1;
+            border: 1px solid var(--lagos-green);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -994,8 +1004,8 @@ h4[onclick] {
                     <tbody>
                         <tr><td>a.</td><td>Assessing Teachers’ lesson plan before delivery</td><td><input type="radio" name="supervision_a_1.1" value="yes" required=""></td><td><input type="radio" name="supervision_a_1.1" value="no" required=""></td></tr>
                         <tr><td>b.</td><td>Getting Teachers supevised during lesson presentations</td><td><input type="radio" name="supervision_b_1.1" value="yes" required=""></td><td><input type="radio" name="supervision_b_1.1" value="no" required=""></td></tr>
-                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.1" value="yes" required=""></td><td><input type="radio" name="supervision_c_1.1" value="no" required=""></td></tr>
-						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_d_1.1" value="yes" required=""></td><td><input type="radio" name="supervision_d_1.1" value="no" required=""></td></tr>
+                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.1" value="yes" required="" checked></td><td><input type="radio" name="supervision_c_1.1" value="no" required=""></td></tr>
+						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_d_1.1" value="yes" required="" checked></td><td><input type="radio" name="supervision_d_1.1" value="no" required=""></td></tr>
                         <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_e_1.1" value="yes" required=""></td><td><input type="radio" name="supervision_e_1.1" value="no" required=""></td></tr>
                     </tbody>
                 </table>
@@ -2508,11 +2518,11 @@ h4[onclick] {
                 <table class="data-table" width="100%">
                     <thead><tr><th>S/N</th><th>ITEM</th><th>Yes</th><th>No</th></tr></thead>
                     <tbody>
-                        <tr><td>a.</td><td>Assessing Teachers’ lesson plan before delivery</td><td><input type="radio" name="supervision_a_1.2" required=""></td><td><input type="radio" name="supervision_a_1.2" required=""></td></tr>
-                        <tr><td>b.</td><td>Getting Teachers supevised during lesson presentations</td><td><input type="radio" name="supervision_b_1.2" required=""></td><td><input type="radio" name="supervision_b_1.2" required=""></td></tr>
-                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.2" required=""></td><td><input type="radio" name="supervision_c_1.2" required=""></td></tr>
-						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_c_1.2" required=""></td><td><input type="radio" name="supervision_c_1.2" required=""></td></tr>
-                        <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_d_1.2" required=""></td><td><input type="radio" name="supervision_d_1.2" required=""></td></tr>
+                        <tr><td>a.</td><td>Assessing Teachers’ lesson plan before delivery</td><td><input type="radio" name="supervision_a_1.2" value="yes" required=""></td><td><input type="radio" name="supervision_a_1.2" value="no" required=""></td></tr>
+                        <tr><td>b.</td><td>Getting Teachers supevised during lesson presentations</td><td><input type="radio" name="supervision_b_1.2" value="yes" required=""></td><td><input type="radio" name="supervision_b_1.2" value="no" required=""></td></tr>
+                        <tr><td>c.</td><td>Monitoring tests and assignments in the School</td><td><input type="radio" name="supervision_c_1.2" value="yes" required=""></td><td><input type="radio" name="supervision_c_1.2" value="no" required=""></td></tr>
+						<tr><td>d.</td><td>Monitoring of class attendances of teachers and learners</td><td><input type="radio" name="supervision_d_1.2" value="yes" required=""></td><td><input type="radio" name="supervision_d_1.2" value="no" required=""></td></tr>
+                        <tr><td>e.</td><td>Supervision of co-curricular activities in the School</td><td><input type="radio" name="supervision_e_1.2" value="yes" required=""></td><td><input type="radio" name="supervision_e_1.2" value="no" required=""></td></tr>
                     </tbody>
                 </table>
                 <h5>School Records <span style="color:red;">*</span></h5>
@@ -3720,15 +3730,14 @@ h4[onclick] {
                             <label class="radio-inline"><input type="radio" name="furniture" value="inadequate" required=""> Inadequate</label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-is-required="true">
                         <label>c. Classroom Condition <span style="color:red;">*</span></label>
                         <div>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="beautiful" required=""> Beautiful</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="overcrowded" > Overcrowded</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_floor" > Bad Floor</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="leaking_roof" > Leaking Roof</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_windows_doors" > Bad windows and Doors</label>
-
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="beautiful"> Beautiful</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="overcrowded"> Overcrowded</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_floor"> Bad Floor</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="leaking_roof"> Leaking Roof</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_windows_doors"> Bad windows and Doors</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -3792,32 +3801,30 @@ h4[onclick] {
                             <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-is-required="true">
                         <label>h. Sources of Electricity <span style="color:red;">*</span></label>
                         <div>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn" > PHCN</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator" > Generator</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar" > Solar</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others" > Others</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills" > PHCN but Disconnected because of accumulated bills</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter" > PHCN but Disconnected because of lack of meter</label>
-
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="solar"> Solar</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="others"> Others</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-is-required="true">
                         <label>i. Clubs and Societies Activities <span style="color:red;">*</span></label>
                         <div>
                             <label>Which of these Clubs and Societies is available in your School? <span style="color:red;">*</span></label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="boys_scout" required=""> Boys Scout</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="girls_guide" > Girls Guide</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="brigade" > Brigade</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="brownies" > Brownies</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="sheriff_guide" > Sheriff Guide</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="young_farmers_club" > Young Farmers Club</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="red_cross" > Red Cross</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="none" > None</label>
-
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="boys_scout"> Boys Scout</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="girls_guide"> Girls Guide</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="brigade"> Brigade</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="brownies"> Brownies</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="sheriff_guide"> Sheriff Guide</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="young_farmers_club"> Young Farmers Club</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="red_cross"> Red Cross</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="clubs" value="none"> None</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -3829,18 +3836,17 @@ h4[onclick] {
                             <label class="radio-inline"><input type="radio" name="clubs_frequency" value="yearly" required=""> Once in a Year</label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-is-required="true">
                         <label>k. Sports <span style="color:red;">*</span></label>
                         <div>
                             <label>Which of these Sport equipment is available in your School? <span style="color:red;">*</span></label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="football_field" required=""> Football field</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="football" > Football</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="table_tennis" > Table tennis</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="jersey" > Jersey</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="batons" > Batons</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="trophies" > Trophies</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="none" > None</label>
-
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="football_field"> Football field</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="football"> Football</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="table_tennis"> Table tennis</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="jersey"> Jersey</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="batons"> Batons</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="trophies"> Trophies</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="sports_equipment" value="none"> None</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -5436,13 +5442,16 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                feedback.style.color = 'var(--lagos-green)';
-                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                const successMessage = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                alert(successMessage); // Show a prominent alert
+                feedback.className = 'feedback-success'; // Apply success class
+                feedback.textContent = successMessage;
                 form.reset();
                 const uploadedFilesDiv = form.querySelector('.uploaded-files');
                 if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
             } else {
                 const err = await res.json();
+                feedback.className = ''; // Reset class
                 feedback.style.color = 'var(--lagos-red)';
                 feedback.textContent = err.message || 'Submission failed.';
             }
