@@ -128,7 +128,7 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/surveys/:type', async (req, res) => {
   try {
     // Sanitize and format the survey type from the URL parameter
-    const surveyType = req.params.type.replace(/_/g, ' ').toUpperCase();
+    const surveyType = req.params.type.replace(/_/g, ' ');
 
     const survey = new SurveyResponse({
       surveyType: surveyType,
