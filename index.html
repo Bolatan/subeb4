@@ -1305,7 +1305,7 @@ h4[onclick] {
 			
 			
         <div id="silat_1.3Section" class="section hidden">
-            <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')">
+            <form id="silat_1.3_form" onsubmit="submitSurvey(event, 'silat_1.3')" novalidate="">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.3</h2>
@@ -1727,7 +1727,7 @@ h4[onclick] {
                 <h4>6. SOURCE OF ELECTRICITY <span style="color:red;">*</span></h4>
                 <div class="form-group" data-is-required="true">
                     <div>
-                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none"> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="none" required=""> None</label>
 
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="phcn"> PHCN</label>
                         <label class="checkbox-inline"><input type="checkbox" name="electricity_source" value="generator"> Generator</label>
