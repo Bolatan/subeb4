@@ -1414,11 +1414,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_instructors_male">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_instructors_male" name="silat13_instructors_male" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="silat13_instructors_male" name="silat13_instructors_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('silat13_instructors_male', 'silat13_instructors_female', 'silat13_instructors_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_instructors_female">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_instructors_female" name="silat13_instructors_female" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="silat13_instructors_female" name="silat13_instructors_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('silat13_instructors_male', 'silat13_instructors_female', 'silat13_instructors_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_instructors_total">Total</label>
@@ -1433,11 +1433,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_male">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_qualified_teachers_male" name="silat13_qualified_teachers_male" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="silat13_qualified_teachers_male" name="silat13_qualified_teachers_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('silat13_qualified_teachers_male', 'silat13_qualified_teachers_female', 'silat13_qualified_teachers_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_female">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_qualified_teachers_female" name="silat13_qualified_teachers_female" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="silat13_qualified_teachers_female" name="silat13_qualified_teachers_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('silat13_qualified_teachers_male', 'silat13_qualified_teachers_female', 'silat13_qualified_teachers_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_qualified_teachers_total">Total</label>
@@ -1452,11 +1452,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_non_teaching_male">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_non_teaching_male" name="silat13_non_teaching_male" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="silat13_non_teaching_male" name="silat13_non_teaching_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('silat13_non_teaching_male', 'silat13_non_teaching_female', 'silat13_non_teaching_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_non_teaching_female">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_non_teaching_female" name="silat13_non_teaching_female" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="silat13_non_teaching_female" name="silat13_non_teaching_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('silat13_non_teaching_male', 'silat13_non_teaching_female', 'silat13_non_teaching_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_non_teaching_total">Total</label>
@@ -1483,11 +1483,11 @@ h4[onclick] {
                     <div class="form-row" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
                         <div class="form-group">
                             <label for="silat13_learners_male">Male <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_learners_male" name="silat13_learners_male" class="form-control" min="0" placeholder="Male" required="">
+                            <input type="number" id="silat13_learners_male" name="silat13_learners_male" class="form-control" min="0" placeholder="Male" required="" oninput="updateTotal('silat13_learners_male', 'silat13_learners_female', 'silat13_learners_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_learners_female">Female <span style="color:red;">*</span></label>
-                            <input type="number" id="silat13_learners_female" name="silat13_learners_female" class="form-control" min="0" placeholder="Female" required="">
+                            <input type="number" id="silat13_learners_female" name="silat13_learners_female" class="form-control" min="0" placeholder="Female" required="" oninput="updateTotal('silat13_learners_male', 'silat13_learners_female', 'silat13_learners_total')">
                         </div>
                         <div class="form-group">
                             <label for="silat13_learners_total">Total</label>
@@ -3705,10 +3705,10 @@ h4[onclick] {
                         <label>c. Classroom Condition <span style="color:red;">*</span></label>
                         <div>
                             <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="beautiful" required=""> Beautiful</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="overcrowded" required=""> Overcrowded</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_floor" required=""> Bad Floor</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="leaking_roof" required=""> Leaking Roof</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_windows_doors" required=""> Bad windows and Doors</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="overcrowded"> Overcrowded</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_floor"> Bad Floor</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="leaking_roof"> Leaking Roof</label>
+                            <label class="checkbox-inline"><input type="checkbox" name="classroom_condition" value="bad_windows_doors"> Bad windows and Doors</label>
                         </div>
                     </div>
                     <div class="form-group">
