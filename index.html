@@ -466,6 +466,16 @@
             border-color: #dcdcdc;
         }
 
+        .feedback-success {
+            color: var(--lagos-green);
+            background-color: #eafaf1;
+            border: 1px solid var(--lagos-green);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -5418,13 +5428,16 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                feedback.style.color = 'var(--lagos-green)';
-                feedback.textContent = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                const successMessage = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                alert(successMessage); // Show a prominent alert
+                feedback.className = 'feedback-success'; // Apply success class
+                feedback.textContent = successMessage;
                 form.reset();
                 const uploadedFilesDiv = form.querySelector('.uploaded-files');
                 if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
             } else {
                 const err = await res.json();
+                feedback.className = ''; // Reset class
                 feedback.style.color = 'var(--lagos-red)';
                 feedback.textContent = err.message || 'Submission failed.';
             }
