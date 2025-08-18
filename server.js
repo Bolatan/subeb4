@@ -308,11 +308,11 @@ app.get('/api/reports', protect, admin, async (req, res) => {
 });
 
 // Protected routes for serving admin-only HTML pages
-app.get('/reports', protect, admin, (req, res) => {
+app.get('/reports', (req, res) => {
   res.sendFile(path.join(__dirname, 'reports.html'));
 });
 
-app.get('/login_logs', protect, admin, (req, res) => {
+app.get('/login_logs', (req, res) => {
   res.sendFile(path.join(__dirname, 'login_logs.html'));
 });
 
