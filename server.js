@@ -131,20 +131,25 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/surveys/:type', async (req, res) => {
   try {
     const surveyType = req.params.type;
+    console.log(`[${new Date().toISOString()}] Received submission for survey type: ${surveyType}`);
+    console.log(`[${new Date().toISOString()}] Request Body:`, JSON.stringify(req.body, null, 2));
+
     // Data might be nested under a 'formData' key. Let's handle that.
     const surveyData = req.body.formData || req.body;
+    console.log(`[${new Date().toISOString()}] Parsed survey data:`, JSON.stringify(surveyData, null, 2));
 
     const survey = new SurveyResponse({
       surveyType: surveyType,
       formData: surveyData,
     });
 
+    console.log(`[${new Date().toISOString()}] Attempting to save survey...`);
     await survey.save();
-    console.log(`Successfully saved survey of type: ${surveyType}`);
-    res.status(201).json({ message: `${surveyType} survey submitted successfully!` });
+    console.log(`[${new Date().toISOString()}] Successfully saved survey of type: ${surveyType} with ID: ${survey._id}`);
+    res.status(201).json({ message: `${surveyType} survey submitted successfully!`, surveyId: survey._id });
   } catch (error) {
     const surveyType = req.params.type;
-    console.error(`Error saving ${surveyType} survey:`, error);
+    console.error(`[${new Date().toISOString()}] Error saving ${surveyType} survey:`, error);
     res.status(500).json({ message: 'Submission failed.', error: error.message });
   }
 });
