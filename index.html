@@ -5422,7 +5422,15 @@ async function submitSurvey(event, surveyType) {
     }
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    const data = {};
+    for (const key of new Set(Array.from(formData.keys()))) {
+        const values = formData.getAll(key);
+        if (values.length > 1) {
+            data[key] = values;
+        } else {
+            data[key] = values[0];
+        }
+    }
 
     const fileInput = form.querySelector('input[type="file"]');
     if (fileInput && fileInput.files.length > 0) {
@@ -5823,6 +5831,9 @@ function setupTotalCalculation(maleId, femaleId, totalId) {
     if (femaleInput) {
         femaleInput.addEventListener('input', updateTotal);
     }
+
+    // Trigger the calculation once on setup to handle pre-filled values
+    updateTotal();
 }
 
 function updateSilnatTotalPupils() {
