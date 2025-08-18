@@ -131,11 +131,12 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/surveys/:type', async (req, res) => {
   try {
     const surveyType = req.params.type;
-
+    // Data might be nested under a 'formData' key. Let's handle that.
+    const surveyData = req.body.formData || req.body;
 
     const survey = new SurveyResponse({
       surveyType: surveyType,
-      formData: req.body,
+      formData: surveyData,
     });
 
     await survey.save();
