@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Reports Dashboard</title>
+    <style>
+        /* Basic styles from index.html */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --lagos-red: #DC2626; --lagos-blue: #1E40AF; --lagos-yellow: #FACC15;
+            --lagos-green: #16A34A; --lagos-white: #FFFFFF; --lagos-navy: #1E3A8A;
+            --lagos-dark-gray: #64748B;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--lagos-blue); min-height: 100vh; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 100vh; }
+        .header { background: var(--lagos-navy); border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: var(--lagos-white); position: relative; border-left: 8px solid var(--lagos-red); }
+        .header .logo { display: flex; align-items: center; font-size: 24px; font-weight: bold; color: var(--lagos-white); }
+        .header .logo img { height: 40px; width: 40px; margin-right: 12px; }
+        .btn, .btn-secondary { background: var(--lagos-green); border-color: var(--lagos-yellow); color: var(--lagos-white); text-decoration: none; padding: 8px 16px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; }
+        .content-area { background: var(--lagos-white); border-radius: 15px; padding: 30px; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .dashboard-card { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .dashboard-card:hover { transform: translateY(-5px); }
+        .dashboard-card h3 { margin-bottom: 15px; color: var(--lagos-navy); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="/subeb.jpg" alt="Lagos State Logo">
+                <span>Survey Reports Dashboard</span>
+            </div>
+            <a href="/index.html" class="btn-secondary">Back to Home</a>
+        </div>
+        <div class="content-area">
+            <h2>Select a Survey Report</h2>
+            <div class="dashboard-grid" id="dashboard-links">
+                <!-- Links will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const surveyTypes = [
+                'silnat', 'silat_1.1', 'tcmats', 'lori', 'voices',
+                'silat_1.2', 'silat_1.3', 'silat_1.4'
+            ];
+
+            const dashboard = document.getElementById('dashboard-links');
+            surveyTypes.forEach(type => {
+                const card = document.createElement('a');
+                card.href = `/reports/${type}.html`;
+                card.className = 'dashboard-card';
+                card.innerHTML = `<h3>${type.replace(/_/g, ' ').toUpperCase()} Report</h3>`;
+                dashboard.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

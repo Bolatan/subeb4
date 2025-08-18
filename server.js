@@ -298,20 +298,30 @@ app.get('/api/logs', protect, async (req, res) => {
   }
 });
 
-// GET endpoint to retrieve all survey data for reports
-app.get('/api/reports', protect, async (req, res) => {
+// GET endpoint for survey reports by type
+app.get('/api/reports/:type', protect, async (req, res) => {
   try {
-    const surveys = await SurveyResponse.find({}).sort({ createdAt: -1 });
+    const surveyType = req.params.type;
+    const surveys = await SurveyResponse.find({ surveyType: surveyType }).sort({ createdAt: -1 });
     res.status(200).json(surveys);
   } catch (error) {
-    console.error('Error fetching reports:', error);
+    console.error(`Error fetching ${req.params.type} reports:`, error);
     res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
   }
 });
 
+// Serve static files from the 'reports' directory
+app.use('/reports', express.static(path.join(__dirname, 'reports')));
+
 // Protected routes for serving admin-only HTML pages
 app.get('/reports', (req, res) => {
-  res.sendFile(path.join(__dirname, 'reports.html'));
+  res.sendFile(path.join(__dirname, 'reports', 'index.html'));
+});
+
+// Route for specific report pages
+app.get('/reports/:type.html', (req, res) => {
+    const surveyType = req.params.type;
+    res.sendFile(path.join(__dirname, 'reports', `${surveyType}.html`));
 });
 
 app.get('/login_logs', (req, res) => {
