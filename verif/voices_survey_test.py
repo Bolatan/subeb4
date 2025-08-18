@@ -23,6 +23,7 @@ def run_test():
         "voices_institution": "regular_school",
         "voices_lgea": "Surulere",
         "voices_schoolName": "A Test School in Surulere",
+        "voices_learnerName": "Test Learner",
         "tcmats_location": "urban", # Note: form uses tcmats_location name
         "voices_class": "pry_5",
         "voices_class_description": "single_grade",
