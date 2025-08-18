@@ -2767,6 +2767,10 @@ h4[onclick] {
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="voices_learnerName">Learner's Name <span style="color:red;">*</span></label>
+                        <input type="text" id="voices_learnerName" name="voices_learnerName" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
                         <label for="tcmats_teacherName">Teacher's Name <span style="color:red;">*</span></label>
                         <input type="text" id="tcmats_teacherName" name="tcmats_teacherName" class="form-control" required="">
                     </div>
@@ -3056,6 +3060,7 @@ h4[onclick] {
                     <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" min="0" style="width: 80px; display: inline-block;" required="" oninput="updateTotal(&#39;lori_pupils_male&#39;, &#39;lori_pupils_female&#39;, &#39;lori_pupils_total&#39;)">
                     <label for="lori_pupils_male" class="radio-inline">Male <span style="color:red;">*</span></label>
                     <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" min="0" style="width: 80px; display: inline-block;" required="" oninput="updateTotal(&#39;lori_pupils_male&#39;, &#39;lori_pupils_female&#39;, &#39;lori_pupils_total&#39;)">
+
                     <label for="lori_pupils_total" class="radio-inline">Total</label>
                     <input type="number" id="lori_pupils_total" name="lori_pupils_total" class="form-control" min="0" style="width: 80px; display: inline-block;" readonly="">
                 </td>
@@ -3250,9 +3255,6 @@ h4[onclick] {
                     <td><input type="radio" name="lori_b_3_j" value="3" required=""></td>
                     <td><input type="radio" name="lori_b_3_j" value="4" required=""></td>
                     <td><input type="radio" name="lori_b_3_j" value="5" required=""></td>
-                    <td><select name="lori_b_3_j_avg" class="form-control" required=""><option value="">Select Score</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td>
-                    <td><select name="lori_b_3_j_desc" class="form-control" required=""><option value="">Select Descriptor</option><option value="(poor)">(poor)</option><option value="(Fair)">(Fair)</option><option value="(Good)">(Good)</option><option value="(Very Good)">(Very Good)</option><option value="(Excellent)">(Excellent)</option></select></td>
-
                 </tr>
                 <tr>
                     <td rowspan="5">4. Relationship with learners</td>
@@ -3506,6 +3508,10 @@ h4[onclick] {
                         <select id="voices_schoolName" name="voices_schoolName" class="form-control" required="">
                             <option value="">Select LGEA first</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="voices_learnerName">Learner Name <span style="color:red;">*</span></label>
+                        <input type="text" id="voices_learnerName" name="voices_learnerName" class="form-control" required="">
                     </div>
     <div class="form-group">
         <label>Location: <span style="color:red;">*</span></label>
@@ -5728,6 +5734,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupTotalCalculation('silnat_pupils_eccde_male', 'silnat_pupils_eccde_female', 'silnat_pupils_eccde_total');
     setupTotalCalculation('silnat_pupils_primary_male', 'silnat_pupils_primary_female', 'silnat_pupils_primary_total');
     setupTotalCalculation('silnat_pupils_special_male', 'silnat_pupils_special_female', 'silnat_pupils_special_total');
+
+    // LORI totals
+    setupTotalCalculation('lori_pupils_male', 'lori_pupils_female', 'lori_pupils_total');
 
     // Grand total calculation listeners
     const grandTotalInputs = [
