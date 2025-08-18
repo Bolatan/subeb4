@@ -704,7 +704,7 @@ h4[onclick] {
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;max-width:1000px;margin:0 auto; margin-top: 32px;">
-                <div class="survey-card" onclick="showSurvey('silat_1.1')">
+                <div class="survey-card" onclick="showSurvey(&#39;silnat&#39;)">
                     <h2>Infrastructure &amp; Leadership Tools 1.1: REGULAR SCHOOLS <br>(SILNAT 1.1)</h2>
                     <p>For Head Teachers/Managers</p>
                 </div>
@@ -2188,8 +2188,8 @@ h4[onclick] {
 		
 
         <!-- Survey Sections (initially hidden) -->
-        <div id="silat_1.1Section" class="section hidden">
-            <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silat_1.1')">
+        <div id="silnatSection" class="section hidden">
+            <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silnat')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
@@ -2773,8 +2773,8 @@ h4[onclick] {
     <div class="form-group">
         <label>Location: <span style="color:red;">*</span></label>
         <div>
-            <label class="radio-inline"><input type="radio" name="tcmats_location" value="urban" required=""> Urban</label>
-            <label class="radio-inline"><input type="radio" name="tcmats_location" value="rural" required=""> Rural</label>
+            <label class="radio-inline"><input type="radio" name="voices_location" value="urban" required=""> Urban</label>
+            <label class="radio-inline"><input type="radio" name="voices_location" value="rural" required=""> Rural</label>
         </div>
     </div>
     	
@@ -3519,7 +3519,7 @@ h4[onclick] {
  <div class="form-row full">
             <div class="form-group">
                 <label for="voices_class">Class <span style="color:red;">*</span></label>
-                <select id="voices_class" name="voices_class" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required="">
+                <select id="voices_class" name="voices_class" class="form-control" required="">
                     <option value="">Select Pupils' Class</option>
                     <option value="nurseryOne">Nursery One</option>
                     <option value="nursery_2">Nursery Two</option>
@@ -3981,7 +3981,7 @@ select.form-control option {
     // Navigation logic for landing/surveys
     async function showSurvey(survey) {
         document.getElementById('landingPage').classList.add('hidden');
-        ['silat_1.1','tcmats','lori','voices', 'silnat_new', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+        ['silnat','tcmats','lori','voices', 'silnat_new', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
             const section = document.getElementById(s + 'Section');
             if (section) {
                 section.classList.add('hidden');
@@ -5422,7 +5422,15 @@ async function submitSurvey(event, surveyType) {
     }
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    const data = {};
+    for (const key of new Set(Array.from(formData.keys()))) {
+        const values = formData.getAll(key);
+        if (values.length > 1) {
+            data[key] = values;
+        } else {
+            data[key] = values[0];
+        }
+    }
 
     const fileInput = form.querySelector('input[type="file"]');
     if (fileInput && fileInput.files.length > 0) {
@@ -5823,6 +5831,9 @@ function setupTotalCalculation(maleId, femaleId, totalId) {
     if (femaleInput) {
         femaleInput.addEventListener('input', updateTotal);
     }
+
+    // Trigger the calculation once on setup to handle pre-filled values
+    updateTotal();
 }
 
 function updateSilnatTotalPupils() {
