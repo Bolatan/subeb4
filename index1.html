@@ -995,35 +995,35 @@ select.form-control option {
                 <div class="form-group">
                     <label class="furniture-label">Teachers’ Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="teachers_furniture_available">Number Available</label><input type="number" id="teachers_furniture_available" name="teachers_furniture_available" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="teachers_furniture_good">Number in Good Condition</label><input type="number" id="teachers_furniture_good" name="teachers_furniture_good" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="teachers_furniture_required">Additional Number Required</label><input type="number" id="teachers_furniture_required" name="teachers_furniture_required" class="form-control" min="0"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">ECCDE Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="eccde_furniture_available">Number Available</label><input type="number" id="eccde_furniture_available" name="eccde_furniture_available" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="eccde_furniture_good">Number in Good Condition</label><input type="number" id="eccde_furniture_good" name="eccde_furniture_good" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="eccde_furniture_required">Additional Number Required</label><input type="number" id="eccde_furniture_required" name="eccde_furniture_required" class="form-control" min="0"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">Primary Furniture</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control"></div>
-                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control"></div>
+                        <div class="form-group"><label for="primary_furniture_available">Number Available</label><input type="number" id="primary_furniture_available" name="primary_furniture_available" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="primary_furniture_good">Number in Good Condition</label><input type="number" id="primary_furniture_good" name="primary_furniture_good" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="primary_furniture_required">Additional Number Required</label><input type="number" id="primary_furniture_required" name="primary_furniture_required" class="form-control" min="0"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="furniture-label">Classroom Condition</label>
                     <div class="form-row">
-                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control"></div>
-                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control"></div>
+                        <div class="form-group"><label for="classroom_available">Number Available</label><input type="number" id="classroom_available" name="classroom_available" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="classroom_good">Number in Good Condition</label><input type="number" id="classroom_good" name="classroom_good" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="classroom_minor_repair">Number in need of Minor Repair</label><input type="number" id="classroom_minor_repair" name="classroom_minor_repair" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="classroom_major_repair">Number in need of Major Repair/Renovation</label><input type="number" id="classroom_major_repair" name="classroom_major_repair" class="form-control" min="0"></div>
+                        <div class="form-group"><label for="classroom_required">Number of Additional Classroom Required</label><input type="number" id="classroom_required" name="classroom_required" class="form-control" min="0"></div>
                     </div>
                     <div class="form-group">
                         <label for="classroom_repair_description">Briefly, describe the type of repair needed</label>
@@ -1077,11 +1077,11 @@ select.form-control option {
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control"></div>
-                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control"></div>
+                    <div class="form-group"><label for="toilet_cubicle_available">Number of Cubicle Toilet Available</label><input type="number" id="toilet_cubicle_available" name="toilet_cubicle_available" class="form-control" min="0"></div>
+                    <div class="form-group"><label for="toilet_minor_repair">Number in need of Minor Repair</label><input type="number" id="toilet_minor_repair" name="toilet_minor_repair" class="form-control" min="0"></div>
+                    <div class="form-group"><label for="toilet_major_repair">Number in need of Major Repair</label><input type="number" id="toilet_major_repair" name="toilet_major_repair" class="form-control" min="0"></div>
+                    <div class="form-group"><label for="toilet_renovation_required">Renovation Required</label><input type="number" id="toilet_renovation_required" name="toilet_renovation_required" class="form-control" min="0"></div>
+                    <div class="form-group"><label for="toilet_additional_required">Number of Additional Cubicle Toilet Required</label><input type="number" id="toilet_additional_required" name="toilet_additional_required" class="form-control" min="0"></div>
                 </div>
                 <div class="form-group">
                     <label for="toilet_repair_description">Briefly, describe the type of repair needed</label>
@@ -1156,8 +1156,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_a_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_a_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_a_available" class="form-control"></td>
-                                <td><input type="number" name="facility_a_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_a_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_a_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>b.</td>
@@ -1166,8 +1166,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_b_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_b_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_b_available" class="form-control"></td>
-                                <td><input type="number" name="facility_b_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_b_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_b_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>c.</td>
@@ -1176,8 +1176,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_c_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_c_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_c_available" class="form-control"></td>
-                                <td><input type="number" name="facility_c_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_c_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_c_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>d.</td>
@@ -1186,8 +1186,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_d_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_d_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_d_available" class="form-control"></td>
-                                <td><input type="number" name="facility_d_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_d_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_d_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>e.</td>
@@ -1196,8 +1196,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_e_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_e_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_e_available" class="form-control"></td>
-                                <td><input type="number" name="facility_e_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_e_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_e_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>f.</td>
@@ -1206,8 +1206,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_f_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_f_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_f_available" class="form-control"></td>
-                                <td><input type="number" name="facility_f_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_f_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_f_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>g.</td>
@@ -1216,8 +1216,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_g_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_g_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_g_available" class="form-control"></td>
-                                <td><input type="number" name="facility_g_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_g_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_g_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>h.</td>
@@ -1226,8 +1226,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_h_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_h_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_h_available" class="form-control"></td>
-                                <td><input type="number" name="facility_h_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_h_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_h_needed" class="form-control" min="0"></td>
                             </tr>
                             <tr>
                                 <td>i.</td>
@@ -1236,8 +1236,8 @@ select.form-control option {
                                     <label class="radio-inline"><input type="radio" name="facility_i_status" value="adequate"> Adequate</label>
                                     <label class="radio-inline"><input type="radio" name="facility_i_status" value="inadequate"> Inadequate</label>
                                 </td>
-                                <td><input type="number" name="facility_i_available" class="form-control"></td>
-                                <td><input type="number" name="facility_i_needed" class="form-control"></td>
+                                <td><input type="number" name="facility_i_available" class="form-control" min="0"></td>
+                                <td><input type="number" name="facility_i_needed" class="form-control" min="0"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1697,11 +1697,11 @@ select.form-control option {
                 <table class="data-table">
                     <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
                     <tbody>
-                        <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-                        <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-                        <tr><td>3</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-						<tr><td>4</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-						<tr><td>5</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
+                        <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+                        <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+                        <tr><td>3</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+						<tr><td>4</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+						<tr><td>5</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
                     </tbody>
                 </table>	
 				<button type="submit" class="btn">Submit SILNAT 1.3 Survey</button>
@@ -1937,11 +1937,11 @@ select.form-control option {
                 </div>
                 <div class="form-group">
                     <label>Available Offices:</label>
-                    <input type="number" name="offices_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="offices_minor_repairs_1.4" placeholder="Need Minor Repairs" class="form-control">
-                    <input type="number" name="offices_major_repairs_1.4" placeholder="Needs Major Repairs" class="form-control">
-                    <input type="number" name="offices_renovation_required_1.4" placeholder="Renovation Required" class="form-control">
-                    <input type="number" name="offices_additional_required_1.4" placeholder="Number of Additional offices required" class="form-control">
+                    <input type="number" name="offices_good_condition_1.4" placeholder="Number in Good Condition" class="form-control" min="0">
+                    <input type="number" name="offices_minor_repairs_1.4" placeholder="Need Minor Repairs" class="form-control" min="0">
+                    <input type="number" name="offices_major_repairs_1.4" placeholder="Needs Major Repairs" class="form-control" min="0">
+                    <input type="number" name="offices_renovation_required_1.4" placeholder="Renovation Required" class="form-control" min="0">
+                    <input type="number" name="offices_additional_required_1.4" placeholder="Number of Additional offices required" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label for="repair_description_1.4">Briefly, describe the type of repair/construction needed:</label>
@@ -1950,17 +1950,17 @@ select.form-control option {
                 <h5>FURNITURE</h5>
                 <div class="form-group">
                     <label>Staff’ Furniture:</label>
-                    <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control">
-                    <input type="number" name="staff_furniture_good_condition_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="staff_furniture_required_1.4" placeholder="Additional Number Required" class="form-control">
+                    <input type="number" name="staff_furniture_available_1.4" placeholder="Number Available" class="form-control" min="0">
+                    <input type="number" name="staff_furniture_good_condition_1.4" placeholder="Number in Good Condition" class="form-control" min="0">
+                    <input type="number" name="staff_furniture_required_1.4" placeholder="Additional Number Required" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Condition of Offices:</label>
-                    <input type="number" name="offices_available_1.4" placeholder="Number Available" class="form-control">
-                    <input type="number" name="offices_good_condition_2_1.4" placeholder="Number in Good Condition" class="form-control">
-                    <input type="number" name="offices_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control">
-                    <input type="number" name="offices_major_repair_1.4" placeholder="Number in need of Major Repair/Renovation" class="form-control">
-                    <input type="number" name="offices_additional_required_2_1.4" placeholder="Number of Additional Classroom Required" class="form-control">
+                    <input type="number" name="offices_available_1.4" placeholder="Number Available" class="form-control" min="0">
+                    <input type="number" name="offices_good_condition_2_1.4" placeholder="Number in Good Condition" class="form-control" min="0">
+                    <input type="number" name="offices_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control" min="0">
+                    <input type="number" name="offices_major_repair_1.4" placeholder="Number in need of Major Repair/Renovation" class="form-control" min="0">
+                    <input type="number" name="offices_additional_required_2_1.4" placeholder="Number of Additional Classroom Required" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label for="repair_description_2_1.4">Briefly, describe the type of repair needed:</label>
@@ -2005,11 +2005,11 @@ select.form-control option {
                     <label class="radio-inline"><input type="radio" name="toilet_type_1.4" value="none"> None</label>
                 </div>
                 <div class="form-group">
-                    <input type="number" name="toilet_cubicle_available_1.4" placeholder="Number of Cubicle Toilet Available" class="form-control">
-                    <input type="number" name="toilet_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control">
-                    <input type="number" name="toilet_major_repair_1.4" placeholder="Number in need of Major Repair" class="form-control">
-                    <input type="number" name="toilet_renovation_required_1.4" placeholder="Renovation Required" class="form-control">
-                    <input type="number" name="toilet_additional_required_1.4" placeholder="Number of Additional Cubicle Toilet Required" class="form-control">
+                    <input type="number" name="toilet_cubicle_available_1.4" placeholder="Number of Cubicle Toilet Available" class="form-control" min="0">
+                    <input type="number" name="toilet_minor_repair_1.4" placeholder="Number in need of Minor Repair" class="form-control" min="0">
+                    <input type="number" name="toilet_major_repair_1.4" placeholder="Number in need of Major Repair" class="form-control" min="0">
+                    <input type="number" name="toilet_renovation_required_1.4" placeholder="Renovation Required" class="form-control" min="0">
+                    <input type="number" name="toilet_additional_required_1.4" placeholder="Number of Additional Cubicle Toilet Required" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label for="toilet_repair_description_1.4">Briefly, describe the type of repair needed</label>
@@ -2050,7 +2050,7 @@ select.form-control option {
                 <div class="form-group">
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="available"> Available</label>
                     <label class="radio-inline"><input type="radio" name="monitoring_vehicles_1.4" value="not_available"> Not Available</label>
-                    <input type="number" name="monitoring_vehicles_needed_1.4" placeholder="Number Needed" class="form-control">
+                    <input type="number" name="monitoring_vehicles_needed_1.4" placeholder="Number Needed" class="form-control" min="0">
                 </div>
                 <div class="form-group">
                     <label>Is your Local Govt Educ Auth regularly waterlogged when it rained?</label>
@@ -2063,9 +2063,9 @@ select.form-control option {
                 <table class="data-table">
                     <thead><tr><th>s/n</th><th>Equipment/facility expected</th><th>Number Available in good condition</th><th>Number required</th></tr></thead>
                     <tbody>
-                        <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-                        <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
-                        <tr><td>3</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control"></td><td><input type="number" class="form-control"></td></tr>
+                        <tr><td>1</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+                        <tr><td>2</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
+                        <tr><td>3</td><td><input type="text" class="form-control"></td><td><input type="number" class="form-control" min="0"></td><td><input type="number" class="form-control" min="0"></td></tr>
                     </tbody>
                 </table>
 				<button type="submit" class="btn">Submit SILNAT 1.4 Survey</button>
@@ -2240,12 +2240,12 @@ select.form-control option {
 			  <div class="form-row">
                                 <div class="form-group">
                                     <label for="latitude">Latitude</label>
-                                    <input type="number" id="latitude" class="form-control" step="any" readonly="">
+                                    <input type="number" id="latitude" class="form-control" step="any" readonly="" min="0">
                                     <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
                                 </div>
                                 <div class="form-group">
                                     <label for="longitude">Longitude</label>
-                                    <input type="number" id="longitude" class="form-control" step="any" readonly="">
+                                    <input type="number" id="longitude" class="form-control" step="any" readonly="" min="0">
                                 </div>
                             </div>
             <div class="form-row">
@@ -2719,7 +2719,7 @@ select.form-control option {
     </div>
     <div class="form-group">
         <label for="tcmats_periodsPerWeek">No of periods per week:</label>
-        <input type="number" id="tcmats_periodsPerWeek" name="tcmats_periodsPerWeek" class="form-control">
+        <input type="number" id="tcmats_periodsPerWeek" name="tcmats_periodsPerWeek" class="form-control" min="0">
     </div>
     <div class="form-group">
         <label for="tcmats_class">Class:</label>
@@ -2734,7 +2734,7 @@ select.form-control option {
     </div>
     <div class="form-group">
         <label for="tcmats_pupilsInClass">No. of Pupils in Class</label>
-        <input type="number" id="tcmats_pupilsInClass" name="tcmats_pupilsInClass" class="form-control">
+        <input type="number" id="tcmats_pupilsInClass" name="tcmats_pupilsInClass" class="form-control" min="0">
     </div>
     <div class="form-group">
         <label>Gender:</label>
@@ -2973,9 +2973,9 @@ select.form-control option {
                 <td>Number of pupils</td>
                 <td colspan="3">
                     <label for="lori_pupils_female" class="radio-inline">Female</label>
-                    <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" style="width: 80px; display: inline-block;">
+                    <input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" min="0" style="width: 80px; display: inline-block;">
                     <label for="lori_pupils_male" class="radio-inline">Male</label>
-                    <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" style="width: 80px; display: inline-block;">
+                    <input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" min="0" style="width: 80px; display: inline-block;">
                     <label for="lori_pupils_total" class="radio-inline">Total</label>
                     <input type="number" id="lori_pupils_total" name="lori_pupils_total" class="form-control" style="width: 80px; display: inline-block;" readonly="">
                 </td>
@@ -2993,7 +2993,7 @@ select.form-control option {
                 <td>Subject observed</td>
                 <td><input type="text" name="lori_subject_observed" class="form-control"></td>
                 <td>Years of Teaching Experience</td>
-                <td><input type="number" name="lori_years_experience" class="form-control"></td>
+                <td><input type="number" name="lori_years_experience" class="form-control" min="0"></td>
             </tr>
             <tr>
                 <td>Date Lesson is Observed</td>
@@ -3474,21 +3474,21 @@ select.form-control option {
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Number of Cubicle Toilet Available</label>
-                                <input type="number" name="toilet_cubicles_available" class="form-control">
+                                <input type="number" name="toilet_cubicles_available" class="form-control" min="0">
                             </div>
                             <div class="form-group">
                                 <label>Number in need of Minor Repair</label>
-                                <input type="number" name="toilet_cubicles_minor_repair" class="form-control">
+                                <input type="number" name="toilet_cubicles_minor_repair" class="form-control" min="0">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Number in need of Major Repair</label>
-                                <input type="number" name="toilet_cubicles_major_repair" class="form-control">
+                                <input type="number" name="toilet_cubicles_major_repair" class="form-control" min="0">
                             </div>
                             <div class="form-group">
                                 <label>Number of Additional Cubicle Toilet Required</label>
-                                <input type="number" name="toilet_cubicles_additional" class="form-control">
+                                <input type="number" name="toilet_cubicles_additional" class="form-control" min="0">
                             </div>
                         </div>
                     </div>
