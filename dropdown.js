@@ -51,10 +51,17 @@ function parseCsvText(csvText) {
     const lines = cleanedCsvText.split('\n').filter(line => line.trim() !== '');
 
     for (let i = 1; i < lines.length; i++) {
-        const parts = lines[i].split(',');
-        if (parts.length >= 2) {
-            const key = parts[0].trim();
-            const value = parts[1].trim();
+        const line = lines[i];
+        const firstCommaIndex = line.indexOf(',');
+
+        if (firstCommaIndex > -1) {
+            const key = line.substring(0, firstCommaIndex).trim();
+            let value = line.substring(firstCommaIndex + 1).trim();
+
+            // Remove quotes if they exist at the start and end of the value
+            if (value.startsWith('"') && value.endsWith('"')) {
+                value = value.substring(1, value.length - 1);
+            }
 
             if (key && value) {
                 if (!data[key]) {
