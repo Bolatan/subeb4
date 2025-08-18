@@ -73,11 +73,13 @@ const ensureAdminUser = async () => {
     console.log('Assessor user seeded.');
 
     // Ensure bolatan is an admin
-    const bolatanUser = await User.findOne({ username: 'bolatan' });
-    if (bolatanUser && bolatanUser.role !== 'admin') {
-      bolatanUser.role = 'admin';
-      await bolatanUser.save();
-      console.log('User bolatan role updated to admin.');
+    const updateResult = await User.updateOne({ username: 'bolatan' }, { $set: { role: 'admin' } });
+    if (updateResult.modifiedCount > 0) {
+        console.log('User bolatan role updated to admin.');
+    } else if (updateResult.matchedCount > 0) {
+        console.log('User bolatan was already an admin.');
+    } else {
+        console.log('User bolatan not found. No update performed.');
     }
   } catch (error) {
     console.error('Error in user seeding script:', error);
