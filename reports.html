@@ -82,6 +82,60 @@
     <script>
         let allSurveys = []; // Global variable to hold survey data for exports
 
+        function getSurveyDisplayData(survey) {
+            const formData = survey.formData || {};
+            let schoolName = 'N/A';
+            let respondentName = 'N/A';
+            let lga = 'N/A';
+
+            switch (survey.surveyType) {
+                case 'silnat':
+                case 'silat_1.1':
+                    schoolName = formData.schoolName || 'N/A';
+                    respondentName = formData.silnat_a_ht_name || 'N/A';
+                    lga = formData.localGov || 'N/A';
+                    break;
+                case 'tcmats':
+                    schoolName = formData.tcmats_schoolName || 'N/A';
+                    respondentName = formData.tcmats_teacherName || 'N/A';
+                    lga = formData.tcmats_lgea || 'N/A';
+                    break;
+                case 'lori':
+                    schoolName = formData.lori_school_name || 'N/A';
+                    respondentName = formData.lori_teacher_name || 'N/A';
+                    lga = formData.lori_lgea || 'N/A';
+                    break;
+                case 'voices':
+                    schoolName = formData.voices_schoolName || 'N/A';
+                    respondentName = 'N/A'; // No specific respondent name in VOICES form
+                    lga = formData.voices_lgea || 'N/A';
+                    break;
+                case 'silat_1.2':
+                    schoolName = formData.silat_1_2_schoolName || 'N/A';
+                    respondentName = formData.silnat_a_ht_name || 'N/A';
+                    lga = formData.silat_1_2_localGov || 'N/A';
+                    break;
+                case 'silat_1.3':
+                    schoolName = formData.silat13_school_name || 'N/A';
+                    respondentName = formData.silnat_a_ht_name || 'N/A';
+                    lga = formData.silat13_lgea || 'N/A';
+                    break;
+                case 'silat_1.4':
+                    schoolName = formData.silat_1_4_schoolName || 'N/A';
+                    respondentName = 'N/A'; // LGEA-level survey
+                    lga = formData.silat_1_4_localGov || 'N/A';
+                    break;
+                default:
+                    // Fallback for any other types or generic data
+                    schoolName = formData.schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
+                    respondentName = (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
+                    lga = formData.localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+                    break;
+            }
+
+            return { schoolName, respondentName, lga };
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const tableBody = document.querySelector('#reportsTable tbody');
             const loadingMessage = document.getElementById('loadingMessage');
@@ -119,10 +173,7 @@
 
                 surveys.forEach(survey => {
                     const row = tableBody.insertRow();
-                    const formData = survey.formData || {};
-                    const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || formData.voices_schoolName || formData.silat_1_2_schoolName || formData.silat13_school_name || formData.silat_1_4_schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
-                    const respondentName = formData.silnat_a_ht_name || formData.tcmats_teacherName || formData.lori_teacher_name || formData.voices_learnerName || (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
-                    const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || formData.voices_lgea || formData.silat_1_2_localGov || formData.silat13_lgea || formData.silat_1_4_localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+                    const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
 
                     row.innerHTML = `
                         <td>${survey.surveyType || 'N/A'}</td>
