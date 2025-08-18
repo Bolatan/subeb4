@@ -3501,7 +3501,7 @@ h4[onclick] {
     </div>
 	<div class="form-group">
                         <label for="voices_lgea">LGEA: <span style="color:red;">*</span></label>
-                        <select id="voices_lgea" name="voices_lgea" class="form-control" onchange="populateVoicesSchoolDropdown()" required="">
+                        <select id="voices_lgea" name="voices_lgea" class="form-control" required="">
                             <option value="">Select LGEA</option>
                         </select>
                     </div>
@@ -6095,96 +6095,5 @@ function handleFenceConditionChange_1_1(radio) {
         });
     }
 
-    // Data for VOICES survey
-    let voicesData = {};
-
-    // Load data from combo.csv for VOICES survey
-    async function loadVoicesData() {
-        // Prevent re-fetching if data is already loaded
-        if (Object.keys(voicesData).length > 0) {
-            populateVoicesLGEADropdown(); // If data is loaded, just ensure dropdown is populated
-            return;
-        }
-
-        try {
-            const response = await fetch('combo.csv');
-            const csvText = await response.text();
-            // Handle potential BOM character at the start of the file
-            const cleanedCsvText = csvText.trim().startsWith('ï»¿') ? csvText.trim().substring(3) : csvText.trim();
-            const lines = cleanedCsvText.split('\\n').filter(line => line.trim() !== '');
-
-            // Skip header line
-            for (let i = 1; i < lines.length; i++) {
-                // Basic CSV parsing, assuming no commas within fields
-                const parts = lines[i].split(',');
-                if (parts.length >= 2) {
-                    const lga = parts[0].trim();
-                    const school = parts[1].trim();
-
-                    if (lga && school) {
-                        if (!voicesData[lga]) {
-                            voicesData[lga] = [];
-                        }
-                        // Avoid adding duplicate school names
-                        if (!voicesData[lga].includes(school)) {
-                            voicesData[lga].push(school);
-                        }
-                    }
-                }
-            }
-            console.log('Successfully loaded and parsed data from combo.csv for VOICES survey.');
-            // Once data is loaded, populate the LGEA dropdown
-            populateVoicesLGEADropdown();
-        } catch (error) {
-            console.error('Error loading or parsing combo.csv:', error);
-        }
-    }
-
-    // Populate the LGEA dropdown for the VOICES survey
-    function populateVoicesLGEADropdown() {
-        const lgaDropdown = document.getElementById('voices_lgea');
-        if (!lgaDropdown) return;
-
-        const lgas = Object.keys(voicesData).sort();
-        lgaDropdown.innerHTML = '<option value="">Select LGEA</option>'; // Reset
-        lgas.forEach(lga => {
-            const option = document.createElement('option');
-            option.value = lga;
-            option.textContent = lga;
-            lgaDropdown.appendChild(option);
-        });
-
-        // Reset and disable the school dropdown
-        const schoolDropdown = document.getElementById('voices_schoolName');
-        if(schoolDropdown) {
-            schoolDropdown.innerHTML = '<option value="">Select LGEA first</option>';
-            schoolDropdown.disabled = true;
-        }
-    }
-
-    // Populate the school dropdown based on the selected LGEA for the VOICES survey
-    function populateVoicesSchoolDropdown() {
-        const lgaDropdown = document.getElementById('voices_lgea');
-        const schoolDropdown = document.getElementById('voices_schoolName');
-        if (!lgaDropdown || !schoolDropdown) return;
-
-        const selectedLga = lgaDropdown.value;
-        schoolDropdown.innerHTML = '<option value="">Select School</option>'; // Reset
-
-        if (!selectedLga) {
-            schoolDropdown.disabled = true;
-            schoolDropdown.innerHTML = '<option value="">Select LGEA first</option>';
-            return;
-        }
-
-        schoolDropdown.disabled = false;
-        const schools = voicesData[selectedLga] || [];
-        schools.forEach(school => {
-            const option = document.createElement('option');
-            option.value = school;
-            option.textContent = school;
-            schoolDropdown.appendChild(option);
-        });
-    }
 </script>
 </body></html>
