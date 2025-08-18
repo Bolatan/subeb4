@@ -5794,35 +5794,6 @@ function calculateTeacherPupilRatio() {
     }
 }
 
-function updateSilnatTotalTeachers() {
-    const maleTeachersInput = document.getElementById('silnat_teachers_male');
-    const femaleTeachersInput = document.getElementById('silnat_teachers_female');
-    const totalTeachersInput = document.getElementById('silnat_teachers_total');
-
-    if (maleTeachersInput && femaleTeachersInput && totalTeachersInput) {
-        const maleCount = parseInt(maleTeachersInput.value, 10) || 0;
-        const femaleCount = parseInt(femaleTeachersInput.value, 10) || 0;
-
-        totalTeachersInput.value = maleCount + femaleCount;
-    }
-    calculateTeacherPupilRatio(); // Recalculate ratio
-}
-
-// Function to update total non-teaching staff for SILNAT form
-function updateSilnatTotalNonTeachingStaff() {
-    const maleNonTeachingInput = document.getElementById('silnat_non_teaching_male');
-    const femaleNonTeachingInput = document.getElementById('silnat_non_teaching_female');
-    const totalNonTeachingInput = document.getElementById('silnat_non_teaching_total');
-
-    if (maleNonTeachingInput && femaleNonTeachingInput && totalNonTeachingInput) {
-        const maleCount = parseInt(maleNonTeachingInput.value, 10) || 0;
-        const femaleCount = parseInt(femaleNonTeachingInput.value, 10) || 0;
-
-        totalNonTeachingInput.value = maleCount + femaleCount;
-    }
-}
-
-// Function to update total pupils for SILNAT form
 // Function to set up auto-calculation for total fields
 function setupTotalCalculation(maleId, femaleId, totalId) {
     const maleInput = document.getElementById(maleId);
@@ -5855,39 +5826,6 @@ function updateSilnatTotalPupils() {
         const femaleCount = parseInt(femalePupilsInput.value, 10) || 0;
 
         totalPupilsInput.value = maleCount + femaleCount;
-    }
-}
-
-function updateSilnatTotalPupilsEccde() {
-    const maleInput = document.getElementById('silnat_pupils_eccde_male');
-    const femaleInput = document.getElementById('silnat_pupils_eccde_female');
-    const totalInput = document.getElementById('silnat_pupils_eccde_total');
-    if (maleInput && femaleInput && totalInput) {
-        const maleCount = parseInt(maleInput.value, 10) || 0;
-        const femaleCount = parseInt(femaleInput.value, 10) || 0;
-        totalInput.value = maleCount + femaleCount;
-    }
-}
-
-function updateSilnatTotalPupilsPrimary() {
-    const maleInput = document.getElementById('silnat_pupils_primary_male');
-    const femaleInput = document.getElementById('silnat_pupils_primary_female');
-    const totalInput = document.getElementById('silnat_pupils_primary_total');
-    if (maleInput && femaleInput && totalInput) {
-        const maleCount = parseInt(maleInput.value, 10) || 0;
-        const femaleCount = parseInt(femaleInput.value, 10) || 0;
-        totalInput.value = maleCount + femaleCount;
-    }
-}
-
-function updateSilnatTotalPupilsSpecial() {
-    const maleInput = document.getElementById('silnat_pupils_special_male');
-    const femaleInput = document.getElementById('silnat_pupils_special_female');
-    const totalInput = document.getElementById('silnat_pupils_special_total');
-    if (maleInput && femaleInput && totalInput) {
-        const maleCount = parseInt(maleInput.value, 10) || 0;
-        const femaleCount = parseInt(femaleInput.value, 10) || 0;
-        totalInput.value = maleCount + femaleCount;
     }
 }
 
