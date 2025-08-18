@@ -9,13 +9,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def run_test():
     """
-    Tests the SILAT 1.1 form submission functionality.
+    Tests the SILNAT 1.1 form submission functionality.
     """
-    print("Starting SILAT 1.1 submission test...")
+    print("Starting SILNAT 1.1 submission test...")
 
     # --- 1. Setup: Define test data and connection details ---
     base_url = "http://localhost:3000"
-    endpoint = "/api/surveys/silat_1.1"
+    endpoint = "/api/surveys/silnat"
     url = base_url + endpoint
 
     sample_data = {
@@ -126,7 +126,7 @@ def run_test():
         "electricity_source": "phcn",
         "electricity_additional_info": "None",
         "waterlogged": "no",
-        "test_id": f"silat_1.1_{int(time.time())}"
+        "test_id": f"silnat_1.1_{int(time.time())}"
     }
 
     mongo_uri = "mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -154,7 +154,7 @@ def run_test():
 
         print("Successfully retrieved document from the database.")
 
-        assert retrieved_doc["surveyType"] == "silat_1.1", f"Expected surveyType to be 'silat_1.1', but got {retrieved_doc['surveyType']}"
+        assert retrieved_doc["surveyType"] == "silnat", f"Expected surveyType to be 'silnat', but got {retrieved_doc['surveyType']}"
         assert retrieved_doc["formData"]["supervision_c_1.1"] == "yes", "supervision_c_1.1 should be 'yes'"
         assert retrieved_doc["formData"]["supervision_d_1.1"] == "yes", "supervision_d_1.1 should be 'yes'"
 
