@@ -85,44 +85,60 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tableBody = document.querySelector('#reportsTable tbody');
             const loadingMessage = document.getElementById('loadingMessage');
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
-            fetch('/api/reports')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(surveys => {
-                    allSurveys = surveys; // Store data for export functions
-                    loadingMessage.style.display = 'none';
-                    if (surveys.length === 0) {
-                        tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No reports found.</td></tr>';
-                        return;
-                    }
+            if (!user || !user.token) {
+                loadingMessage.innerHTML = '<strong>Authentication required.</strong><br>Please log in to view this content.';
+                return;
+            }
 
-                    tableBody.innerHTML = ''; // Clear previous content
+            fetch('/api/reports', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    loadingMessage.innerHTML = '<strong>Access Denied.</strong><br>You do not have permission to view this page.';
+                    throw new Error('Access Denied');
+                }
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(surveys => {
+                allSurveys = surveys; // Store data for export functions
+                loadingMessage.style.display = 'none';
+                if (surveys.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No reports found.</td></tr>';
+                    return;
+                }
 
-                    surveys.forEach(survey => {
-                        const row = tableBody.insertRow();
-                        const formData = survey.formData || {};
-                        const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || formData.voices_schoolName || formData.silat_1_2_schoolName || formData.silat13_school_name || formData.silat_1_4_schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
-                        const respondentName = formData.silnat_a_ht_name || formData.tcmats_teacherName || formData.lori_teacher_name || formData.voices_learnerName || (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
-                        const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || formData.voices_lgea || formData.silat_1_2_localGov || formData.silat13_lgea || formData.silat_1_4_localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+                tableBody.innerHTML = ''; // Clear previous content
 
-                        row.innerHTML = `
-                            <td>${survey.surveyType || 'N/A'}</td>
-                            <td>${schoolName} (${lga})</td>
-                            <td>${respondentName}</td>
-                            <td>${new Date(survey.createdAt).toLocaleString()}</td>
-                            <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
-                        `;
-                    });
-                })
-                .catch(error => {
-                    loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
-                    console.error('Error fetching reports:', error);
+                surveys.forEach(survey => {
+                    const row = tableBody.insertRow();
+                    const formData = survey.formData || {};
+                    const schoolName = formData.schoolName || formData.tcmats_schoolName || formData.lori_school_name || formData.voices_schoolName || formData.silat_1_2_schoolName || formData.silat13_school_name || formData.silat_1_4_schoolName || (formData.section_b && formData.section_b.institution_name_common) || 'N/A';
+                    const respondentName = formData.silnat_a_ht_name || formData.tcmats_teacherName || formData.lori_teacher_name || formData.voices_learnerName || (formData.section_a && formData.section_a.head_teacher_name) || 'N/A';
+                    const lga = formData.localGov || formData.tcmats_lgea || formData.lori_lgea || formData.voices_lgea || formData.silat_1_2_localGov || formData.silat13_lgea || formData.silat_1_4_localGov || (formData.section_b && formData.section_b.local_gov_common) || 'N/A';
+
+                    row.innerHTML = `
+                        <td>${survey.surveyType || 'N/A'}</td>
+                        <td>${schoolName} (${lga})</td>
+                        <td>${respondentName}</td>
+                        <td>${new Date(survey.createdAt).toLocaleString()}</td>
+                        <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
+                    `;
                 });
+            })
+            .catch(error => {
+                if (error.message !== 'Access Denied') {
+                    loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
+                }
+                console.error('Error fetching reports:', error);
+            });
         });
 
         const modal = document.getElementById('detailsModal');

@@ -77,6 +77,10 @@
                     }
                 });
 
+                if (response.status === 401) {
+                    loadingMessage.innerHTML = '<strong>Access Denied.</strong><br>You do not have permission to view this page.';
+                    throw new Error('Access Denied');
+                }
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -99,7 +103,9 @@
                     `;
                 });
             } catch (error) {
-                loadingMessage.innerHTML = '<strong>Failed to load login logs.</strong>';
+                if (error.message !== 'Access Denied') {
+                    loadingMessage.innerHTML = '<strong>Failed to load login logs.</strong>';
+                }
                 console.error('Error fetching login logs:', error);
             }
         }
