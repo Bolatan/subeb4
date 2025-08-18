@@ -289,7 +289,7 @@ app.get('/api/users/export', protect, admin, async (req, res) => {
   }
 });
 
-app.get('/api/logs', protect, admin, async (req, res) => {
+app.get('/api/logs', protect, async (req, res) => {
   try {
     const logs = await LoginLog.find({}).sort({ timestamp: -1 });
     res.json(logs);
@@ -299,7 +299,7 @@ app.get('/api/logs', protect, admin, async (req, res) => {
 });
 
 // GET endpoint to retrieve all survey data for reports
-app.get('/api/reports', protect, admin, async (req, res) => {
+app.get('/api/reports', protect, async (req, res) => {
   try {
     const surveys = await SurveyResponse.find({}).sort({ createdAt: -1 });
     res.status(200).json(surveys);
