@@ -50,13 +50,20 @@ function parseCsvText(csvText) {
     const cleanedCsvText = csvText.trim().startsWith('ï»¿') ? csvText.trim().substring(3) : csvText.trim();
     const lines = cleanedCsvText.split('\n').filter(line => line.trim() !== '');
 
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i];
-        const firstCommaIndex = line.indexOf(',');
+    // Regex to properly handle commas inside quotes
+    const regex = /("([^"]*)"|([^,]*)),(.*)/;
 
-        if (firstCommaIndex > -1) {
-            const key = line.substring(0, firstCommaIndex).trim();
-            let value = line.substring(firstCommaIndex + 1).trim();
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
+
+        const match = line.match(regex);
+
+        if (match) {
+            // Determine the key (LGEA). It's either the unquoted group or the quoted group.
+            const key = (match[3] || match[2] || '').trim();
+            // The rest of the line is the value (School Name)
+            let value = (match[4] || '').trim();
 
             // Remove quotes if they exist at the start and end of the value
             if (value.startsWith('"') && value.endsWith('"')) {
@@ -67,8 +74,17 @@ function parseCsvText(csvText) {
                 if (!data[key]) {
                     data[key] = [];
                 }
+                // Avoid adding duplicates
                 if (!data[key].includes(value)) {
                     data[key].push(value);
+                }
+            }
+        } else {
+            // Handle lines that might not match the regex, e.g., lines with no comma
+            const key = line.trim();
+            if (key) {
+                if (!data[key]) {
+                    data[key] = [];
                 }
             }
         }
@@ -78,24 +94,32 @@ function parseCsvText(csvText) {
 
 // --- Specific Data Loaders ---
 async function loadAllData() {
-    // Using Promise.all to load all data in parallel for efficiency
-    [
-        lagosStateData,
-        specialSchoolsData,
-        vocationalCentersData,
-        comboData,
-    ] = await Promise.all([
-        loadCsvData('SCHOOL_LIST_AS_AT_JANUARY_2025 1,026.csv'),
-        loadCsvData('SPECIAL SCHOOLS AND INCLUSIVE UNITS1.csv'),
-        loadCsvData('LIST OF VOCATIONAL CENTRES.csv'),
-        loadCsvData('combo.csv')
-    ]);
+    console.log("Starting to load all CSV data...");
+    try {
+        // Using Promise.all to load all data in parallel for efficiency
+        [
+            lagosStateData,
+            specialSchoolsData,
+            vocationalCentersData,
+            comboData,
+        ] = await Promise.all([
+            loadCsvData('SCHOOL_LIST_AS_AT_JANUARY_2025 1,026.csv'),
+            loadCsvData('SPECIAL SCHOOLS AND INCLUSIVE UNITS1.csv'),
+            loadCsvData('LIST OF VOCATIONAL CENTRES.csv'),
+            loadCsvData('combo.csv')
+        ]);
 
-    // Create lgeaData from lagosStateData
-    const lgas = Object.keys(lagosStateData);
-    lgas.forEach(lga => {
-        lgeaData[lga] = [lga];
-    });
+        console.log("comboData loaded:", comboData); // DEBUG
+
+        // Create lgeaData from lagosStateData
+        const lgas = Object.keys(lagosStateData);
+        lgas.forEach(lga => {
+            lgeaData[lga] = [lga];
+        });
+        console.log("Finished loading all CSV data.");
+    } catch (error) {
+        console.error("An error occurred during loadAllData:", error);
+    }
 }
 
 
@@ -179,6 +203,7 @@ function initializeTcmatsDropdowns() {
 }
 
 function initializeVoicesDropdowns() {
+    console.log("Initializing VOICES dropdowns with comboData:", comboData); // DEBUG
     setupLinkedDropdowns('voices_lgea', 'voices_schoolName', comboData);
 }
 
