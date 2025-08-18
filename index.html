@@ -4117,20 +4117,22 @@ function updateAdminLinkState() {
         console.error('Error parsing user from localStorage for admin link state:', e);
     }
 
+    // Login logs card should be visible for any logged-in user
+    if (user) {
+        logCard.classList.remove('hidden');
+    } else {
+        logCard.classList.add('hidden');
+    }
+
+    // Admin link for user management is still admin-only
     if (user && user.role && user.role.trim().toLowerCase() === 'admin') {
-        // Is admin: show and enable admin links
         adminLink.classList.remove('hidden');
         adminLink.classList.remove('disabled-card');
         adminLink.onclick = () => { window.location.href = 'admin.html'; };
-
-        logCard.classList.remove('hidden');
     } else {
-        // Is not admin, or not logged in: hide and disable admin links
         adminLink.classList.add('hidden');
         adminLink.classList.add('disabled-card');
         adminLink.onclick = null;
-
-        logCard.classList.add('hidden');
     }
 }
 
