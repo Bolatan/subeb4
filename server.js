@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { Parser } = require('json2csv');
+const path = require('path');
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -296,7 +297,7 @@ app.get('/api/logs', protect, admin, async (req, res) => {
 });
 
 // GET endpoint to retrieve all survey data for reports
-app.get('/api/reports', async (req, res) => {
+app.get('/api/reports', protect, admin, async (req, res) => {
   try {
     const surveys = await SurveyResponse.find({}).sort({ createdAt: -1 });
     res.status(200).json(surveys);
@@ -304,6 +305,15 @@ app.get('/api/reports', async (req, res) => {
     console.error('Error fetching reports:', error);
     res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
   }
+});
+
+// Protected routes for serving admin-only HTML pages
+app.get('/reports', protect, admin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'reports.html'));
+});
+
+app.get('/login_logs', protect, admin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'login_logs.html'));
 });
 
 app.get('/', (req, res) => {
