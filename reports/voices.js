@@ -67,7 +67,30 @@ const modal = document.getElementById('detailsModal');
 const modalData = document.getElementById('modal-data');
 
 function viewDetails(survey) {
-    modalData.textContent = JSON.stringify(survey, null, 2);
+    const surveyType = survey.surveyType;
+    const labels = surveyLabelMaps[surveyType] || {};
+    const formData = survey.formData || {};
+
+    let detailsHtml = '<div class="details-grid">';
+
+    for (const key in formData) {
+        if (Object.prototype.hasOwnProperty.call(formData, key)) {
+            const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            let value = formData[key];
+
+            if (Array.isArray(value)) {
+                value = value.join(', ');
+            }
+
+            if (value !== '' && value !== null) {
+                detailsHtml += `<div class="detail-item"><strong class="detail-label">${label}:</strong> <span class="detail-value">${value}</span></div>`;
+            }
+        }
+    }
+
+    detailsHtml += '</div>';
+
+    modalData.innerHTML = detailsHtml;
     modal.style.display = "block";
 }
 
@@ -79,6 +102,18 @@ window.onclick = function(event) {
     if (event.target == modal) {
         closeModal();
     }
+}
+
+function flattenObject(obj, prefix = '') {
+    return Object.keys(obj).reduce((acc, k) => {
+        const pre = prefix.length ? prefix + '_' : '';
+        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+            Object.assign(acc, flattenObject(obj[k], pre + k));
+        } else {
+            acc[pre + k] = obj[k];
+        }
+        return acc;
+    }, {});
 }
 
 function exportToPDF() {
@@ -106,43 +141,27 @@ function exportToExcel() {
         return;
     }
 
+    const surveyType = 'voices';
+    const labels = surveyLabelMaps[surveyType] || {};
+
     const worksheetData = allSurveys.map(survey => {
-        const { createdAt, formData } = survey;
-        const row = {
-            'Submission Date': new Date(createdAt).toLocaleString(),
-            'Institution': formData.voices_institution,
-            'LGEA': formData.voices_lgea,
-            'School Name': formData.voices_schoolName,
-            'Location': formData.tcmats_location,
-            'Class': formData.voices_class,
-            'Class Description': formData.voices_class_description,
-            'Gender': formData.voices_gender,
-            'Distance from Home': formData.voices_distance,
-            'Difficult Topics': formData.voices_difficult_topics,
-            'Major Requests': formData.major_requests,
-            'School Building': formData.school_building,
-            'Furniture': formData.furniture,
-            'Classroom Condition': formData.classroom_condition,
-            'Perimeter Fence': formData.perimeter_fence,
-            'Toilet Type': formData.toilet_type,
-            'Toilet Cubicles Available': formData.toilet_cubicles_available,
-            'Toilet Cubicles Needing Minor Repair': formData.toilet_cubicles_minor_repair,
-            'Toilet Cubicles Needing Major Repair': formData.toilet_cubicles_major_repair,
-            'Additional Cubicles Required': formData.toilet_cubicles_additional,
-            'Septic Tank': formData.septic_tank,
-            'Water Source': formData.water_source,
-            'Electricity Source': Array.isArray(formData.electricity_source) ? formData.electricity_source.join(', ') : formData.electricity_source,
-            'Waterlogged Area': formData.waterlogged,
-            'Clubs': Array.isArray(formData.clubs) ? formData.clubs.join(', ') : formData.clubs,
-            'Club Meeting Frequency': formData.clubs_frequency,
-            'Sports Equipment': formData.sports_equipment,
+        const flattenedFormData = flattenObject(survey.formData);
+        const rowData = {
+            'Survey Type': survey.surveyType,
+            'Submission Date': new Date(survey.createdAt).toLocaleString()
         };
 
-        for (let i = 1; i <= 15; i++) {
-            row[`Participation Question ${i}`] = formData[`participation_${i}`];
+        for (const key in flattenedFormData) {
+            if (Object.prototype.hasOwnProperty.call(flattenedFormData, key)) {
+                const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                let value = flattenedFormData[key];
+                if (Array.isArray(value)) {
+                    value = value.join(', ');
+                }
+                rowData[label] = value;
+            }
         }
-
-        return row;
+        return rowData;
     });
 
     const worksheet = XLSX.utils.json_to_sheet(worksheetData);
