@@ -795,6 +795,7 @@ h4[onclick] {
             </div>
         </div>
         
+        <div id="mainApp" class="hidden">
 		<div id="silat_1.2Section" class="section hidden">
             <form id="silat_1.2_form" onsubmit="submitSurvey(event, 'silat_1.2')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
@@ -867,8 +868,8 @@ h4[onclick] {
                 
 			<div class="form-row full">
             <div class="form-group">
-                <label for="silnat_a_institution_type">Institution Type <span style="color:red;">*</span></label>
-                <select id="silnat_a_institution_type" name="silnat_a_institution_type" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required="">
+                <label for="silat_1.2_institution_type">Institution Type <span style="color:red;">*</span></label>
+                <select id="silat_1.2_institution_type" name="silat_1.2_institution_type" class="form-control" required="">
                     <option value="">Select Institution Type</option>
                     <option value="regular_school">Regular School</option>
                     <option value="special_school">Special School</option>
@@ -2231,7 +2232,7 @@ h4[onclick] {
 
         <!-- Survey Sections (initially hidden) -->
         <div id="silnatSection" class="section hidden">
-            <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silnat')">
+            <form id="silnatForm" onsubmit="submitSurvey(event, 'silnat')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
@@ -2309,8 +2310,8 @@ h4[onclick] {
 			
 			 <div class="form-row full">
             <div class="form-group">
-                <label for="silnat_a_institution_type">Institution Type <span style="color:red;">*</span></label>
-                <select id="silnat_a_institution_type" name="silnat_a_institution_type" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required="">
+                <label for="silnat_1.1_institution_type">Institution Type <span style="color:red;">*</span></label>
+                <select id="silnat_1.1_institution_type" name="silnat_1.1_institution_type" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required="">
                     <option value="">Select Institution Type</option>
                     <option value="regular_school">Regular School</option>
                     <option value="special_school">Special School</option>
@@ -3593,7 +3594,7 @@ h4[onclick] {
  <div class="form-row full">
             <div class="form-group">
                 <label for="voices_class">Class <span style="color:red;">*</span></label>
-                <select id="voices_class" name="voices_class" class="form-control" onchange="handleSilnatInstitutionTypeChange()" required="">
+                <select id="voices_class" name="voices_class" class="form-control" required="">
                     <option value="">Select Pupils' Class</option>
                     <option value="nurseryOne">Nursery One</option>
                     <option value="nursery_2">Nursery Two</option>
