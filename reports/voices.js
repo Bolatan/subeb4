@@ -1,147 +1,153 @@
-// School Assessment Report Populator
+let allSurveys = []; // Global variable to hold survey data for exports
+
+function getSurveyDisplayData(survey) {
+    const formData = survey.formData || {};
+    const schoolName = formData.voices_schoolName || 'N/A';
+    const respondentName = formData.voices_gender || 'N/A'; // Using gender as a placeholder for respondent
+    const lga = formData.voices_lgea || 'N/A';
+    return { schoolName, respondentName, lga };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Report populator loaded');
+    const tableBody = document.querySelector('#reportsTable tbody');
+    const loadingMessage = document.getElementById('loadingMessage');
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
-    // Get URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    console.log('URL Parameters found:', urlParams.toString());
-
-    // Function to safely decode and clean parameter values
-    function cleanParam(value) {
-        if (!value) return '';
-        return decodeURIComponent(value.replace(/\+/g, ' ')).trim();
+    if (!user || !user.token) {
+        loadingMessage.innerHTML = '<strong>Authentication required.</strong><br>Please log in to view this content.';
+        return;
     }
 
-    // Function to get multiple values for same parameter
-    function getMultipleValues(paramName) {
-        const values = urlParams.getAll(paramName);
-        return values.map(cleanParam).filter(v => v).join(', ');
-    }
-
-    // Function to populate an element if it exists
-    function populateElement(elementId, value) {
-        const element = document.getElementById(elementId);
-        if (element && value) {
-            element.textContent = value;
-            console.log(`Populated ${elementId}:`, value);
-        } else if (!element) {
-            console.warn(`Element with id '${elementId}' not found`);
+    fetch('/api/reports/voices', {
+        headers: {
+            'Authorization': `Bearer ${user.token}`
         }
-    }
-
-    // Function to populate elements by class name
-    function populateByClass(className, value) {
-        const elements = document.getElementsByClassName(className);
-        for (let element of elements) {
-            if (value) {
-                element.textContent = value;
-                console.log(`Populated class '${className}':`, value);
-            }
+    })
+    .then(response => {
+        if (response.status === 401) {
+            loadingMessage.innerHTML = '<strong>Access Denied.</strong><br>You do not have permission to view this page.';
+            throw new Error('Access Denied');
         }
-    }
-
-    try {
-        // Basic Information
-        populateElement('report-institution', cleanParam(urlParams.get('voices_institution')));
-        populateElement('report-lgea', cleanParam(urlParams.get('voices_lgea')));
-        populateElement('report-school-name', cleanParam(urlParams.get('voices_schoolName')));
-        populateElement('report-location', cleanParam(urlParams.get('tcmats_location')));
-        populateElement('report-class', cleanParam(urlParams.get('voices_class')));
-        populateElement('report-class-description', cleanParam(urlParams.get('voices_class_description')));
-        populateElement('report-gender', cleanParam(urlParams.get('voices_gender')));
-        populateElement('report-distance', cleanParam(urlParams.get('voices_distance')));
-        populateElement('report-difficult-topics', cleanParam(urlParams.get('voices_difficult_topics')));
-
-        // Participation Scores (1-15)
-        for (let i = 1; i <= 15; i++) {
-            const score = urlParams.get(`participation_${i}`);
-            populateElement(`report-participation-${i}`, score);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(surveys => {
+        allSurveys = surveys; // Store data for export functions
+        loadingMessage.style.display = 'none';
+        if (surveys.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">No VOICES reports found.</td></tr>';
+            return;
         }
 
-        // Infrastructure
-        populateElement('report-school-building', cleanParam(urlParams.get('school_building')));
-        populateElement('report-furniture', cleanParam(urlParams.get('furniture')));
-        populateElement('report-classroom-condition', cleanParam(urlParams.get('classroom_condition')));
-        populateElement('report-perimeter-fence', cleanParam(urlParams.get('perimeter_fence')));
+        tableBody.innerHTML = ''; // Clear previous content
 
-        // Toilet Facilities
-        populateElement('report-toilet-type', cleanParam(urlParams.get('toilet_type')));
-        populateElement('report-toilet-available', urlParams.get('toilet_cubicles_available'));
-        populateElement('report-toilet-minor-repair', urlParams.get('toilet_cubicles_minor_repair'));
-        populateElement('report-toilet-major-repair', urlParams.get('toilet_cubicles_major_repair'));
-        populateElement('report-toilet-additional', urlParams.get('toilet_cubicles_additional'));
-        populateElement('report-septic-tank', cleanParam(urlParams.get('septic_tank')));
+        surveys.forEach(survey => {
+            const row = tableBody.insertRow();
+            const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
 
-        // Utilities
-        populateElement('report-water-source', cleanParam(urlParams.get('water_source')));
-
-        // Handle multiple electricity sources
-        const electricitySources = getMultipleValues('electricity_source');
-        populateElement('report-electricity-source', electricitySources);
-
-        // Activities
-        const clubs = getMultipleValues('clubs');
-        populateElement('report-clubs', clubs);
-        populateElement('report-clubs-frequency', cleanParam(urlParams.get('clubs_frequency')));
-        populateElement('report-sports-equipment', cleanParam(urlParams.get('sports_equipment')));
-
-        // Environmental
-        populateElement('report-waterlogged', cleanParam(urlParams.get('waterlogged')));
-        populateElement('report-major-requests', cleanParam(urlParams.get('major_requests')));
-
-        // Calculate participation average
-        let participationTotal = 0;
-        let participationCount = 0;
-        for (let i = 1; i <= 15; i++) {
-            const score = parseInt(urlParams.get(`participation_${i}`));
-            if (!isNaN(score)) {
-                participationTotal += score;
-                participationCount++;
-            }
+            row.innerHTML = `
+                <td>${schoolName} (${lga})</td>
+                <td>${respondentName}</td>
+                <td>${new Date(survey.createdAt).toLocaleString()}</td>
+                <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
+            `;
+        });
+    })
+    .catch(error => {
+        if (error.message !== 'Access Denied') {
+            loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
         }
-
-        if (participationCount > 0) {
-            const average = (participationTotal / participationCount).toFixed(2);
-            populateElement('report-participation-average', average);
-        }
-
-        // Show success message
-        console.log('Report population completed successfully');
-
-        // Optional: Show a notification that report was loaded
-        const notification = document.createElement('div');
-        notification.style.cssText = 'position: fixed; top: 10px; right: 10px; background: green; color: white; padding: 10px; border-radius: 5px; z-index: 1000;';
-        notification.textContent = 'Report data loaded successfully!';
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
-
-    } catch (error) {
-        console.error('Error populating report:', error);
-
-        // Show error notification
-        const errorNotification = document.createElement('div');
-        errorNotification.style.cssText = 'position: fixed; top: 10px; right: 10px; background: red; color: white; padding: 10px; border-radius: 5px; z-index: 1000;';
-        errorNotification.textContent = 'Error loading report data!';
-        document.body.appendChild(errorNotification);
-        setTimeout(() => errorNotification.remove(), 5000);
-    }
+        console.error('Error fetching VOICES reports:', error);
+    });
 });
 
-// Debug function to list all parameters
-function debugParameters() {
-    const params = new URLSearchParams(window.location.search);
-    console.table(Array.from(params.entries()));
+const modal = document.getElementById('detailsModal');
+const modalData = document.getElementById('modal-data');
+
+function viewDetails(survey) {
+    modalData.textContent = JSON.stringify(survey, null, 2);
+    modal.style.display = "block";
 }
 
-// Debug function to find all potential report elements
-function findReportElements() {
-    const elements = document.querySelectorAll('[id*="report"], [class*="report"]');
-    console.log('Found report elements:', elements);
-    elements.forEach(el => {
-        console.log(`ID: ${el.id}, Class: ${el.className}, Tag: ${el.tagName}`);
+function closeModal() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+function exportToPDF() {
+    if (allSurveys.length === 0) {
+        alert("No data to export.");
+        return;
+    }
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text("VOICES Survey Reports", 14, 16);
+
+    const table = document.getElementById('reportsTable');
+    const tableClone = table.cloneNode(true);
+    Array.from(tableClone.rows).forEach(row => row.deleteCell(-1)); // Remove "Actions" column
+
+    doc.autoTable({ html: tableClone });
+
+    doc.save('voices-survey-reports.pdf');
+}
+
+function exportToExcel() {
+    if (allSurveys.length === 0) {
+        alert("No data to export.");
+        return;
+    }
+
+    const worksheetData = allSurveys.map(survey => {
+        const { createdAt, formData } = survey;
+        const row = {
+            'Submission Date': new Date(createdAt).toLocaleString(),
+            'Institution': formData.voices_institution,
+            'LGEA': formData.voices_lgea,
+            'School Name': formData.voices_schoolName,
+            'Location': formData.tcmats_location,
+            'Class': formData.voices_class,
+            'Class Description': formData.voices_class_description,
+            'Gender': formData.voices_gender,
+            'Distance from Home': formData.voices_distance,
+            'Difficult Topics': formData.voices_difficult_topics,
+            'Major Requests': formData.major_requests,
+            'School Building': formData.school_building,
+            'Furniture': formData.furniture,
+            'Classroom Condition': formData.classroom_condition,
+            'Perimeter Fence': formData.perimeter_fence,
+            'Toilet Type': formData.toilet_type,
+            'Toilet Cubicles Available': formData.toilet_cubicles_available,
+            'Toilet Cubicles Needing Minor Repair': formData.toilet_cubicles_minor_repair,
+            'Toilet Cubicles Needing Major Repair': formData.toilet_cubicles_major_repair,
+            'Additional Cubicles Required': formData.toilet_cubicles_additional,
+            'Septic Tank': formData.septic_tank,
+            'Water Source': formData.water_source,
+            'Electricity Source': Array.isArray(formData.electricity_source) ? formData.electricity_source.join(', ') : formData.electricity_source,
+            'Waterlogged Area': formData.waterlogged,
+            'Clubs': Array.isArray(formData.clubs) ? formData.clubs.join(', ') : formData.clubs,
+            'Club Meeting Frequency': formData.clubs_frequency,
+            'Sports Equipment': formData.sports_equipment,
+        };
+
+        for (let i = 1; i <= 15; i++) {
+            row[`Participation Question ${i}`] = formData[`participation_${i}`];
+        }
+
+        return row;
     });
-}
 
-// Call debug functions
-debugParameters();
-findReportElements();
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "VOICES Reports");
+
+    XLSX.writeFile(workbook, "voices-survey-reports.xlsx");
+}
