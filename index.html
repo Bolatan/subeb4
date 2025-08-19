@@ -3466,6 +3466,38 @@ h4[onclick] {
             </div>
         </div>
     </div>
+    <h4 id="loriSectionDHeader" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('loriSectionDContent', 'loriSectionDHeader')">Section D: School Infrastructure & Facilities 🔽</h4>
+    <div id="loriSectionDContent" style="display: block;">
+        <!-- Male toilets -->
+        <div class="form-group">
+            <label for="toilet_renovation_required_male">Male Toilets Renovation Required</label>
+            <input type="number" id="toilet_renovation_required_male" name="toilet_renovation_required_male" class="form-control" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="toilet_repair_description_male">Male Toilets Repair Description</label>
+            <textarea id="toilet_repair_description_male" name="toilet_repair_description_male" class="form-control" rows="2" required></textarea>
+        </div>
+
+        <!-- Female toilets -->
+        <div class="form-group">
+            <label for="toilet_renovation_required_female">Female Toilets Renovation Required</label>
+            <input type="number" id="toilet_renovation_required_female" name="toilet_renovation_required_female" class="form-control" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="toilet_repair_description_female">Female Toilets Repair Description</label>
+            <textarea id="toilet_repair_description_female" name="toilet_repair_description_female" class="form-control" rows="2" required></textarea>
+        </div>
+
+        <!-- Staff toilets -->
+        <div class="form-group">
+            <label for="toilet_renovation_required_staff">Staff Toilets Renovation Required</label>
+            <input type="number" id="toilet_renovation_required_staff" name="toilet_renovation_required_staff" class="form-control" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="toilet_repair_description_staff">Staff Toilets Repair Description</label>
+            <textarea id="toilet_repair_description_staff" name="toilet_repair_description_staff" class="form-control" rows="2" required></textarea>
+        </div>
+    </div>
     <button type="submit" class="btn">Submit LORI Survey</button>
     <div id="lori_feedback" style="margin-top: 15px; font-size: 16px; font-weight: bold; padding: 10px; border-radius: 5px; text-align: center;"></div>
 </form></div>
