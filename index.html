@@ -5623,13 +5623,18 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                const successMessage = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
-                alert(successMessage); // Show a prominent alert
-                feedback.className = 'feedback-success'; // Apply success class
-                feedback.textContent = successMessage;
-                form.reset();
-                const uploadedFilesDiv = form.querySelector('.uploaded-files');
-                if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+                if (surveyType === 'voices') {
+                    const queryParams = new URLSearchParams(new FormData(form)).toString();
+                    window.location.href = `reports/voices_report.html?${queryParams}`;
+                } else {
+                    const successMessage = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                    alert(successMessage); // Show a prominent alert
+                    feedback.className = 'feedback-success'; // Apply success class
+                    feedback.textContent = successMessage;
+                    form.reset();
+                    const uploadedFilesDiv = form.querySelector('.uploaded-files');
+                    if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+                }
             } else {
                 const err = await res.json();
                 feedback.className = ''; // Reset class
