@@ -67,7 +67,26 @@ const modal = document.getElementById('detailsModal');
 const modalData = document.getElementById('modal-data');
 
 function viewDetails(survey) {
-    modalData.textContent = JSON.stringify(survey, null, 2);
+    const surveyType = survey.surveyType;
+    const labels = surveyLabelMaps[surveyType] || {};
+    const formData = survey.formData || {};
+
+    let detailsHtml = '<div class="details-grid">';
+
+    for (const key in formData) {
+        if (Object.prototype.hasOwnProperty.call(formData, key)) {
+            const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const value = formData[key];
+
+            if (value !== '' && value !== null) {
+                detailsHtml += `<div class="detail-item"><strong class="detail-label">${label}:</strong> <span class="detail-value">${value}</span></div>`;
+            }
+        }
+    }
+
+    detailsHtml += '</div>';
+
+    modalData.innerHTML = detailsHtml;
     modal.style.display = "block";
 }
 
@@ -118,13 +137,22 @@ function exportToExcel() {
         return;
     }
 
+    const surveyType = allSurveys.length > 0 ? allSurveys[0].surveyType : 'silat_1.1';
+    const labels = surveyLabelMaps[surveyType] || {};
+
     const worksheetData = allSurveys.map(survey => {
         const flattenedFormData = flattenObject(survey.formData);
         const rowData = {
             'Survey Type': survey.surveyType,
-            'Submission Date': new Date(survey.createdAt).toLocaleString(),
-            ...flattenedFormData
+            'Submission Date': new Date(survey.createdAt).toLocaleString()
         };
+
+        for (const key in flattenedFormData) {
+            if (Object.prototype.hasOwnProperty.call(flattenedFormData, key)) {
+                const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                rowData[label] = flattenedFormData[key];
+            }
+        }
         return rowData;
     });
 
