@@ -4180,18 +4180,27 @@ window.onload = async function() {
                 const values = urlParams.getAll(key);
                 processedKeys.add(key);
 
-                if (elements.constructor === RadioNodeList) { // For radio buttons
-                    for (const radio of elements) {
-                        if (radio.value === values[0]) {
-                            radio.checked = true;
-                            break;
+                if (elements.constructor === RadioNodeList) {
+                    // This could be radio buttons or checkboxes. Check the type.
+                    if (elements[0] && elements[0].type === 'checkbox') {
+                        // Handle as checkboxes
+                        for (const checkbox of elements) {
+                            if (values.includes(checkbox.value)) {
+                                checkbox.checked = true;
+                            }
+                        }
+                    } else {
+                        // Handle as radio buttons
+                        for (const radio of elements) {
+                            if (radio.value === values[0]) {
+                                radio.checked = true;
+                                break;
+                            }
                         }
                     }
-                } else if (elements.length && elements[0].type === 'checkbox') { // For checkboxes
-                    for (const checkbox of elements) {
-                        if (values.includes(checkbox.value)) {
-                            checkbox.checked = true;
-                        }
+                } else if (elements.type === 'checkbox') { // handle single checkbox
+                    if (values.includes(elements.value)) {
+                        elements.checked = true;
                     }
                 } else { // For text, select, textarea etc.
                     elements.value = decodeURIComponent(values[0]);
