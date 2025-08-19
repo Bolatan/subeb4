@@ -1,4 +1,3 @@
-console.log("Server.js script started");
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -354,7 +353,6 @@ app.get('/', (req, res) => {
   res.send('Backend server is running!');
 });
 
-console.log(`Attempting to start server on port ${port}`);
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

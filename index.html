@@ -5634,7 +5634,7 @@ async function submitSurvey(event, surveyType) {
             if (res.ok) {
                 if (surveyType === 'voices') {
                     const queryParams = new URLSearchParams(new FormData(form)).toString();
-                    window.location.href = `reports/voices_report.html?${queryParams}`;
+                    window.location.href = `reports/voices.html?${queryParams}`;
                 } else {
                     const successMessage = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
                     alert(successMessage); // Show a prominent alert
