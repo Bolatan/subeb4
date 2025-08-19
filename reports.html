@@ -54,40 +54,61 @@
             }
         }
 
-        function renderReport(data, surveyType) {
+        function renderReport(responses, surveyType) {
             const reportDataDiv = document.getElementById('reportData');
-            if (data.total === 0) {
+            if (!responses || responses.length === 0) {
                 reportDataDiv.innerHTML = `<p>No reports found for ${surveyType.toUpperCase()}.</p>`;
                 return;
             }
 
-            let tableHtml = `<h2>${surveyType.toUpperCase()} Report (${data.total} responses)</h2>`;
+            let tableHtml = `<h2>${surveyType.toUpperCase()} Report (${responses.length} responses)</h2>`;
             tableHtml += '<table>';
 
-            // Create headers from the keys of the first response object
-            const headers = Object.keys(data.responses[0]);
-            tableHtml += '<thead><tr>';
-            headers.forEach(header => {
-                tableHtml += `<th>${header}</th>`;
+            // Collect all unique keys from formData across all responses for a comprehensive header
+            const allFormDataKeys = new Set();
+            responses.forEach(res => {
+                if (res.formData) {
+                    Object.keys(res.formData).forEach(key => allFormDataKeys.add(key));
+                }
             });
+
+            const headers = ['Survey Type', 'Submission Date', ...Array.from(allFormDataKeys).sort()];
+
+            tableHtml += '<thead><tr>';
+            headers.forEach(header => tableHtml += `<th>${header}</th>`);
             tableHtml += '</tr></thead>';
 
-            // Create rows
+            const isImageUrl = (url) => {
+                if (typeof url !== 'string') return false;
+                return url.startsWith('data:image') || /\.(jpg|jpeg|png|gif|svg)$/i.test(url);
+            };
+
             tableHtml += '<tbody>';
-            data.responses.forEach(response => {
+            responses.forEach(response => {
                 tableHtml += '<tr>';
                 headers.forEach(header => {
-                    let value = response[header];
-                    // If the value is an object or array, stringify it
-                    if (typeof value === 'object' && value !== null) {
-                        value = JSON.stringify(value);
+                    let value;
+                    if (header === 'Survey Type') {
+                        value = response.surveyType;
+                    } else if (header === 'Submission Date') {
+                        value = new Date(response.createdAt).toLocaleString();
+                    } else {
+                        value = response.formData ? response.formData[header] : undefined;
                     }
-                    tableHtml += `<td>${value}</td>`;
+
+                    let cellContent = '';
+                    if (isImageUrl(value)) {
+                        cellContent = `<a href="${value}" target="_blank" download>Download Image</a>`;
+                    } else if (typeof value === 'object' && value !== null) {
+                        cellContent = JSON.stringify(value);
+                    } else {
+                        cellContent = value !== undefined && value !== null ? value : '';
+                    }
+                    tableHtml += `<td>${cellContent}</td>`;
                 });
                 tableHtml += '</tr>';
             });
-            tableHtml += '</tbody>';
-            tableHtml += '</table>';
+            tableHtml += '</tbody></table>';
 
             reportDataDiv.innerHTML = tableHtml;
         }
