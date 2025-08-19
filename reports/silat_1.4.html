@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SILAT_1.4 Survey Reports</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <title>SILAT 1.4 Survey Reports</title>
     <link rel="stylesheet" href="/reports/style.css">
 </head>
 <body>
@@ -14,41 +11,18 @@
         <div class="header">
             <div class="logo">
                 <img src="/subeb.jpg" alt="Lagos State Logo">
-                <span>SILAT_1.4 Survey Reports</span>
+                <span>SILAT 1.4 Survey Summary</span>
             </div>
             <a href="/reports/index.html" class="btn-secondary">Back to Dashboard</a>
         </div>
         <div class="content-area">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h2>SILAT_1.4 Reports</h2>
-                <div id="export-buttons">
-                    <button class="btn" onclick="exportToPDF()">Export to PDF</button>
-                    <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
-                </div>
+                <h2>SILAT 1.4 Summary</h2>
             </div>
-            <table class="data-table" id="reportsTable">
-                <thead>
-                    <tr>
-                        <th>School Name / LGEA</th>
-                        <th>Respondent Name</th>
-                        <th>Submission Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Data will be inserted here by JavaScript -->
-                </tbody>
-            </table>
-            <div id="loadingMessage">Loading reports...</div>
-        </div>
-    </div>
-
-    <!-- Modal for viewing details -->
-    <div id="detailsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h3>Survey Details</h3>
-            <pre id="modal-data" style="white-space: pre-wrap; word-wrap: break-word; background: #f4f4f4; padding: 15px; border-radius: 5px; margin-top: 15px;"></pre>
+            <div id="summaryContainer">
+                <!-- Summary data will be inserted here by JavaScript -->
+            </div>
+            <div id="loadingMessage">Loading summary...</div>
         </div>
     </div>
 
