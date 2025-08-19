@@ -4181,16 +4181,16 @@ window.onload = async function() {
                 processedKeys.add(key);
 
                 if (elements.constructor === RadioNodeList) {
-                    // This could be radio buttons or checkboxes. Check the type.
+                    // This could be radio buttons or checkboxes. Check the type of the first element.
                     if (elements[0] && elements[0].type === 'checkbox') {
-                        // Handle as checkboxes
+                        // Handle as a group of checkboxes
                         for (const checkbox of elements) {
                             if (values.includes(checkbox.value)) {
                                 checkbox.checked = true;
                             }
                         }
                     } else {
-                        // Handle as radio buttons
+                        // Handle as a group of radio buttons
                         for (const radio of elements) {
                             if (radio.value === values[0]) {
                                 radio.checked = true;
@@ -4198,7 +4198,8 @@ window.onload = async function() {
                             }
                         }
                     }
-                } else if (elements.type === 'checkbox') { // handle single checkbox
+                } else if (elements.type === 'checkbox') {
+                    // Handle a single checkbox
                     if (values.includes(elements.value)) {
                         elements.checked = true;
                     }
