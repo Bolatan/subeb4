@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Reports</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        #reportData { margin-top: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Survey Reports</h1>
+    <div id="controls">
+        <label for="surveyType">Select Survey Type:</label>
+        <select id="surveyType">
+            <option value="">--Select--</option>
+            <option value="silnat">SILNAT</option>
+            <option value="tcmats">TCMATS</option>
+            <option value="lori">LORI</option>
+            <option value="voices">VOICES</option>
+        </select>
+        <button onclick="fetchReport()">Fetch Report</button>
+    </div>
+    <div id="reportData">
+        <p>Please select a survey type and click "Fetch Report".</p>
+    </div>
+
+    <script>
+        async function fetchReport() {
+            const surveyType = document.getElementById('surveyType').value;
+            if (!surveyType) {
+                alert('Please select a survey type.');
+                return;
+            }
+
+            const reportDataDiv = document.getElementById('reportData');
+            reportDataDiv.innerHTML = '<p>Loading...</p>';
+
+            try {
+                const response = await fetch(`/api/reports/${surveyType}`);
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.message || `HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                renderReport(data, surveyType);
+            } catch (error) {
+                reportDataDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+
+        function renderReport(data, surveyType) {
+            const reportDataDiv = document.getElementById('reportData');
+            if (data.total === 0) {
+                reportDataDiv.innerHTML = `<p>No reports found for ${surveyType.toUpperCase()}.</p>`;
+                return;
+            }
+
+            let tableHtml = `<h2>${surveyType.toUpperCase()} Report (${data.total} responses)</h2>`;
+            tableHtml += '<table>';
+
+            // Create headers from the keys of the first response object
+            const headers = Object.keys(data.responses[0]);
+            tableHtml += '<thead><tr>';
+            headers.forEach(header => {
+                tableHtml += `<th>${header}</th>`;
+            });
+            tableHtml += '</tr></thead>';
+
+            // Create rows
+            tableHtml += '<tbody>';
+            data.responses.forEach(response => {
+                tableHtml += '<tr>';
+                headers.forEach(header => {
+                    let value = response[header];
+                    // If the value is an object or array, stringify it
+                    if (typeof value === 'object' && value !== null) {
+                        value = JSON.stringify(value);
+                    }
+                    tableHtml += `<td>${value}</td>`;
+                });
+                tableHtml += '</tr>';
+            });
+            tableHtml += '</tbody>';
+            tableHtml += '</table>';
+
+            reportDataDiv.innerHTML = tableHtml;
+        }
+    </script>
+</body>
+</html>
