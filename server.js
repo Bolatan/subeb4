@@ -304,6 +304,17 @@ app.get('/api/logs', protect, async (req, res) => {
   }
 });
 
+// GET endpoint for all survey reports
+app.get('/api/reports/all', protect, async (req, res) => {
+  try {
+    const surveys = await SurveyResponse.find({}).sort({ createdAt: -1 });
+    res.status(200).json(surveys);
+  } catch (error) {
+    console.error('Error fetching all reports:', error);
+    res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
+  }
+});
+
 // GET endpoint for survey reports by type
 app.get('/api/reports/:type', protect, async (req, res) => {
   try {
@@ -332,6 +343,10 @@ app.get('/reports/:type.html', (req, res) => {
 
 app.get('/login_logs', (req, res) => {
   res.sendFile(path.join(__dirname, 'login_logs.html'));
+});
+
+app.get('/submission_logs.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'submission_logs.html'));
 });
 
 app.get('/', (req, res) => {
