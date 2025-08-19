@@ -316,6 +316,265 @@ app.get('/api/reports/:type', protect, async (req, res) => {
   }
 });
 
+// GET endpoint for aggregated survey reports by type
+app.get('/api/reports/:type/summary', protect, async (req, res) => {
+  try {
+    const surveyType = req.params.type;
+
+    if (surveyType === 'tcmats') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'tcmats' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            avgPeriodsPerWeek: { $avg: { $convert: { input: "$formData.tcmats_periodsPerWeek", to: "int", onError: 0 } } },
+            avgPupilsInClass: { $avg: { $convert: { input: "$formData.tcmats_pupilsInClass", to: "int", onError: 0 } } },
+            locations: { $push: "$formData.tcmats_location" },
+            institutions: { $push: "$formData.tcmats_institution" },
+            qualifications: { $push: "$formData.tcmats_highest_qualification" },
+            genders: { $push: "$formData.tcmats_gender" },
+            teachingExperiences: { $push: "$formData.tcmats_teaching_experience" },
+            classDescriptions: { $push: "$formData.tcmats_class_description" },
+            lessonPrep1_yes: { $sum: { $cond: [{ $eq: ["$formData.lesson_prep_1", "yes"] }, 1, 0] } },
+            lessonPrep1_no: { $sum: { $cond: [{ $eq: ["$formData.lesson_prep_1", "no"] }, 1, 0] } },
+            subjectMastery2_yes: { $sum: { $cond: [{ $eq: ["$formData.subject_mastery_2", "yes"] }, 1, 0] } },
+            subjectMastery2_no: { $sum: { $cond: [{ $eq: ["$formData.subject_mastery_2", "no"] }, 1, 0] } },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            avgPeriodsPerWeek: { $round: ["$avgPeriodsPerWeek", 2] },
+            avgPupilsInClass: { $round: ["$avgPupilsInClass", 2] },
+            locationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$locations"] }, as: "location", in: { k: "$$location", v: { $size: { $filter: { input: "$locations", cond: { $eq: ["$$this", "$$location"] } } } } } } } },
+            institutionCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$institutions"] }, as: "institution", in: { k: "$$institution", v: { $size: { $filter: { input: "$institutions", cond: { $eq: ["$$this", "$$institution"] } } } } } } } },
+            qualificationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$qualifications"] }, as: "qualification", in: { k: "$$qualification", v: { $size: { $filter: { input: "$qualifications", cond: { $eq: ["$$this", "$$qualification"] } } } } } } } },
+            genderCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$genders"] }, as: "gender", in: { k: "$$gender", v: { $size: { $filter: { input: "$genders", cond: { $eq: ["$$this", "$$gender"] } } } } } } } },
+            teachingExperienceCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$teachingExperiences"] }, as: "experience", in: { k: "$$experience", v: { $size: { $filter: { input: "$teachingExperiences", cond: { $eq: ["$$this", "$$experience"] } } } } } } } },
+            classDescriptionCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$classDescriptions"] }, as: "description", in: { k: "$$description", v: { $size: { $filter: { input: "$classDescriptions", cond: { $eq: ["$$this", "$$description"] } } } } } } } },
+            lessonPrep1Counts: { yes: "$lessonPrep1_yes", no: "$lessonPrep1_no" },
+            subjectMastery2Counts: { yes: "$subjectMastery2_yes", no: "$subjectMastery2_no" },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'silat_1.1') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'silat_1.1' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            genders: { $push: "$formData.silnat_a_ht_gender" },
+            maritalStatuses: { $push: "$formData.silnat_a_ht_marital_status" },
+            qualifications: { $push: "$formData.silnat_a_ht_highest_qualification" },
+            experiences: { $push: "$formData.silnat_a_ht_years_experience" },
+            discipline_a_yes: { $sum: { $cond: [{ $eq: ["$formData.discipline_a_1.1", "yes"] }, 1, 0] } },
+            discipline_a_no: { $sum: { $cond: [{ $eq: ["$formData.discipline_a_1.1", "no"] }, 1, 0] } },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            genderCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$genders"] }, as: "gender", in: { k: "$$gender", v: { $size: { $filter: { input: "$genders", cond: { $eq: ["$$this", "$$gender"] } } } } } } } },
+            maritalStatusCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$maritalStatuses"] }, as: "status", in: { k: "$$status", v: { $size: { $filter: { input: "$maritalStatuses", cond: { $eq: ["$$this", "$$status"] } } } } } } } },
+            qualificationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$qualifications"] }, as: "qualification", in: { k: "$$qualification", v: { $size: { $filter: { input: "$qualifications", cond: { $eq: ["$$this", "$$qualification"] } } } } } } } },
+            experienceCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$experiences"] }, as: "experience", in: { k: "$$experience", v: { $size: { $filter: { input: "$experiences", cond: { $eq: ["$$this", "$$experience"] } } } } } } } },
+            disciplineACounts: { yes: "$discipline_a_yes", no: "$discipline_a_no" },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'silat_1.2') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'silat_1.2' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            totalTeachersMale: { $sum: { $convert: { input: "$formData.silat_1_2_teachers_male", to: "int", onError: 0 } } },
+            totalTeachersFemale: { $sum: { $convert: { input: "$formData.silat_1_2_teachers_female", to: "int", onError: 0 } } },
+            locations: { $push: "$formData.silat_1_2_location" },
+            specialLearners: { $push: "$formData.silat_1_2_special_learners" },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            totalTeachers: { $add: ["$totalTeachersMale", "$totalTeachersFemale"] },
+            locationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$locations"] }, as: "location", in: { k: "$$location", v: { $size: { $filter: { input: "$locations", cond: { $eq: ["$$this", "$$location"] } } } } } } } },
+            specialLearnersCounts: { $let: {
+              vars: {
+                allLearners: { $reduce: {
+                  input: "$specialLearners",
+                  initialValue: [],
+                  in: { $concatArrays: ["$$value", "$$this"] }
+                }}
+              },
+              in: { $arrayToObject: { $map: {
+                input: { $setUnion: ["$$allLearners"] },
+                as: "learnerType",
+                in: {
+                  k: "$$learnerType",
+                  v: { $size: { $filter: { input: "$$allLearners", cond: { $eq: ["$$this", "$$learnerType"] } } } }
+                }
+              }}}
+            }}
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'silat_1.3') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'silat_1.3' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            totalInstructorsMale: { $sum: { $convert: { input: "$formData.silat13_instructors_male", to: "int", onError: 0 } } },
+            totalInstructorsFemale: { $sum: { $convert: { input: "$formData.silat13_instructors_female", to: "int", onError: 0 } } },
+            locations: { $push: "$formData.silat13_location" },
+            qualifications: { $push: "$formData.highest_qualification_1.3" },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            totalInstructors: { $add: ["$totalInstructorsMale", "$totalInstructorsFemale"] },
+            locationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$locations"] }, as: "location", in: { k: "$$location", v: { $size: { $filter: { input: "$locations", cond: { $eq: ["$$this", "$$location"] } } } } } } } },
+            qualificationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$qualifications"] }, as: "qualification", in: { k: "$$qualification", v: { $size: { $filter: { input: "$qualifications", cond: { $eq: ["$$this", "$$qualification"] } } } } } } } },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'silat_1.4') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'silat_1.4' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            totalStaffMale: { $sum: { $convert: { input: "$formData.staff_male_1.4", to: "int", onError: 0 } } },
+            totalStaffFemale: { $sum: { $convert: { input: "$formData.staff_female_1.4", to: "int", onError: 0 } } },
+            locations: { $push: "$formData.location_1.4" },
+            qualifications: { $push: "$formData.highest_qualification_1.4" },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            totalStaff: { $add: ["$totalStaffMale", "$totalStaffFemale"] },
+            locationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$locations"] }, as: "location", in: { k: "$$location", v: { $size: { $filter: { input: "$locations", cond: { $eq: ["$$this", "$$location"] } } } } } } } },
+            qualificationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$qualifications"] }, as: "qualification", in: { k: "$$qualification", v: { $size: { $filter: { input: "$qualifications", cond: { $eq: ["$$this", "$$qualification"] } } } } } } } },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'lori') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'lori' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            avgYearsExperience: { $avg: { $convert: { input: "$formData.lori_years_experience", to: "int", onError: 0 } } },
+            avgRating_b_1_a: { $avg: { $convert: { input: "$formData.lori_b_1_a", to: "int", onError: 0 } } },
+            avgRating_b_1_b: { $avg: { $convert: { input: "$formData.lori_b_1_b", to: "int", onError: 0 } } },
+            locations: { $push: "$formData.lori_location" },
+            qualifications: { $push: "$formData.lori_qualification" },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            avgYearsExperience: { $round: ["$avgYearsExperience", 2] },
+            avgRating_b_1_a: { $round: ["$avgRating_b_1_a", 2] },
+            avgRating_b_1_b: { $round: ["$avgRating_b_1_b", 2] },
+            locationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$locations"] }, as: "location", in: { k: "$$location", v: { $size: { $filter: { input: "$locations", cond: { $eq: ["$$this", "$$location"] } } } } } } } },
+            qualificationCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$qualifications"] }, as: "qualification", in: { k: "$$qualification", v: { $size: { $filter: { input: "$qualifications", cond: { $eq: ["$$this", "$$qualification"] } } } } } } } },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else if (surveyType === 'voices') {
+      const summary = await SurveyResponse.aggregate([
+        { $match: { surveyType: 'voices' } },
+        {
+          $group: {
+            _id: null,
+            totalSubmissions: { $sum: 1 },
+            avgParticipation1: { $avg: { $convert: { input: "$formData.participation_1", to: "int", onError: 0 } } },
+            avgParticipation2: { $avg: { $convert: { input: "$formData.participation_2", to: "int", onError: 0 } } },
+            institutions: { $push: "$formData.voices_institution" },
+            genders: { $push: "$formData.voices_gender" },
+            distances: { $push: "$formData.voices_distance" },
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            totalSubmissions: 1,
+            avgParticipation1: { $round: ["$avgParticipation1", 2] },
+            avgParticipation2: { $round: ["$avgParticipation2", 2] },
+            institutionCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$institutions"] }, as: "institution", in: { k: "$$institution", v: { $size: { $filter: { input: "$institutions", cond: { $eq: ["$$this", "$$institution"] } } } } } } } },
+            genderCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$genders"] }, as: "gender", in: { k: "$$gender", v: { $size: { $filter: { input: "$genders", cond: { $eq: ["$$this", "$$gender"] } } } } } } } },
+            distanceCounts: { $arrayToObject: { $map: { input: { $setUnion: ["$distances"] }, as: "distance", in: { k: "$$distance", v: { $size: { $filter: { input: "$distances", cond: { $eq: ["$$this", "$$distance"] } } } } } } } },
+          }
+        }
+      ]);
+
+      if (summary.length > 0) {
+        res.status(200).json(summary[0]);
+      } else {
+        res.status(200).json({ totalSubmissions: 0 });
+      }
+    } else {
+      // Placeholder for other survey types
+      res.status(200).json({ message: `Aggregation for ${surveyType} coming soon.` });
+    }
+  } catch (error) {
+    console.error(`Error fetching ${req.params.type} summary:`, error);
+    res.status(500).json({ message: 'Failed to fetch summary.', error: error.message });
+  }
+});
+
 // Serve static files from the 'reports' directory
 app.use('/reports', express.static(path.join(__dirname, 'reports')));
 
