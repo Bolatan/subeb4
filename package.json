@@ -15,6 +15,9 @@
     "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "xlsx": "^0.18.5",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2"
   }
 }

@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Submission Logs</title>
-    <!-- jsPDF and SheetJS libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
         /* Basic styles from index.html */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -147,38 +143,14 @@
             }
         }
 
-        function flattenSubmissions(submissions) {
-            const flatData = [];
-
-            // First, get all unique keys from all formData objects
-            const allKeys = new Set();
-            submissions.forEach(sub => {
-                if (sub.formData) {
-                    Object.keys(sub.formData).forEach(key => allKeys.add(key));
-                }
-            });
-            const sortedKeys = Array.from(allKeys).sort();
-
-            // Now, create the flattened data
-            submissions.forEach(sub => {
-                const flatRow = {
-                    'Survey Type': sub.surveyType,
-                    'Submission Date': new Date(sub.createdAt).toLocaleString(),
-                };
-
-                sortedKeys.forEach(key => {
-                    if (sub.formData && sub.formData[key] !== undefined) {
-                        const value = sub.formData[key];
-                        // Handle array values by joining them
-                        flatRow[key] = Array.isArray(value) ? value.join(', ') : value;
-                    } else {
-                        flatRow[key] = ''; // Use empty string for missing values
-                    }
-                });
-                flatData.push(flatRow);
-            });
-
-            return flatData;
+        function exportWithToken(url) {
+            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            if (!user || !user.token) {
+                alert('Authentication required. Please log in.');
+                return;
+            }
+            // Append token to URL and trigger download
+            window.location.href = `${url}?token=${user.token}`;
         }
 
         function exportToExcel() {
@@ -186,15 +158,7 @@
                 alert('No data to export.');
                 return;
             }
-
-            const flatData = flattenSubmissions(allSubmissions);
-
-            const worksheet = XLSX.utils.json_to_sheet(flatData);
-            const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Submissions');
-
-            // Trigger download
-            XLSX.writeFile(workbook, 'SurveySubmissions.xlsx');
+            exportWithToken('/api/export/excel');
         }
 
         function exportToPdf() {
@@ -202,27 +166,7 @@
                 alert('No data to export.');
                 return;
             }
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({
-                orientation: 'landscape'
-            });
-
-            const flatData = flattenSubmissions(allSubmissions);
-
-            // Get headers and body for autoTable
-            const headers = Object.keys(flatData[0] || {});
-            const body = flatData.map(row => headers.map(header => row[header]));
-
-            doc.autoTable({
-                head: [headers],
-                body: body,
-                styles: { fontSize: 8 },
-                headStyles: { fillColor: [30, 64, 175] }, // Dark blue
-                margin: { top: 10 }
-            });
-
-            doc.save('SurveySubmissions.pdf');
+            exportWithToken('/api/export/pdf');
         }
 
         function setupModal() {
