@@ -3053,9 +3053,9 @@ h4[onclick] {
                 <td>Number of pupils <span style="color:red;">*</span></td>
                 <td colspan="3">
                     <label for="lori_pupils_female" class="radio-inline">Female <span style="color:red;">*</span></label>
-<input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" min="0" style="width: 80px; display: inline-block;" required="">
+<input type="number" id="lori_pupils_female" name="lori_pupils_female" class="form-control" min="0" style="width: 80px; display: inline-block;" required="" oninput="updateTotal('lori_pupils_male', 'lori_pupils_female', 'lori_pupils_total')">
                     <label for="lori_pupils_male" class="radio-inline">Male <span style="color:red;">*</span></label>
-<input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" min="0" style="width: 80px; display: inline-block;" required="">
+<input type="number" id="lori_pupils_male" name="lori_pupils_male" class="form-control" min="0" style="width: 80px; display: inline-block;" required="" oninput="updateTotal('lori_pupils_male', 'lori_pupils_female', 'lori_pupils_total')">
                     <label for="lori_pupils_total" class="radio-inline">Total</label>
                     <input type="number" id="lori_pupils_total" name="lori_pupils_total" class="form-control" min="0" style="width: 80px; display: inline-block;" readonly="">
                 </td>
@@ -5804,6 +5804,19 @@ function calculateTeacherPupilRatio() {
 }
 
 // Function to set up auto-calculation for total fields
+function updateTotal(maleId, femaleId, totalId) {
+    const maleInput = document.getElementById(maleId);
+    const femaleInput = document.getElementById(femaleId);
+    const totalInput = document.getElementById(totalId);
+
+    if (maleInput && femaleInput && totalInput) {
+        const maleCount = parseInt(maleInput.value, 10) || 0;
+        const femaleCount = parseInt(femaleInput.value, 10) || 0;
+
+        totalInput.value = maleCount + femaleCount;
+    }
+}
+
 function setupTotalCalculation(maleId, femaleId, totalId) {
     const maleInput = document.getElementById(maleId);
     const femaleInput = document.getElementById(femaleId);
