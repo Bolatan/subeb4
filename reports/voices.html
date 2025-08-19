@@ -8,6 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="/reports/style.css">
+    <script>
+        // Check if there are any URL parameters intended for a single report
+        if (window.location.search) {
+            // If so, redirect to the correct single report page
+            window.location.href = 'voices_report.html' + window.location.search;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
