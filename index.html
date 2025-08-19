@@ -4040,41 +4040,122 @@ select.form-control option {
 // Combined window.onload function
 // Combined window.onload function
 window.onload = async function() {
-    try {
-        forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
-        const forceOfflineSwitch = document.getElementById('forceOfflineSwitch');
-        if (forceOfflineSwitch) {
-            forceOfflineSwitch.checked = forceOffline;
-        }
-    } catch (e) {
-        forceOffline = false;
-        console.error('Error loading forceOffline state:', e);
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const loriKeys = Array.from(urlParams.keys()).filter(k => k.startsWith('lori_'));
 
-    console.log('App initialized');
     await loadAllData(); // Load all CSV data from dropdown.js
-    checkOfflineDataStatus();
-    loadSession();
 
-    if (currentUser) {
+    if (loriKeys.length > 0) {
+        // This is the new report viewing mode
         document.getElementById('authScreen').classList.add('hidden');
-        document.getElementById('landingPage').classList.remove('hidden');
-        document.getElementById('mainApp').classList.add('hidden');
-        loadData();
-        updateDashboard();
-        loadRecords();
-        updateConnectionStatus();
-    } else {
-        document.getElementById('authScreen').classList.remove('hidden');
-        document.getElementById('mainApp').classList.add('hidden');
         document.getElementById('landingPage').classList.add('hidden');
-        // Also hide all survey sections
-        ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+
+        // Ensure all other sections are hidden
+        ['silnat','tcmats','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
             const section = document.getElementById(s + 'Section');
-            if (section) {
-                section.classList.add('hidden');
-            }
+            if (section) section.classList.add('hidden');
         });
+
+        showSurvey('lori'); // This also calls initializeLoriDropdowns
+
+        const loriForm = document.getElementById('loriForm');
+
+        // Special handling for cascading dropdowns
+        const lgeaSelect = document.getElementById('lori_lgea');
+        const schoolSelect = document.getElementById('lori_school_name');
+        const lgeaValue = urlParams.get('lori_lgea');
+        const schoolValue = urlParams.get('lori_school_name');
+
+        if (lgeaSelect && lgeaValue) {
+            lgeaSelect.value = lgeaValue;
+            // Manually trigger the 'change' event to populate the school dropdown
+            lgeaSelect.dispatchEvent(new Event('change'));
+        }
+
+        // A short delay to ensure the school dropdown is populated
+        setTimeout(() => {
+            if (schoolSelect && schoolValue) {
+                schoolSelect.value = schoolValue;
+            }
+
+            // Populate the rest of the form
+            for (const [key, value] of urlParams.entries()) {
+                const elements = loriForm.elements[key];
+                if (!elements) continue;
+
+                if (elements.constructor === RadioNodeList) {
+                    for (const radio of elements) {
+                        if (radio.value === value) {
+                            radio.checked = true;
+                            break;
+                        }
+                    }
+                } else {
+                    elements.value = decodeURIComponent(value);
+                }
+            }
+
+            // Disable all form elements to make it read-only
+            const allElements = loriForm.elements;
+            for (let i = 0; i < allElements.length; i++) {
+                allElements[i].disabled = true;
+            }
+
+            // Add a print button
+            const printButton = document.createElement('button');
+            printButton.textContent = 'Print Report';
+            printButton.className = 'btn';
+            printButton.style.marginTop = '20px';
+            printButton.onclick = () => window.print();
+            loriForm.appendChild(printButton);
+
+            // Hide the original submit button
+            const submitButton = loriForm.querySelector('button[type="submit"]');
+            if(submitButton) submitButton.classList.add('hidden');
+
+            // Change the back button to go to the main page instead of the landing page
+            const backButton = document.querySelector('#loriSection .btn-secondary');
+            if(backButton) backButton.onclick = () => { window.location.href = '/'; };
+
+
+        }, 200); // 200ms delay might be safer
+
+    } else {
+        // This is the original data entry/dashboard mode
+        try {
+            forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
+            const forceOfflineSwitch = document.getElementById('forceOfflineSwitch');
+            if (forceOfflineSwitch) {
+                forceOfflineSwitch.checked = forceOffline;
+            }
+        } catch (e) {
+            forceOffline = false;
+            console.error('Error loading forceOffline state:', e);
+        }
+
+        console.log('App initialized');
+        checkOfflineDataStatus();
+        loadSession();
+
+        if (currentUser) {
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('landingPage').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            loadData();
+            updateDashboard();
+            loadRecords();
+            updateConnectionStatus();
+        } else {
+            document.getElementById('authScreen').classList.remove('hidden');
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('landingPage').classList.add('hidden');
+            ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+                const section = document.getElementById(s + 'Section');
+                if (section) {
+                    section.classList.add('hidden');
+                }
+            });
+        }
     }
 };
 
