@@ -61,50 +61,62 @@
                 return;
             }
 
-            let tableHtml = `<h2>${surveyType.toUpperCase()} Report (${responses.length} responses)</h2>`;
-            tableHtml += '<table>';
-
-            // Collect all unique keys from formData across all responses for a comprehensive header
-            const allFormDataKeys = new Set();
-            responses.forEach(res => {
-                if (res.formData) {
-                    Object.keys(res.formData).forEach(key => allFormDataKeys.add(key));
-                }
-            });
-
-            const headers = ['Survey Type', 'Submission Date', ...Array.from(allFormDataKeys).sort()];
-
-            tableHtml += '<thead><tr>';
-            headers.forEach(header => tableHtml += `<th>${header}</th>`);
-            tableHtml += '</tr></thead>';
-
             const isImageUrl = (url) => {
                 if (typeof url !== 'string') return false;
                 return url.startsWith('data:image') || /\.(jpg|jpeg|png|gif|svg)$/i.test(url);
             };
 
+            const allFormDataKeys = new Set();
+            const imageKeys = new Set();
+            responses.forEach(res => {
+                if (res.formData) {
+                    for (const key in res.formData) {
+                        allFormDataKeys.add(key);
+                        if (isImageUrl(res.formData[key])) {
+                            imageKeys.add(key);
+                        }
+                    }
+                }
+            });
+
+            const sortedKeys = Array.from(allFormDataKeys).sort();
+
+            let tableHtml = `<h2>${surveyType.toUpperCase()} Report (${responses.length} responses)</h2>`;
+            tableHtml += '<table><thead><tr>';
+            tableHtml += `<th>Survey Type</th><th>Submission Date</th>`;
+
+            sortedKeys.forEach(key => {
+                tableHtml += `<th>${key}</th>`;
+                if (imageKeys.has(key)) {
+                    tableHtml += `<th>${key} Download</th>`;
+                }
+            });
+            tableHtml += '</tr></thead>';
+
+
             tableHtml += '<tbody>';
             responses.forEach(response => {
                 tableHtml += '<tr>';
-                headers.forEach(header => {
-                    let value;
-                    if (header === 'Survey Type') {
-                        value = response.surveyType;
-                    } else if (header === 'Submission Date') {
-                        value = new Date(response.createdAt).toLocaleString();
-                    } else {
-                        value = response.formData ? response.formData[header] : undefined;
-                    }
+                tableHtml += `<td>${response.surveyType}</td>`;
+                tableHtml += `<td>${new Date(response.createdAt).toLocaleString()}</td>`;
 
+                sortedKeys.forEach(key => {
+                    const value = response.formData ? response.formData[key] : undefined;
                     let cellContent = '';
-                    if (isImageUrl(value)) {
-                        cellContent = `<a href="${value}" target="_blank" download>Download Image</a>`;
-                    } else if (typeof value === 'object' && value !== null) {
+                    if (typeof value === 'object' && value !== null) {
                         cellContent = JSON.stringify(value);
                     } else {
                         cellContent = value !== undefined && value !== null ? value : '';
                     }
                     tableHtml += `<td>${cellContent}</td>`;
+
+                    if (imageKeys.has(key)) {
+                        if (isImageUrl(value)) {
+                            tableHtml += `<td><a href="${value}" target="_blank" download>Download Image</a></td>`;
+                        } else {
+                            tableHtml += `<td></td>`;
+                        }
+                    }
                 });
                 tableHtml += '</tr>';
             });
