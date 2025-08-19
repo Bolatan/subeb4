@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOICES School Assessment Report</title>
+    <link rel="stylesheet" href="/reports/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="/subeb.jpg" alt="Lagos State Logo">
+                <span>VOICES School Assessment Report</span>
+            </div>
+            <a href="/reports/voices.html" class="btn-secondary">Back to VOICES Reports</a>
+        </div>
+        <div class="content-area">
+            <h2>Report Details</h2>
+            <div class="report-grid">
+                <div class="report-section">
+                    <h3>Basic Information</h3>
+                    <p><strong>Institution:</strong> <span id="report-institution"></span></p>
+                    <p><strong>LGEA:</strong> <span id="report-lgea"></span></p>
+                    <p><strong>School Name:</strong> <span id="report-school-name"></span></p>
+                    <p><strong>Location:</strong> <span id="report-location"></span></p>
+                    <p><strong>Class:</strong> <span id="report-class"></span></p>
+                    <p><strong>Class Description:</strong> <span id="report-class-description"></span></p>
+                    <p><strong>Gender:</strong> <span id="report-gender"></span></p>
+                    <p><strong>Distance from Home:</strong> <span id="report-distance"></span></p>
+                    <p><strong>Difficult Topics:</strong> <span id="report-difficult-topics"></span></p>
+                    <p><strong>Major Requests:</strong> <span id="report-major-requests"></span></p>
+                </div>
+
+                <div class="report-section">
+                    <h3>Infrastructure</h3>
+                    <p><strong>School Building:</strong> <span id="report-school-building"></span></p>
+                    <p><strong>Furniture:</strong> <span id="report-furniture"></span></p>
+                    <p><strong>Classroom Condition:</strong> <span id="report-classroom-condition"></span></p>
+                    <p><strong>Perimeter Fence:</strong> <span id="report-perimeter-fence"></span></p>
+                </div>
+
+                <div class="report-section">
+                    <h3>Toilet Facilities</h3>
+                    <p><strong>Type:</strong> <span id="report-toilet-type"></span></p>
+                    <p><strong>Cubicles Available:</strong> <span id="report-toilet-available"></span></p>
+                    <p><strong>Cubicles Needing Minor Repair:</strong> <span id="report-toilet-minor-repair"></span></p>
+                    <p><strong>Cubicles Needing Major Repair:</strong> <span id="report-toilet-major-repair"></span></p>
+                    <p><strong>Additional Cubicles Required:</strong> <span id="report-toilet-additional"></span></p>
+                    <p><strong>Septic Tank:</strong> <span id="report-septic-tank"></span></p>
+                </div>
+
+                <div class="report-section">
+                    <h3>Utilities & Environment</h3>
+                    <p><strong>Water Source:</strong> <span id="report-water-source"></span></p>
+                    <p><strong>Electricity Source:</strong> <span id="report-electricity-source"></span></p>
+                    <p><strong>Waterlogged Area:</strong> <span id="report-waterlogged"></span></p>
+                </div>
+
+                <div class="report-section">
+                    <h3>School Activities</h3>
+                    <p><strong>Clubs:</strong> <span id="report-clubs"></span></p>
+                    <p><strong>Club Meeting Frequency:</strong> <span id="report-clubs-frequency"></span></p>
+                    <p><strong>Sports Equipment:</strong> <span id="report-sports-equipment"></span></p>
+                </div>
+
+                <div class="report-section report-section-full">
+                    <h3>Student Participation Scores</h3>
+                    <p><strong>Average Score:</strong> <span id="report-participation-average" style="font-weight: bold; font-size: 1.2em;"></span></p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <script>
+                                for (let i = 1; i <= 15; i++) {
+                                    document.write(`
+                                        <tr>
+                                            <td>Participation Question ${i}</td>
+                                            <td id="report-participation-${i}"></td>
+                                        </tr>
+                                    `);
+                                }
+                            </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="voices_report.js"></script>
+</body>
+</html>
