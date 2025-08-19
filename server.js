@@ -315,6 +315,29 @@ app.get('/api/reports/all', protect, async (req, res) => {
   }
 });
 
+// GET endpoint for a single survey report by ID
+app.get('/api/report/:id', protect, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate the ID format to prevent CastError in MongoDB
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid report ID format.' });
+    }
+
+    const report = await SurveyResponse.findById(id);
+
+    if (!report) {
+      return res.status(404).json({ message: 'Report not found.' });
+    }
+
+    res.status(200).json(report);
+  } catch (error) {
+    console.error(`Error fetching report with ID ${req.params.id}:`, error);
+    res.status(500).json({ message: 'Failed to fetch report.', error: error.message });
+  }
+});
+
 // GET endpoint for survey reports by type
 app.get('/api/reports/:type', protect, async (req, res) => {
   try {
