@@ -4074,29 +4074,24 @@ select.form-control option {
         let forceOffline = false;
         
 // Combined window.onload function
-// Combined window.onload function
 window.onload = async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const loriKeys = Array.from(urlParams.keys()).filter(k => k.startsWith('lori_'));
+    const voicesKeys = Array.from(urlParams.keys()).filter(k => k.startsWith('voices_'));
 
     await loadAllData(); // Load all CSV data from dropdown.js
 
     if (loriKeys.length > 0) {
-        // This is the new report viewing mode
+        // This is the LORI report viewing mode
         document.getElementById('authScreen').classList.add('hidden');
         document.getElementById('landingPage').classList.add('hidden');
-
-        // Ensure all other sections are hidden
         ['silnat','tcmats','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
             const section = document.getElementById(s + 'Section');
             if (section) section.classList.add('hidden');
         });
 
-        showSurvey('lori'); // This also calls initializeLoriDropdowns
-
+        showSurvey('lori');
         const loriForm = document.getElementById('loriForm');
-
-        // Special handling for cascading dropdowns
         const lgeaSelect = document.getElementById('lori_lgea');
         const schoolSelect = document.getElementById('lori_school_name');
         const lgeaValue = urlParams.get('lori_lgea');
@@ -4104,17 +4099,14 @@ window.onload = async function() {
 
         if (lgeaSelect && lgeaValue) {
             lgeaSelect.value = lgeaValue;
-            // Manually trigger the 'change' event to populate the school dropdown
             lgeaSelect.dispatchEvent(new Event('change'));
         }
 
-        // A short delay to ensure the school dropdown is populated
         setTimeout(() => {
             if (schoolSelect && schoolValue) {
                 schoolSelect.value = schoolValue;
             }
 
-            // Populate the rest of the form
             for (const [key, value] of urlParams.entries()) {
                 const elements = loriForm.elements[key];
                 if (!elements) continue;
@@ -4131,13 +4123,11 @@ window.onload = async function() {
                 }
             }
 
-            // Disable all form elements to make it read-only
             const allElements = loriForm.elements;
             for (let i = 0; i < allElements.length; i++) {
                 allElements[i].disabled = true;
             }
 
-            // Add a print button
             const printButton = document.createElement('button');
             printButton.textContent = 'Print Report';
             printButton.className = 'btn';
@@ -4145,16 +4135,92 @@ window.onload = async function() {
             printButton.onclick = () => window.print();
             loriForm.appendChild(printButton);
 
-            // Hide the original submit button
             const submitButton = loriForm.querySelector('button[type="submit"]');
             if(submitButton) submitButton.classList.add('hidden');
-
-            // Change the back button to go to the main page instead of the landing page
             const backButton = document.querySelector('#loriSection .btn-secondary');
             if(backButton) backButton.onclick = () => { window.location.href = '/'; };
+        }, 200);
 
+    } else if (voicesKeys.length > 0) {
+        // This is the VOICES report viewing mode
+        document.getElementById('authScreen').classList.add('hidden');
+        document.getElementById('landingPage').classList.add('hidden');
+        ['silnat','tcmats','lori', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+            const section = document.getElementById(s + 'Section');
+            if (section) section.classList.add('hidden');
+        });
 
-        }, 200); // 200ms delay might be safer
+        showSurvey('voices');
+        const voicesForm = document.getElementById('voicesForm');
+
+        // Handle cascading dropdowns for VOICES
+        const lgeaSelect = document.getElementById('voices_lgea');
+        const schoolSelect = document.getElementById('voices_schoolName');
+        const lgeaValue = urlParams.get('voices_lgea');
+        const schoolValue = urlParams.get('voices_schoolName');
+
+        if (lgeaSelect && lgeaValue) {
+            lgeaSelect.value = lgeaValue;
+            lgeaSelect.dispatchEvent(new Event('change'));
+        }
+
+        setTimeout(() => {
+            if (schoolSelect && schoolValue) {
+                schoolSelect.value = schoolValue;
+            }
+
+            // Populate the rest of the form
+            const processedKeys = new Set();
+            for (const key of urlParams.keys()) {
+                if (processedKeys.has(key)) continue;
+
+                const elements = voicesForm.elements[key];
+                if (!elements) continue;
+
+                const values = urlParams.getAll(key);
+                processedKeys.add(key);
+
+                if (elements.constructor === RadioNodeList) { // For radio buttons
+                    for (const radio of elements) {
+                        if (radio.value === values[0]) {
+                            radio.checked = true;
+                            break;
+                        }
+                    }
+                } else if (elements.length && elements[0].type === 'checkbox') { // For checkboxes
+                    for (const checkbox of elements) {
+                        if (values.includes(checkbox.value)) {
+                            checkbox.checked = true;
+                        }
+                    }
+                } else { // For text, select, textarea etc.
+                    elements.value = decodeURIComponent(values[0]);
+                }
+            }
+
+            // Disable all form elements
+            const allElements = voicesForm.elements;
+            for (let i = 0; i < allElements.length; i++) {
+                allElements[i].disabled = true;
+            }
+
+            // Add print button
+            const printButton = document.createElement('button');
+            printButton.textContent = 'Print VOICES Report';
+            printButton.className = 'btn';
+            printButton.style.marginTop = '20px';
+            printButton.onclick = () => window.print();
+            voicesForm.appendChild(printButton);
+
+            // Hide submit button
+            const submitButton = voicesForm.querySelector('button[type="submit"]');
+            if(submitButton) submitButton.classList.add('hidden');
+
+            // Adjust back button
+            const backButton = document.querySelector('#voicesSection .btn-secondary');
+            if(backButton) backButton.onclick = () => { window.location.href = '/'; };
+
+        }, 200);
 
     } else {
         // This is the original data entry/dashboard mode
