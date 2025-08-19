@@ -4,6 +4,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { Parser } = require('json2csv');
 const path = require('path');
+const XLSX = require('xlsx');
+const { jsPDF } = require('jspdf');
+require('jspdf-autotable');
 
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -314,6 +317,100 @@ app.get('/api/reports/all', protect, async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
   }
 });
+
+// --- Helper function for flattening survey data ---
+const flattenSubmissions = (submissions) => {
+  const flatData = [];
+  const allKeys = new Set();
+
+  // First, get all unique keys from all formData objects
+  submissions.forEach(sub => {
+    if (sub.formData) {
+      Object.keys(sub.formData).forEach(key => allKeys.add(key));
+    }
+  });
+  const sortedKeys = Array.from(allKeys).sort();
+
+  // Now, create the flattened data
+  submissions.forEach(sub => {
+    const flatRow = {
+      'Survey Type': sub.surveyType,
+      'Submission Date': new Date(sub.createdAt).toLocaleString(),
+    };
+
+    sortedKeys.forEach(key => {
+      if (sub.formData && sub.formData[key] !== undefined) {
+        const value = sub.formData[key];
+        flatRow[key] = Array.isArray(value) ? value.join(', ') : value;
+      } else {
+        flatRow[key] = ''; // Use empty string for missing values
+      }
+    });
+    flatData.push(flatRow);
+  });
+
+  return flatData;
+};
+
+
+// --- Server-side Export Endpoints ---
+
+// Export to Excel
+app.get('/api/export/excel', protect, async (req, res) => {
+  try {
+    const submissions = await SurveyResponse.find({}).lean();
+    if (submissions.length === 0) {
+      return res.status(404).send('No data to export.');
+    }
+
+    const flatData = flattenSubmissions(submissions);
+    const worksheet = XLSX.utils.json_to_sheet(flatData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Submissions');
+
+    const buffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
+    res.setHeader('Content-Disposition', 'attachment; filename="SurveySubmissions.xlsx"');
+    res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.send(buffer);
+
+  } catch (error) {
+    console.error('Error exporting to Excel:', error);
+    res.status(500).send('Error exporting to Excel');
+  }
+});
+
+// Export to PDF
+app.get('/api/export/pdf', protect, async (req, res) => {
+  try {
+    const submissions = await SurveyResponse.find({}).lean();
+    if (submissions.length === 0) {
+      return res.status(404).send('No data to export.');
+    }
+
+    const flatData = flattenSubmissions(submissions);
+    const headers = Object.keys(flatData[0] || {});
+    const body = flatData.map(row => headers.map(header => row[header]));
+
+    const doc = new jsPDF({ orientation: 'landscape' });
+    doc.autoTable({
+      head: [headers],
+      body: body,
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [30, 64, 175] }, // Dark blue
+      margin: { top: 10 },
+    });
+
+    const pdfBuffer = doc.output('arraybuffer');
+    res.setHeader('Content-Disposition', 'attachment; filename="SurveySubmissions.pdf"');
+    res.type('application/pdf');
+    res.send(Buffer.from(pdfBuffer));
+
+  } catch (error) {
+    console.error('Error exporting to PDF:', error);
+    res.status(500).send('Error exporting to PDF');
+  }
+});
+
 
 // GET endpoint for survey reports by type
 app.get('/api/reports/:type', protect, async (req, res) => {
