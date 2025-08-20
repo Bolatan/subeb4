@@ -1784,6 +1784,18 @@ select.form-control option {
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="latitude_1.4">Latitude</label>
+                        <input type="number" id="latitude_1.4" name="latitude_1.4" class="form-control latitude-input" step="any" readonly="" min="0">
+                        <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude_1.4">Longitude</label>
+                        <input type="number" id="longitude_1.4" name="longitude_1.4" class="form-control longitude-input" step="any" readonly="" min="0">
+                    </div>
+                </div>
+
                 <h5 style="margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid var(--lagos-yellow); padding-bottom: 5px;">MEMBERS OF STAFF</h5>
 
                 <div class="form-group">
@@ -2240,12 +2252,12 @@ select.form-control option {
 			  <div class="form-row">
                                 <div class="form-group">
                                     <label for="latitude">Latitude</label>
-                                    <input type="number" id="latitude" class="form-control" step="any" readonly="" min="0">
+                                    <input type="number" id="latitude" class="form-control latitude-input" step="any" readonly="" min="0">
                                     <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
                                 </div>
                                 <div class="form-group">
                                     <label for="longitude">Longitude</label>
-                                    <input type="number" id="longitude" class="form-control" step="any" readonly="" min="0">
+                                    <input type="number" id="longitude" class="form-control longitude-input" step="any" readonly="" min="0">
                                 </div>
                             </div>
             <div class="form-row">
@@ -4148,11 +4160,11 @@ function logout() {
                 return;
             }
 
-            const latInput = formRow.querySelector('input[id="latitude"]');
-            const lonInput = formRow.querySelector('input[id="longitude"]');
+            const latInput = formRow.querySelector('.latitude-input');
+            const lonInput = formRow.querySelector('.longitude-input');
 
             if (!latInput || !lonInput) {
-                alert('Could not find latitude/longitude input fields within the row.');
+                alert('Could not find latitude/longitude input fields with the correct classes within the row.');
                 return;
             }
 
