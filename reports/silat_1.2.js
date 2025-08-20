@@ -151,7 +151,7 @@ function exportToExcel() {
         return;
     }
 
-    const surveyType = 'silat_1.2';
+    const surveyType = allSurveys.length > 0 ? allSurveys[0].surveyType : 'silat_1.2';
     const labels = surveyLabelMaps[surveyType] || {};
 
     const worksheetData = allSurveys.map(survey => {
