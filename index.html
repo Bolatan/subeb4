@@ -5689,10 +5689,13 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                // Unified success message for all surveys
                 const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
                 const successMessageElement = document.getElementById('successMessage');
                 const modal = document.getElementById('successModal');
+
+                if (surveyType === 'silat_1.4' || surveyType === 'lori') {
+                    backToLanding();
+                }
 
                 if (successMessageElement && modal) {
                     successMessageElement.textContent = successMessageText;
@@ -5710,7 +5713,6 @@ async function submitSurvey(event, surveyType) {
                     submitButton.disabled = false;
                     submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
                 }
-
             } else {
                 const err = await res.json();
                 feedback.className = ''; // Reset class
