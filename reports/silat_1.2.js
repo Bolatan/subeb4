@@ -46,11 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
         surveys.forEach(survey => {
             const row = tableBody.insertRow();
             const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+            const photos = survey.formData.photos || [];
+            let imagesHtml = '';
+            if (photos.length > 0) {
+                imagesHtml = photos.map(photo => `
+                    <a href="${photo}" target="_blank">
+                        <img src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
+                    </a>
+                `).join('');
+            }
 
             row.innerHTML = `
                 <td>${schoolName} (${lga})</td>
                 <td>${respondentName}</td>
                 <td>${new Date(survey.createdAt).toLocaleString()}</td>
+                <td>${imagesHtml}</td>
                 <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
             `;
         });
