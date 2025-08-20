@@ -119,6 +119,18 @@ function exportToPDF() {
     doc.save('lori-survey-reports.pdf');
 }
 
+function flattenObject(obj, prefix = '') {
+    return Object.keys(obj).reduce((acc, k) => {
+        const pre = prefix.length ? prefix + '_' : '';
+        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+            Object.assign(acc, flattenObject(obj[k], pre + k));
+        } else {
+            acc[pre + k] = obj[k];
+        }
+        return acc;
+    }, {});
+}
+
 function exportToExcel() {
     if (allSurveys.length === 0) {
         alert("No data to export.");
@@ -137,8 +149,14 @@ function exportToExcel() {
 
         for (const key in flattenedFormData) {
             if (Object.prototype.hasOwnProperty.call(flattenedFormData, key)) {
-                const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                rowData[label] = flattenedFormData[key];
+                if (key === 'photos' && Array.isArray(flattenedFormData[key])) {
+                    flattenedFormData[key].forEach((photo, index) => {
+                        rowData[`Photo ${index + 1}`] = photo;
+                    });
+                } else {
+                    const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    rowData[label] = flattenedFormData[key];
+                }
             }
         }
         return rowData;
