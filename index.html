@@ -2781,9 +2781,10 @@ h4[onclick] {
                 <u>Instruction:</u> The instrument has Three sections; Section A, B and C. Section A requires Demographic Information and Bio Data of Teacher; Section B requires Teachers’ Needs Assessment; while Section C requires Teachers’ Subject Area Difficulties. Kindly fill in the statements that are applicable to you.
             </div>
         
+            <form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionA', 'tcmatsSectionAHeader')">SECTION A: Demographic information of School and Bio Data of Teacher <span id="tcmatsSectionAHeader">🔽</span></h3>
             <div id="tcmatsSectionA" style="display: block;">
-            <div style="color:#888;margin-top:40px;"><form id="tcmatsForm" class="audit-form" onsubmit="submitSurvey(event, 'tcmats')">
+            <div style="color:#888;margin-top:40px;">
     <div class="form-group">
         <label>Institution: <span style="color:red;">*</span></label>
         <div>
@@ -2873,7 +2874,7 @@ h4[onclick] {
             <label class="radio-inline"><input type="radio" name="tcmats_teaching_experience" value="21_and_above" required=""> 21 &amp; Above</label>
         </div>
     </div>
-    </form></div>
+    </div>
 </div>
             <h3 style="cursor: pointer;" onclick="toggleSection('tcmatsSectionB', 'tcmatsSectionBHeader')">SECTION B: <span id="tcmatsSectionBHeader">🔽</span></h3>
             <div id="tcmatsSectionB" style="display: block;">
@@ -3040,6 +3041,7 @@ h4[onclick] {
             </div>
             <button type="submit" class="btn">Submit TCMATS Form</button>
             <div id="tcmats_feedback" style="margin-top:15px;font-size:15px;"></div>
+            </form>
         </div>
 	
 		
