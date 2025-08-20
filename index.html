@@ -5646,7 +5646,7 @@ async function submitSurvey(event, surveyType) {
         console.warn(`Survey type "${surveyType}" is not officially in the allowed list, but proceeding anyway.`);
     }
 
-    const feedback = form.nextElementSibling;
+    const feedback = document.getElementById(`${surveyType}_feedback`);
 
     if (feedback) {
         feedback.textContent = 'Submitting...';
