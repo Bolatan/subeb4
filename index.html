@@ -5631,8 +5631,16 @@ async function submitSurvey(event, surveyType) {
     event.preventDefault();
 
     const form = event.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+
     if (!validateForm(form)) {
         return;
+    }
+
+    // Disable the button to prevent double submission
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
     }
 
     const allowedSurveys = ['silnat', 'silat_1.1', 'silat_1.2', 'silat_1.3', 'silat_1.4', 'tcmats', 'lori', 'voices'];
@@ -5666,30 +5674,38 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                if (surveyType === 'voices') {
-                    const queryParams = new URLSearchParams(new FormData(form)).toString();
-                    window.location.href = `reports/voices.html?${queryParams}`;
+                // Unified success message for all surveys
+                const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                const successMessageElement = document.getElementById('successMessage');
+                const modal = document.getElementById('successModal');
+
+                if (successMessageElement && modal) {
+                    successMessageElement.textContent = successMessageText;
+                    modal.style.display = 'block';
                 } else {
-                    const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
-                    const successMessageElement = document.getElementById('successMessage');
-                    const modal = document.getElementById('successModal');
-
-                    if (successMessageElement && modal) {
-                        successMessageElement.textContent = successMessageText;
-                        modal.style.display = 'block';
-                    } else {
-                        alert(successMessageText); // Fallback to alert
-                    }
-
-                    form.reset();
-                    const uploadedFilesDiv = form.querySelector('.uploaded-files');
-                    if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+                    alert(successMessageText); // Fallback to alert
                 }
+
+                form.reset();
+                const uploadedFilesDiv = form.querySelector('.uploaded-files');
+                if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
+
+                // Re-enable button after successful submission and reset
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
+                }
+
             } else {
                 const err = await res.json();
                 feedback.className = ''; // Reset class
                 feedback.style.color = 'var(--lagos-red)';
                 feedback.textContent = err.message || 'Submission failed.';
+                // Re-enable button on failure
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
+                }
             }
         }
     } catch (e) {
@@ -5698,6 +5714,11 @@ async function submitSurvey(event, surveyType) {
             feedback.textContent = 'Network error. Please try again.';
         }
         console.error(`Error submitting ${surveyType} survey:`, e);
+        // Re-enable button on error
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
+        }
     }
 }
 
