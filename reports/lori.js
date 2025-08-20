@@ -161,7 +161,7 @@ function exportToExcel() {
             if (Object.prototype.hasOwnProperty.call(flattenedFormData, key)) {
                 if (key === 'photos' && Array.isArray(flattenedFormData[key])) {
                     flattenedFormData[key].forEach((photo, index) => {
-                        rowData[`Photo ${index + 1}`] = photo;
+                        rowData[`Photo ${index + 1}`] = { v: `View Photo ${index + 1}`, l: { Target: photo } };
                     });
                 } else {
                     const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
