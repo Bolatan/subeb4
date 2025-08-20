@@ -3860,13 +3860,14 @@ h4[onclick] {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>g. Source(s) of Portable Water <span style="color:red;">*</span></label>
-                        <div>
-                            <label class="radio-inline"><input type="radio" name="water_source" value="none" required=""> None</label>
-                            <label class="radio-inline"><input type="radio" name="water_source" value="well"> Well</label>
-                            <label class="radio-inline"><input type="radio" name="water_source" value="tap_water"> Tap Water</label>
-                            <label class="radio-inline"><input type="radio" name="water_source" value="borehole"> Borehole</label>
-                        </div>
+                        <label for="water_source">g. Source(s) of Portable Water <span style="color:red;">*</span></label>
+                        <select id="water_source" name="water_source" class="form-control" required="">
+                            <option value="">Select a source</option>
+                            <option value="none">None</option>
+                            <option value="well">Well</option>
+                            <option value="tap_water">Tap Water</option>
+                            <option value="borehole">Borehole</option>
+                        </select>
                     </div>
                     <div class="form-group" data-is-required="true">
                         <label>h. Sources of Electricity <span style="color:red;">*</span></label>
