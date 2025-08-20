@@ -15,7 +15,7 @@ def run_test():
 
     # --- 1. Setup: Define test data and connection details ---
     base_url = "http://localhost:3000"
-    endpoint = "/api/surveys/silnat"
+    endpoint = "/api/surveys/silat_1.1"
     url = base_url + endpoint
 
     sample_data = {
@@ -154,7 +154,7 @@ def run_test():
 
         print("Successfully retrieved document from the database.")
 
-        assert retrieved_doc["surveyType"] == "silnat", f"Expected surveyType to be 'silnat', but got {retrieved_doc['surveyType']}"
+        assert retrieved_doc["surveyType"] == "silat_1.1", f"Expected surveyType to be 'silat_1.1', but got {retrieved_doc['surveyType']}"
         assert retrieved_doc["formData"]["supervision_c_1.1"] == "yes", "supervision_c_1.1 should be 'yes'"
         assert retrieved_doc["formData"]["supervision_d_1.1"] == "yes", "supervision_d_1.1 should be 'yes'"
 
