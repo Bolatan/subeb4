@@ -743,7 +743,7 @@ h4[onclick] {
                 </div>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;max-width:1000px;margin:0 auto; margin-top: 32px;">
-                <div class="survey-card" onclick="showSurvey(&#39;silnat&#39;)">
+                <div class="survey-card" onclick="showSurvey('silat_1.1')">
                     <h2>Infrastructure &amp; Leadership Tools 1.1: REGULAR SCHOOLS <br>(SILNAT 1.1)</h2>
                     <p>For Head Teachers/Managers</p>
                 </div>
@@ -2245,8 +2245,8 @@ h4[onclick] {
 		
 
         <!-- Survey Sections (initially hidden) -->
-        <div id="silnatSection" class="section hidden">
-            <form id="silnat_1.1_form" onsubmit="submitSurvey(event, 'silnat')">
+        <div id="silat_1.1Section" class="section hidden">
+            <form id="silat_1.1_form" onsubmit="submitSurvey(event, 'silat_1.1')">
             <div style="display: flex; align-items: center; margin-bottom: 20px;">
                 <img src="subeb.jpg" alt="LASUBEB Logo" class="survey-header-logo">
                 <h2 style="margin-left: 15px; flex-grow: 1; margin-bottom: 0;">SILNAT 1.1</h2>
@@ -2778,7 +2778,7 @@ h4[onclick] {
             </div>
             <button type="submit" class="btn">Submit SILNAT Form 1.1</button>
             </form>
-            <div id="silnat_feedback" style="margin-top:15px;font-size:15px;"></div>
+            <div id="silat_1.1_feedback" style="margin-top:15px;font-size:15px;"></div>
 		</div>
 	
 	
@@ -4082,7 +4082,7 @@ select.form-control option {
     // Navigation logic for landing/surveys
     async function showSurvey(survey) {
         document.getElementById('landingPage').classList.add('hidden');
-        ['silnat','tcmats','lori','voices', 'silnat_new', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+        ['silat_1.1','tcmats','lori','voices', 'silnat_new', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
             const section = document.getElementById(s + 'Section');
             if (section) {
                 section.classList.add('hidden');
@@ -4090,7 +4090,7 @@ select.form-control option {
         });
 
         const surveyInitializers = {
-            'silnat': initializeSilnatDropdowns,
+            'silat_1.1': initializeSilnatDropdowns,
             'tcmats': initializeTcmatsDropdowns,
             'lori': initializeLoriDropdowns,
             'voices': initializeVoicesDropdowns,
@@ -4116,7 +4116,7 @@ select.form-control option {
     }
     function backToLanding() {
         document.getElementById('landingPage').classList.remove('hidden');
-        ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
+        ['silat_1.1','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
             const section = document.getElementById(s + 'Section');
             if (section) {
                 section.classList.add('hidden');
