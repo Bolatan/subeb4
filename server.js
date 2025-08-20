@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -14,13 +15,15 @@ if (!MONGO_URI) {
   process.exit(1);
 }
 
+console.log("Attempting to connect to MongoDB with URI:", MONGO_URI);
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
   console.log('Successfully connected to MongoDB');
 }).catch(err => {
-  console.error('MongoDB connection error:', err);
+  console.error('MongoDB connection error:', err.message);
+  console.error('Full error stack:', err.stack);
   process.exit(1);
 });
 
