@@ -1452,6 +1452,18 @@ h4[onclick] {
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="latitude_1_3">Latitude <span style="color:red;">*</span></label>
+                        <input type="number" id="latitude_1_3" name="latitude_1_3" class="form-control latitude-input" step="any" readonly="" min="0" required="">
+                        <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude_1_3">Longitude <span style="color:red;">*</span></label>
+                        <input type="number" id="longitude_1_3" name="longitude_1_3" class="form-control longitude-input" step="any" readonly="" min="0" required="">
+                    </div>
+                </div>
+
                 <!-- Types of Vocation Taught -->
                 <div class="form-group">
                     <label for="silat13_vocation_type">Types of Vocation Taught at the centre (Please specify) <span style="color:red;">*</span></label>
@@ -2338,12 +2350,12 @@ h4[onclick] {
 			  <div class="form-row">
                                 <div class="form-group">
                                     <label for="latitude">Latitude <span style="color:red;">*</span></label>
-                                    <input type="number" id="latitude" class="form-control" step="any" readonly="" min="0" required="">
+                                    <input type="number" id="latitude" class="form-control latitude-input" step="any" readonly="" min="0" required="">
                                     <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
                                 </div>
                                 <div class="form-group">
                                     <label for="longitude">Longitude <span style="color:red;">*</span></label>
-                                    <input type="number" id="longitude" class="form-control" step="any" readonly="" min="0" required="">
+                                    <input type="number" id="longitude" class="form-control longitude-input" step="any" readonly="" min="0" required="">
                                 </div>
                             </div>
             <div class="form-row">
@@ -4563,8 +4575,8 @@ function logout() {
                 return;
             }
 
-            const latInput = formRow.querySelector('input[id="latitude"]');
-            const lonInput = formRow.querySelector('input[id="longitude"]');
+            const latInput = formRow.querySelector('.latitude-input');
+            const lonInput = formRow.querySelector('.longitude-input');
 
             if (!latInput || !lonInput) {
                 alert('Could not find latitude/longitude input fields within the row.');
