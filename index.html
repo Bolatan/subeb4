@@ -4076,7 +4076,10 @@ select.form-control option {
         }
 
         // Hide main app unless you want to show it for a survey
-        document.getElementById('mainApp').classList.add('hidden');
+        const mainApp = document.getElementById('mainApp');
+        if (mainApp) {
+            mainApp.classList.add('hidden');
+        }
     }
     function backToLanding() {
         document.getElementById('landingPage').classList.remove('hidden');
@@ -4086,12 +4089,18 @@ select.form-control option {
                 section.classList.add('hidden');
             }
         });
-        document.getElementById('mainApp').classList.add('hidden');
+        const mainApp = document.getElementById('mainApp');
+        if (mainApp) {
+            mainApp.classList.add('hidden');
+        }
     }
 
     function showReports() {
         document.getElementById('landingPage').classList.add('hidden');
-        document.getElementById('mainApp').classList.remove('hidden');
+        const mainApp = document.getElementById('mainApp');
+        if (mainApp) {
+            mainApp.classList.remove('hidden');
+        }
         showSection('records');
     }
 
@@ -4283,14 +4292,20 @@ window.onload = async function() {
         if (currentUser) {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('landingPage').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
+            const mainApp = document.getElementById('mainApp');
+            if (mainApp) {
+                mainApp.classList.add('hidden');
+            }
             loadData();
             updateDashboard();
             loadRecords();
             updateConnectionStatus();
         } else {
             document.getElementById('authScreen').classList.remove('hidden');
-            document.getElementById('mainApp').classList.add('hidden');
+            const mainApp = document.getElementById('mainApp');
+            if (mainApp) {
+                mainApp.classList.add('hidden');
+            }
             document.getElementById('landingPage').classList.add('hidden');
             ['silnat','tcmats','lori','voices', 'silat_1.2', 'silat_1.3', 'silat_1.4'].forEach(s => {
                 const section = document.getElementById(s + 'Section');
