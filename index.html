@@ -735,6 +735,7 @@ h4[onclick] {
                 </div>
 				<button class="btn btn-secondary" style="width:auto;padding:8px 16px;" onclick="logout()">Sign Out</button>
             </div>
+            <div id="landing-page-message" class="feedback-success hidden" style="margin-bottom: 20px; text-align: center;"></div>
             <div id="successModal" class="modal">
                 <div class="modal-content">
                     <span class="close-button" onclick="closeModal()">&times;</span>
@@ -4274,6 +4275,21 @@ window.onload = async function() {
 
     } else {
         // This is the original data entry/dashboard mode
+        const status = urlParams.get('status');
+        const message = urlParams.get('message');
+        if (status === 'success' && message) {
+            const messageDiv = document.getElementById('landing-page-message');
+            if (messageDiv) {
+                messageDiv.textContent = decodeURIComponent(message);
+                messageDiv.classList.remove('hidden');
+                setTimeout(() => {
+                    messageDiv.classList.add('hidden');
+                    // Clean up the URL
+                    window.history.replaceState({}, document.title, "index.html");
+                }, 5000); // Hide after 5 seconds
+            }
+        }
+
         try {
             forceOffline = JSON.parse(localStorage.getItem('auditAppForceOffline')) || false;
             const forceOfflineSwitch = document.getElementById('forceOfflineSwitch');
@@ -5687,28 +5703,9 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                // Unified success message for all surveys
-                const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
-                const successMessageElement = document.getElementById('successMessage');
-                const modal = document.getElementById('successModal');
-
-                if (successMessageElement && modal) {
-                    successMessageElement.textContent = successMessageText;
-                    modal.style.display = 'block';
-                } else {
-                    alert(successMessageText); // Fallback to alert
-                }
-
-                form.reset();
-                const uploadedFilesDiv = form.querySelector('.uploaded-files');
-                if (uploadedFilesDiv) uploadedFilesDiv.innerHTML = '';
-
-                // Re-enable button after successful submission and reset
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
-                }
-
+                // Redirect to landing page with success message
+                const successMessage = encodeURIComponent(`${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`);
+                window.location.href = `index.html?status=success&message=${successMessage}`;
             } else {
                 const err = await res.json();
                 feedback.className = ''; // Reset class
