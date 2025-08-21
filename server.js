@@ -8,12 +8,7 @@ const path = require('path');
 const XLSX = require('xlsx');
 
 // MongoDB Connection
-const MONGO_URI = process.env.MONGO_URI;
-
-if (!MONGO_URI) {
-  console.error('FATAL ERROR: MONGODB_URI is not defined.');
-  process.exit(1);
-}
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 console.log("Attempting to connect to MongoDB with URI:", MONGO_URI);
 mongoose.connect(MONGO_URI, {
@@ -100,14 +95,8 @@ mongoose.connection.once('open', () => {
 });
 
 
-const JWT_SECRET = process.env.JWT_SECRET;
-if (!JWT_SECRET) {
-    console.error("FATAL ERROR: JWT_SECRET is not defined.");
-    process.exit(1);
-}
-
 const generateToken = (id, role) => {
-  return jwt.sign({ id, role }, JWT_SECRET, {
+  return jwt.sign({ id, role }, process.env.JWT_SECRET || 'a-very-secret-key', {
     expiresIn: '30d',
   });
 };
@@ -184,7 +173,7 @@ const protect = async (req, res, next) => {
 
   if (token) {
     try {
-      const decoded = jwt.verify(token, JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'a-very-secret-key');
       req.user = await User.findById(decoded.id).select('-password');
       next();
     } catch (error) {
