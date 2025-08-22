@@ -234,7 +234,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    messageDiv.textContent = 'User created successfully!';
+                    messageDiv.textContent = data.message || 'User created successfully!';
                     messageDiv.className = 'message success-message';
                     messageDiv.style.display = 'block';
 
