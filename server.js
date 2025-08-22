@@ -216,6 +216,7 @@ app.post('/api/users', protect, admin, async (req, res) => {
 
     if (user) {
       res.status(201).json({
+        message: `User '${user.username}' created successfully`,
         _id: user._id,
         username: user.username,
         role: user.role,
