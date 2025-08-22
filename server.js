@@ -231,7 +231,7 @@ app.post('/api/users', protect, admin, async (req, res) => {
 });
 
 app.get('/api/users', protect, admin, async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({}).select('-password -imageUrl');
   res.json(users);
 });
 
