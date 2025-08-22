@@ -6282,7 +6282,7 @@ function calculateTeacherPupilRatio() {
 
     if (ratioXInput && ratioHiddenInput) {
         if (totalTeachers > 0 && totalPupils > 0) {
-            const ratio = (totalPupils / totalTeachers).toFixed(1);
+            const ratio = Math.round(totalPupils / totalTeachers);
             ratioXInput.value = ratio;
             ratioHiddenInput.value = `1 : ${ratio}`;
         } else {

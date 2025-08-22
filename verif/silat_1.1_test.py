@@ -52,7 +52,7 @@ def run_test():
         "silnat_pupils_male": "251",
         "silnat_pupils_female": "251",
         "silnat_pupils_total": "502",
-        "silnat_teacher_pupil_ratio": "1 : 16.7",
+        "silnat_teacher_pupil_ratio": "1 : 17",
         "silnat_additional_staff_required": "2",
         "silnat_multigrade_classes": "0",
         "discipline_a_1.1": "no",
