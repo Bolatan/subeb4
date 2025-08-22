@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -10,15 +9,13 @@ const XLSX = require('xlsx');
 // MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-console.log("Attempting to connect to MongoDB with URI:", MONGO_URI);
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
   console.log('Successfully connected to MongoDB');
 }).catch(err => {
-  console.error('MongoDB connection error:', err.message);
-  console.error('Full error stack:', err.stack);
+  console.error('MongoDB connection error:', err);
   process.exit(1);
 });
 
@@ -219,7 +216,6 @@ app.post('/api/users', protect, admin, async (req, res) => {
 
     if (user) {
       res.status(201).json({
-        message: 'User created successfully',
         _id: user._id,
         username: user.username,
         role: user.role,
