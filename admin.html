@@ -70,6 +70,20 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success-message {
+            background-color: var(--lagos-green);
+            color: var(--lagos-white);
+        }
+        .error-message {
+            background-color: var(--lagos-red);
+            color: var(--lagos-white);
+        }
     </style>
 </head>
 <body>
@@ -80,6 +94,7 @@
 
         <div id="createUserForm">
             <h2>Create User</h2>
+            <div id="create-user-message" class="message"></div>
             <form onsubmit="createUser(event)">
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -204,6 +219,7 @@
             }
 
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            const messageDiv = document.getElementById('create-user-message');
 
             try {
                 const response = await fetch('/api/users', {
@@ -215,18 +231,38 @@
                     body: JSON.stringify({ username, password, role, imageUrl }),
                 });
 
+                const data = await response.json();
+
                 if (response.ok) {
-                    alert('User created successfully!');
+                    messageDiv.textContent = 'User created successfully!';
+                    messageDiv.className = 'message success-message';
+                    messageDiv.style.display = 'block';
+
                     document.getElementById('create-username').value = '';
                     document.getElementById('create-password').value = '';
                     document.getElementById('create-image').value = '';
                     fetchUsers();
+
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 3000);
                 } else {
-                    const data = await response.json();
-                    alert(data.message);
+                    messageDiv.textContent = data.message || 'An error occurred. Please try again.';
+                    messageDiv.className = 'message error-message';
+                    messageDiv.style.display = 'block';
+
+                    setTimeout(() => {
+                        messageDiv.style.display = 'none';
+                    }, 3000);
                 }
             } catch (error) {
-                alert('An error occurred. Please try again.');
+                messageDiv.textContent = 'An error occurred. Please try again.';
+                messageDiv.className = 'message error-message';
+                messageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
             }
         }
 
