@@ -2792,34 +2792,34 @@ h4[onclick] {
                     <label>a. Shared Facility <span style="color:red;">*</span></label>
                     <div>
                         <label>Is the school located within a school Complex? <span style="color:red;">*</span></label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility_1_1" value="yes" required=""> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="shared_facility_1_1" value="no" required=""> No</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1_1" value="yes" required="" onchange="handleSharedFacilityChange_silat_1_1(this)"> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="shared_facility_1_1" value="no" required="" onchange="handleSharedFacilityChange_silat_1_1(this)"> No</label>
                     </div>
-                    <div class="form-group">
-                        <label for="shared_facility_schools_1_1">If Yes, Kindly list other Schools within the Complex <span style="color:red;">*</span></label>
-                        <textarea id="shared_facility_schools_1_1" name="shared_facility_schools" class="form-control" rows="4" required=""></textarea>
+                    <div class="form-group" id="shared_facility_schools_wrapper_1_1" style="display: none;">
+                        <label for="shared_facility_schools_1_1">If Yes, Kindly list other Schools within the Complex <span id="shared_facility_schools_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                        <textarea id="shared_facility_schools_1_1" name="shared_facility_schools" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>b. Does the school have perimeter fence: <span style="color:red;">*</span></label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_1" value="yes" required=""> Yes</label>
-                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_1" value="no" required=""> No</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_1" value="yes" required="" onchange="handlePerimeterFenceChange_silat_1_1(this)"> Yes</label>
+                    <label class="radio-inline"><input type="radio" name="perimeter_fence_1_1" value="no" required="" onchange="handlePerimeterFenceChange_silat_1_1(this)"> No</label>
                 </div>
-                <div class="form-group">
-                    <label>If Yes, in what State? <span style="color:red;">*</span></label>
+                <div class="form-group" id="fence_condition_wrapper_1_1" style="display: none;">
+                    <label>If Yes, in what State? <span id="fence_condition_asterisk_1_1" style="color:red; display:none;">*</span></label>
                     <div>
-                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="good" required=""> In Good Condition</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="minor_repair" required=""> Need Minor Repair</label>
-                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="major_repair" required=""> Need Major Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="good" onchange="handleFenceConditionChange_silat_1_1(this)"> In Good Condition</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="minor_repair" onchange="handleFenceConditionChange_silat_1_1(this)"> Need Minor Repair</label>
+                        <label class="radio-inline"><input type="radio" name="fence_condition_1_1" value="major_repair" onchange="handleFenceConditionChange_silat_1_1(this)"> Need Major Repair</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="fence_repair_description_1_1">Briefly, describe the type of repair needed <span style="color:red;">*</span></label>
-                    <textarea id="fence_repair_description_1_1" name="fence_repair_description" class="form-control" rows="2" required=""></textarea>
+                <div class="form-group" id="fence_repair_wrapper_1_1" style="display: none;">
+                    <label for="fence_repair_description_1_1">Briefly, describe the type of repair needed <span id="fence_repair_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                    <textarea id="fence_repair_description_1_1" name="fence_repair_description" class="form-control" rows="2"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="school_perimeter_1_1">If No, what is the perimeter of the School? <span style="color:red;">*</span></label>
-                    <input type="text" id="school_perimeter_1_1" name="school_perimeter" class="form-control" required="">
+                <div class="form-group" id="school_perimeter_wrapper_1_1" style="display: none;">
+                    <label for="school_perimeter_1_1">If No, what is the perimeter of the School? <span id="school_perimeter_asterisk_1_1" style="color:red; display:none;">*</span></label>
+                    <input type="text" id="school_perimeter_1_1" name="school_perimeter" class="form-control">
                 </div>
 
                 <h4>3. TOILET FACILITIES <span style="color:red;">*</span></h4>
@@ -6452,6 +6452,91 @@ function handleFenceConditionChange_1_1(radio) {
         repairInput.value = '';
         repairAsterisk.style.display = 'none';
 
+    }
+}
+
+function handleSharedFacilityChange_silat_1_1(radio) {
+    const wrapper = document.getElementById('shared_facility_schools_wrapper_1_1');
+    const input = document.getElementById('shared_facility_schools_1_1');
+    const asterisk = document.getElementById('shared_facility_schools_asterisk_1_1');
+
+    if (radio.value === 'yes' && radio.checked) {
+        wrapper.style.display = 'block';
+        input.required = true;
+        asterisk.style.display = 'inline';
+    } else {
+        wrapper.style.display = 'none';
+        input.required = false;
+        input.value = '';
+        asterisk.style.display = 'none';
+    }
+}
+
+function handlePerimeterFenceChange_silat_1_1(radio) {
+    const conditionWrapper = document.getElementById('fence_condition_wrapper_1_1');
+    const conditionRadios = document.querySelectorAll('input[name="fence_condition_1_1"]');
+    const conditionAsterisk = document.getElementById('fence_condition_asterisk_1_1');
+
+    const repairWrapper = document.getElementById('fence_repair_wrapper_1_1');
+    const repairInput = document.getElementById('fence_repair_description_1_1');
+    const repairAsterisk = document.getElementById('fence_repair_asterisk_1_1');
+
+    const perimeterWrapper = document.getElementById('school_perimeter_wrapper_1_1');
+    const perimeterInput = document.getElementById('school_perimeter_1_1');
+    const perimeterAsterisk = document.getElementById('school_perimeter_asterisk_1_1');
+
+    if (radio.value === 'yes' && radio.checked) {
+        conditionWrapper.style.display = 'block';
+        conditionRadios.forEach(r => r.required = true);
+        conditionAsterisk.style.display = 'inline';
+
+        const checkedCondition = document.querySelector('input[name="fence_condition_1_1"]:checked');
+        if (checkedCondition) {
+            handleFenceConditionChange_silat_1_1(checkedCondition);
+        } else {
+             repairWrapper.style.display = 'none';
+             repairInput.required = false;
+             repairInput.value = '';
+             repairAsterisk.style.display = 'none';
+        }
+
+        perimeterWrapper.style.display = 'none';
+        perimeterInput.required = false;
+        perimeterInput.value = '';
+        perimeterAsterisk.style.display = 'none';
+    } else { // 'no' is selected
+        conditionWrapper.style.display = 'none';
+        conditionRadios.forEach(r => {
+            r.required = false;
+            r.checked = false;
+        });
+        conditionAsterisk.style.display = 'none';
+
+        repairWrapper.style.display = 'none';
+        repairInput.required = false;
+        repairInput.value = '';
+        repairAsterisk.style.display = 'none';
+
+        perimeterWrapper.style.display = 'block';
+        perimeterInput.required = true;
+        perimeterAsterisk.style.display = 'inline';
+    }
+}
+
+function handleFenceConditionChange_silat_1_1(radio) {
+    const repairWrapper = document.getElementById('fence_repair_wrapper_1_1');
+    const repairInput = document.getElementById('fence_repair_description_1_1');
+    const repairAsterisk = document.getElementById('fence_repair_asterisk_1_1');
+
+    if ((radio.value === 'minor_repair' || radio.value === 'major_repair') && radio.checked) {
+        repairWrapper.style.display = 'block';
+        repairInput.required = true;
+        repairAsterisk.style.display = 'inline';
+    } else {
+        repairWrapper.style.display = 'none';
+        repairInput.required = false;
+        repairInput.value = '';
+        repairAsterisk.style.display = 'none';
     }
 }
 </script>
