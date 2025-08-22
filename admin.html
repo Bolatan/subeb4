@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - User Management</title>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
     <style>
         :root {
             --lagos-red: #DC2626;
@@ -209,13 +210,25 @@
 
             let imageUrl = '';
             if (imageFile) {
-                const reader = new FileReader();
-                await new Promise((resolve, reject) => {
-                    reader.onload = () => resolve();
-                    reader.onerror = reject;
-                    reader.readAsDataURL(imageFile);
-                });
-                imageUrl = reader.result;
+                // Compression options
+                const options = {
+                    maxSizeMB: 0.1, // (default: Number.POSITIVE_INFINITY)
+                    maxWidthOrHeight: 800, // (default: undefined)
+                    useWebWorker: true,
+                };
+                try {
+                    const compressedFile = await imageCompression(imageFile, options);
+                    const reader = new FileReader();
+                    imageUrl = await new Promise((resolve, reject) => {
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(compressedFile);
+                    });
+                } catch (error) {
+                    console.error('Error compressing image:', error);
+                    alert('Failed to compress image.');
+                    return;
+                }
             }
 
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
@@ -271,35 +284,48 @@
                 return;
             }
 
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = async () => {
-                const imageUrl = reader.result;
-                const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            // Compression options
+            const options = {
+                maxSizeMB: 0.1,
+                maxWidthOrHeight: 800,
+                useWebWorker: true,
+            };
 
-                try {
-                    const response = await fetch(`/api/users/${id}/image`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${user.token}`
-                        },
-                        body: JSON.stringify({ imageUrl }),
-                    });
+            try {
+                const compressedFile = await imageCompression(file, options);
+                const reader = new FileReader();
+                reader.readAsDataURL(compressedFile);
+                reader.onload = async () => {
+                    const imageUrl = reader.result;
+                    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
-                    if (response.ok) {
-                        fetchUsers();
-                    } else {
-                        const data = await response.json();
-                        alert(data.message);
+                    try {
+                        const response = await fetch(`/api/users/${id}/image`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${user.token}`
+                            },
+                            body: JSON.stringify({ imageUrl }),
+                        });
+
+                        if (response.ok) {
+                            fetchUsers();
+                        } else {
+                            const data = await response.json();
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        alert('An error occurred while updating the image. Please try again.');
                     }
-                } catch (error) {
-                    alert('An error occurred while updating the image. Please try again.');
-                }
-            };
-            reader.onerror = () => {
-                alert('Failed to read file.');
-            };
+                };
+                reader.onerror = () => {
+                    alert('Failed to read file.');
+                };
+            } catch (error) {
+                console.error('Error compressing image:', error);
+                alert('Failed to compress image.');
+            }
         }
 
         async function changePassword(id) {
