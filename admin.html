@@ -142,25 +142,26 @@
             document.getElementById(`image-upload-${userId}`).click();
         }
         async function fetchUsers() {
-            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
-            if (!user || user.role !== 'admin') {
+            const currentUser = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            if (!currentUser || currentUser.role !== 'admin') {
                 window.location.href = '/index.html';
                 return;
             }
 
             try {
-                const response = await fetch('/api/users', {
-                    headers: {
-                        'Authorization': `Bearer ${user.token}`
-                    }
+                // First, fetch all users without their images
+                const usersResponse = await fetch('/api/users', {
+                    headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
-                const users = await response.json();
+                const users = await usersResponse.json();
                 const userList = document.getElementById('user-list');
                 userList.innerHTML = '';
+
+                // Then, for each user, create the row and asynchronously load the image
                 users.forEach(user => {
                     const row = `
                         <tr>
-                            <td><img src="${user.imageUrl || 'https://via.placeholder.com/40'}" alt="${user.username}" class="user-image"></td>
+                            <td><img id="user-image-${user._id}" src="https://via.placeholder.com/40" alt="${user.username}" class="user-image"></td>
                             <td>${user.username}</td>
                             <td>${user.role}</td>
                             <td>
@@ -172,6 +173,21 @@
                         </tr>
                     `;
                     userList.innerHTML += row;
+
+                    // Asynchronously fetch and update the image
+                    fetch(`/api/users/${user._id}/image`, {
+                        headers: { 'Authorization': `Bearer ${currentUser.token}` }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.imageUrl) {
+                            const imgElement = document.getElementById(`user-image-${user._id}`);
+                            if (imgElement) {
+                                imgElement.src = data.imageUrl;
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Error fetching image for user:', user._id, error));
                 });
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -212,8 +228,8 @@
             if (imageFile) {
                 // Compression options
                 const options = {
-                    maxSizeMB: 0.1, // (default: Number.POSITIVE_INFINITY)
-                    maxWidthOrHeight: 800, // (default: undefined)
+                    maxSizeMB: 0.05,
+                    maxWidthOrHeight: 400,
                     useWebWorker: true,
                 };
                 try {
@@ -286,8 +302,8 @@
 
             // Compression options
             const options = {
-                maxSizeMB: 0.1,
-                maxWidthOrHeight: 800,
+                maxSizeMB: 0.05,
+                maxWidthOrHeight: 400,
                 useWebWorker: true,
             };
 

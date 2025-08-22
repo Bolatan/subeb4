@@ -231,8 +231,21 @@ app.post('/api/users', protect, admin, async (req, res) => {
 });
 
 app.get('/api/users', protect, admin, async (req, res) => {
-  const users = await User.find({}).select('-password');
+  const users = await User.find({}).select('-password -imageUrl');
   res.json(users);
+});
+
+app.get('/api/users/:id/image', protect, admin, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).select('imageUrl');
+        if (user) {
+            res.json({ imageUrl: user.imageUrl });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 app.delete('/api/users/:id', protect, admin, async (req, res) => {
