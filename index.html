@@ -2408,7 +2408,7 @@ h4[onclick] {
                             <div class="form-row full">
                                 <div class="form-group">
                                     <label for="schoolAddress">Address of School/Institution <span style="color:red;">*</span></label>
-                                    <textarea id="schoolAddress" class="form-control" rows="3" required=""></textarea>
+                                    <textarea id="schoolAddress" name="schoolAddress" class="form-control" rows="3" required=""></textarea>
                                 </div>
                             </div>
 							
@@ -2430,12 +2430,12 @@ h4[onclick] {
 			  <div class="form-row">
                                 <div class="form-group">
                                     <label for="latitude">Latitude <span style="color:red;">*</span></label>
-                                    <input type="number" id="latitude" class="form-control latitude-input" step="any" readonly="" min="0" required="">
+                                    <input type="number" id="latitude" name="latitude" class="form-control latitude-input" step="any" readonly="" min="0" required="">
                                     <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
                                 </div>
                                 <div class="form-group">
                                     <label for="longitude">Longitude <span style="color:red;">*</span></label>
-                                    <input type="number" id="longitude" class="form-control longitude-input" step="any" readonly="" min="0" required="">
+                                    <input type="number" id="longitude" name="longitude" class="form-control longitude-input" step="any" readonly="" min="0" required="">
                                 </div>
                             </div>
             <div class="form-row">
@@ -2569,7 +2569,7 @@ h4[onclick] {
                 <label for="silnat_teacher_pupil_ratio_x">Teacher/Pupils Ratio (Auto-Calculated):</label>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <span style="font-size: 1.2rem; font-weight: bold;">1 :</span>
-                    <input type="number" id="silnat_teacher_pupil_ratio_x" class="form-control" min="0" oninput="updateHiddenRatioField()">
+                    <input type="number" id="silnat_teacher_pupil_ratio_x" name="silnat_teacher_pupil_ratio_x" class="form-control" min="0" oninput="updateHiddenRatioField()">
                 </div>
                 <input type="hidden" id="silnat_teacher_pupil_ratio" name="silnat_teacher_pupil_ratio">
             </div>
@@ -2888,8 +2888,8 @@ h4[onclick] {
                 <h4>7. Is your School regularly waterlogged when it rained? <span style="color:red;">*</span></h4>
                 <div class="form-group">
                     <div>
-                        <label class="radio-inline"><input type="radio" name="waterlogged" value="yes" required=""> Yes</label>
-                        <label class="radio-inline"><input type="radio" name="waterlogged" value="no" required=""> No</label>
+                        <label class="radio-inline"><input type="radio" name="waterlogged_1_1" value="yes" required=""> Yes</label>
+                        <label class="radio-inline"><input type="radio" name="waterlogged_1_1" value="no" required=""> No</label>
                     </div>
                 </div>
 
