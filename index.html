@@ -904,6 +904,17 @@ h4[onclick] {
                 </div>
                 <div class="form-row">
                     <div class="form-group">
+                        <label for="latitude_1_2">Latitude <span style="color:red;">*</span></label>
+                        <input type="number" id="latitude_1_2" name="latitude_1_2" class="form-control latitude-input" step="any" readonly min="0" required>
+                        <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude_1_2">Longitude <span style="color:red;">*</span></label>
+                        <input type="number" id="longitude_1_2" name="longitude_1_2" class="form-control longitude-input" step="any" readonly min="0" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="silat_1_2_assembly_start">Assembly Devotion: Time Start <span style="color:red;">*</span></label>
                         <input type="time" id="silat_1_2_assembly_start" name="silat_1_2_assembly_start" class="form-control" required="">
                     </div>
@@ -2835,6 +2846,17 @@ h4[onclick] {
             <label class="radio-inline"><input type="radio" name="tcmats_location" value="rural" required=""> Rural</label>
         </div>
     </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="latitude_tcmats">Latitude <span style="color:red;">*</span></label>
+            <input type="number" id="latitude_tcmats" name="latitude_tcmats" class="form-control latitude-input" step="any" readonly min="0" required>
+            <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
+        </div>
+        <div class="form-group">
+            <label for="longitude_tcmats">Longitude <span style="color:red;">*</span></label>
+            <input type="number" id="longitude_tcmats" name="longitude_tcmats" class="form-control longitude-input" step="any" readonly min="0" required>
+        </div>
+    </div>
     	
 	 <div class="form-group">
                     <label for="tcmats_highestQualificaton">Highest Qualification: <span style="color:red;">*</span></label>
@@ -3104,6 +3126,22 @@ h4[onclick] {
                 </td>
                 <td>School Code from Annual School Census <span style="color:red;">*</span></td>
                 <td><input type="text" name="lori_school_code" class="form-control" required=""></td>
+            </tr>
+            <tr>
+                <td>Latitude / Longitude <span style="color:red;">*</span></td>
+                <td colspan="3">
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label for="latitude_lori" style="display:none;">Latitude</label>
+                            <input type="number" id="latitude_lori" name="latitude_lori" class="form-control latitude-input" step="any" readonly min="0" required placeholder="Latitude">
+                            <button type="button" class="location-btn" onclick="getLocation(this)" style="margin-top:5px;">📍 Get Current Location</button>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label for="longitude_lori" style="display:none;">Longitude</label>
+                            <input type="number" id="longitude_lori" name="longitude_lori" class="form-control longitude-input" step="any" readonly min="0" required placeholder="Longitude">
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>Name of teacher observed <span style="color:red;">*</span></td>
@@ -3610,8 +3648,19 @@ h4[onclick] {
     <div class="form-group">
         <label>Location: <span style="color:red;">*</span></label>
         <div>
-            <label class="radio-inline"><input type="radio" name="tcmats_location" value="urban" required=""> Urban</label>
-            <label class="radio-inline"><input type="radio" name="tcmats_location" value="rural" required=""> Rural</label>
+            <label class="radio-inline"><input type="radio" name="voices_location" value="urban" required=""> Urban</label>
+            <label class="radio-inline"><input type="radio" name="voices_location" value="rural" required=""> Rural</label>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="latitude_voices">Latitude <span style="color:red;">*</span></label>
+            <input type="number" id="latitude_voices" name="latitude_voices" class="form-control latitude-input" step="any" readonly min="0" required>
+            <button type="button" class="location-btn" onclick="getLocation(this)">📍 Get Current Location</button>
+        </div>
+        <div class="form-group">
+            <label for="longitude_voices">Longitude <span style="color:red;">*</span></label>
+            <input type="number" id="longitude_voices" name="longitude_voices" class="form-control longitude-input" step="any" readonly min="0" required>
         </div>
     </div>
 					
