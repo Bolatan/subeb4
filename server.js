@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { Parser } = require('json2csv');
+const converter = require('json-2-csv');
 const path = require('path');
 const XLSX = require('xlsx');
 
@@ -285,10 +285,9 @@ app.put('/api/users/:id/image', protect, admin, async (req, res) => {
 app.get('/api/users/export', protect, admin, async (req, res) => {
   try {
     const users = await User.find({}).select('-password').lean();
-    const fields = ['_id', 'username', 'role', 'createdAt', 'imageUrl'];
-    const opts = { fields };
-    const parser = new Parser(opts);
-    const csv = parser.parse(users);
+    const csv = await converter.json2csv(users, {
+      keys: ['_id', 'username', 'role', 'createdAt', 'imageUrl']
+    });
     res.header('Content-Type', 'text/csv');
     res.attachment('users.csv');
     res.send(csv);
