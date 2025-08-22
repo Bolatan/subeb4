@@ -2,10 +2,21 @@ let allSurveys = []; // Global variable to hold survey data for exports
 
 function getSurveyDisplayData(survey) {
     const formData = survey.formData || {};
-    const schoolName = formData.schoolName || 'N/A';
+    const schoolName = formData.schoolName;
+    const lga = formData.localGov;
     const respondentName = formData.silnat_a_ht_name || 'N/A';
-    const lga = formData.localGov || 'N/A';
-    return { schoolName, respondentName, lga };
+
+    let schoolDisplay;
+    if (schoolName && lga) {
+        schoolDisplay = `${schoolName} (${lga})`;
+    } else if (schoolName) {
+        schoolDisplay = schoolName;
+    } else if (lga) {
+        schoolDisplay = lga;
+    } else {
+        schoolDisplay = 'N/A';
+    }
+    return { schoolDisplay, respondentName };
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -45,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         surveys.forEach(survey => {
             const row = tableBody.insertRow();
-            const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+            const { schoolDisplay, respondentName } = getSurveyDisplayData(survey);
             const photos = survey.formData.photos || [];
             let imagesHtml = '';
             if (photos.length > 0) {
@@ -57,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             row.innerHTML = `
-                <td>${schoolName} (${lga})</td>
+                <td>${schoolDisplay}</td>
                 <td>${respondentName}</td>
                 <td>${new Date(survey.createdAt).toLocaleString()}</td>
                 <td>${imagesHtml}</td>
