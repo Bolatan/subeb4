@@ -285,10 +285,19 @@ app.put('/api/users/:id/image', protect, admin, async (req, res) => {
 app.get('/api/users/export', protect, admin, async (req, res) => {
   try {
     const users = await User.find({}).select('-password').lean();
+    // Process users to handle data:image in imageUrl
+    const processedUsers = users.map(user => {
+      if (user.imageUrl && user.imageUrl.startsWith('data:image')) {
+        // Replace base64 image data with a placeholder
+        return { ...user, imageUrl: '[Embedded Image]' };
+      }
+      return user;
+    });
+
     const fields = ['_id', 'username', 'role', 'createdAt', 'imageUrl'];
     const opts = { fields };
     const parser = new Parser(opts);
-    const csv = parser.parse(users);
+    const csv = parser.parse(processedUsers);
     res.header('Content-Type', 'text/csv');
     res.attachment('users.csv');
     res.send(csv);
