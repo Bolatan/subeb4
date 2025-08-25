@@ -1930,7 +1930,17 @@ h4[onclick] {
             <h4 id="sectionAHeader_1.4" style="margin-bottom: 20px; cursor: pointer;" onclick="toggleSection('sectionAContent_1.4', 'sectionAHeader_1.4')">Section A: Bio Data 🔽</h4>
             <div id="sectionAContent_1.4" style="display: block;">
                 
-                <h5>Education Secretary Bio Data <span style="color:red;">*</span></h5>
+                <h5>Education Secretary Bio Data</h5>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="silat_1_4_es_name">Education Secretary Name <span style="color:red;">*</span></label>
+                        <input type="text" id="silat_1_4_es_name" name="silat_1_4_es_name" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="silat_1_4_es_contact">Contact Number <span style="color:red;">*</span></label>
+                        <input type="tel" id="silat_1_4_es_contact" name="silat_1_4_es_contact" class="form-control" required="">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Gender: <span style="color:red;">*</span></label>
                     <label class="radio-inline"><input type="radio" name="gender_1.4" value="male" required=""> Male</label>
