@@ -139,6 +139,18 @@ app.post('/api/surveys/:type', async (req, res) => {
     const surveyData = req.body.formData || req.body;
     console.log(`[${new Date().toISOString()}] Parsed survey data:`, JSON.stringify(surveyData, null, 2));
 
+    // Automation for SILAT 1.2 Teacher/Pupil Ratio
+    if (surveyType === 'silat_1.2') {
+      const teachers = parseInt(surveyData.silat_1_2_teachers_total, 10);
+      const pupils = parseInt(surveyData.silat_1_2_learners_total, 10);
+      if (teachers > 0 && pupils > 0) {
+        const ratio = Math.round(pupils / teachers);
+        surveyData.silat_1_2_teacher_pupil_ratio = `1:${ratio}`;
+      } else {
+        surveyData.silat_1_2_teacher_pupil_ratio = 'N/A';
+      }
+    }
+
     const survey = new SurveyResponse({
       surveyType: surveyType,
       formData: surveyData,
