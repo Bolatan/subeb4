@@ -38,50 +38,36 @@ const jwt = require('jsonwebtoken');
 const { validatePassword } = require('./utils/validation');
 
 // --- Demo User Seeding ---
-// Deletes and recreates the demo users on every server start to ensure a clean state.
+// Upserts demo users on server start to ensure they exist.
 const ensureAdminUser = async () => {
   try {
-    // Remove existing demo users
-    await User.deleteMany({ username: { $in: ['admin', 'assessor'] } });
-    console.log('Removed existing demo users.');
-
-    // Create admin user
+    // Upsert admin user
     const adminPassword = 'AdminPassword1!';
     const adminPasswordError = validatePassword(adminPassword);
     if (adminPasswordError) {
       console.error('Error seeding admin user:', adminPasswordError);
       return;
     }
-    await User.create({
-      username: 'admin',
-      password: adminPassword,
-      role: 'admin',
-    });
-    console.log('Admin user seeded.');
+    await User.updateOne(
+      { username: 'admin' },
+      { $set: { username: 'admin', password: adminPassword, role: 'admin' } },
+      { upsert: true }
+    );
+    console.log('Admin user ensured.');
 
-    // Create assessor user
+    // Upsert assessor user
     const assessorPassword = 'AssessorPassword1!';
     const assessorPasswordError = validatePassword(assessorPassword);
     if (assessorPasswordError) {
         console.error('Error seeding assessor user:', assessorPasswordError);
         return;
     }
-    await User.create({
-      username: 'assessor',
-      password: assessorPassword,
-      role: 'assessor',
-    });
-    console.log('Assessor user seeded.');
-
-    // Ensure bolatan is an admin
-    const updateResult = await User.updateOne({ username: 'bolatan' }, { $set: { role: 'admin' } });
-    if (updateResult.modifiedCount > 0) {
-        console.log('User bolatan role updated to admin.');
-    } else if (updateResult.matchedCount > 0) {
-        console.log('User bolatan was already an admin.');
-    } else {
-        console.log('User bolatan not found. No update performed.');
-    }
+    await User.updateOne(
+      { username: 'assessor' },
+      { $set: { username: 'assessor', password: assessorPassword, role: 'assessor' } },
+      { upsert: true }
+    );
+    console.log('Assessor user ensured.');
   } catch (error) {
     console.error('Error in user seeding script:', error);
   }
