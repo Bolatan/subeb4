@@ -166,39 +166,55 @@ const assessors = [
 ];
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-const temporaryPassword = 'password123';
+const temporaryPassword = 'Avaxhome.ws1$';
 
 // Function to generate username from full name
 const generateUsername = (fullName) => {
-  const nameParts = fullName.trim().split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : '';
-  if (!firstName || !lastName) {
-    // Handle cases like "MRS. MAKINWA Y" or single names
-    const sanitizedName = fullName.replace(/[^a-zA-Z]/g, '').toLowerCase();
-    return sanitizedName || `user${Math.floor(Math.random() * 1000)}`;
+  // Remove titles and special characters
+  const sanitizedFullName = fullName
+    .replace(/mrs\.|mr\.|miss\.|ms\./gi, '')
+    .replace(/[^a-zA-Z\s]/g, '')
+    .trim();
+
+  const nameParts = sanitizedFullName.split(' ').filter(part => part.length > 0);
+
+  if (nameParts.length === 0) {
+    return `user${Math.floor(Math.random() * 1000)}`;
   }
+
+  const firstName = nameParts[0];
+  let lastName = '';
+
+  if (nameParts.length > 1) {
+    lastName = nameParts[nameParts.length - 1];
+  } else {
+    // If only one name part, use it as last name and first initial
+    lastName = firstName;
+  }
+
   return `${firstName.charAt(0)}${lastName}`.toLowerCase();
 };
 
 const createAssessorUsers = async () => {
   try {
     for (const fullName of assessors) {
-      const username = generateUsername(fullName);
+      const baseUsername = generateUsername(fullName);
+      let username = baseUsername;
+      let counter = 1;
 
-      let user = await User.findOne({ username });
-
-      if (user) {
-        console.log(`User '${username}' already exists.`);
-      } else {
-        await User.create({
-          username,
-          password: temporaryPassword,
-          role: 'assessor',
-          passwordResetRequired: true, // Assuming this field will be added to the schema
-        });
-        console.log(`Assessor user '${username}' created successfully.`);
+      // Check if username exists and append a number if it does
+      while (await User.findOne({ username })) {
+        username = `${baseUsername}${counter}`;
+        counter++;
       }
+
+      await User.create({
+        username,
+        password: temporaryPassword,
+        role: 'assessor',
+        passwordResetRequired: true,
+      });
+      console.log(`Assessor user '${username}' created successfully.`);
     }
   } catch (error) {
     console.error('Error creating assessor users:', error);
