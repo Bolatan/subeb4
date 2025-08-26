@@ -135,13 +135,22 @@
                 <!-- User list will be populated here -->
             </tbody>
         </table>
+        <div id="pagination-controls" style="text-align: center; margin-top: 20px;">
+            <button id="prev-page" class="btn">Previous</button>
+            <span id="page-info" style="margin: 0 10px;"></span>
+            <button id="next-page" class="btn">Next</button>
+        </div>
     </div>
 
     <script>
+        let currentPage = 1;
+        const usersPerPage = 10;
+
         function triggerImageUpload(userId) {
             document.getElementById(`image-upload-${userId}`).click();
         }
-        async function fetchUsers() {
+
+        async function fetchUsers(page = 1) {
             const currentUser = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
             if (!currentUser || currentUser.role !== 'admin') {
                 window.location.href = '/index.html';
@@ -149,15 +158,17 @@
             }
 
             try {
-                // First, fetch all users without their images
-                const usersResponse = await fetch('/api/users', {
+                const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}`, {
                     headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
-                const users = await usersResponse.json();
+                const data = await response.json();
+                const { users, pagination } = data;
+
+                currentPage = pagination.currentPage;
+
                 const userList = document.getElementById('user-list');
                 userList.innerHTML = '';
 
-                // Then, for each user, create the row and asynchronously load the image
                 users.forEach(user => {
                     const row = `
                         <tr>
@@ -174,24 +185,44 @@
                     `;
                     userList.innerHTML += row;
 
-                    // Asynchronously fetch and update the image
                     fetch(`/api/users/${user._id}/image`, {
                         headers: { 'Authorization': `Bearer ${currentUser.token}` }
                     })
                     .then(response => response.json())
-                    .then(data => {
-                        if (data.imageUrl) {
+                    .then(imageData => {
+                        if (imageData.imageUrl) {
                             const imgElement = document.getElementById(`user-image-${user._id}`);
                             if (imgElement) {
-                                imgElement.src = data.imageUrl;
+                                imgElement.src = imageData.imageUrl;
                             }
                         }
                     })
                     .catch(error => console.error('Error fetching image for user:', user._id, error));
                 });
+
+                updatePaginationControls(pagination);
+
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
+        }
+
+        function updatePaginationControls(pagination) {
+            const { currentPage, totalPages, totalUsers } = pagination;
+            const pageInfo = document.getElementById('page-info');
+            const prevButton = document.getElementById('prev-page');
+            const nextButton = document.getElementById('next-page');
+            const paginationControls = document.getElementById('pagination-controls');
+
+            if (totalPages <= 1) {
+                paginationControls.style.display = 'none';
+                return;
+            }
+
+            paginationControls.style.display = 'block';
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevButton.disabled = currentPage <= 1;
+            nextButton.disabled = currentPage >= totalPages;
         }
 
         async function deleteUser(id) {
@@ -206,7 +237,7 @@
                         'Authorization': `Bearer ${user.token}`
                     }
                 });
-                fetchUsers();
+                fetchUsers(currentPage); // Refetch the current page
             } catch (error) {
                 console.error('Error deleting user:', error);
             }
@@ -270,7 +301,7 @@
                     document.getElementById('create-username').value = '';
                     document.getElementById('create-password').value = '';
                     document.getElementById('create-image').value = '';
-                    fetchUsers();
+                    fetchUsers(1); // Go to first page to see new user
 
                     setTimeout(() => {
                         messageDiv.style.display = 'none';
@@ -326,7 +357,7 @@
                         });
 
                         if (response.ok) {
-                            fetchUsers();
+                            fetchUsers(currentPage);
                         } else {
                             const data = await response.json();
                             alert(data.message);
@@ -379,7 +410,17 @@
             window.location.href = `/api/users/export?token=${token}`;
         }
 
-        window.onload = fetchUsers;
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (currentPage > 1) {
+                fetchUsers(currentPage - 1);
+            }
+        });
+
+        document.getElementById('next-page').addEventListener('click', () => {
+            fetchUsers(currentPage + 1);
+        });
+
+        window.onload = () => fetchUsers(1);
     </script>
 </body>
 </html>
