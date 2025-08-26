@@ -101,6 +101,7 @@ app.post('/api/login', async (req, res) => {
         role: user.role,
         imageUrl: user.imageUrl,
         token: generateToken(user._id, user.role),
+        passwordResetRequired: user.passwordResetRequired,
       });
     } else {
       await LoginLog.create({ username, status: 'failure' });
