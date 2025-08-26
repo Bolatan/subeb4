@@ -112,6 +112,27 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.put('/api/user/password', protect, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      const passwordError = validatePassword(req.body.password);
+      if (passwordError) {
+        return res.status(400).json({ message: passwordError });
+      }
+      user.password = req.body.password;
+      user.passwordResetRequired = false;
+      await user.save();
+      res.json({ message: 'Password updated successfully' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // User Registration endpoint removed as per new requirements.
 // User creation is now handled by admins only via /api/users.
 
@@ -211,6 +232,7 @@ app.post('/api/users', protect, admin, async (req, res) => {
       password,
       role,
       imageUrl,
+      passwordResetRequired: role === 'assessor',
     });
 
     if (user) {
