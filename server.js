@@ -37,6 +37,8 @@ const jwt = require('jsonwebtoken');
 
 const { validatePassword } = require('./utils/validation');
 
+const bcrypt = require('bcryptjs');
+
 // --- Demo User Seeding ---
 // Upserts demo users on server start to ensure they exist.
 const ensureAdminUser = async () => {
@@ -48,9 +50,11 @@ const ensureAdminUser = async () => {
       console.error('Error seeding admin user:', adminPasswordError);
       return;
     }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(adminPassword, salt);
     await User.updateOne(
       { username: 'admin' },
-      { $set: { username: 'admin', password: adminPassword, role: 'admin' } },
+      { $set: { username: 'admin', password: hashedPassword, role: 'admin' } },
       { upsert: true }
     );
     console.log('Admin user ensured.');
@@ -62,9 +66,10 @@ const ensureAdminUser = async () => {
         console.error('Error seeding assessor user:', assessorPasswordError);
         return;
     }
+    const hashedAssessorPassword = await bcrypt.hash(assessorPassword, salt);
     await User.updateOne(
       { username: 'assessor' },
-      { $set: { username: 'assessor', password: assessorPassword, role: 'assessor' } },
+      { $set: { username: 'assessor', password: hashedAssessorPassword, role: 'assessor' } },
       { upsert: true }
     );
     console.log('Assessor user ensured.');
@@ -230,8 +235,32 @@ app.post('/api/users', protect, admin, async (req, res) => {
 });
 
 app.get('/api/users', protect, admin, async (req, res) => {
-  const users = await User.find({}).select('-password -imageUrl');
-  res.json(users);
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const skip = (page - 1) * limit;
+
+    try {
+        const usersPromise = User.find({})
+            .select('-password -imageUrl')
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit);
+
+        const totalUsersPromise = User.countDocuments();
+
+        const [users, totalUsers] = await Promise.all([usersPromise, totalUsersPromise]);
+
+        res.json({
+            users,
+            pagination: {
+                currentPage: page,
+                totalPages: Math.ceil(totalUsers / limit),
+                totalUsers,
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 app.get('/api/users/:id/image', protect, admin, async (req, res) => {
