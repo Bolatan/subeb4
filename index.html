@@ -694,10 +694,8 @@ h4[onclick] {
   		
 		  <div class="container">
         <!-- Authentication Screen -->
-        <div id="authScreen" class="auth-container hidden">
+        <div id="authScreen" class="auth-container">
             <h3 class="auth-title">LSUBEB/PIMU NEEDS INSTRUMENT Login</h3>
-            
-            
             <div class="form-group">
                 <label for="username">Username <span style="color:red;">*</span></label>
                 <input type="text" id="username" class="form-control" required="">
@@ -707,6 +705,24 @@ h4[onclick] {
                 <input type="password" id="password" class="form-control" required="">
             </div>
             <button type="button" class="btn" onclick="login()">Login</button>
+        </div>
+
+        <!-- Password Change Modal -->
+        <div id="passwordChangeModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3 class="auth-title">Change Password</h3>
+                <p>You are required to change your password before you can proceed.</p>
+                <div id="password-change-error" class="error-message" style="display: none; color: red;"></div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="form-control" required="">
+                </div>
+                <button type="button" class="btn" onclick="changePassword()">Change Password</button>
+            </div>
         </div>
 
         <!-- Landing Page: Four Survey Cards -->
@@ -4670,26 +4686,31 @@ async function login() {
         console.log('Login response data:', JSON.stringify(data));
 
         if (response.ok) {
-            currentUser = data.username;
-            localStorage.setItem('auditAppCurrentUser', JSON.stringify(data));
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('landingPage').classList.remove('hidden');
+            if (data.passwordResetRequired) {
+                localStorage.setItem('auditAppCurrentUser', JSON.stringify(data)); // Store user data to get token for password change
+                document.getElementById('passwordChangeModal').style.display = 'block';
+                document.getElementById('authScreen').classList.add('hidden');
+            } else {
+                currentUser = data.username;
+                localStorage.setItem('auditAppCurrentUser', JSON.stringify(data));
+                document.getElementById('authScreen').classList.add('hidden');
+                document.getElementById('landingPage').classList.remove('hidden');
 
-            // Defer UI updates to ensure the DOM is ready
-            setTimeout(() => {
-                updateUserInfo();
-                updateAdminLinkState(); // Update link state after login
-            }, 0);
+                // Defer UI updates to ensure the DOM is ready
+                setTimeout(() => {
+                    updateUserInfo();
+                    updateAdminLinkState(); // Update link state after login
+                }, 0);
 
-            loadLocalGovernments();
-            try {
-                updateDashboard();
-            } catch (e) {
-                console.error('Error in updateDashboard:', e);
+                loadLocalGovernments();
+                try {
+                    updateDashboard();
+                } catch (e) {
+                    console.error('Error in updateDashboard:', e);
+                }
+                loadRecords();
+                updateConnectionStatus();
             }
-            loadRecords();
-            updateConnectionStatus();
-
         } else {
             console.error('Login failed with status:', response.status);
             let msg = document.getElementById('loginErrorMsg');
@@ -4728,6 +4749,66 @@ function logout() {
     
     // Redirect to the login page to ensure a clean state
     window.location.href = 'index.html';
+}
+
+async function changePassword() {
+    const newPassword = document.getElementById('new-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const errorDiv = document.getElementById('password-change-error');
+
+    if (newPassword !== confirmPassword) {
+        errorDiv.textContent = 'Passwords do not match.';
+        errorDiv.style.display = 'block';
+        return;
+    }
+
+    // Basic password validation
+    if (newPassword.length < 8) {
+        errorDiv.textContent = 'Password must be at least 8 characters long.';
+        errorDiv.style.display = 'block';
+        return;
+    }
+
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+
+    try {
+        const response = await fetch('/api/user/password', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+            },
+            body: JSON.stringify({ password: newPassword }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            document.getElementById('passwordChangeModal').style.display = 'none';
+            // Refresh user data in localStorage
+            const updatedUser = { ...user, passwordResetRequired: false };
+            localStorage.setItem('auditAppCurrentUser', JSON.stringify(updatedUser));
+            // Proceed to the landing page
+            document.getElementById('landingPage').classList.remove('hidden');
+            currentUser = updatedUser.username;
+            updateUserInfo();
+            updateAdminLinkState();
+            loadLocalGovernments();
+            try {
+                updateDashboard();
+            } catch (e) {
+                console.error('Error in updateDashboard:', e);
+            }
+            loadRecords();
+            updateConnectionStatus();
+        } else {
+            errorDiv.textContent = data.message || 'An error occurred.';
+            errorDiv.style.display = 'block';
+        }
+    } catch (error) {
+        errorDiv.textContent = 'A network error occurred. Please try again.';
+        errorDiv.style.display = 'block';
+    }
 }
 
         // Navigation
