@@ -260,15 +260,21 @@ app.get('/api/users', protect, admin, async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 10;
     const skip = (page - 1) * limit;
+    const searchTerm = req.query.search || '';
 
     try {
-        const usersPromise = User.find({})
+        const query = {};
+        if (searchTerm) {
+            query.username = { $regex: searchTerm, $options: 'i' };
+        }
+
+        const usersPromise = User.find(query)
             .select('-password -imageUrl')
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
 
-        const totalUsersPromise = User.countDocuments();
+        const totalUsersPromise = User.countDocuments(query);
 
         const [users, totalUsers] = await Promise.all([usersPromise, totalUsersPromise]);
 
