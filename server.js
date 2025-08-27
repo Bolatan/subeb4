@@ -468,6 +468,36 @@ app.get('/api/reports/:type', protect, async (req, res) => {
   }
 });
 
+// DELETE endpoint for a single survey report
+app.delete('/api/reports/:id', protect, admin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const survey = await SurveyResponse.findById(id);
+
+    if (survey) {
+      await survey.deleteOne();
+      res.json({ message: 'Survey report deleted successfully.' });
+    } else {
+      res.status(404).json({ message: 'Survey report not found.' });
+    }
+  } catch (error) {
+    console.error(`Error deleting survey report:`, error);
+    res.status(500).json({ message: 'Failed to delete survey report.', error: error.message });
+  }
+});
+
+// DELETE endpoint for all survey reports of a specific type
+app.delete('/api/reports/all/:type', protect, admin, async (req, res) => {
+  try {
+    const { type } = req.params;
+    const result = await SurveyResponse.deleteMany({ surveyType: type });
+    res.json({ message: `${result.deletedCount} survey reports of type '${type}' deleted successfully.` });
+  } catch (error) {
+    console.error(`Error deleting all survey reports of type ${type}:`, error);
+    res.status(500).json({ message: `Failed to delete survey reports of type ${type}.`, error: error.message });
+  }
+});
+
 // Serve static files from the 'reports' directory
 app.use('/reports', express.static(path.join(__dirname, 'reports')));
 
