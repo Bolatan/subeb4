@@ -121,6 +121,10 @@
         </div>
 
         <h2>Existing Users</h2>
+        <div id="search-container" style="margin-bottom: 10px;">
+            <input type="text" id="search-input" placeholder="Search by username..." style="padding: 8px; width: 250px;">
+            <button class="btn" onclick="searchUsers()">Search</button>
+        </div>
         <button class="btn" onclick="exportUsers()">Export to CSV</button>
         <table>
             <thead>
@@ -150,7 +154,12 @@
             document.getElementById(`image-upload-${userId}`).click();
         }
 
-        async function fetchUsers(page = 1) {
+        function searchUsers() {
+            const searchTerm = document.getElementById('search-input').value;
+            fetchUsers(1, searchTerm);
+        }
+
+        async function fetchUsers(page = 1, searchTerm = '') {
             const currentUser = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
             if (!currentUser || currentUser.role !== 'admin') {
                 window.location.href = '/index.html';
@@ -158,7 +167,7 @@
             }
 
             try {
-                const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}`, {
+                const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}&search=${searchTerm}`, {
                     headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
                 const data = await response.json();
@@ -412,12 +421,14 @@
 
         document.getElementById('prev-page').addEventListener('click', () => {
             if (currentPage > 1) {
-                fetchUsers(currentPage - 1);
+                const searchTerm = document.getElementById('search-input').value;
+                fetchUsers(currentPage - 1, searchTerm);
             }
         });
 
         document.getElementById('next-page').addEventListener('click', () => {
-            fetchUsers(currentPage + 1);
+            const searchTerm = document.getElementById('search-input').value;
+            fetchUsers(currentPage + 1, searchTerm);
         });
 
         window.onload = () => fetchUsers(1);
