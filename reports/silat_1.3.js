@@ -61,7 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${respondentName}</td>
                 <td>${new Date(survey.createdAt).toLocaleString()}</td>
                 <td>${imagesHtml}</td>
-                <td><button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button></td>
+                <td>
+                    <button class="btn" onclick='viewDetails(${JSON.stringify(survey)})'>View Details</button>
+                    <button class="btn btn-danger" onclick="deleteReport('${survey._id}')" style="margin-left: 5px;">Delete</button>
+                </td>
             `;
         });
     })
@@ -72,6 +75,72 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error fetching SILAT_1.3 reports:', error);
     });
 });
+
+function deleteReport(id) {
+    if (!confirm('Are you sure you want to delete this report?')) {
+        return;
+    }
+
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+    if (!user || !user.token) {
+        alert('Authentication required.');
+        return;
+    }
+
+    fetch(`/api/reports/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${user.token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete report.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.message);
+        location.reload();
+    })
+    .catch(error => {
+        alert(error.message);
+        console.error('Error deleting report:', error);
+    });
+}
+
+function deleteAllReports(surveyType) {
+    if (!confirm(`Are you sure you want to delete all ${surveyType.toUpperCase()} reports? This action cannot be undone.`)) {
+        return;
+    }
+
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+    if (!user || !user.token) {
+        alert('Authentication required.');
+        return;
+    }
+
+    fetch(`/api/reports/all/${surveyType}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${user.token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete all reports.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.message);
+        location.reload();
+    })
+    .catch(error => {
+        alert(error.message);
+        console.error(`Error deleting all ${surveyType} reports:`, error);
+    });
+}
 
 const modal = document.getElementById('detailsModal');
 const modalData = document.getElementById('modal-data');
