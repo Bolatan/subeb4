@@ -260,11 +260,20 @@ app.get('/api/users', protect, admin, async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 10;
     const skip = (page - 1) * limit;
+    const { sortBy, sortOrder } = req.query;
+
+    const sortOptions = {};
+    if (sortBy) {
+        sortOptions[sortBy] = sortOrder === 'asc' ? 1 : -1;
+    } else {
+        sortOptions.createdAt = -1;
+    }
 
     try {
         const usersPromise = User.find({})
             .select('-password -imageUrl')
-            .sort({ createdAt: -1 })
+            .sort(sortOptions)
+            .collation({ locale: 'en', strength: 2 })
             .skip(skip)
             .limit(limit);
 

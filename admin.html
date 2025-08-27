@@ -126,7 +126,7 @@
             <thead>
                 <tr>
                     <th>Image</th>
-                    <th>Username</th>
+                    <th onclick="requestSort('username')" style="cursor: pointer;">Username <span id="sort-indicator-username"></span></th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -145,6 +145,31 @@
     <script>
         let currentPage = 1;
         const usersPerPage = 10;
+        let currentSort = { column: 'createdAt', order: 'desc' };
+
+        function requestSort(column) {
+            if (currentSort.column === column) {
+                currentSort.order = currentSort.order === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.order = 'asc';
+            }
+            fetchUsers(1); // Go to first page after sorting
+        }
+
+        function updateSortIndicator() {
+            const usernameHeader = document.getElementById('sort-indicator-username');
+            if (usernameHeader) {
+                usernameHeader.textContent = '';
+            }
+
+            if (currentSort.column === 'username') {
+                const indicatorSpan = document.getElementById('sort-indicator-username');
+                if (indicatorSpan) {
+                    indicatorSpan.textContent = currentSort.order === 'asc' ? ' ▲' : ' ▼';
+                }
+            }
+        }
 
         function triggerImageUpload(userId) {
             document.getElementById(`image-upload-${userId}`).click();
@@ -158,7 +183,11 @@
             }
 
             try {
-                const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}`, {
+                let url = `/api/users?page=${page}&limit=${usersPerPage}`;
+                if (currentSort.column) {
+                    url += `&sortBy=${currentSort.column}&sortOrder=${currentSort.order}`;
+                }
+                const response = await fetch(url, {
                     headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
                 const data = await response.json();
@@ -201,6 +230,7 @@
                 });
 
                 updatePaginationControls(pagination);
+                updateSortIndicator();
 
             } catch (error) {
                 console.error('Error fetching users:', error);
