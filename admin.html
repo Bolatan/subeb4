@@ -170,7 +170,21 @@
                 const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}&search=${searchTerm}`, {
                     headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Error fetching users:', response.status, errorText);
+                    alert(`Error fetching users: ${response.status}. See console for details.`);
+                    return;
+                }
+
                 const data = await response.json();
+                if (!data.users) {
+                    console.error('Fetched data does not contain users array:', data);
+                    alert('Received invalid data from server. See console for details.');
+                    return;
+                }
+
                 const { users, pagination } = data;
 
                 currentPage = pagination.currentPage;
@@ -179,9 +193,10 @@
                 userList.innerHTML = '';
 
                 users.forEach(user => {
+                    const imageUrl = user.imageUrl || 'https://via.placeholder.com/40';
                     const row = `
                         <tr>
-                            <td><img id="user-image-${user._id}" src="https://via.placeholder.com/40" alt="${user.username}" class="user-image"></td>
+                            <td><img id="user-image-${user._id}" src="${imageUrl}" alt="${user.username}" class="user-image" onerror="this.onerror=null;this.src='https://via.placeholder.com/40';"></td>
                             <td>${user.username}</td>
                             <td>${user.role}</td>
                             <td>
@@ -193,26 +208,13 @@
                         </tr>
                     `;
                     userList.innerHTML += row;
-
-                    fetch(`/api/users/${user._id}/image`, {
-                        headers: { 'Authorization': `Bearer ${currentUser.token}` }
-                    })
-                    .then(response => response.json())
-                    .then(imageData => {
-                        if (imageData.imageUrl) {
-                            const imgElement = document.getElementById(`user-image-${user._id}`);
-                            if (imgElement) {
-                                imgElement.src = imageData.imageUrl;
-                            }
-                        }
-                    })
-                    .catch(error => console.error('Error fetching image for user:', user._id, error));
                 });
 
                 updatePaginationControls(pagination);
 
             } catch (error) {
                 console.error('Error fetching users:', error);
+                alert('An unexpected error occurred. See console for details.');
             }
         }
 

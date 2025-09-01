@@ -269,7 +269,7 @@ app.get('/api/users', protect, admin, async (req, res) => {
         }
 
         const usersPromise = User.find(query)
-            .select('-password -imageUrl')
+            .select('-password')
             .sort({ createdAt: -1 })
             .skip(skip)
             .limit(limit);
