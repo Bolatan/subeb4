@@ -725,6 +725,15 @@ h4[onclick] {
             </div>
         </div>
 
+        <!-- Inactivity Logout Modal -->
+        <div id="inactivityModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3 class="auth-title">Session Expired</h3>
+                <p>You have been logged out due to 20 minutes of inactivity.</p>
+                <button type="button" class="btn" onclick="window.location.href = 'index.html'">OK</button>
+            </div>
+        </div>
+
         <!-- Landing Page: Four Survey Cards -->
         <div id="landingPage" class="section hidden">
             <div id="offline-data-warning" class="hidden" style="background-color: var(--lagos-yellow); color: var(--lagos-navy); padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 2px solid var(--lagos-red);">
@@ -4330,8 +4339,11 @@ function resetInactivityTimer() {
     inactivityTimer = setTimeout(() => {
         // Only logout if a user is actually logged in
         if (localStorage.getItem('auditAppCurrentUser')) {
-            alert("You have been logged out due to inactivity.");
-            logout();
+            performClientSideLogout(); // Log out client-side immediately
+            const modal = document.getElementById('inactivityModal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
         }
     }, 1200000); // 20 minutes in milliseconds
 }
@@ -4778,15 +4790,15 @@ async function login() {
     }
 }
         
+function performClientSideLogout() {
+    currentUser = null;
+    localStorage.removeItem('auditAppCurrentUser');
+    clearInactivityListeners();
+}
+
 // Modify the existing logout function (replace the existing one)
 function logout() {
-    currentUser = null;
-    // Remove session from localStorage
-    localStorage.removeItem('auditAppCurrentUser');
-    
-    // Stop the inactivity timer
-    clearInactivityListeners();
-
+    performClientSideLogout();
     // Redirect to the login page to ensure a clean state
     window.location.href = 'index.html';
 }
