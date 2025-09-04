@@ -4321,6 +4321,41 @@ select.form-control option {
         let uploadedFiles = [];
         let isOnline = navigator.onLine;
         let forceOffline = false;
+
+// --- Inactivity Logout Logic ---
+let inactivityTimer;
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+        // Only logout if a user is actually logged in
+        if (localStorage.getItem('auditAppCurrentUser')) {
+            alert("You have been logged out due to inactivity.");
+            logout();
+        }
+    }, 1200000); // 20 minutes in milliseconds
+}
+
+function setupInactivityListeners() {
+    // Reset timer on user activity
+    window.addEventListener('mousemove', resetInactivityTimer);
+    window.addEventListener('mousedown', resetInactivityTimer);
+    window.addEventListener('keypress', resetInactivityTimer);
+    window.addEventListener('scroll', resetInactivityTimer);
+    window.addEventListener('touchstart', resetInactivityTimer);
+
+    // Start the timer for the first time
+    resetInactivityTimer();
+}
+
+function clearInactivityListeners() {
+    clearTimeout(inactivityTimer);
+    window.removeEventListener('mousemove', resetInactivityTimer);
+    window.removeEventListener('mousedown', resetInactivityTimer);
+    window.removeEventListener('keypress', resetInactivityTimer);
+    window.removeEventListener('scroll', resetInactivityTimer);
+    window.removeEventListener('touchstart', resetInactivityTimer);
+}
         
 // Combined window.onload function
 window.onload = async function() {
@@ -4657,6 +4692,7 @@ function loadSession() {
             currentUser = user.username;
             updateUserInfo();
             console.log('Session restored for user:', currentUser);
+            setupInactivityListeners(); // Also start timer on session restore
         }
     } catch (e) {
         console.error('Error loading session:', e);
@@ -4710,6 +4746,7 @@ async function login() {
                 }
                 loadRecords();
                 updateConnectionStatus();
+        setupInactivityListeners(); // Start inactivity timer
             }
         } else {
             console.error('Login failed with status:', response.status);
@@ -4747,6 +4784,9 @@ function logout() {
     // Remove session from localStorage
     localStorage.removeItem('auditAppCurrentUser');
     
+    // Stop the inactivity timer
+    clearInactivityListeners();
+
     // Redirect to the login page to ensure a clean state
     window.location.href = 'index.html';
 }
