@@ -4688,7 +4688,7 @@ async function showLogs() {
             });
 
             if (response.status === 401) {
-                logout();
+                logout('Your session has expired. Please log in again.');
                 return;
             }
 
@@ -4814,10 +4814,13 @@ function performClientSideLogout() {
 }
 
 // Modify the existing logout function (replace the existing one)
-function logout() {
+function logout(message = null) {
     performClientSideLogout();
-    // Redirect to the login page to ensure a clean state
-    window.location.href = '/';
+    if (message) {
+        window.location.href = `/?status=logged_out&message=${encodeURIComponent(message)}`;
+    } else {
+        window.location.href = '/';
+    }
 }
 
 async function changePassword() {
@@ -4851,7 +4854,7 @@ async function changePassword() {
         });
 
         if (response.status === 401) {
-            logout();
+            logout('Your session has expired. Please log in again.');
             return;
         }
 
@@ -6089,7 +6092,7 @@ async function submitSurvey(event, surveyType) {
 
             } else {
                 if (res.status === 401) {
-                    logout(); // Token is invalid/expired, force logout
+                    logout('Your session has expired. Please log in again.'); // Token is invalid/expired, force logout
                     return;
                 }
                 const err = await res.json();
