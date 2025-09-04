@@ -4520,39 +4520,36 @@ window.onload = async function() {
         const status = urlParams.get('status');
         const message = urlParams.get('message');
         if (status && message) {
-            if (status === 'success') {
-                const successModal = document.getElementById('successModal');
-                const successMessageEl = document.getElementById('successMessage');
-                if (successModal && successMessageEl) {
-                    successMessageEl.textContent = decodeURIComponent(message);
-                    successModal.style.display = 'block';
-                }
-            } else {
-                const authContainer = document.getElementById('authScreen');
-                let msgEl = document.getElementById('loginMessage');
-                if (!msgEl && authContainer) {
-                    msgEl = document.createElement('div');
-                    msgEl.id = 'loginMessage';
-                    msgEl.style.padding = '10px';
-                    msgEl.style.borderRadius = '5px';
-                    msgEl.style.marginBottom = '15px';
-                    msgEl.style.textAlign = 'center';
-                    authContainer.insertBefore(msgEl, authContainer.firstChild);
-                }
+            const authContainer = document.getElementById('authScreen');
+            let msgEl = document.getElementById('loginMessage');
+            if (!msgEl && authContainer) {
+                msgEl = document.createElement('div');
+                msgEl.id = 'loginMessage';
+                msgEl.style.padding = '10px';
+                msgEl.style.borderRadius = '5px';
+                msgEl.style.marginBottom = '15px';
+                msgEl.style.textAlign = 'center';
+                authContainer.insertBefore(msgEl, authContainer.firstChild);
+            }
 
-                if (msgEl) {
+            if (msgEl) {
+                if (status === 'success') {
+                    msgEl.style.backgroundColor = 'var(--lagos-green)';
+                    msgEl.style.color = 'var(--lagos-white)';
+                } else { // For 'logged_out' or other info messages
                     msgEl.style.backgroundColor = 'var(--lagos-yellow)';
                     msgEl.style.color = 'var(--lagos-navy)';
-                    msgEl.textContent = decodeURIComponent(message);
-                    msgEl.classList.remove('hidden');
-
-                    setTimeout(() => {
-                        if (msgEl) msgEl.classList.add('hidden');
-                    }, 5000);
                 }
+
+                msgEl.textContent = decodeURIComponent(message);
+                msgEl.classList.remove('hidden');
+
+                setTimeout(() => {
+                    if (msgEl) msgEl.classList.add('hidden');
+                    // Clean up the URL
+                    window.history.replaceState({}, document.title, "index.html");
+                }, 5000); // Hide after 5 seconds
             }
-            // Clean up the URL
-            window.history.replaceState({}, document.title, "index.html");
         }
 
         try {
@@ -6077,9 +6074,22 @@ async function submitSurvey(event, surveyType) {
 
         if (feedback) {
             if (res.ok) {
-                // Redirect to landing page with success message
-                const successMessage = encodeURIComponent(`${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`);
-                window.location.href = `/?status=success&message=${successMessage}`;
+                const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
+                const modal = document.getElementById('successModal');
+                const modalMessage = document.getElementById('successMessage');
+                if (modal && modalMessage) {
+                    modalMessage.textContent = successMessageText;
+                    modal.style.display = 'block';
+                }
+
+                form.reset();
+                const uploadedFilesContainer = form.querySelector('.uploaded-files');
+                if(uploadedFilesContainer) uploadedFilesContainer.innerHTML = '';
+
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
+                }
             } else {
                 if (res.status === 401) {
                     logout(); // Token is invalid/expired, force logout
