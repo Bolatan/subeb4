@@ -4676,12 +4676,21 @@ async function showLogs() {
 
     if (logDisplayArea.classList.contains('hidden')) {
         try {
-            const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+            const userStr = localStorage.getItem('auditAppCurrentUser');
+            if (!userStr) { return; } // Guard clause
+            const user = JSON.parse(userStr);
+            if (!user || !user.token) { return; } // Guard clause
+
             const response = await fetch('/api/logs', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
             });
+
+            if (response.status === 401) {
+                logout();
+                return;
+            }
 
             if (response.ok) {
                 const logs = await response.json();
@@ -4840,6 +4849,11 @@ async function changePassword() {
             },
             body: JSON.stringify({ password: newPassword }),
         });
+
+        if (response.status === 401) {
+            logout();
+            return;
+        }
 
         const data = await response.json();
 
@@ -6056,6 +6070,10 @@ async function submitSurvey(event, surveyType) {
                 const successMessage = encodeURIComponent(`${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`);
                 window.location.href = `/?status=success&message=${successMessage}`;
             } else {
+                if (res.status === 401) {
+                    logout(); // Token is invalid/expired, force logout
+                    return;
+                }
                 const err = await res.json();
                 feedback.className = ''; // Reset class
                 feedback.style.color = 'var(--lagos-red)';
