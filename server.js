@@ -412,6 +412,7 @@ const flattenSubmissions = (submissions) => {
   // Now, create the flattened data
   submissions.forEach(sub => {
     const flatRow = {
+      'Username': sub.user ? sub.user.username : 'N/A',
       'Survey Type': sub.surveyType,
       'Submission Date': new Date(sub.createdAt).toLocaleString(),
     };
@@ -436,7 +437,7 @@ const flattenSubmissions = (submissions) => {
 // Export to Excel
 app.get('/api/export/excel', protect, async (req, res) => {
   try {
-    const submissions = await SurveyResponse.find({}).lean();
+    const submissions = await SurveyResponse.find({}).populate('user', 'username').lean();
     if (submissions.length === 0) {
       return res.status(404).send('No data to export.');
     }
