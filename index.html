@@ -4328,12 +4328,12 @@ let inactivityTimer;
 
 function handleInactivityLogout() {
     performClientSideLogout(); // Clear session state
-    window.location.href = '/?status=logged_out&message=You have been logged out due to 20 minutes of inactivity.';
+    window.location.href = '/?status=logged_out&message=You have been logged out due to 1 hour of inactivity.';
 }
 
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(handleInactivityLogout, 1200000); // 20 minutes
+    inactivityTimer = setTimeout(handleInactivityLogout, 3600000); // 1 hour
 }
 
 function setupInactivityListeners() {
