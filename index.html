@@ -4328,7 +4328,7 @@ let inactivityTimer;
 
 function handleInactivityLogout() {
     performClientSideLogout(); // Clear session state
-    window.location.href = 'index.html?status=logged_out&message=You have been logged out due to 20 minutes of inactivity.';
+    window.location.href = '/?status=logged_out&message=You have been logged out due to 20 minutes of inactivity.';
 }
 
 function resetInactivityTimer() {
@@ -4808,7 +4808,7 @@ function performClientSideLogout() {
 function logout() {
     performClientSideLogout();
     // Redirect to the login page to ensure a clean state
-    window.location.href = 'index.html';
+    window.location.href = '/';
 }
 
 async function changePassword() {
@@ -6054,7 +6054,7 @@ async function submitSurvey(event, surveyType) {
             if (res.ok) {
                 // Redirect to landing page with success message
                 const successMessage = encodeURIComponent(`${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`);
-                window.location.href = `index.html?status=success&message=${successMessage}`;
+                window.location.href = `/?status=success&message=${successMessage}`;
             } else {
                 const err = await res.json();
                 feedback.className = ''; // Reset class
