@@ -725,6 +725,14 @@ h4[onclick] {
             </div>
         </div>
 
+        <!-- Inactivity Modal -->
+        <div id="inactivityModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p style="margin-bottom: 20px; font-size: 1.1rem;">You have been logged out due to 1 hour of inactivity.</p>
+                <button type="button" class="btn" style="width:auto; padding:10px 30px;" onclick="closeInactivityModal()">OK</button>
+            </div>
+        </div>
+
 
         <!-- Landing Page: Four Survey Cards -->
         <div id="landingPage" class="section hidden">
@@ -4326,9 +4334,24 @@ select.form-control option {
 // --- Inactivity Logout Logic ---
 let inactivityTimer;
 
+function showInactivityModal() {
+    const modal = document.getElementById('inactivityModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function closeInactivityModal() {
+    const modal = document.getElementById('inactivityModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    window.location.href = '/'; // Redirect to login page
+}
+
 function handleInactivityLogout() {
-    performClientSideLogout(); // Clear session state
-    window.location.href = '/?status=logged_out&message=You have been logged out due to 1 hour of inactivity.';
+    performClientSideLogout(); // Log out immediately for security
+    showInactivityModal();     // Then show the modal
 }
 
 function resetInactivityTimer() {
