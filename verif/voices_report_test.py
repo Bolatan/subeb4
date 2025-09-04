@@ -32,7 +32,7 @@ def test_voices_report_page(page: Page):
     expect(page.locator("#detailsModal")).to_be_visible()
 
     # Expect the modal to contain some survey data
-    expect(page.locator("#modal-data")).to_contain_text("surveyType")
+    expect(page.locator("#modal-data")).to_contain_text("Institution")
 
     # Close the modal
     page.locator(".close-button").click()
