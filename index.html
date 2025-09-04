@@ -6044,9 +6044,17 @@ async function submitSurvey(event, surveyType) {
     }
 
     try {
+        const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+        const token = user ? user.token : null;
+
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
         const res = await fetch(`/api/surveys/${surveyType}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: headers,
             body: JSON.stringify(data)
         });
 
