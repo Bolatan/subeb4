@@ -85,7 +85,7 @@ mongoose.connection.once('open', () => {
 
 const generateToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET || 'a-very-secret-key', {
-    expiresIn: '30d',
+    expiresIn: '20m',
   });
 };
 
