@@ -178,7 +178,7 @@ app.put('/api/user/password', protect, async (req, res) => {
 // User creation is now handled by admins only via /api/users.
 
 // Generic endpoint for all surveys
-app.post('/api/surveys/:type', async (req, res) => {
+app.post('/api/surveys/:type', protect, async (req, res) => {
   try {
     const surveyType = req.params.type;
     console.log(`[${new Date().toISOString()}] Received submission for survey type: ${surveyType}`);
@@ -201,6 +201,7 @@ app.post('/api/surveys/:type', async (req, res) => {
     }
 
     const survey = new SurveyResponse({
+      user: req.user._id,
       surveyType: surveyType,
       formData: surveyData,
     });
@@ -387,7 +388,7 @@ app.get('/api/logs', protect, async (req, res) => {
 // GET endpoint for all survey reports
 app.get('/api/reports/all', protect, async (req, res) => {
   try {
-    const surveys = await SurveyResponse.find({}).sort({ createdAt: -1 });
+    const surveys = await SurveyResponse.find({}).populate('user', 'username').sort({ createdAt: -1 });
     res.status(200).json(surveys);
   } catch (error) {
     console.error('Error fetching all reports:', error);
@@ -460,7 +461,7 @@ app.get('/api/export/excel', protect, async (req, res) => {
 app.get('/api/reports/:type', protect, async (req, res) => {
   try {
     const surveyType = req.params.type;
-    const surveys = await SurveyResponse.find({ surveyType: surveyType }).sort({ createdAt: -1 });
+    const surveys = await SurveyResponse.find({ surveyType: surveyType }).populate('user', 'username').sort({ createdAt: -1 });
     res.status(200).json(surveys);
   } catch (error) {
     console.error(`Error fetching ${req.params.type} reports:`, error);

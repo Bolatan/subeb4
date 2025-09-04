@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const surveyResponseSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   surveyType: {
     type: String,
     required: true,
