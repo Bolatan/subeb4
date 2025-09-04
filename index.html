@@ -725,14 +725,6 @@ h4[onclick] {
             </div>
         </div>
 
-        <!-- Inactivity Logout Modal -->
-        <div id="inactivityModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <h3 class="auth-title">Session Expired</h3>
-                <p>You have been logged out due to 20 minutes of inactivity.</p>
-                <button type="button" class="btn" onclick="window.location.href = 'index.html'">OK</button>
-            </div>
-        </div>
 
         <!-- Landing Page: Four Survey Cards -->
         <div id="landingPage" class="section hidden">
@@ -4334,18 +4326,14 @@ select.form-control option {
 // --- Inactivity Logout Logic ---
 let inactivityTimer;
 
+function handleInactivityLogout() {
+    performClientSideLogout(); // Clear session state
+    window.location.href = 'index.html?status=logged_out&message=You have been logged out due to 20 minutes of inactivity.';
+}
+
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(() => {
-        // Only logout if a user is actually logged in
-        if (localStorage.getItem('auditAppCurrentUser')) {
-            performClientSideLogout(); // Log out client-side immediately
-            const modal = document.getElementById('inactivityModal');
-            if (modal) {
-                modal.style.display = 'block';
-            }
-        }
-    }, 1200000); // 20 minutes in milliseconds
+    inactivityTimer = setTimeout(handleInactivityLogout, 1200000); // 20 minutes
 }
 
 function setupInactivityListeners() {
@@ -4531,13 +4519,33 @@ window.onload = async function() {
         // This is the original data entry/dashboard mode
         const status = urlParams.get('status');
         const message = urlParams.get('message');
-        if (status === 'success' && message) {
-            const messageDiv = document.getElementById('landing-page-message');
-            if (messageDiv) {
-                messageDiv.textContent = decodeURIComponent(message);
-                messageDiv.classList.remove('hidden');
+        if (status && message) {
+            const authContainer = document.getElementById('authScreen');
+            let msgEl = document.getElementById('loginMessage');
+            if (!msgEl && authContainer) {
+                msgEl = document.createElement('div');
+                msgEl.id = 'loginMessage';
+                msgEl.style.padding = '10px';
+                msgEl.style.borderRadius = '5px';
+                msgEl.style.marginBottom = '15px';
+                msgEl.style.textAlign = 'center';
+                authContainer.insertBefore(msgEl, authContainer.firstChild);
+            }
+
+            if (msgEl) {
+                if (status === 'success') {
+                    msgEl.style.backgroundColor = 'var(--lagos-green)';
+                    msgEl.style.color = 'var(--lagos-white)';
+                } else { // For 'logged_out' or other info messages
+                    msgEl.style.backgroundColor = 'var(--lagos-yellow)';
+                    msgEl.style.color = 'var(--lagos-navy)';
+                }
+
+                msgEl.textContent = decodeURIComponent(message);
+                msgEl.classList.remove('hidden');
+
                 setTimeout(() => {
-                    messageDiv.classList.add('hidden');
+                    if (msgEl) msgEl.classList.add('hidden');
                     // Clean up the URL
                     window.history.replaceState({}, document.title, "index.html");
                 }, 5000); // Hide after 5 seconds
