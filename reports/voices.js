@@ -3,9 +3,8 @@ let allSurveys = []; // Global variable to hold survey data for exports
 function getSurveyDisplayData(survey) {
     const formData = survey.formData || {};
     const schoolName = formData.voices_schoolName || 'N/A';
-    const respondentName = formData.voices_gender || 'N/A'; // Using gender as a placeholder for respondent
     const lga = formData.voices_lgea || 'N/A';
-    return { schoolName, respondentName, lga };
+    return { schoolName, lga };
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         surveys.forEach(survey => {
             const row = tableBody.insertRow();
-            const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+            const { schoolName, lga } = getSurveyDisplayData(survey);
             const username = survey.user ? survey.user.username : 'N/A';
             const photos = survey.formData.photos || [];
             let imagesHtml = '';
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
             row.innerHTML = `
                 <td>${username}</td>
                 <td>${schoolName} (${lga})</td>
-                <td>${respondentName}</td>
                 <td>${new Date(survey.createdAt).toLocaleString()}</td>
                 <td>${imagesHtml}</td>
                 <td>
