@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         surveys.forEach(survey => {
             const row = tableBody.insertRow();
             const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+            const username = survey.user ? survey.user.username : 'N/A';
             const photos = survey.formData.photos || [];
             let imagesHtml = '';
             if (photos.length > 0) {
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             row.innerHTML = `
+                <td>${username}</td>
                 <td>${schoolName} (${lga})</td>
                 <td>${respondentName}</td>
                 <td>${new Date(survey.createdAt).toLocaleString()}</td>
@@ -221,7 +223,9 @@ function exportToExcel() {
 
     const worksheetData = allSurveys.map(survey => {
         const flattenedFormData = flattenObject(survey.formData);
+        const username = survey.user ? survey.user.username : 'N/A';
         const rowData = {
+            'Username': username,
             'Survey Type': survey.surveyType,
             'Submission Date': new Date(survey.createdAt).toLocaleString()
         };
