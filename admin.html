@@ -85,9 +85,37 @@
             background-color: var(--lagos-red);
             color: var(--lagos-white);
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            color: var(--lagos-navy);
+        }
     </style>
 </head>
 <body>
+    <div id="inactivityModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p style="margin-bottom: 20px; font-size: 1.1rem;">You have been logged out due to 1 hour of inactivity.</p>
+            <button type="button" class="btn" style="width:auto; padding:10px 30px;" onclick="closeInactivityModal()">OK</button>
+        </div>
+    </div>
     <div class="container">
         <button class="btn btn-home" onclick="window.location.href='/index.html'">Back to Homepage</button>
         <button class="btn btn-logout" onclick="logout()">Logout</button>
@@ -432,6 +460,17 @@
         });
 
         window.onload = () => fetchUsers(1);
+
+        function performClientSideLogout() {
+            localStorage.removeItem('auditAppCurrentUser');
+            clearInactivityListeners();
+        }
+
+        function logout() {
+            performClientSideLogout();
+            window.location.href = '/index.html';
+        }
     </script>
+    <script src="inactivity.js"></script>
 </body>
 </html>
