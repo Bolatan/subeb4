@@ -6075,12 +6075,8 @@ async function submitSurvey(event, surveyType) {
         if (feedback) {
             if (res.ok) {
                 const successMessageText = `${surveyType.replace(/_/g, ' ').toUpperCase()} survey submitted successfully!`;
-                const modal = document.getElementById('successModal');
-                const modalMessage = document.getElementById('successMessage');
-                if (modal && modalMessage) {
-                    modalMessage.textContent = successMessageText;
-                    modal.style.display = 'block';
-                }
+                feedback.className = 'feedback-success';
+                feedback.textContent = successMessageText;
 
                 form.reset();
                 const uploadedFilesContainer = form.querySelector('.uploaded-files');
@@ -6090,6 +6086,7 @@ async function submitSurvey(event, surveyType) {
                     submitButton.disabled = false;
                     submitButton.textContent = `Submit ${surveyType.toUpperCase()} Survey`;
                 }
+
             } else {
                 if (res.status === 401) {
                     logout(); // Token is invalid/expired, force logout
