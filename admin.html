@@ -175,6 +175,17 @@
     </div>
 
     <script>
+        async function fetchWithAuth(url, options) {
+            const response = await fetch(url, options);
+            if (response.status === 401) {
+                console.error('Unauthorized (401) response. Logging out.');
+                logout();
+                // Throw an error to prevent further processing in the original function
+                throw new Error('Session expired');
+            }
+            return response;
+        }
+
         let currentPage = 1;
         const usersPerPage = 10;
 
@@ -195,7 +206,7 @@
             }
 
             try {
-                const response = await fetch(`/api/users?page=${page}&limit=${usersPerPage}&search=${searchTerm}`, {
+                const response = await fetchWithAuth(`/api/users?page=${page}&limit=${usersPerPage}&search=${searchTerm}`, {
                     headers: { 'Authorization': `Bearer ${currentUser.token}` }
                 });
                 const data = await response.json();
@@ -222,7 +233,7 @@
                     `;
                     userList.innerHTML += row;
 
-                    fetch(`/api/users/${user._id}/image`, {
+                    fetchWithAuth(`/api/users/${user._id}/image`, {
                         headers: { 'Authorization': `Bearer ${currentUser.token}` }
                     })
                     .then(response => response.json())
@@ -268,7 +279,7 @@
             }
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
             try {
-                await fetch(`/api/users/${id}`, {
+                await fetchWithAuth(`/api/users/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${user.token}`
@@ -319,7 +330,7 @@
             const messageDiv = document.getElementById('create-user-message');
 
             try {
-                const response = await fetch('/api/users', {
+                const response = await fetchWithAuth('/api/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -384,7 +395,7 @@
                     const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
                     try {
-                        const response = await fetch(`/api/users/${id}/image`, {
+                        const response = await fetchWithAuth(`/api/users/${id}/image`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -421,7 +432,7 @@
             const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
 
             try {
-                const response = await fetch(`/api/users/${id}/password`, {
+                const response = await fetchWithAuth(`/api/users/${id}/password`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
