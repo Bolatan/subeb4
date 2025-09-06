@@ -2299,16 +2299,16 @@ h4[onclick] {
                     <textarea id="water_recommendations_1.4" name="water_recommendations_1.4" class="form-control" required=""></textarea>
                 </div>
                 <h5>SOURCE OF ELECTRICITY <span style="color:red;">*</span></h5>
-                <div class="form-group" data-is-required="true">
-                    <select id="electricity_source_1.4" name="electricity_source_1.4" class="form-control" multiple>
-                        <option value="none">None</option>
-                        <option value="phcn">PHCN</option>
-                        <option value="generator">Generator</option>
-                        <option value="solar">Solar</option>
-                        <option value="others">Others</option>
-                        <option value="phcn_disconnected_bills">PHCN but Disconnected because of accumulated bills</option>
-                        <option value="phcn_disconnected_meter">PHCN but Disconnected because of lack of meter</option>
-                    </select>
+                <div id="electricity_source_1.4" class="form-group" data-is-required="true">
+                    <div>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="none"> None</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn"> PHCN</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="generator"> Generator</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="solar"> Solar</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="others"> Others</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn_disconnected_bills"> PHCN but Disconnected because of accumulated bills</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="electricity_source_1.4" value="phcn_disconnected_meter"> PHCN but Disconnected because of lack of meter</label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="electricity_additional_info_1.4">Additional information e.g., amount involved, etc <span style="color:red;">*</span></label>
