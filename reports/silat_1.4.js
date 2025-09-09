@@ -3,7 +3,7 @@ let allSurveys = []; // Global variable to hold survey data for exports
 function getSurveyDisplayData(survey) {
     const formData = survey.formData || {};
     const schoolName = formData.silat_1_4_schoolName || 'N/A';
-    const respondentName = 'N/A'; // LGEA-level survey
+    const respondentName = formData.silat_1_4_es_name || 'N/A'; // LGEA-level survey
     const lga = formData.silat_1_4_localGov || 'N/A';
     return { schoolName, respondentName, lga };
 }
