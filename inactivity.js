@@ -23,7 +23,7 @@ function handleInactivityLogout() {
 
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(handleInactivityLogout, 3600000); // 1 hour
+    inactivityTimer = setTimeout(handleInactivityLogout, 10800000); // 3 hours
 }
 
 function setupInactivityListeners() {
