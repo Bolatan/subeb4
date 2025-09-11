@@ -110,12 +110,6 @@
     </style>
 </head>
 <body>
-    <div id="inactivityModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <p style="margin-bottom: 20px; font-size: 1.1rem;">You have been logged out due to 3 hours of inactivity.</p>
-            <button type="button" class="btn" style="width:auto; padding:10px 30px;" onclick="closeInactivityModal()">OK</button>
-        </div>
-    </div>
     <div class="container">
         <button class="btn btn-home" onclick="window.location.href='/index.html'">Back to Homepage</button>
         <button class="btn btn-logout" onclick="logout()">Logout</button>
@@ -291,9 +285,15 @@
             }
         }
 
-        function logout() {
+        function logout(message = null) {
             localStorage.removeItem('auditAppCurrentUser');
-            window.location.href = '/index.html';
+            clearInactivityListeners(); // This function is in inactivity.js
+
+            if (message) {
+                window.location.href = `/?status=logged_out&message=${encodeURIComponent(message)}`;
+            } else {
+                window.location.href = '/index.html';
+            }
         }
 
         async function createUser(event) {
@@ -471,16 +471,6 @@
         });
 
         window.onload = () => fetchUsers(1);
-
-        function performClientSideLogout() {
-            localStorage.removeItem('auditAppCurrentUser');
-            clearInactivityListeners();
-        }
-
-        function logout() {
-            performClientSideLogout();
-            window.location.href = '/index.html';
-        }
     </script>
     <script src="inactivity.js"></script>
 </body>
