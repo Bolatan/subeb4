@@ -725,14 +725,6 @@ h4[onclick] {
             </div>
         </div>
 
-        <!-- Inactivity Modal -->
-        <div id="inactivityModal" class="modal" style="display: none;">
-            <div class="modal-content">
-                <p style="margin-bottom: 20px; font-size: 1.1rem;">You have been logged out due to 3 hours of inactivity.</p>
-                <button type="button" class="btn" style="width:auto; padding:10px 30px;" onclick="closeInactivityModal()">OK</button>
-            </div>
-        </div>
-
 
         <!-- Landing Page: Four Survey Cards -->
         <div id="landingPage" class="section hidden">
@@ -4618,38 +4610,27 @@ function updateAdminLinkState() {
         console.error('Error parsing user from localStorage for admin link state:', e);
     }
 
-    if (user) {
-        const userRole = user.role ? user.role.trim().toLowerCase() : '';
-
-        if (userRole === 'admin') {
-            // Admin sees everything
-            logCard.classList.remove('hidden');
-            adminLink.classList.remove('hidden');
-            adminLink.classList.remove('disabled-card');
-            adminLink.onclick = () => { window.location.href = 'admin.html'; };
-            reportsCard.classList.remove('hidden');
-        } else if (userRole === 'assessor') {
-            // Assessor sees neither reports nor logs
-            logCard.classList.add('hidden');
-            adminLink.classList.add('hidden');
-            adminLink.classList.add('disabled-card');
-            adminLink.onclick = null;
-            reportsCard.classList.add('hidden');
-        } else {
-            // Other logged-in users see reports and logs but not admin link
-            logCard.classList.remove('hidden');
-            adminLink.classList.add('hidden');
-            adminLink.classList.add('disabled-card');
-            adminLink.onclick = null;
-            reportsCard.classList.add('hidden');
-        }
-    } else {
-        // Not logged in, hide all protected cards
+    if (user && user.role === 'admin') {
+        // Admin sees everything
+        logCard.classList.remove('hidden');
+        reportsCard.classList.remove('hidden');
+        adminLink.classList.remove('hidden');
+        adminLink.classList.remove('disabled-card');
+        adminLink.onclick = () => { window.location.href = 'admin.html'; };
+    } else if (user && user.role === 'assessor') {
+        // Assessor should not see reports, logs, or admin
         logCard.classList.add('hidden');
+        reportsCard.classList.add('hidden');
         adminLink.classList.add('hidden');
         adminLink.classList.add('disabled-card');
         adminLink.onclick = null;
+    } else {
+        // All other users (including not logged in)
+        logCard.classList.add('hidden');
         reportsCard.classList.add('hidden');
+        adminLink.classList.add('hidden');
+        adminLink.classList.add('disabled-card');
+        adminLink.onclick = null;
     }
 }
 
@@ -4790,15 +4771,11 @@ async function login() {
     }
 }
         
-function performClientSideLogout() {
+function logout(message = null) {
     currentUser = null;
     localStorage.removeItem('auditAppCurrentUser');
-    clearInactivityListeners();
-}
+    clearInactivityListeners(); // This function is in inactivity.js
 
-// Modify the existing logout function (replace the existing one)
-function logout(message = null) {
-    performClientSideLogout();
     if (message) {
         window.location.href = `/?status=logged_out&message=${encodeURIComponent(message)}`;
     } else {
