@@ -4,7 +4,7 @@ let inactivityTimer;
 function resetInactivityTimer() {
     clearTimeout(inactivityTimer);
     // Directly call the global logout function with a message
-    inactivityTimer = setTimeout(() => logout('You have been logged out due to 3 hours of inactivity.'), 10800000); // 3 hours
+    inactivityTimer = setTimeout(() => logout('You have been logged out due to 5 hours of inactivity.'), 18000000); // 5 hours
 }
 
 function setupInactivityListeners() {
