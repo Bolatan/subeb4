@@ -180,7 +180,11 @@ app.put('/api/user/password', protect, async (req, res) => {
 // Generic endpoint for all surveys
 app.post('/api/surveys/:type', protect, async (req, res) => {
   try {
-    const surveyType = req.params.type;
+    let surveyType = req.params.type;
+    // Sanitize surveyType to remove newlines
+    if (surveyType) {
+      surveyType = surveyType.replace(/(\r\n|\n|\r)/gm, "");
+    }
     console.log(`[${new Date().toISOString()}] Received submission for survey type: ${surveyType}`);
     console.log(`[${new Date().toISOString()}] Request Body:`, JSON.stringify(req.body, null, 2));
 
