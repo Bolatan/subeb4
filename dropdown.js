@@ -103,7 +103,7 @@ async function loadAllData() {
             vocationalCentersData,
             comboData,
         ] = await Promise.all([
-            loadCsvData('SCHOOL_LIST_AS_AT_JANUARY_2025 1,026.csv'),
+            loadCsvData('SCHOOL_LIST_AS_AT_JANUARY_2025_updated.csv'),
             loadCsvData('SPECIAL SCHOOLS AND INCLUSIVE UNITS1.csv'),
             loadCsvData('LIST OF VOCATIONAL CENTRES.csv'),
             loadCsvData('combo.csv')
