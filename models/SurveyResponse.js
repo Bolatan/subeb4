@@ -20,6 +20,9 @@ const surveyResponseSchema = new mongoose.Schema({
   },
 });
 
+// Add a compound index for surveyType and createdAt to optimize report queries
+surveyResponseSchema.index({ surveyType: 1, createdAt: -1 });
+
 const SurveyResponse = mongoose.model('SurveyResponse', surveyResponseSchema);
 
 module.exports = SurveyResponse;

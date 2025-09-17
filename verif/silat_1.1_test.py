@@ -129,7 +129,9 @@ def run_test():
         "test_id": f"silnat_1.1_{int(time.time())}"
     }
 
-    mongo_uri = "mongodb+srv://bolatan:Ogbogbo123@cluster0.vzjwn4g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    mongo_uri = os.environ.get("MONGO_URI")
+    if not mongo_uri:
+        raise Exception("MONGO_URI environment variable not set. Please set it to run the test.")
     db_name = "test"
     collection_name = "surveyresponses"
 
