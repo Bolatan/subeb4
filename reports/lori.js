@@ -217,39 +217,35 @@ window.onclick = function(event) {
     }
 }
 
-function exportToPDF() {
-    if (allSurveys.length === 0) {
+async function exportToPDF() {
+    const surveys = await fetchAllSurveyData('lori');
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-
     doc.text("LORI Survey Reports", 14, 16);
 
-    const table = document.getElementById('reportsTable');
-    const tableClone = table.cloneNode(true);
-    Array.from(tableClone.rows).forEach(row => row.deleteCell(-1)); // Remove "Actions" column
+    const tableBody = surveys.map(survey => {
+        const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+        const username = survey.user ? survey.user.username : 'N/A';
+        // Note: The photo column is omitted for PDF export simplicity.
+        return [username, `${schoolName} (${lga})`, respondentName, new Date(survey.createdAt).toLocaleString()];
+    });
 
-    doc.autoTable({ html: tableClone });
+    doc.autoTable({
+        head: [['Username', 'School (LGA)', 'Respondent', 'Submission Date']],
+        body: tableBody,
+    });
 
     doc.save('lori-survey-reports.pdf');
 }
 
-function flattenObject(obj, prefix = '') {
-    return Object.keys(obj).reduce((acc, k) => {
-        const pre = prefix.length ? prefix + '_' : '';
-        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
-            Object.assign(acc, flattenObject(obj[k], pre + k));
-        } else {
-            acc[pre + k] = obj[k];
-        }
-        return acc;
-    }, {});
-}
-
-function exportToExcel() {
-    if (allSurveys.length === 0) {
+async function exportToExcel() {
+    const allSurveys = await fetchAllSurveyData('lori');
+    if (!allSurveys || allSurveys.length === 0) {
         alert("No data to export.");
         return;
     }
