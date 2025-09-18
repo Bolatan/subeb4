@@ -58,7 +58,7 @@ function fetchAndDisplayReports(surveyType, page = 1) {
             if (photos.length > 0) {
                 imagesHtml = photos.map(photo => `
                     <a href="${photo}" target="_blank">
-                        <img loading="lazy" src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
+                        <img src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
                     </a>
                 `).join('');
             }
@@ -231,7 +231,6 @@ async function exportToPDF() {
     const tableBody = surveys.map(survey => {
         const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
         const username = survey.user ? survey.user.username : 'N/A';
-        // Note: The photo column is omitted for PDF export simplicity.
         return [username, `${schoolName} (${lga})`, respondentName, new Date(survey.createdAt).toLocaleString()];
     });
 
@@ -243,9 +242,21 @@ async function exportToPDF() {
     doc.save('lori-survey-reports.pdf');
 }
 
+function flattenObject(obj, prefix = '') {
+    return Object.keys(obj).reduce((acc, k) => {
+        const pre = prefix.length ? prefix + '_' : '';
+        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+            Object.assign(acc, flattenObject(obj[k], pre + k));
+        } else {
+            acc[pre + k] = obj[k];
+        }
+        return acc;
+    }, {});
+}
+
 async function exportToExcel() {
-    const allSurveys = await fetchAllSurveyData('lori');
-    if (!allSurveys || allSurveys.length === 0) {
+    const surveys = await fetchAllSurveyData('lori');
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
@@ -253,7 +264,7 @@ async function exportToExcel() {
     const surveyType = 'lori';
     const labels = surveyLabelMaps[surveyType] || {};
 
-    const worksheetData = allSurveys.map(survey => {
+    const worksheetData = surveys.map(survey => {
         const flattenedFormData = flattenObject(survey.formData);
         const username = survey.user ? survey.user.username : 'N/A';
         const rowData = {

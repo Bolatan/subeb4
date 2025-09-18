@@ -57,7 +57,7 @@ function fetchAndDisplayReports(surveyType, page = 1) {
             if (photos.length > 0) {
                 imagesHtml = photos.map(photo => `
                     <a href="${photo}" target="_blank">
-                        <img loading="lazy" src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
+                        <img src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
                     </a>
                 `).join('');
             }
@@ -219,6 +219,18 @@ window.onclick = function(event) {
     }
 }
 
+function flattenObject(obj, prefix = '') {
+    return Object.keys(obj).reduce((acc, k) => {
+        const pre = prefix.length ? prefix + '_' : '';
+        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+            Object.assign(acc, flattenObject(obj[k], pre + k));
+        } else {
+            acc[pre + k] = obj[k];
+        }
+        return acc;
+    }, {});
+}
+
 async function exportToPDF() {
     const surveys = await fetchAllSurveyData('voices');
     if (!surveys || surveys.length === 0) {
@@ -245,8 +257,8 @@ async function exportToPDF() {
 }
 
 async function exportToExcel() {
-    const allSurveys = await fetchAllSurveyData('voices');
-    if (!allSurveys || allSurveys.length === 0) {
+    const surveys = await fetchAllSurveyData('voices');
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
@@ -254,7 +266,7 @@ async function exportToExcel() {
     const surveyType = 'voices';
     const labels = surveyLabelMaps[surveyType] || {};
 
-    const worksheetData = allSurveys.map(survey => {
+    const worksheetData = surveys.map(survey => {
         const flattenedFormData = flattenObject(survey.formData);
         const username = survey.user ? survey.user.username : 'N/A';
         const rowData = {
