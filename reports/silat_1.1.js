@@ -69,7 +69,7 @@ function fetchAndDisplayReports(surveyType, page = 1) {
             if (photos.length > 0) {
                 imagesHtml = photos.map(photo => `
                     <a href="${photo}" target="_blank">
-                        <img src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
+                        <img loading="lazy" src="${photo}" alt="Survey Photo" style="width: 50px; height: 50px; object-fit: cover; margin: 2px;">
                     </a>
                 `).join('');
             }
