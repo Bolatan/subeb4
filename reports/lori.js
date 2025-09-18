@@ -9,6 +9,10 @@ function getSurveyDisplayData(survey) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    fetchAndDisplayReports('lori');
+});
+
+function fetchAndDisplayReports(surveyType, page = 1) {
     const tableBody = document.querySelector('#reportsTable tbody');
     const loadingMessage = document.getElementById('loadingMessage');
     const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
@@ -18,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    fetch('/api/reports/lori', {
+    loadingMessage.style.display = 'block';
+    tableBody.innerHTML = '';
+
+    fetch(`/api/reports/${surveyType}?page=${page}`, {
         headers: {
             'Authorization': `Bearer ${user.token}`
         }
@@ -38,11 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
         allSurveys = surveys; // Store data for export functions
         loadingMessage.style.display = 'none';
         if (surveys.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">No LORI reports found.</td></tr>';
+            tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px;">No ${surveyType.replace(/_/g, ' ').toUpperCase()} reports found.</td></tr>`;
             return;
         }
-
-        tableBody.innerHTML = ''; // Clear previous content
 
         surveys.forEach(survey => {
             const row = tableBody.insertRow();
@@ -70,14 +75,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
             `;
         });
+
+        renderPagination(data.pagination, surveyType);
     })
     .catch(error => {
         if (error.message !== 'Access Denied') {
             loadingMessage.innerHTML = '<strong>Failed to load reports.</strong><br>Please ensure the backend server is running and accessible.';
         }
-        console.error('Error fetching LORI reports:', error);
+        console.error(`Error fetching ${surveyType} reports:`, error);
     });
-});
+}
+
+function renderPagination(pagination, surveyType) {
+    const { currentPage, totalPages } = pagination;
+    const paginationContainer = document.getElementById('pagination-container');
+    paginationContainer.innerHTML = '';
+
+    if (totalPages <= 1) return;
+
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '&laquo; Previous';
+    prevButton.className = 'btn';
+    prevButton.disabled = currentPage === 1;
+    prevButton.onclick = () => fetchAndDisplayReports(surveyType, currentPage - 1);
+    paginationContainer.appendChild(prevButton);
+
+    const pageInfo = document.createElement('span');
+    pageInfo.textContent = ` Page ${currentPage} of ${totalPages} `;
+    pageInfo.style.margin = '0 10px';
+    paginationContainer.appendChild(pageInfo);
+
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = 'Next &raquo;';
+    nextButton.className = 'btn';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.onclick = () => fetchAndDisplayReports(surveyType, currentPage + 1);
+    paginationContainer.appendChild(nextButton);
+}
+
 
 function deleteReport(id) {
     if (!confirm('Are you sure you want to delete this report?')) {
