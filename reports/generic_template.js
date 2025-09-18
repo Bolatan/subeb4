@@ -41,11 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return response.json();
     })
-    .then(surveys => {
-        allSurveys = surveys; // Store data for export functions
+    .then(data => {
+        const surveys = data.responses; // Extract surveys from the response object
+        allSurveys = surveys; // This now correctly stores just the array of surveys for the current page
         loadingMessage.style.display = 'none';
-        if (surveys.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding: 20px;">No SURVEY_TYPE_TITLE reports found.</td></tr>';
+
+        if (!surveys || surveys.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 20px;">No SURVEY_TYPE_TITLE reports found.</td></tr>';
             return;
         }
 
@@ -91,21 +93,52 @@ window.onclick = function(event) {
     }
 }
 
-function exportToPDF() {
-    if (allSurveys.length === 0) {
+// --- Export Functions ---
+
+// Helper function to fetch all survey data for exports
+async function fetchAllSurveyData() {
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+    if (!user || !user.token) {
+        alert('Authentication required. Please log in.');
+        return null;
+    }
+
+    try {
+        const response = await fetch(`/api/reports/SURVEY_TYPE_API/all`, {
+            headers: { 'Authorization': `Bearer ${user.token}` }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching all survey data for export:', error);
+        alert('Failed to fetch data for export. Please try again.');
+        return null;
+    }
+}
+
+async function exportToPDF() {
+    const surveys = await fetchAllSurveyData();
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-
     doc.text("SURVEY_TYPE_TITLE Survey Reports", 14, 16);
 
-    const table = document.getElementById('reportsTable');
-    const tableClone = table.cloneNode(true);
-    Array.from(tableClone.rows).forEach(row => row.deleteCell(-1)); // Remove "Actions" column
+    const tableBody = surveys.map(survey => {
+        const { schoolName, respondentName, lga } = getSurveyDisplayData(survey);
+        const username = survey.user ? survey.user.username : 'N/A';
+        return [username, `${schoolName} (${lga})`, respondentName, new Date(survey.createdAt).toLocaleString()];
+    });
 
-    doc.autoTable({ html: tableClone });
+    doc.autoTable({
+        head: [['Username', 'School (LGA)', 'Respondent', 'Submission Date']],
+        body: tableBody,
+    });
 
     doc.save('SURVEY_TYPE_API-survey-reports.pdf');
 }
@@ -122,27 +155,27 @@ function flattenObject(obj, prefix = '') {
     }, {});
 }
 
-function exportToExcel() {
-    if (allSurveys.length === 0) {
+async function exportToExcel() {
+    const surveys = await fetchAllSurveyData();
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
 
-    const worksheetData = allSurveys.map(survey => {
+    const worksheetData = surveys.map(survey => {
         const flattenedFormData = flattenObject(survey.formData);
         const username = survey.user ? survey.user.username : 'N/A';
-        const rowData = {
+        return {
             'Username': username,
             'Survey Type': survey.surveyType,
             'Submission Date': new Date(survey.createdAt).toLocaleString(),
             ...flattenedFormData
         };
-        return rowData;
     });
 
     const worksheet = XLSX.utils.json_to_sheet(worksheetData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Survey Reports");
 
-    XLSX.writeFile(workbook, "SURVEY_TYPE_API-survey-reports.xlsx");
+    XLSX.writeFile(workbook, `SURVEY_TYPE_API-survey-reports.xlsx`);
 }
