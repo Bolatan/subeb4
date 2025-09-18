@@ -466,8 +466,27 @@ app.get('/api/export/excel', protect, async (req, res) => {
 app.get('/api/reports/:type', protect, async (req, res) => {
   try {
     const surveyType = req.params.type;
-    const surveys = await SurveyResponse.find({ surveyType: surveyType }).populate('user', 'username').sort({ createdAt: -1 });
-    res.status(200).json(surveys);
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const skip = (page - 1) * limit;
+
+    const query = { surveyType: surveyType };
+
+    const totalSurveys = await SurveyResponse.countDocuments(query);
+    const surveys = await SurveyResponse.find(query)
+      .populate('user', 'username')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    res.status(200).json({
+      responses: surveys,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(totalSurveys / limit),
+        totalResponses: totalSurveys
+      }
+    });
   } catch (error) {
     console.error(`Error fetching ${req.params.type} reports:`, error);
     res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
