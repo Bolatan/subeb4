@@ -228,44 +228,39 @@ window.onclick = function(event) {
     }
 }
 
-function exportToPDF() {
-    if (allSurveys.length === 0) {
+async function exportToPDF() {
+    const surveys = await fetchAllSurveyData('silat_1.1');
+    if (!surveys || surveys.length === 0) {
         alert("No data to export.");
         return;
     }
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
+    doc.text("SILAT 1.1 Survey Reports", 14, 16);
 
-    doc.text("SILAT_1.1 Survey Reports", 14, 16);
+    const tableBody = surveys.map(survey => {
+        const { schoolDisplay, respondentName } = getSurveyDisplayData(survey);
+        const username = survey.user ? survey.user.username : 'N/A';
+        return [username, schoolDisplay, respondentName, new Date(survey.createdAt).toLocaleString()];
+    });
 
-    const table = document.getElementById('reportsTable');
-    const tableClone = table.cloneNode(true);
-    Array.from(tableClone.rows).forEach(row => row.deleteCell(-1)); // Remove "Actions" column
-
-    doc.autoTable({ html: tableClone });
+    doc.autoTable({
+        head: [['Username', 'School', 'Respondent', 'Submission Date']],
+        body: tableBody,
+    });
 
     doc.save('silat_1.1-survey-reports.pdf');
 }
 
-function flattenObject(obj, prefix = '') {
-    return Object.keys(obj).reduce((acc, k) => {
-        const pre = prefix.length ? prefix + '_' : '';
-        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
-            Object.assign(acc, flattenObject(obj[k], pre + k));
-        } else {
-            acc[pre + k] = obj[k];
-        }
-        return acc;
-    }, {});
-}
-
-function exportToExcel() {
-    if (allSurveys.length === 0) {
+async function exportToExcel() {
+    const allSurveys = await fetchAllSurveyData('silat_1.1');
+    if (!allSurveys || allSurveys.length === 0) {
         alert("No data to export.");
         return;
     }
 
-    const surveyType = allSurveys.length > 0 ? allSurveys[0].surveyType : 'silat_1.1';
+    const surveyType = 'silat_1.1';
     const labels = surveyLabelMaps[surveyType] || {};
 
     const worksheetData = allSurveys.map(survey => {
