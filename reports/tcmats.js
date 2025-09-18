@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return response.json();
     })
-    .then(surveys => {
+    .then(data => {
+        const surveys = data.responses;
         allSurveys = surveys; // Store data for export functions
         loadingMessage.style.display = 'none';
         if (surveys.length === 0) {
