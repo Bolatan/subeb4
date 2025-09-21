@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SILAT_1.1 Survey Reports</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="/reports/style.css">
 </head>
 <body>
@@ -22,8 +19,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2>SILAT_1.1 Reports</h2>
                 <div id="export-buttons">
-                    <button class="btn" onclick="exportToPDF()">Export to PDF</button>
-                    <button class="btn" onclick="exportToExcel()" style="margin-left: 10px;">Export to Excel</button>
+                    <button class="btn" onclick="exportToCSV()">Export to CSV</button>
                     <button class="btn btn-danger" onclick="deleteAllReports('silat_1.1')" style="margin-left: 10px;">Delete All Reports</button>
                 </div>
             </div>
