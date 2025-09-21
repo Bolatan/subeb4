@@ -228,68 +228,18 @@ window.onclick = function(event) {
     }
 }
 
-async function exportToPDF() {
-    const surveys = await fetchAllSurveyData('silat_1.1');
-    if (!surveys || surveys.length === 0) {
-        alert("No data to export.");
+function exportToCSV() {
+    console.log("Initiating CSV export for silat_1.1");
+    const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
+    if (!user || !user.token) {
+        alert('Authentication required. Please log in.');
         return;
     }
 
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.text("SILAT 1.1 Survey Reports", 14, 16);
+    // The new streaming endpoint handles data fetching, so we just need to point the browser to it.
+    // The auth token is passed as a query parameter for the 'protect' middleware.
+    const exportUrl = `/api/export/silat_1.1/csv?token=${user.token}`;
 
-    const tableBody = surveys.map(survey => {
-        const { schoolDisplay, respondentName } = getSurveyDisplayData(survey);
-        const username = survey.user ? survey.user.username : 'N/A';
-        return [username, schoolDisplay, respondentName, new Date(survey.createdAt).toLocaleString()];
-    });
-
-    doc.autoTable({
-        head: [['Username', 'School', 'Respondent', 'Submission Date']],
-        body: tableBody,
-    });
-
-    doc.save('silat_1.1-survey-reports.pdf');
-}
-
-async function exportToExcel() {
-    const allSurveys = await fetchAllSurveyData('silat_1.1');
-    if (!allSurveys || allSurveys.length === 0) {
-        alert("No data to export.");
-        return;
-    }
-
-    const surveyType = 'silat_1.1';
-    const labels = surveyLabelMaps[surveyType] || {};
-
-    const worksheetData = allSurveys.map(survey => {
-        const flattenedFormData = flattenObject(survey.formData);
-        const username = survey.user ? survey.user.username : 'N/A';
-        const rowData = {
-            'Username': username,
-            'Survey Type': survey.surveyType,
-            'Submission Date': new Date(survey.createdAt).toLocaleString()
-        };
-
-        for (const key in flattenedFormData) {
-            if (Object.prototype.hasOwnProperty.call(flattenedFormData, key)) {
-                if (key === 'photos' && Array.isArray(flattenedFormData[key])) {
-                    flattenedFormData[key].forEach((photo, index) => {
-                        rowData[`Photo ${index + 1}`] = { v: `View Photo ${index + 1}`, l: { Target: photo } };
-                    });
-                } else {
-                    const label = labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                    rowData[label] = flattenedFormData[key];
-                }
-            }
-        }
-        return rowData;
-    });
-
-    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Survey Reports");
-
-    XLSX.writeFile(workbook, "silat_1.1-survey-reports.xlsx");
+    // This will trigger a file download in the browser.
+    window.location.href = exportUrl;
 }

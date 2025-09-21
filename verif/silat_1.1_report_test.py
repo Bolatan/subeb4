@@ -72,10 +72,11 @@ def run_test():
         print("Report fetched successfully.")
 
         # --- 5. Assert response ---
-        reports = report_response.json()
-        if not isinstance(reports, list):
-             raise Exception(f"Expected reports to be a list, but got {type(reports)}")
+        report_data = report_response.json()
+        if not isinstance(report_data.get('responses'), list):
+             raise Exception(f"Expected 'responses' to be a list, but got {type(report_data.get('responses'))}")
 
+        reports = report_data['responses']
         test_report_found = False
         for report in reports:
             if report.get("formData", {}).get("test_id") == test_id:

@@ -462,22 +462,73 @@ app.get('/api/export/excel', protect, async (req, res) => {
   }
 });
 
-// GET endpoint for ALL survey reports by type (for export)
-app.get('/api/reports/:type/all', protect, async (req, res) => {
-  try {
-    const surveyType = req.params.type;
-    const query = { surveyType: surveyType };
+const { Transform } = require('stream');
 
-    const surveys = await SurveyResponse.find(query)
-      .populate('user', 'username')
-      .sort({ createdAt: -1 });
+// Helper to flatten nested objects for CSV export
+const flattenObjectForCsv = (obj, prefix = '') => {
+    return Object.keys(obj).reduce((acc, k) => {
+        const pre = prefix.length ? prefix + '.' : '';
+        const key = pre + k;
+        if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+            Object.assign(acc, flattenObjectForCsv(obj[k], key));
+        } else {
+            acc[key] = Array.isArray(obj[k]) ? obj[k].join('; ') : obj[k];
+        }
+        return acc;
+    }, {});
+};
 
-    res.status(200).json(surveys);
-  } catch (error) {
-    console.error(`Error fetching all ${req.params.type} reports:`, error);
-    res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
-  }
+// New streaming export endpoint for any survey type
+app.get('/api/export/:surveyType/csv', protect, async (req, res) => {
+    try {
+        const { surveyType } = req.params;
+        const query = { surveyType };
+
+        // First pass: Collect all unique headers from formData to ensure a consistent CSV structure
+        const headers = new Set(['username', 'createdAt']);
+        const headerCursor = SurveyResponse.find(query).lean().cursor();
+        for await (const doc of headerCursor) {
+            if (doc.formData) {
+                const flattened = flattenObjectForCsv(doc.formData);
+                Object.keys(flattened).forEach(key => headers.add(key));
+            }
+        }
+        const fields = Array.from(headers);
+        const json2csvParser = new Parser({ fields });
+
+        // Set response headers for CSV download
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', `attachment; filename=${surveyType}-export-${new Date().toISOString()}.csv`);
+
+        // Second pass: Stream data and convert to CSV row by row
+        const dataCursor = SurveyResponse.find(query).populate('user', 'username').lean().cursor();
+
+        // Write headers first
+        res.write(json2csvParser.parse());
+
+        for await (const doc of dataCursor) {
+            const flattenedData = {
+                username: doc.user ? doc.user.username : 'N/A',
+                createdAt: doc.createdAt.toISOString(),
+                ...flattenObjectForCsv(doc.formData || {})
+            };
+            const csvRow = json2csvParser.parse(flattenedData, { header: false });
+            res.write(`\n${csvRow}`);
+        }
+
+        res.end();
+
+    } catch (error) {
+        console.error(`Error exporting ${req.params.surveyType} to CSV:`, error);
+        // Ensure the client knows the request failed
+        if (!res.headersSent) {
+            res.status(500).send('Error exporting to CSV');
+        } else {
+            res.end(); // End the stream if headers were already sent
+        }
+    }
 });
+
 
 // GET endpoint for survey reports by type
 app.get('/api/reports/:type', protect, async (req, res) => {
