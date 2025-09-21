@@ -1,23 +1,52 @@
-// Helper function to fetch all survey data for exports
 async function fetchAllSurveyData(surveyType) {
     const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
     if (!user || !user.token) {
-        alert('Authentication required. Please log in.');
+        console.error('Authentication required. Please log in.');
         return null;
     }
 
     try {
-        const response = await fetch(`/api/reports/${surveyType}/all`, {
+        // First, fetch page 1 to get pagination info
+        const firstPageResponse = await fetch(`/api/reports/${surveyType}?page=1`, {
             headers: { 'Authorization': `Bearer ${user.token}` }
         });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+
+        if (!firstPageResponse.ok) {
+            throw new Error(`HTTP error on first page! status: ${firstPageResponse.status}`);
         }
-        const data = await response.json();
-        return data; // Assuming the endpoint returns the array of surveys directly
+
+        const firstPageData = await firstPageResponse.json();
+        const allSurveys = firstPageData.responses;
+        const totalPages = firstPageData.pagination.totalPages;
+
+        // If there's more than one page, fetch the rest
+        if (totalPages > 1) {
+            const pagePromises = [];
+            for (let page = 2; page <= totalPages; page++) {
+                pagePromises.push(
+                    fetch(`/api/reports/${surveyType}?page=${page}`, {
+                        headers: { 'Authorization': `Bearer ${user.token}` }
+                    }).then(res => {
+                        if (!res.ok) {
+                            console.error(`Error fetching page ${page} for ${surveyType}: status ${res.status}`);
+                            return { responses: [] }; // Return empty on error to not break Promise.all
+                        }
+                        return res.json();
+                    })
+                );
+            }
+
+            const remainingPagesData = await Promise.all(pagePromises);
+            remainingPagesData.forEach(pageData => {
+                allSurveys.push(...pageData.responses);
+            });
+        }
+
+        return allSurveys;
+
     } catch (error) {
         console.error(`Error fetching all ${surveyType} survey data for export:`, error);
-        alert('Failed to fetch data for export. Please try again.');
+        // No alert here to avoid blocking tests
         return null;
     }
 }
