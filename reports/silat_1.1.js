@@ -240,7 +240,27 @@ function exportToExcel() {
     window.location.href = exportUrl;
 }
 
-function exportToPDF() {
-    console.log("Initiating PDF export for silat_1.1");
-    exportTableToPDF('reportsTable', 'silat_1.1_reports.pdf');
+async function exportToPDF() {
+    const surveys = await fetchAllSurveyData('silat_1.1');
+    if (!surveys || surveys.length === 0) {
+        alert("No data to export.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text("SILAT 1.1 Survey Reports", 14, 16);
+
+    const tableBody = surveys.map(survey => {
+        const { schoolDisplay, respondentName } = getSurveyDisplayData(survey);
+        const username = survey.user ? survey.user.username : 'N/A';
+        return [username, schoolDisplay, respondentName, new Date(survey.createdAt).toLocaleString()];
+    });
+
+    doc.autoTable({
+        head: [['Username', 'Name of School/Institution / LGEA', 'Respondent Name', 'Submission Date']],
+        body: tableBody,
+    });
+
+    doc.save('silat_1.1_reports.pdf');
 }
