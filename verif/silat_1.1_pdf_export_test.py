@@ -13,7 +13,15 @@ async def run_pdf_export_test():
         page = await browser.new_page()
 
         try:
-            # Navigate to the reports page
+            # Login first
+            await page.goto("http://localhost:3000")
+            await page.fill("#username", "admin")
+            await page.fill("#password", "AdminPassword1!")
+            await page.click('button:has-text("Login")')
+            await page.wait_for_selector("#landingPage:not(.hidden)", timeout=5000)
+            print("Login successful!")
+
+            # Now, navigate to the reports page
             await page.goto("http://localhost:3000/reports/silat_1.1.html")
 
             # Click the "Export to PDF" button and wait for the download
