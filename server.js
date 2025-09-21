@@ -400,17 +400,6 @@ app.get('/api/reports/all', protect, async (req, res) => {
   }
 });
 
-// GET endpoint for all survey reports of a specific type
-app.get('/api/reports/:type/all', protect, async (req, res) => {
-  try {
-    const surveyType = req.params.type;
-    const surveys = await SurveyResponse.find({ surveyType: surveyType }).populate('user', 'username').sort({ createdAt: -1 });
-    res.status(200).json(surveys);
-  } catch (error) {
-    console.error(`Error fetching all reports for ${req.params.type}:`, error);
-    res.status(500).json({ message: 'Failed to fetch reports.', error: error.message });
-  }
-});
 
 // --- Helper function for flattening survey data ---
 const flattenSubmissions = (submissions) => {
