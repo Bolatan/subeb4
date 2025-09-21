@@ -20,6 +20,7 @@
                 <h2>SILAT_1.1 Reports</h2>
                 <div id="export-buttons">
                     <button class="btn" onclick="exportToCSV()">Export to CSV</button>
+                    <button class="btn" onclick="exportToPDF()">Export to PDF</button>
                     <button class="btn btn-danger" onclick="deleteAllReports('silat_1.1')" style="margin-left: 10px;">Delete All Reports</button>
                 </div>
             </div>
@@ -52,6 +53,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="label_maps.js?v=2"></script>
     <script src="export_utils.js?v=2"></script>
     <script src="silat_1.1.js?v=2"></script>
