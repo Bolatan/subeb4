@@ -1234,6 +1234,20 @@ app.get('/api/export/:surveyType/excel', protect, async (req, res) => {
 });
 
 
+// GET endpoint for ALL survey reports by type (for exports)
+app.get('/api/reports/:type/all', protect, async (req, res) => {
+  try {
+    const surveyType = req.params.type;
+    const surveys = await SurveyResponse.find({ surveyType: surveyType })
+      .populate('user', 'username')
+      .sort({ createdAt: -1 });
+    res.status(200).json(surveys);
+  } catch (error) {
+    console.error(`Error fetching all ${req.params.type} reports:`, error);
+    res.status(500).json({ message: 'Failed to fetch all reports.', error: error.message });
+  }
+});
+
 // GET endpoint for survey reports by type
 app.get('/api/reports/:type', protect, async (req, res) => {
   try {
