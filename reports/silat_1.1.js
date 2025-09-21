@@ -258,9 +258,9 @@ async function exportToPDF() {
     });
 
     doc.autoTable({
-        head: [['Username', 'Name of School/Institution / LGEA', 'Respondent Name', 'Submission Date']],
+        head: [['Username', 'School (LGA)', 'Respondent', 'Submission Date']],
         body: tableBody,
     });
 
-    doc.save('silat_1.1_reports.pdf');
+    doc.save('silat_1.1-survey-reports.pdf');
 }
