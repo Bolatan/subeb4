@@ -6,47 +6,19 @@ async function fetchAllSurveyData(surveyType) {
     }
 
     try {
-        // First, fetch page 1 to get pagination info
-        const firstPageResponse = await fetch(`/api/reports/${surveyType}?page=1`, {
+        const response = await fetch(`/api/reports/${surveyType}/all`, {
             headers: { 'Authorization': `Bearer ${user.token}` }
         });
 
-        if (!firstPageResponse.ok) {
-            throw new Error(`HTTP error on first page! status: ${firstPageResponse.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const firstPageData = await firstPageResponse.json();
-        const allSurveys = firstPageData.responses;
-        const totalPages = firstPageData.pagination.totalPages;
-
-        // If there's more than one page, fetch the rest
-        if (totalPages > 1) {
-            const pagePromises = [];
-            for (let page = 2; page <= totalPages; page++) {
-                pagePromises.push(
-                    fetch(`/api/reports/${surveyType}?page=${page}`, {
-                        headers: { 'Authorization': `Bearer ${user.token}` }
-                    }).then(res => {
-                        if (!res.ok) {
-                            console.error(`Error fetching page ${page} for ${surveyType}: status ${res.status}`);
-                            return { responses: [] }; // Return empty on error to not break Promise.all
-                        }
-                        return res.json();
-                    })
-                );
-            }
-
-            const remainingPagesData = await Promise.all(pagePromises);
-            remainingPagesData.forEach(pageData => {
-                allSurveys.push(...pageData.responses);
-            });
-        }
-
-        return allSurveys;
+        const surveys = await response.json();
+        return surveys;
 
     } catch (error) {
         console.error(`Error fetching all ${surveyType} survey data for export:`, error);
-        // No alert here to avoid blocking tests
         return null;
     }
 }
