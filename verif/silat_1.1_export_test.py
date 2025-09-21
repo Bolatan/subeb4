@@ -2,7 +2,8 @@ import requests
 import os
 import time
 import sys
-import csv
+import pandas as pd
+import io
 
 # Add the root directory to the Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -21,9 +22,9 @@ def get_auth_token(base_url, username, password):
 
 def run_export_test():
     """
-    Tests the SILAT 1.1 CSV export functionality.
+    Tests the SILAT 1.1 Excel export functionality.
     """
-    print("Starting SILAT 1.1 CSV export test...")
+    print("Starting SILAT 1.1 Excel export test...")
 
     # --- 1. Setup ---
     base_url = "http://localhost:3000"
@@ -52,42 +53,41 @@ def run_export_test():
         print("Test data created successfully.")
 
         # --- 4. Call the export endpoint ---
-        print("Calling the CSV export endpoint...")
-        # The token can also be passed as a query param as designed for browser downloads
-        export_url = f"{base_url}/api/export/silat_1.1/csv?token={token}"
-        export_response = requests.get(export_url, stream=True)
+        print("Calling the Excel export endpoint...")
+        export_url = f"{base_url}/api/export/silat_1.1/excel?token={token}"
+        export_response = requests.get(export_url)
         export_response.raise_for_status()
         print("Export endpoint returned success status.")
 
         # --- 5. Assert response headers ---
         content_type = export_response.headers.get('Content-Type')
-        if not content_type or 'text/csv' not in content_type:
-            raise Exception(f"Expected Content-Type 'text/csv', but got '{content_type}'")
+        expected_content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        if not content_type or expected_content_type not in content_type:
+            raise Exception(f"Expected Content-Type '{expected_content_type}', but got '{content_type}'")
         print("Content-Type header is correct.")
 
         # --- 6. Assert response content ---
-        lines = export_response.text.splitlines()
-        if len(lines) < 2:
-            raise Exception(f"Expected at least 2 lines in CSV (header + data), but got {len(lines)}")
+        df = pd.read_excel(io.BytesIO(export_response.content))
 
-        reader = csv.reader(lines)
-        header = next(reader)
-        if 'test_id' not in header:
-            raise Exception(f"Expected 'test_id' column in CSV header, got {header}")
+        if df.empty:
+            raise Exception("Exported Excel file is empty.")
 
-        found_in_csv = False
-        for row in reader:
-            row_dict = dict(zip(header, row))
-            if row_dict.get('test_id') == test_id:
-                found_in_csv = True
-                break
+        # Check for a label that should exist.
+        # Note: The test_id field is not in the label map, so it will be exported with its raw key.
+        if 'test_id' not in df.columns:
+             raise Exception(f"Expected 'test_id' column in Excel header, got {df.columns}")
 
-        if not found_in_csv:
-            raise Exception("Test data not found in the exported CSV.")
+        if 'Name of School/Institution' not in df.columns:
+            raise Exception(f"Expected 'Name of School/Institution' column in Excel header, got {df.columns}")
 
-        print("Successfully verified test data in the exported CSV.")
+        # Find the row with our test_id
+        test_row = df[df['test_id'] == test_id]
+        if test_row.empty:
+            raise Exception("Test data not found in the exported Excel file.")
 
-        print("\n✅ SILAT 1.1 CSV export test PASSED.")
+        print("Successfully verified test data in the exported Excel file.")
+
+        print("\n✅ SILAT 1.1 Excel export test PASSED.")
 
     except requests.exceptions.RequestException as e:
         print(f"\n❌ Test FAILED: An error occurred during an HTTP request: {e}")
@@ -96,15 +96,13 @@ def run_export_test():
     except Exception as e:
         print(f"\n❌ Test FAILED: An unexpected error occurred: {e}")
     finally:
-        # Clean up is harder here as we don't have the _id.
-        # We can use the test_id, but need a direct DB connection.
-        # For this test, we'll skip automatic cleanup, but it should be implemented in a real scenario.
+        # Clean up would ideally happen here.
         print("Test finished. Manual cleanup may be required for test data.")
 
 
 if __name__ == "__main__":
     print("---------------------------------------------------")
-    print("--- Running SILAT 1.1 CSV Export Test ---")
+    print("--- Running SILAT 1.1 Excel Export Test ---")
     print("--- Make sure the backend server is running. ---")
     print("---------------------------------------------------")
     run_export_test()
