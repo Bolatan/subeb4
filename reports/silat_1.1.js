@@ -243,3 +243,8 @@ function exportToCSV() {
     // This will trigger a file download in the browser.
     window.location.href = exportUrl;
 }
+
+function exportToPDF() {
+    console.log("Initiating PDF export for silat_1.1");
+    exportTableToPDF('reportsTable', 'silat_1.1_reports.pdf');
+}
