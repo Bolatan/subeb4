@@ -1238,9 +1238,29 @@ app.get('/api/export/:surveyType/excel', protect, async (req, res) => {
 app.get('/api/reports/:surveyType/all', protect, async (req, res) => {
   try {
     const { surveyType } = req.params;
-    const surveys = await SurveyResponse.find({ surveyType })
-      .populate('user', 'username')
-      .sort({ createdAt: -1 });
+    const surveys = await SurveyResponse.aggregate([
+      { $match: { surveyType: surveyType } },
+      { $sort: { createdAt: -1 } },
+      {
+        $lookup: {
+          from: 'users', // The collection name for the User model
+          localField: 'user',
+          foreignField: '_id',
+          as: 'user'
+        }
+      },
+      {
+        $unwind: {
+          path: '$user',
+          preserveNullAndEmptyArrays: true // Keep surveys even if user is not found
+        }
+      }
+    ]);
+
+    // Mongoose's aggregate returns plain JS objects, not Mongoose documents.
+    // The 'user' field is now an object, so we need to make sure the final
+    // JSON correctly represents this. The structure is already close to what
+    // populate would produce, so we can send it directly.
     res.status(200).json(surveys);
   } catch (error) {
     console.error(`Error fetching all ${req.params.surveyType} reports:`, error);
