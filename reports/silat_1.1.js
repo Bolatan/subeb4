@@ -228,19 +228,15 @@ window.onclick = function(event) {
     }
 }
 
-function exportToCSV() {
-    console.log("Initiating CSV export for silat_1.1");
+function exportToExcel() {
+    console.log("Initiating Excel export for silat_1.1");
     const user = JSON.parse(localStorage.getItem('auditAppCurrentUser'));
     if (!user || !user.token) {
         alert('Authentication required. Please log in.');
         return;
     }
 
-    // The new streaming endpoint handles data fetching, so we just need to point the browser to it.
-    // The auth token is passed as a query parameter for the 'protect' middleware.
-    const exportUrl = `/api/export/silat_1.1/csv?token=${user.token}`;
-
-    // This will trigger a file download in the browser.
+    const exportUrl = `/api/export/silat_1.1/excel?token=${user.token}`;
     window.location.href = exportUrl;
 }
 
