@@ -1239,13 +1239,26 @@ app.get('/api/export/:surveyType/excel', protect, async (req, res) => {
 app.get('/api/reports/:type/all', protect, async (req, res) => {
   try {
     const surveyType = req.params.type;
-    const surveys = await SurveyResponse.find({ surveyType: surveyType })
+    res.setHeader('Content-Type', 'application/x-ndjson');
+    res.setHeader('Content-Disposition', `attachment; filename="${surveyType}-all.ndjson"`);
+
+    const cursor = SurveyResponse.find({ surveyType: surveyType })
       .populate('user', 'username')
-      .sort({ createdAt: -1 });
-    res.status(200).json(surveys);
+      .sort({ createdAt: -1 })
+      .cursor();
+
+    for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+      res.write(JSON.stringify(doc) + '\n');
+    }
+
+    res.end();
   } catch (error) {
     console.error(`Error fetching all ${req.params.type} reports:`, error);
-    res.status(500).json({ message: 'Failed to fetch all reports.', error: error.message });
+    if (!res.headersSent) {
+      res.status(500).json({ message: 'Failed to fetch all reports.', error: error.message });
+    } else {
+      res.end();
+    }
   }
 });
 
