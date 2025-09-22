@@ -14,7 +14,41 @@ async function fetchAllSurveyData(surveyType) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const surveys = await response.json();
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+        const surveys = [];
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+                // Process any remaining data in the buffer
+                if (buffer.length > 0) {
+                    try {
+                        surveys.push(JSON.parse(buffer));
+                    } catch (e) {
+                        console.error('Error parsing final JSON object:', e);
+                    }
+                }
+                break;
+            }
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+
+            // The last line might be incomplete, so we keep it in the buffer
+            buffer = lines.pop();
+
+            for (const line of lines) {
+                if (line.trim() === '') continue;
+                try {
+                    surveys.push(JSON.parse(line));
+                } catch (e) {
+                    console.error('Error parsing JSON object from stream:', e, 'line:', line);
+                }
+            }
+        }
+
         return surveys;
 
     } catch (error) {
