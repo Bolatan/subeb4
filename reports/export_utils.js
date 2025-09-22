@@ -5,51 +5,44 @@ async function fetchAllSurveyData(surveyType) {
         return null;
     }
 
+    const allSurveys = [];
+    let page = 1;
+    let totalPages = 1; // Initialize to 1 to ensure the loop runs at least once
+    const limit = 100; // Fetch 100 records per page
+
+    console.log(`Starting to fetch all ${surveyType} data page by page for export.`);
+
     try {
-        const response = await fetch(`/api/reports/${surveyType}/all`, {
-            headers: { 'Authorization': `Bearer ${user.token}` }
-        });
+        while (page <= totalPages) {
+            const response = await fetch(`/api/reports/${surveyType}?page=${page}&limit=${limit}`, {
+                headers: { 'Authorization': `Bearer ${user.token}` }
+            });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = '';
-        const surveys = [];
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) {
-                // Process any remaining data in the buffer
-                if (buffer.length > 0) {
-                    try {
-                        surveys.push(JSON.parse(buffer));
-                    } catch (e) {
-                        console.error('Error parsing final JSON object:', e);
-                    }
-                }
-                break;
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status} while fetching page ${page}`);
             }
 
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split('\n');
+            const data = await response.json();
 
-            // The last line might be incomplete, so we keep it in the buffer
-            buffer = lines.pop();
-
-            for (const line of lines) {
-                if (line.trim() === '') continue;
-                try {
-                    surveys.push(JSON.parse(line));
-                } catch (e) {
-                    console.error('Error parsing JSON object from stream:', e, 'line:', line);
-                }
+            if (data && data.responses && data.responses.length > 0) {
+                allSurveys.push(...data.responses);
             }
+
+            // Set totalPages from the first response. It's constant for subsequent pages.
+            if (page === 1) {
+                totalPages = data.pagination.totalPages;
+                if (totalPages === 0) {
+                    console.log("No records found.");
+                    break;
+                }
+                console.log(`Total pages to fetch: ${totalPages}`);
+            }
+
+            page++;
         }
 
-        return surveys;
+        console.log(`Finished fetching all data. Total surveys retrieved: ${allSurveys.length}`);
+        return allSurveys;
 
     } catch (error) {
         console.error(`Error fetching all ${surveyType} survey data for export:`, error);
